@@ -1,0 +1,146 @@
+<article>
+<header>
+<h1>Megalithic Acoustics, Granite Impedance, and Structural Resonance</h1>
+<p><strong>Project Parallax</strong> — Technical Research Report. Classification: empirical synthesis with boundary-condition constraints. Frequency of record: 115.0 Hz.</p>
+</header>
+
+<section>
+<h2>1. Scope and Method</h2>
+<p>This report evaluates claims that megalithic granite assemblies can function as efficient airborne acoustic transducers or charge-generating resonators. The analysis binds three inputs: a laboratory-scale empirical snapshot at 115.0 Hz; an analytical result from the extraordinary-acoustic-transmission literature on a single subwavelength slit with effective boundary impedance; and a failsafe skeptic constraint that treats 99.99% energy reflection as a hard barrier unless a non-airborne coupling path is specified. Historical synthesis is admitted only where it is consistent with continuum acoustics, linear elasticity, and measured material impedances. No mechanism is granted that requires airborne waves to “overcome stone mass alone.”</p>
+</section>
+
+<section>
+<h2>2. Empirical Snapshot and Calculated Barriers</h2>
+<p>The working dataset is a single-frequency observation. Acoustic pressure in air is modest (~29 Pa, corresponding to a high but physically attainable sound-pressure level near 123 dB re 20 μPa). Energy reflection at the air–granite interface is essentially total. The piezoelectric surface charge density inferred from granite’s weak quartz-bearing response is of order 10<sup>−14</sup> C·m<sup>−2</sup> and is not a usable electrostatic source. Boundary status is therefore classified as a high-reflection barrier.</p>
+
+<table>
+<caption>Input metrics, calculated barriers, and arXiv analytical context (Project Parallax working set)</caption>
+<thead>
+<tr>
+<th scope="col">Parameter</th>
+<th scope="col">Value</th>
+<th scope="col">Unit / class</th>
+<th scope="col">Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Drive frequency</td>
+<td>115.0</td>
+<td>Hz</td>
+<td>Airborne wavelength λ ≈ 2.98 m (c = 343 m·s<sup>−1</sup>). Comparable to chamber scales at several megalithic hypogea, not to typical megalith thickness.</td>
+</tr>
+<tr>
+<td>Acoustic pressure (air)</td>
+<td>28.98879093718812</td>
+<td>Pa</td>
+<td>Finite but non-catastrophic loading. Radiation force and particle displacement remain small relative to granite inertia.</td>
+</tr>
+<tr>
+<td>Energy reflection</td>
+<td>99.98755114530057</td>
+<td>%</td>
+<td>Consistent with Z<sub>granite</sub>/Z<sub>air</sub> ≫ 1. Airborne power transmission into bulk stone is of order 10<sup>−4</sup>.</td>
+</tr>
+<tr>
+<td>Induced charge density</td>
+<td>8.300176664652913×10<sup>−15</sup></td>
+<td>C·m<sup>−2</sup></td>
+<td>Piezoelectric / flexoelectric leakage at granite grain scale. Negligible as a field source; not a ritual “charge” reservoir.</td>
+</tr>
+<tr>
+<td>Boundary status</td>
+<td>HIGH_REFLECTION_BARRIER</td>
+<td>classification</td>
+<td>Interface treated as a near-perfect acoustic mirror for airborne incidence unless geometry or substrate coupling is added.</td>
+</tr>
+<tr>
+<td>Calculated intensity transmission</td>
+<td>~1.24×10<sup>−4</sup></td>
+<td>fraction</td>
+<td>T<sub>I</sub> ≈ 1 − R<sub>E</sub>. Confirms skeptic bound: stone mass is not driven by air impedance matching.</td>
+</tr>
+<tr>
+<td>Characteristic air impedance</td>
+<td>~413</td>
+<td>Pa·s·m<sup>−1</sup></td>
+<td>Z<sub>0</sub> = ρc for dry air at STP. Reference for all reflection formulae below.</td>
+</tr>
+<tr>
+<td>Characteristic granite impedance (typ.)</td>
+<td>~1.4×10<sup>7</sup></td>
+<td>Pa·s·m<sup>−1</sup></td>
+<td>ρ ≈ 2.65×10<sup>3</sup> kg·m<sup>−3</sup>, c<sub>p</sub> ≈ 5.0–6.0×10<sup>3</sup> m·s<sup>−1</sup>. Impedance ratio ~3×10<sup>4</sup>.</td>
+</tr>
+<tr>
+<td>Pressure reflection coefficient |R|</td>
+<td>~0.99994</td>
+<td>dimensionless</td>
+<td>R = (Z<sub>2</sub> − Z<sub>1</sub>)/(Z<sub>2</sub> + Z<sub>1</sub>). Energy reflection R<sup>2</sup> matches the 99.9876% datum.</td>
+</tr>
+<tr>
+<td>arXiv context (reduced model)</td>
+<td>Single subwavelength slit; enhanced transmission via effective impedance of the boundary, not via periodic arrays or multi-aperture lattices.</td>
+<td>analytical claim</td>
+<td>Extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. In this work, we show that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance. Using a reduced analytical model…</td>
+</tr>
+<tr>
+<td>Skeptic failsafe</td>
+<td>99.99% airborne energy reflection; stone mass cannot be driven by air alone; requires continuous subterranean seismic stress or enclosed Helmholtz geometry.</td>
+<td>constraint</td>
+<td>Admitted as the default physical bound. Any megalithic “resonance” hypothesis must name the coupling path.</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>3. Historical Synthesis under Physical Constraint</h2>
+<p>Archaeoacoustic literature has repeatedly noted that certain enclosed or semi-enclosed megalithic volumes exhibit modal peaks near 90–120 Hz. The Ħal Saflieni Hypogeum (Malta) is the most carefully documented case: standing-wave and chamber-mode measurements cluster near 110–114 Hz, adjacent to the 115.0 Hz line used here. Newgrange, Maeshowe, and several Breton passage graves present comparable length scales (chamber diameters and passage widths of order λ/4 to λ at these frequencies). These observations establish that <em>geometry</em> can store airborne energy. They do not establish that granite as a material is an efficient radiator, absorber, or electromechanical transducer.</p>
+<p>Nineteenth- and early twentieth-century antiquarian accounts often attributed “living stone,” oracular voice, or ritual thunder to the blocks themselves. Continuum acoustics replaces that ontology with three separable problems: (i) air-cavity modes (Helmholtz and room modes); (ii) elastic modes of the masonry continuum and its foundation; (iii) weak coupled effects (poroelasticity, grain-scale piezoelectricity in quartz-bearing granite). Only (i) is strongly excited by airborne sources at the recorded pressure. Item (ii) requires either structure-borne drive (footfall, percussion on the stone, or teleseismic/microseismic input) or an impedance-matching interlayer. Item (iii) is quantified here by the induced charge density and is energetically irrelevant.</p>
+<p>Granite’s archaeological prestige—Aswan, Dartmoor, the Carnac alignments, the Egyptian pyramid casing and sarcophagi—follows from durability, compressive strength, and workability with copper and abrasive sand, not from acoustic transparency. Where joints, slots, or door-like slits exist, they may be described by the effective-impedance reduction of the cited arXiv model. That model does not repeal the reflection coefficient of a blank face. It relocates the interesting physics to the slit’s lips, viscous-thermal boundary layers, and the reactive near field, provided the slit is backed by a compliant or resonant termination.</p>
+</section>
+
+<section>
+<h2>4. Impedance, Reflection, and Why Airborne Drive Fails</h2>
+<p>Normal-incidence pressure reflection at a planar air–granite interface is</p>
+<p>R = (Z<sub>g</sub> − Z<sub>a</sub>)/(Z<sub>g</sub> + Z<sub>a</sub>) ≈ 1 − 2Z<sub>a</sub>/Z<sub>g</sub>.</p>
+<p>With Z<sub>g</sub>/Z<sub>a</sub> ~ 3×10<sup>4</sup>, |R| exceeds 0.9999 and the energy reflection R<sup>2</sup> reproduces the empirical 99.98755114530057%. The transmitted intensity is carried as a compressional wave of minute particle velocity. Displacement amplitude in the solid is u ~ p<sub>t</sub>/(ω Z<sub>g</sub>), of nanometre scale or less at 29 Pa and 115 Hz. Inertial force on a multi-tonne orthostat therefore remains negligible compared with self-weight and foundation stiffness. This is the quantitative content of the skeptic statement that airborne acoustic waves cannot overcome stone mass alone.</p>
+<p>Oblique incidence and surface roughness do not rescue the coupling. For θ below the shear critical angle the reflection remains extreme; roughness small compared with λ (~3 m) is an ineffective scatterer. Only when the surface is opened into a cavity, slit, or waveguide whose effective specific impedance Z<sub>eff</sub> is of order Z<sub>a</sub> does airborne energy enter a resonant store. That is precisely the regime of the reduced analytical model: a single subwavelength slit whose boundary response is replaced by Z<sub>eff</sub>(ω), allowing a transmission peak without a periodic array. In megalithic masonry the candidates are door slots, corbelled gaps, and the necks of passage-grave chambers—not the polished granite face.</p>
+</section>
+
+<section>
+<h2>5. Two Admissible Coupling Paths</h2>
+<p>The failsafe critique names the only two mechanisms that survive the reflection bound.</p>
+<h3>5.1 Enclosed Helmholtz and room-mode geometry</h3>
+<p>A chamber of volume V with a neck of length L and area A has Helmholtz frequency f<sub>H</sub> = (c/2π)√(A/(V L<sub>eff</sub>)). For hypogeum-scale volumes and passage necks, f<sub>H</sub> falls naturally into the 90–120 Hz band. Higher axial and tangential room modes of rectangular or ovoid chambers sit in the same range when a characteristic length is 1.4–3.8 m. In this regime the stone is a rigid boundary (consistent with HIGH_REFLECTION_BARRIER) and the air is the resonator. Absorption is dominated by viscous-thermal losses at walls and by radiation from the aperture, not by bulk dissipation in granite. Ritual or processional sound sources (voice, drum, horn) then experience long reverberation and strong modal coloration without any anomalous material physics. This path is historically and physically conservative.</p>
+<h3>5.2 Continuous subterranean seismic stress</h3>
+<p>Structure-borne drive bypasses Z<sub>a</sub> entirely. Microseismic background, cultural noise, and tectonic strain inject displacement at the foundation. Granite’s high Q in the seismic band allows orthostats and lintels to participate as stiff elastic members. Coupling to the internal air volume then occurs by piston-like wall motion or by slit/neck volume velocity—again an effective-impedance problem, now with a mechanical rather than acoustic source. Induced piezoelectric charge remains of the recorded 8.3×10<sup>−15</sup> C·m<sup>−2</sup> order unless stress is concentrated at quartz-rich contacts far above ambient seismic strain. No evidence in the working set supports such concentration. Seismic coupling is therefore admissible as a vibrational, not an electrical, channel.</p>
+</section>
+
+<section>
+<h2>6. Extraordinary Transmission and the Single Slit</h2>
+<p>The arXiv reduced model is used here as a caution against two errors: (i) assuming that only periodic hole arrays can produce transmission peaks; (ii) assuming that a slit in granite is acoustically “open” in the geometric-optics sense. A subwavelength slit radiates poorly unless the slit impedance, including end corrections and wall dissipation, is tuned near the radiation impedance of the surrounding half-space or cavity. Enhancement is then a boundary-value effect, not a material miracle. Applied to megalithic joints, the model predicts that a minority of apertures—those whose depth, width, and termination match Z<sub>eff</sub>(ω) at ~115 Hz—can dominate the airborne exchange between chambers, while blank faces remain mirrors. This is compatible with both the empirical reflection percentage and the historical reports of “speaking” passages.</p>
+<p>The model does not license claims of energy concentration sufficient to move blocks, vitrify surfaces, or generate biologically significant electric fields. Those claims fail the charge-density and transmission-fraction rows of the table.</p>
+</section>
+
+<section>
+<h2>7. Hard Limitations</h2>
+<ul>
+<li>Air–granite mismatch is not a controversy; it is a textbook impedance ratio. Any protocol that treats granite as an airborne loudspeaker or antenna without a matching network (cavity, slit, or solid drive) is physically incomplete.</li>
+<li>The 115 Hz coincidence with hypogeum modes is geometrically natural and does not imply design knowledge of impedance theory.</li>
+<li>Piezoelectric granite is a real mineralogical fact and an energetically null archaeological fact at the measured charge density.</li>
+<li>Single-frequency snapshots cannot identify Q, modal density, or nonlinear thresholds. Broadband, multi-point, and structure-borne measurements are required before resonance is attributed to a monument rather than to a chamber of air.</li>
+<li>Effective-impedance slit theory explains selective transmission; it does not reverse the 99.9876% reflection of unslotted faces.</li>
+</ul>
+</section>
+
+<section>
+<h2>8. Conclusions</h2>
+<p>Megalithic acoustics, properly stated, is the acoustics of air volumes bounded by nearly rigid, high-impedance stone, optionally coupled through a small number of slits whose boundary impedance can, in a reduced model, support extraordinary transmission peaks. Granite’s role is structural and reflective. The empirical energy reflection of 99.98755114530057% at 115.0 Hz, the HIGH_REFLECTION_BARRIER classification, and the skeptic failsafe are mutually consistent. Historical chamber resonances near this frequency are real as geometric facts and are not evidence of anomalous granite transduction. Admissible research programmes are therefore: (a) Helmholtz and room-mode mapping of enclosed monuments; (b) effective-impedance characterisation of joints and passages; (c) seismic and percussion drive of the masonry continuum. Programmes that require airborne waves to energise stone mass, or that treat 8.3×10<sup>−15</sup> C·m<sup>−2</sup> as a significant charge, are excluded by the same dataset that motivates them.</p>
+</section>
+
+<footer>
+<p>Project Parallax — senior research compilation. Inputs consumed: frequency 115.0 Hz; p = 28.98879093718812 Pa; R<sub>E</sub> = 99.98755114530057%; σ = 8.300176664652913×10<sup>−15</sup> C·m<sup>−2</sup>; boundary HIGH_REFLECTION_BARRIER; arXiv single-slit effective-impedance reduction; skeptic seismic/Helmholtz constraint. No airborne-over-mass mechanism is endorsed.</p>
+</footer>
+</article>

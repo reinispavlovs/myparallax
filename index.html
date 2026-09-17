@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="lv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT PARALLAX | Reālāks par redzamo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .brand-font { font-family: 'Cinzel', serif; }
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .modal-backdrop { background-color: rgba(2, 6, 23, 0.94); backdrop-filter: blur(14px); }
+        .touch-none { touch-action: none; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+    <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
+    <div class="fixed inset-0 bg-gradient-to-b from-slate-950 via-slate-950/70 to-slate-950 pointer-events-none z-0"></div>
+
+    <!-- Navigation Bar -->
+    <header class="relative z-30 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl border border-amber-500/30 bg-amber-500/10 flex items-center justify-center text-amber-400 group-hover:border-amber-400 transition">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="9" stroke-width="1.5" stroke-dasharray="4 2"/>
+                        <ellipse cx="12" cy="12" rx="9" ry="3" stroke-width="1.5" transform="rotate(30 12 12)"/>
+                        <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="brand-font text-lg font-bold tracking-wider text-white group-hover:text-amber-400 transition">PROJECT PARALLAX</span>
+                    <span class="block text-[9px] uppercase tracking-widest text-slate-400" data-i18n="nav-sub">Kosmoloģija & Apziņa</span>
+                </div>
+            </a>
+
+            <div class="flex items-center space-x-4">
+                <!-- Datora navigācija -->
+                <nav class="hidden lg:flex items-center space-x-5 text-sm font-medium text-slate-300">
+                    <a href="#framework" class="hover:text-amber-400 transition" data-i18n="nav-framework">Pamatprincipi</a>
+                    <a href="#cycles" class="hover:text-amber-400 transition" data-i18n="nav-cycles">Cikli</a>
+                    <a href="megaliths-cosmology.html" class="hover:text-amber-400 transition" data-i18n="nav-megaliths-page">Megalīti</a>
+                    <a href="nde-evidence.html" class="hover:text-amber-400 transition" data-i18n="nav-nde-page">Apziņa & NP</a>
+                    <a href="tribunal.html" class="hover:text-amber-400 transition" data-i18n="nav-tribunal-page">Tribunāls</a>
+                    <a href="#isomorphism-map" class="hover:text-amber-400 transition" data-i18n="nav-network">Karte</a>
+                    <a href="#globe-section" class="hover:text-amber-400 transition" data-i18n="nav-matrix">3D Matrica</a>
+                    <a href="#contribute" class="text-amber-400 border border-amber-400/40 px-3 py-1.5 rounded-lg hover:bg-amber-400/10 transition" data-i18n="nav-contribute">Iesniegt</a>
+                </nav>
+
+                <button id="lang-toggle-btn" class="text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-400 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <span id="lang-indicator">LV</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+
+                <!-- Telefona hamburgera poga -->
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-300 hover:text-amber-400 p-2 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Telefona izkrītošais izvēlnes saraksts -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-b border-slate-800 px-6 py-4 space-y-3 text-sm font-medium text-slate-300">
+            <a href="#framework" class="block hover:text-amber-400 transition" data-i18n="nav-framework">Pamatprincipi</a>
+            <a href="#cycles" class="block hover:text-amber-400 transition" data-i18n="nav-cycles">Cikli (6k/12k)</a>
+            <a href="megaliths-cosmology.html" class="block text-amber-300 transition" data-i18n="nav-megaliths-page">Megalīti</a>
+            <a href="nde-evidence.html" class="block text-amber-300 transition" data-i18n="nav-nde-page">Apziņa & NP</a>
+            <a href="tribunal.html" class="block hover:text-amber-400 transition" data-i18n="nav-tribunal-page">Tribunāls</a>
+            <a href="#isomorphism-map" class="block hover:text-amber-400 transition" data-i18n="nav-network">Neironu/Visuma Karte</a>
+            <a href="#globe-section" class="block hover:text-amber-400 transition" data-i18n="nav-matrix">3D Matrica</a>
+            <a href="#contribute" class="block text-amber-400 pt-2 border-t border-slate-800 transition" data-i18n="nav-contribute">Iesniegt Datus</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-grow">
+        <!-- Hero Section -->
+        <section class="max-w-4xl mx-auto px-6 pt-24 pb-16 text-center">
+            <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-xs font-semibold uppercase tracking-wider">
+                <span class="w-2 h-2 bg-amber-400 rounded-full animate-ping"></span>
+                <span data-i18n="hero-badge">Atvērtā koda daudzdimensiju sintēze</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-tight brand-font" data-i18n="hero-title">
+                REĀLĀKS PAR <br><span class="gold-gradient">REDZAMO</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-light" data-i18n="hero-desc">
+                Senās megalītiskās inženierijas, kosmisko ciklu un klīnisko NP pētījumu apvienošana vienotā, objektīvā modelī.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#bridge" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-amber-500/20 transition transform hover:-translate-y-0.5" data-i18n="btn-explore-matrix">
+                    Izpētīt Sintēzes Modeli
+                </a>
+                <a href="#contribute" class="border border-slate-700 hover:border-amber-400/50 bg-slate-900/50 hover:bg-slate-900 px-7 py-3.5 rounded-xl transition text-slate-200" data-i18n="btn-submit">
+                    Iesniegt Datus / Pētījumu
+                </a>
+            </div>
+        </section>
+
+        <!-- 3 Core Pillars -->
+        <section id="framework" class="max-w-6xl mx-auto px-6 py-12">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font mb-2" data-i18n="triad-title">Konverģences Triāde</h2>
+                <p class="text-slate-400 text-xs sm:text-sm" data-i18n="triad-sub">Noklikšķini uz jebkura mezgla, lai atvērtu pētniecības datus.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div onclick="openModal('modal-01')" class="cursor-pointer group p-7 rounded-2xl border border-slate-800 bg-slate-900/40 hover:bg-slate-900/80 hover:border-amber-500/40 transition duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-amber-400 text-2xl font-bold brand-font">01</span>
+                        <span class="text-xs text-slate-500 group-hover:text-amber-400 transition" data-i18n="card-exp">Izpētīt &rarr;</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition" data-i18n="p1-title">Cikliskā Fizika & Megalīti</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="p1-desc">
+                        Jaunākā driasa kataklizmas, akustiskā rezonanse (110 Hz), &pi; un &Phi; ģeometrija un planētas marķieri.
+                    </p>
+                    <div class="text-xs text-amber-400/80 font-semibold" data-i18n="p1-tags">110–120 Hz • Precesijas Cikli • Zvaigžņu Šahtas</div>
+                </div>
+
+                <div onclick="openModal('modal-02')" class="cursor-pointer group p-7 rounded-2xl border border-slate-800 bg-slate-900/40 hover:bg-slate-900/80 hover:border-amber-500/40 transition duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-amber-400 text-2xl font-bold brand-font">02</span>
+                        <span class="text-xs text-slate-500 group-hover:text-amber-400 transition" data-i18n="card-exp">Izpētīt &rarr;</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition" data-i18n="p2-title">Kosmiskais Tīkls & Fraktālais Prāts</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="p2-desc">
+                        Neironu tīklu un galaktiku kopu strukturālais izomorfisms (Vazza & Feletti 2020).
+                    </p>
+                    <div class="text-xs text-amber-400/80 font-semibold" data-i18n="p2-tags">Scale Invariance • Spectral Density • Micro/Macro</div>
+                </div>
+
+                <div onclick="openModal('modal-03')" class="cursor-pointer group p-7 rounded-2xl border border-slate-800 bg-slate-900/40 hover:bg-slate-900/80 hover:border-amber-500/40 transition duration-300 transform hover:-translate-y-1">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-amber-400 text-2xl font-bold brand-font">03</span>
+                        <span class="text-xs text-slate-500 group-hover:text-amber-400 transition" data-i18n="card-exp">Izpētīt &rarr;</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition" data-i18n="p3-title">Klīniskā Apziņa & NP</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="p3-desc">
+                        Apziņas nepārtrauktība izoelektriskas EEG (plakanas līnijas) un ārpusķermeņa pieredzes (OBE) laikā.
+                    </p>
+                    <div class="text-xs text-amber-400/80 font-semibold" data-i18n="p3-tags">Greyson Scale • Flatline EEG • Verified Perception</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CYCLES SECTION -->
+        <section id="cycles" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="cyc-sub">Hronoloģiskā Kosmoloģija</span>
+                <h2 class="text-3xl font-bold text-white brand-font mt-2 mb-3" data-i18n="cyc-title">Ciklisko Kataklizmu Laika Josla (6k / 12k BP)</h2>
+                <p class="text-slate-400 text-sm" data-i18n="cyc-desc">Uzklikšķini uz jebkuras rindas, lai atvērtu simulāciju un detalizētu kataklizmas pētījumu.</p>
+            </div>
+
+            <div class="overflow-x-auto bg-slate-900/50 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl mb-8">
+                <table class="w-full text-left text-xs sm:text-sm text-slate-300">
+                    <thead class="border-b border-slate-700 text-amber-400 uppercase tracking-wider font-semibold text-[11px]">
+                        <tr>
+                            <th class="py-3 px-4" data-i18n="th-epoch">Epoha / Periods</th>
+                            <th class="py-3 px-4" data-i18n="th-time">Laika Logs</th>
+                            <th class="py-3 px-4" data-i18n="th-markers">Empīriskie Marķieri</th>
+                            <th class="py-3 px-4" data-i18n="th-impact">Ietekme uz Civilizāciju</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800/60 font-light">
+                        <tr onclick="openCataclysmModal('yd')" class="hover:bg-amber-500/10 cursor-pointer transition group">
+                            <td class="py-4 px-4 font-semibold text-white group-hover:text-amber-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="t-yd-title">Younger Dryas Kataklizma &rarr;</span>
+                            </td>
+                            <td class="py-4 px-4 text-amber-400/90 font-mono">12,800 – 11,600 BP</td>
+                            <td class="py-4 px-4" data-i18n="yd-mark">Platīna/nanodimdiņu slānis, Meltwater Pulse 1B, melnā paklāja slānis.</td>
+                            <td class="py-4 px-4" data-i18n="yd-imp">Antediluviānā megalītiskā tīkla sabrukums (Göbekli Tepe apzināta aprakšana).</td>
+                        </tr>
+                        <tr onclick="openCataclysmModal('mid6k')" class="hover:bg-amber-500/10 cursor-pointer transition group">
+                            <td class="py-4 px-4 font-semibold text-white group-hover:text-amber-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="t-m6-title">6,000 Gadu Cikls &rarr;</span>
+                            </td>
+                            <td class="py-4 px-4 text-amber-400/90 font-mono">~6,000 – 5,500 BP</td>
+                            <td class="py-4 px-4" data-i18n="m6-mark">Sahāras pēkšņa pārtuksnešošanās (zaļās Sahāras beigas), okeānu līmeņa nobīde.</td>
+                            <td class="py-4 px-4" data-i18n="m6-imp">Pēkšņa Dinastiskās Ēģiptes un Šumeras rašanās ar gatavu matemātiku un rakstību.</td>
+                        </tr>
+                        <tr onclick="openCataclysmModal('bronze')" class="hover:bg-amber-500/10 cursor-pointer transition group">
+                            <td class="py-4 px-4 font-semibold text-white group-hover:text-amber-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span> <span data-i18n="t-br-title">Bronzas Laikmeta Sabrukums &rarr;</span>
+                            </td>
+                            <td class="py-4 px-4 text-amber-400/90 font-mono">~3,200 BP (1200 BC)</td>
+                            <td class="py-4 px-4" data-i18n="br-mark">Megasausums, vulkāniskā sēra pīķi, Vidusjūras seismiskie postījumi.</td>
+                            <td class="py-4 px-4" data-i18n="br-imp">Mikēnu, Hetu un Ēģiptes vienlaicīgs sabrukums un tehnoloģiju regress.</td>
+                        </tr>
+                        <tr onclick="openCataclysmModal('present')" class="hover:bg-amber-500/10 cursor-pointer transition group">
+                            <td class="py-4 px-4 font-semibold text-white group-hover:text-amber-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> <span data-i18n="t-pr-title">Mūsdienu Cikla Konverģence &rarr;</span>
+                            </td>
+                            <td class="py-4 px-4 text-amber-400/90 font-mono">Current Epoch (2026+)</td>
+                            <td class="py-4 px-4" data-i18n="pr-mark">Ģeomagnētiskā lauka vājināšanās, saules ciklu anomālijas, Galaktiskais izlīdzinājums.</td>
+                            <td class="py-4 px-4" data-i18n="pr-imp">Apziņas un tehnoloģiju singularitāte pirms nākamās kosmiskās fāzes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- THE MISSING BRIDGE -->
+        <section id="bridge" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="bridge-sub">Trūkstošais Tilts</span>
+                <h2 class="text-3xl font-bold text-white brand-font mt-2 mb-3" data-i18n="bridge-title">Kā Megalīti, Cikli un NP Savienojas?</h2>
+                <p class="text-slate-400 text-sm" data-i18n="bridge-desc">Kā senā pasaule sazinājās un būvēja identiski bez metāla satelītiem orbītā? Trīs sinhronizācijas pīlāri.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 1. Pīlārs -->
+                <div onclick="openBridgeModal('b1')" class="p-7 rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-amber-500/40 cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2" data-i18n="b1-head">1. Zemes Dabiskais "Satelītu Tīkls"</div>
+                        <h4 class="text-white font-bold text-base mb-2 group-hover:text-amber-300 transition" data-i18n="b1-sub">Telūriskās Līnijas & Šūmaņa Rezonanse</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed font-light mb-4" data-i18n="b1-body">
+                            Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz.
+                        </p>
+                    </div>
+                    <div class="text-amber-400 text-xs font-semibold flex items-center gap-1" data-i18n="bridge-btn-1">Atvērt Kimatiku &rarr;</div>
+                </div>
+
+                <!-- 2. Pīlārs -->
+                <div onclick="openBridgeModal('b2')" class="p-7 rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-amber-500/40 cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2" data-i18n="b2-head">2. Morfoģenētiskais Lauks & Telepātija</div>
+                        <h4 class="text-white font-bold text-base mb-2 group-hover:text-amber-300 transition" data-i18n="b2-sub">Kvantiskā Informācijas Piekļuve</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed font-light mb-4" data-i18n="b2-body">
+                            Akustiskajās kamerās operators sasniedza teta/gamma smadzeņu stāvokli (līdzīgi kā pie 0 EEG klīniskajā NP). Apziņa pieslēdzās kopējam morfoģenētiskajam laukam, noraidot un uztverot formulas bez vārdiem.
+                        </p>
+                    </div>
+                    <div class="text-amber-400 text-xs font-semibold flex items-center gap-1" data-i18n="bridge-btn-2">Atvērt Gaismas Lauku &rarr;</div>
+                </div>
+
+                <!-- 3. Pīlārs -->
+                <div onclick="openBridgeModal('b3')" class="p-7 rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-amber-500/40 cursor-pointer transition transform hover:-translate-y-1 flex flex-col justify-between group">
+                    <div>
+                        <div class="text-amber-400 text-xs font-bold uppercase tracking-wider mb-2" data-i18n="b3-head">3. Globālā "Gudrības Glabātāju" Kasta</div>
+                        <h4 class="text-white font-bold text-base mb-2 group-hover:text-amber-300 transition" data-i18n="b3-sub">Pirmskataklizmas Standartizācija</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed font-light mb-4" data-i18n="b3-body">
+                            Pēc kataklizmas izdzīvojušie inženieri ceļoja pa pasauli (Edfu "Spīdošie", Virakoča, Tots), nododot vienotus H-bloku, poligonālos un mērvienību kanonus no Kusko līdz Mikēnām un Ēģiptei.
+                        </p>
+                    </div>
+                    <div class="text-amber-400 text-xs font-semibold flex items-center gap-1" data-i18n="bridge-btn-3">Atvērt Precesiju &rarr;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONSCIOUSNESS & NP (NDE) -->
+        <section id="consciousness" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="c-sub">Empīriskā Epistemoloģija</span>
+                <h2 class="text-3xl font-bold text-white brand-font mt-2 mb-3" data-i18n="c-title">Klīniskā Apziņa & Nelokālā Realitāte (NP)</h2>
+                <p class="text-slate-400 text-sm" data-i18n="c-desc">Sirds apstāšanās protokoli un kvantu neirozinātne apliecina, ka apziņa ir fundamentāla.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div onclick="openConsciousnessModal('flatline')" class="bg-slate-900/50 border border-slate-800 hover:border-amber-500/40 p-6 sm:p-8 rounded-2xl cursor-pointer transition group">
+                    <h3 class="text-xl font-bold text-white brand-font text-amber-400 mb-3 group-hover:text-amber-300 flex items-center justify-between">
+                        <span data-i18n="c1-head">Klīniskā Uztvere pie Plakanas EEG Līnijas</span>
+                        <span class="text-xs">&rarr;</span>
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4 font-light" data-i18n="c1-body">
+                        10–20 sekundes pēc sirds apstāšanās smadzeņu garozas elektriskā aktivitāte izzūd. Neskatoties uz to, pacienti spēj precīzi atstāstīt reanimācijas norisi.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-2" data-i18n-html="c1-list">
+                        <li>• <strong>Dr. Sam Parnia (AWARE I & II):</strong> Verificēta uztvere sirds masāžas laikā.</li>
+                        <li>• <strong>Dr. Bruce Greyson:</strong> 16 punktu kvantitatīvā Greisona skala.</li>
+                        <li>• <strong>Dr. Jeffrey Long:</strong> 9 empīriski pierādījumi, kas izslēdz halucinācijas.</li>
+                    </ul>
+                </div>
+
+                <div onclick="openConsciousnessModal('isomorphism')" class="bg-slate-900/50 border border-slate-800 hover:border-amber-500/40 p-6 sm:p-8 rounded-2xl cursor-pointer transition group">
+                    <h3 class="text-xl font-bold text-white brand-font text-amber-400 mb-3 group-hover:text-amber-300 flex items-center justify-between">
+                        <span data-i18n="c2-head">Neironu-Kosmiskais Izomorfisms</span>
+                        <span class="text-xs">&rarr;</span>
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4 font-light" data-i18n="c2-body">
+                        2020. gadā Vazza & Feletti apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir kvantitatīvi identiski 27 pakāpju mērogā.
+                    </p>
+                   <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+    <p data-i18n="c2-list-item1">• <strong>Spektrālā Jaudas Blīve:</strong> Identisks matērijas sadalījums.</p>
+    <p data-i18n="c2-list-item2">• <strong>Mezgla Savienojumi:</strong> Identisks savienojumu skaits (4.6 līdz 5.4).</p>
+    <p data-i18n="c2-list-item3">• <strong>Kosmiskais Novērotājs:</strong> Atbalsts Alana Vatsa atziņai — mēs esam visums, kas apzina pats sevi.</p>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE NEURAL-COSMIC NETWORK MAP -->
+        <section id="isomorphism-map" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="net-sub">Kvantitatīvā Izomorfisma Rasējums</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font mt-1" data-i18n="net-title">Neironu & Visuma Tīkla Interaktīvā Karte</h2>
+                    <p class="text-slate-400 text-sm mt-1" data-i18n="net-desc">Uzklikšķini uz kartes, lai atvērtu pilnekrāna 3D dziļuma modeli.</p>
+                </div>
+                <div class="flex items-center bg-slate-900 border border-slate-800 p-1.5 rounded-xl gap-2 text-xs">
+                    <button id="net-btn-both" onclick="setNetworkMode('both')" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition" data-i18n="net-btn-both">Sintēze (Abi)</button>
+                    <button id="net-btn-brain" onclick="setNetworkMode('brain')" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white transition" data-i18n="net-btn-brain">Smadzenes (Neironi)</button>
+                    <button id="net-btn-cosmos" onclick="setNetworkMode('cosmos')" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white transition" data-i18n="net-btn-cosmos">Visums (Galaktikas)</button>
+                </div>
+            </div>
+
+            <div onclick="open3DUniverseModal()" class="w-full h-[460px] bg-slate-900/50 border border-slate-800 hover:border-amber-500/40 rounded-2xl relative overflow-hidden flex items-center justify-center shadow-2xl cursor-pointer group">
+                <canvas id="isomorphism-canvas" class="w-full h-full"></canvas>
+                
+                <div class="absolute top-4 right-4 bg-slate-950/90 border border-amber-500/40 px-3.5 py-1.5 rounded-xl text-xs text-amber-400 group-hover:scale-105 transition flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                    <span data-i18n="net-open-3d">Atvērt Pilnekrāna 3D Dziļuma Modeli &rarr;</span>
+                </div>
+
+                <div class="absolute bottom-4 left-4 bg-slate-950/85 border border-slate-800 p-3 rounded-xl text-[11px] text-slate-300 backdrop-blur-md pointer-events-none">
+                    <p class="text-amber-400 font-semibold mb-1" data-i18n="net-scale-title">Mēroga Atšķirība: 10²⁷</p>
+                    <p data-i18n="net-scale-brain">• Neironu tīkls: ~10¹¹ neironi | Savienojumi: 4.6 uz mezglu</p>
+                    <p data-i18n="net-scale-cosmos">• Kosmiskais tīkls: ~10¹¹ galaktikas | Savienojumi: 4.7 uz mezglu</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D MEGALITH MATRIX GLOBE -->
+        <section id="globe-section" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font" data-i18n="globe-title">Globālais Megalītu & Pazemes Tīkls</h2>
+                    <p class="text-slate-400 text-sm mt-1" data-i18n="globe-sub">Interaktīva 3D matrica ar pulsējošām Telūriskajām (Ley Lines) līnijām un krāsu kodējumu.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 text-[11px] bg-slate-900 border border-slate-800 px-4 py-2.5 rounded-xl text-slate-300">
+    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> <span data-i18n="legend-acoustic">Akustiskās Kameras (110 Hz)</span></span>
+    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span> <span data-i18n="legend-poly">Poligonālā Vitrifikācija</span></span>
+    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> <span data-i18n="legend-precession">Precesija & Pazemes Pilsētas</span></span>
+</div>
+            </div>
+
+            <div class="w-full h-[540px] bg-slate-900/40 border border-slate-800 rounded-2xl relative overflow-hidden flex items-center justify-center shadow-2xl cursor-grab active:cursor-grabbing touch-none" id="globe-container">
+                <div class="absolute top-4 left-4 z-10 bg-slate-950/85 border border-slate-800 p-3.5 rounded-xl text-xs text-slate-300 backdrop-blur-sm pointer-events-none">
+                    <p class="font-semibold text-amber-400 mb-1" data-i18n="nav-ctrl">Navigācijas Vadība:</p>
+                    <p>• <strong data-i18n="ctrl-drag">Turēt & Vilkt:</strong> <span data-i18n="ctrl-drag-desc">Grozīt zemeslodi</span></p>
+                    <p>• <strong data-i18n="ctrl-zoom">Peles Rullītis / Pirksti:</strong> <span data-i18n="ctrl-zoom-desc">Tuvināt / Tālināt</span></p>
+                    <p>• <strong data-i18n="ctrl-click">Mezgla Punkts:</strong> <span data-i18n="ctrl-click-desc">Atvērt pētniecības dosjē</span></p>
+                </div>
+
+                <div id="megalith-popup" class="hidden absolute bottom-6 left-6 right-6 sm:right-auto z-20 bg-slate-950/95 border border-amber-500/50 p-6 rounded-2xl max-w-lg backdrop-blur-xl shadow-2xl max-h-[85%] overflow-y-auto">
+                    <div class="flex items-center justify-between gap-4 mb-2">
+                        <h4 id="popup-title" class="font-bold text-white brand-font text-lg text-amber-400">Site Name</h4>
+                        <button onclick="document.getElementById('megalith-popup').classList.add('hidden')" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
+                    </div>
+                    <p id="popup-coords" class="text-xs text-amber-400/90 font-mono mb-3">Coords</p>
+                    
+                    <div class="w-full h-44 rounded-xl overflow-hidden mb-3 border border-slate-800 bg-slate-900 relative">
+                        <img id="popup-img" src="" alt="Megalithic site" loading="lazy" class="w-full h-full object-cover" />
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-300 leading-relaxed font-light">
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                            <p class="text-amber-300 font-semibold mb-1 uppercase tracking-wider text-[10px]" data-i18n="pop-eng-title">Celtnieku Spējas (Inženierija & Fizika):</p>
+                            <p id="popup-engineering">Engineering details...</p>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                            <p class="text-amber-300 font-semibold mb-1 uppercase tracking-wider text-[10px]" data-i18n="pop-meta-title">Ietekme uz Apziņu & Metafiziku (Telepātija & Frekvences):</p>
+                            <p id="popup-metaphysics">Metaphysical details...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KNOWLEDGE MATRIX & GAPS COVERAGE -->
+        <section class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="gap-sub">Pētniecības Matrica & Baltie Plankumi</span>
+                <h2 class="text-3xl font-bold text-white brand-font mt-2 mb-3" data-i18n="gap-title">Zināšanu Pārklājums & Trūkstošie Dati</h2>
+                <p class="text-slate-400 text-sm mb-2" data-i18n="gap-desc">Uzklikšķini uz jebkuras kārtis, lai uzzinātu, kas ir verificēts un kādi dati jānodod MI modelim.</p>
+                <p class="text-[11px] text-amber-400/80 font-mono italic" data-i18n="gap-note">* Procenti atspoguļo verificēto empīrisko pētījumu pārklājumu pret nepieciešamo datu bāzi.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div onclick="openGapModal('gap-m')" class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition transform hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-white font-bold text-sm group-hover:text-amber-300 transition" data-i18n="gap-m-title">Megalītu Akustiskā Matrica</span>
+                        <span class="text-amber-400 font-mono text-xs font-bold">60% Mapped</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full mb-3 overflow-hidden">
+                        <div class="h-full bg-amber-500 rounded-full w-[60%]"></div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light" data-i18n="gap-m-desc"><strong>Trūkstošie dati:</strong> Dienvidamerikas (Tiwanaku) un Āzijas tempļu akustiskie rezonanses mērījumi frekvenču joslā 100–125 Hz.</p>
+                    <div class="text-amber-400 text-[11px] font-semibold mt-3 flex items-center gap-1" data-i18n="gap-open-dossier">Atvērt Datu Dosjē MI Analīzei &rarr;</div>
+                </div>
+
+                <div onclick="openGapModal('gap-c')" class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition transform hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-white font-bold text-sm group-hover:text-amber-300 transition" data-i18n="gap-c-title">Ciklu Hronoloģija & Precesija</span>
+                        <span class="text-amber-400 font-mono text-xs font-bold">75% Mapped</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full mb-3 overflow-hidden">
+                        <div class="h-full bg-amber-500 rounded-full w-[75%]"></div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light" data-i18n="gap-c-desc"><strong>Trūkstošie dati:</strong> Precīzi okeāna un ledāju sedimentu dati par kataklizmām pirms 25 920 gadu pilnā precesijas cikla.</p>
+                    <div class="text-amber-400 text-[11px] font-semibold mt-3 flex items-center gap-1" data-i18n="gap-open-dossier">Atvērt Datu Dosjē MI Analīzei &rarr;</div>
+                </div>
+
+                <div onclick="openGapModal('gap-n')" class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition transform hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-white font-bold text-sm group-hover:text-amber-300 transition" data-i18n="gap-n-title">Klīniskās NP & Isoelektriskā EEG</span>
+                        <span class="text-amber-400 font-mono text-xs font-bold">50% Mapped</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full mb-3 overflow-hidden">
+                        <div class="h-full bg-amber-500 rounded-full w-[50%]"></div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light" data-i18n="gap-n-desc"><strong>Trūkstošie dati:</strong> Vienlaicīga vairāku sensoru smadzeņu skenēšana ārpusķermeņa atdalīšanās brīdī sirds apstāšanās fāzē.</p>
+                    <div class="text-amber-400 text-[11px] font-semibold mt-3 flex items-center gap-1" data-i18n="gap-open-dossier">Atvērt Datu Dosjē MI Analīzei &rarr;</div>
+                </div>
+
+                <div onclick="openGapModal('gap-i')" class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition transform hover:-translate-y-1 group">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-white font-bold text-sm group-hover:text-amber-300 transition" data-i18n="gap-i-title">Neironu-Kosmiskais Izomorfisms</span>
+                        <span class="text-amber-400 font-mono text-xs font-bold">40% Mapped</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full mb-3 overflow-hidden">
+                        <div class="h-full bg-amber-500 rounded-full w-[40%]"></div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light" data-i18n="gap-i-desc"><strong>Trūkstošie dati:</strong> Nelokālās kvantu informācijas pārneses matemātiskais mehānisms starp mērogiem 10²⁷.</p>
+                    <div class="text-amber-400 text-[11px] font-semibold mt-3 flex items-center gap-1" data-i18n="gap-open-dossier">Atvērt Datu Dosjē MI Analīzei &rarr;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crowdsourced Data Submission Form -->
+        <section id="contribute" class="max-w-2xl mx-auto px-6 py-16 border-t border-slate-800">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font mb-2" data-i18n="form-title">Iesniegt Datus Matricā</h2>
+                <p class="text-slate-400 text-sm" data-i18n="form-desc">Pievieno novērotās anomālijas, klīniskos pierakstus vai ģeodēziskās sakritības kopējai sintēzei.</p>
+            </div>
+            
+            <form name="parallax_contributions" method="POST" data-netlify="true" class="space-y-4 bg-slate-900/80 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-xl">
+                <input type="hidden" name="form-name" value="parallax_contributions" />
+                
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form-cat">Novērojuma / Pētījuma Kategorija</label>
+                    <select name="category" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-400">
+                        <option value="NDE/OBE" data-i18n="opt-1">Nāvei Tuvā Pieredze (NP / OBE Verifikācija)</option>
+                        <option value="ELE" data-i18n="opt-2">Pirmsnāves Vīzijas (ELE / Hospisa Pieraksti)</option>
+                        <option value="Megalithic" data-i18n="opt-3">Megalītu Akustika & Frekvences (110 Hz)</option>
+                        <option value="Cosmology" data-i18n="opt-4">Astrofizika & Kosmiskā Tīkla Izomorfisms</option>
+                        <option value="Other" data-i18n="opt-5">Metafiziskais Novērojums / Vēstures Cikli</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form-ref">Autora Atsauce (Pēc izvēles / Anonīmi)</label>
+                    <input type="text" name="contributor" placeholder="Vārds, Pētnieka ID vai Anonīmi" data-i18n-placeholder="ph-ref" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-400" />
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-2" data-i18n="form-data">Empīriskie Dati / Apraksts / Avota Saite</label>
+                    <textarea name="details" rows="4" required placeholder="Norādi koordinātas, EEG mērījumus, akustiskās frekvences vai pētījuma saiti..." data-i18n-placeholder="ph-data" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3.5 rounded-xl transition shadow-lg hover:shadow-amber-500/20" data-i18n="form-btn">
+                    Iesniegt Pētniecības Arhīvā
+                </button>
+            </form>
+        </section>
+    </main>
+
+   <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-900 py-8 text-center text-xs text-slate-500 space-y-3">
+        <div class="flex flex-wrap justify-center gap-4 text-amber-400/80 font-medium">
+            <a href="whitepaper-en.pdf" target="_blank" class="hover:underline">Whitepaper (EN)</a>
+            <span>•</span>
+            <a href="whitepaper-lv.pdf" target="_blank" class="hover:underline">Baltā Grāmata (LV)</a>
+            <span>•</span>
+            <button onclick="openPolicyModal('privacy')" class="hover:underline">Privacy Policy</button>
+            <span>•</span>
+            <button onclick="openPolicyModal('terms')" class="hover:underline">Terms of Use</button>
+            <span>•</span>
+            <button onclick="openPolicyModal('disclaimer')" class="hover:underline">Disclaimer</button>
+        </div>
+        <p>© 2026 PROJECT PARALLAX. Synthesized by Reinis Pavlovs. Open-source exploration of reality beyond the visible.</p>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="universe-3d-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/50 rounded-2xl max-w-5xl w-full h-[85vh] p-6 shadow-2xl relative flex flex-col justify-between overflow-hidden">
+            <div class="flex items-center justify-between z-10 border-b border-slate-800 pb-3">
+                <div>
+                    <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">3D Isomorphism Deep Space</span>
+                    <h3 class="text-xl font-bold text-white brand-font" data-i18n="u3d-title">Kosmiskais & Neironu Tīkls (10²⁷ Scale)</h3>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex bg-slate-950 border border-slate-800 p-1 rounded-xl gap-1 text-xs">
+                        <button id="modal-net-btn-both" onclick="setModalNetworkMode('both')" class="px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition" data-i18n="modal-net-both">Sintēze</button>
+                        <button id="modal-net-btn-brain" onclick="setModalNetworkMode('brain')" class="px-3 py-1 rounded-lg text-slate-300 transition" data-i18n="modal-net-brain">Smadzenes</button>
+                        <button id="modal-net-btn-cosmos" onclick="setModalNetworkMode('cosmos')" class="px-3 py-1 rounded-lg text-slate-300 transition" data-i18n="modal-net-cosmos">Visums</button>
+                    </div>
+                    <button onclick="close3DUniverseModal()" class="text-slate-400 hover:text-white text-2xl font-bold leading-none">&times;</button>
+                </div>
+            </div>
+            <div id="universe-3d-viewport" class="flex-1 w-full h-full relative cursor-grab active:cursor-grabbing touch-none my-3 rounded-xl overflow-hidden bg-slate-950 border border-slate-800/80"></div>
+            <div class="flex items-center justify-between text-xs text-slate-400 z-10 border-t border-slate-800 pt-3">
+                <span data-i18n="u3d-instr">• Velc ar peli vai pirkstu, lai grozītu telpisko tīklu | Rullē, lai tuvinātos</span>
+                <span class="font-mono text-amber-400">Franco Vazza & Alberto Feletti (2020) Dataset</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="cataclysm-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeCataclysmModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+            <span id="cat-epoch" class="text-amber-400 text-xs font-bold uppercase tracking-widest">12,800 BP Cataclysm</span>
+            <h3 id="cat-title" class="text-2xl sm:text-3xl font-bold text-white brand-font mt-1 mb-4">Younger Dryas Impact Event</h3>
+            <div class="w-full h-52 bg-slate-950 rounded-xl border border-slate-800 mb-6 overflow-hidden relative shadow-inner">
+                <canvas id="cataclysm-canvas" class="w-full h-full"></canvas>
+                <div class="absolute bottom-2 right-3 text-[10px] text-amber-400/80 font-mono">Real-time Physical Simulation</div>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed font-light">
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="cat-phys-title">Fizikālais & Ģeoloģiskais Cēlonis:</h4>
+                    <p id="cat-trigger">Details...</p>
+                </div>
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="cat-civil-title">Civilizācijas Sabrukums & Arhitektūras Saglabāšana:</h4>
+                    <p id="cat-collapse">Details...</p>
+                </div>
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="cat-meta-title">Metafiziskais Mantojums & Atmiņas Saglabāšana:</h4>
+                    <p id="cat-meta">Details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bridge-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeBridgeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+            <span id="bridge-modal-tag" class="text-amber-400 text-xs font-bold uppercase tracking-widest">Synthesis Pillar</span>
+            <h3 id="bridge-modal-title" class="text-2xl sm:text-3xl font-bold text-white brand-font mt-1 mb-4">Bridge Dossier</h3>
+            <div class="w-full h-52 bg-slate-950 rounded-xl border border-slate-800 mb-6 overflow-hidden relative shadow-inner">
+                <canvas id="bridge-canvas" class="w-full h-full"></canvas>
+                <div class="absolute bottom-2 right-3 text-[10px] text-amber-400/80 font-mono">110Hz Acoustic & Consciousness Simulation</div>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed font-light">
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="bridge-h1">Empīriskais Mehānisms & Zinātniskais Pamatojums:</h4>
+                    <p id="bridge-modal-desc1">Details...</p>
+                </div>
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="bridge-h2">Saikne ar Kosmiskajiem Cikliem & Pasaules Apziņu:</h4>
+                    <p id="bridge-modal-desc2">Details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="consciousness-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeConsciousnessModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl font-bold">&times;</button>
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest">Clinical Research & Quantum Matrix</span>
+            <h3 id="consciousness-modal-title" class="text-2xl sm:text-3xl font-bold text-white brand-font mt-1 mb-4">Consciousness Research</h3>
+            
+            <div class="w-full h-52 bg-slate-950 rounded-xl border border-slate-800 mb-6 overflow-hidden relative shadow-inner">
+                <canvas id="consciousness-canvas" class="w-full h-full"></canvas>
+                <div class="absolute bottom-2 right-3 text-[10px] text-amber-400/80 font-mono">Quantum Non-Local Field Simulation</div>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-300 leading-relaxed font-light">
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="cons-sec1">Klīniskā Datubāze & EEG Rādītāji:</h4>
+                    <p id="consciousness-modal-desc1">Details...</p>
+                </div>
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800">
+                    <h4 class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1" data-i18n="cons-sec2">Fraktālais Kosmiskais Savienojums:</h4>
+                    <p id="consciousness-modal-desc2">Details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="gap-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/50 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeGapModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-2xl font-bold leading-none">&times;</button>
+            <span id="gap-modal-category" class="text-amber-400 text-xs font-bold uppercase tracking-widest">Category</span>
+            <h3 id="gap-modal-title" class="text-2xl font-bold text-white brand-font mt-1 mb-6">Title</h3>
+            <div class="space-y-4 text-xs text-slate-300 leading-relaxed font-light">
+                <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800">
+                    <p class="text-amber-400 font-bold uppercase tracking-wider text-[11px] mb-2" data-i18n="modal-verified-title">Kas jau ir verificēts un apstiprināts:</p>
+                    <p id="gap-modal-known">Verified text...</p>
+                </div>
+                <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800">
+                    <p class="text-amber-400 font-bold uppercase tracking-wider text-[11px] mb-2" data-i18n="modal-missing-title">Trūkstošie dati un kas jānodod MI modelim:</p>
+                    <p id="gap-modal-missing">Missing data text...</p>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <a href="#contribute" onclick="closeGapModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl transition text-xs shadow-lg" data-i18n="modal-submit-btn">
+                    Iesniegt Šos Datus Arhīvā
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="policy-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[85vh] overflow-y-auto text-left">
+            <button onclick="closePolicyModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            <span id="policy-modal-tag" class="text-amber-400 text-xs font-bold uppercase tracking-widest">Legal Document</span>
+            <h3 id="policy-modal-title" class="text-2xl font-bold text-white brand-font mt-1 mb-4">Policy Title</h3>
+            <div id="policy-modal-content" class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-light"></div>
+        </div>
+    </div>
+
+    <div id="modal-01" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+            <button onclick="closeModal('modal-01')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="pillar-01-tag">Pillar 01</span>
+            <h3 class="text-2xl font-bold text-white brand-font mt-1 mb-4" data-i18n="p1-title">Cikliskā Fizika & Megalīti</h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light" data-i18n="m1-body">Megalītu kompleksi visā pasaulē demonstrē akustisko rezonansi pie 110-120 Hz, aksiālās precesijas marķierus (25 920 gadi) un poligonālo akmens sakabi, kas izveidota, lai pārdzīvotu cikliskās globālās kataklizmas.</p>
+        </div>
+    </div>
+
+    <div id="modal-02" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+            <button onclick="closeModal('modal-02')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="pillar-02-tag">Pillar 02</span>
+            <h3 class="text-2xl font-bold text-white brand-font mt-1 mb-4" data-i18n="p2-title">Kosmiskais Tīkls & Fraktālais Prāts</h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light" data-i18n="m2-body">Vazza & Feletti (2020) apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir strukturāli identiski 27 pakāpju mērogā, pierādot, ka visums darbojas kā vienots, pašapzinošs tīkls.</p>
+        </div>
+    </div>
+
+    <div id="modal-03" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+            <button onclick="closeModal('modal-03')" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="pillar-03-tag">Pillar 03</span>
+            <h3 class="text-2xl font-bold text-white brand-font mt-1 mb-4" data-i18n="p3-title">Klīniskā Apziņa & NP</h3>
+            <p class="text-sm text-slate-300 leading-relaxed font-light" data-i18n="m3-body">Dokumentēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā pierāda, ka cilvēka apziņa ir nelokāla un nav ierobežota tikai ar bioloģiskajām smadzeņu funkcijām.</p>
+        </div>
+    </div>
+
+    <!-- Gemini AI Chat Widget -->
+    <div id="gemini-chat-container" class="fixed bottom-6 right-6 z-50 font-sans">
+        <button id="gemini-toggle-btn" class="w-14 h-14 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center shadow-2xl transition duration-300 transform hover:scale-105">
+            <svg id="gemini-open-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+            <svg id="gemini-close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <div id="gemini-chat-box" class="hidden fixed bottom-24 right-6 w-[360px] sm:w-[400px] h-[520px] bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-md bg-opacity-95">
+            <div class="px-5 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></span>
+                    <span class="text-white font-bold text-sm tracking-wide brand-font">PARALLAX CORE AI</span>
+                </div>
+                <span class="text-[10px] text-amber-400 border border-amber-400/30 px-2 py-0.5 rounded">Gemini 3.6 Flash</span>
+            </div>
+
+            <div id="gemini-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-slate-200">
+                <div id="gemini-welcome-msg" class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/50 text-slate-300 leading-relaxed text-xs">
+                    Esiet sveicināti Project Parallax. Kopā mēs pētām enerģijas, metafizikas un NP klīnisko pētījumu kopsakarības. Kā varu jums šodien palīdzēt?
+                </div>
+            </div>
+
+            <div class="p-3 bg-slate-950 border-t border-slate-800 flex items-center gap-2">
+                <input type="text" id="gemini-input" placeholder="Pajautā par cikliem, NP, megalītiem..." 
+                       class="flex-1 bg-slate-900 text-sm text-white px-4 py-2.5 rounded-xl border border-slate-700 focus:outline-none focus:border-amber-400 transition" />
+                <button id="gemini-send-btn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 p-2.5 rounded-xl transition">
+                    <svg class="w-5 h-5 transform rotate-90" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+    let currentLang = 'EN';
+    let currentSelectedSite = null;
+
+           const translations = {
+        LV: {
+            'nav-megaliths-page': 'Megalīti',
+            'nav-nde-page': 'Apziņa & NP',
+            'footer-whitepaper-en': 'Whitepaper (EN)',
+            'footer-whitepaper-lv': 'Baltā Grāmata (LV)',
+            'nav-sub': 'Kosmoloģija & Apziņa',
+            'nav-framework': 'Pamatprincipi',
+            'nav-cycles': 'Cikli (6k/12k)',
+            'nav-bridge': 'Sintēzes Tilts',
+            'nav-consciousness': 'Apziņa & NP',
+            'nav-tribunal-page': 'Objektīvā Analīze',
+            'nav-network': 'Neironu/Visuma Karte',
+            'nav-matrix': '3D Matrica',
+            'nav-contribute': 'Iesniegt Datus',
+            'hero-badge': 'Atvērtā koda daudzdimensiju sintēze',
+            'hero-title': 'REĀLĀKS PAR <br><span class="gold-gradient">REDZAMO</span>',
+            'hero-desc': 'Senās megalītiskās inženierijas, kosmisko ciklu un klīnisko NP pētījumu apvienošana vienotā, objektīvā modelī.',
+            'btn-explore-matrix': 'Izpētīt Sintēzes Modeli',
+            'btn-submit': 'Iesniegt Datus / Pētījumu',
+            'bridge-sub': 'Trūkstošais Tilts',
+            'bridge-title': 'Kā Megalīti, Cikli un NP Savienojas?',
+            'bridge-desc': 'Kā senā pasaule sazinājās un būvēja identiski bez metāla satelītiem orbītā? Trīs sinhronizācijas pīlāri.',
+            'b1-head': '1. Zemes Dabiskais "Satelītu Tīkls"',
+            'b1-sub': 'Telūriskās Līnijas & Šūmaņa Rezonanse',
+            'b1-body': 'Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz.',
+            'b2-head': '2. Morfoģenētiskais Lauks & Telepātija',
+            'b2-sub': 'Kvantiskā Informācijas Piekļuve',
+            'b2-body': 'Akustiskajās kamerās operators sasniedza teta/gamma smadzeņu stāvokli (līdzīgi kā pie 0 EEG klīniskajā NP). Apziņa pieslēdzās kopējam morfoģenētiskajam laukam, noraidot un uztverot formulas bez vārdiem.',
+            'b3-head': '3. Globālā "Gudrības Glabātāju" Kasta',
+            'b3-sub': 'Pirmskataklizmas Standartizācija',
+            'b3-body': 'Pēc kataklizmas izdzīvojušie inženieri ceļoja pa pasauli (Edfu "Spīdošie", Virakoča, Tots), nododot vienotus H-bloku, poligonālos un mērvienību kanonus no Kusko līdz Mikēnām un Ēģiptei.',
+            'triad-title': 'Konverģences Triāde',
+            'triad-sub': 'Noklikšķini uz jebkura mezgla, lai atvērtu pētniecības datus.',
+            'card-exp': 'Izpētīt &rarr;',
+            'p1-title': 'Cikliskā Fizika & Megalīti',
+            'p1-desc': 'Jaunākā driasa kataklizmas, akustiskā rezonanse (110 Hz), &pi; un &Phi; ģeometrija un planētas marķieri.',
+            'p2-title': 'Kosmiskais Tīkls & Fraktālais Prāts',
+            'p2-desc': 'Neironu tīklu un galaktiku kopu strukturālais izomorfisms (Vazza & Feletti 2020).',
+            'p3-title': 'Klīniskā Apziņa & NP',
+            'p3-desc': 'Apziņas nepārtrauktība izoelektriskas EEG (plakanas līnijas) un ārpusķermeņa pieredzes (OBE) laikā.',
+            'net-sub': 'Kvantitatīvā Izomorfisma Rasējums',
+            'net-title': 'Neironu & Visuma Tīkla Interaktīvā Karte',
+            'net-desc': 'Salīdzini cilvēka smadzeņu un galaktiku filamentu tīkla struktūru reāllaikā.',
+            'globe-title': 'Globālais Megalītu & Pazemes Tīkls',
+            'globe-sub': 'Interaktīva 3D matrica ar pulsējošām Telūriskajām (Ley Lines) līnijām un krāsu kodējumu.',
+            'globe-badge': 'Lielā Riņķa (Great Circle) Līnija',
+            'nav-ctrl': 'Navigācijas Vadība:',
+            'ctrl-drag': 'Turēt & Vilkt:',
+            'ctrl-drag-desc': 'Grozīt zemeslodi',
+            'ctrl-zoom': 'Peles Rullītis / Pirksti:',
+            'ctrl-zoom-desc': 'Tuvināt / Tālināt',
+            'ctrl-click': 'Mezgla Punkts:',
+            'ctrl-click-desc': 'Atvērt pētniecības dosjē',
+            'pop-eng-title': 'Celtnieku Spējas (Inženierija & Fizika):',
+            'pop-meta-title': 'Ietekme uz Apziņu & Metafiziku (Telepātija & Frekvences):',
+            'cyc-sub': 'Hronoloģiskā Kosmoloģija',
+            'cyc-title': 'Ciklisko Kataklizmu Laika Josla (6k / 12k BP)',
+            'cyc-desc': 'Uzklikšķini uz jebkuras rindas, lai atvērtu simulāciju un detalizētu kataklizmas pētījumu.',
+            'th-epoch': 'Epoha / Periods',
+            'th-time': 'Laika Logs',
+            'th-markers': 'Empīriskie Marķieri',
+            'th-impact': 'Ietekme uz Civilizāciju',
+            't-yd-title': 'Younger Dryas Kataklizma &rarr;',
+            't-m6-title': '6,000 Gadu Cikls &rarr;',
+            't-br-title': 'Bronzas Laikmeta Sabrukums &rarr;',
+            't-pr-title': 'Mūsdienu Cikla Konverģence &rarr;',
+            'yd-mark': 'Platīna/nanodimdiņu slānis, Meltwater Pulse 1B, melnā paklāja slānis.',
+            'yd-imp': 'Antediluviānā megalītiskā tīkla sabrukums (Göbekli Tepe apzināta aprakšana).',
+            'm6-mark': 'Sahāras pēkšņa pārtuksnešošanās (zaļās Sahāras beigas), okeānu līmeņa nobīde.',
+            'm6-imp': 'Pēkšņa Dinastiskās Ēģiptes un Šumeras rašanās ar gatavu matemātiku un rakstību.',
+            'br-mark': 'Megasausums, vulkāniskā sēra pīķi, Vidusjūras seismiskie postījumi.',
+            'br-imp': 'Mikēnu, Hetu un Ēģiptes vienlaicīgs sabrukums un tehnoloģiju regress.',
+            'pr-mark': 'Ģeomagnētiskā lauka vājināšanās, saules ciklu anomālijas, Galaktiskais izlīdzinājums.',
+            'pr-imp': 'Apziņas un tehnoloģiju singularitāte pirms nākamās kosmiskās fāzes.',
+            'c-sub': 'Empīriskā Epistemoloģija',
+            'c-title': 'Klīniskā Apziņa & Nelokālā Realitāte (NP)',
+            'c-desc': 'Sirds apstāšanās protokoli un kvantu neirozinātne apliecina, ka apziņa ir fundamentāla.',
+            'c1-head': 'Klīniskā Uztvere pie Plakanas EEG Līnijas',
+            'c1-body': '10–20 sekundes pēc sirds apstāšanās smadzeņu garozas elektriskā aktivitāte izzūd. Neskatoties uz to, pacienti spēj precīzi atstāstīt reanimācijas norisi.',
+            'c2-head': 'Neironu-Kosmiskais Izomorfisms',
+            'c2-body': '2020. gadā Vazza & Feletti apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir kvantitatīvi identiski 27 pakāpju mērogā.',
+            'gap-sub': 'Pētniecības Matrica & Baltie Plankumi',
+            'gap-title': 'Zināšanu Pārklājums & Trūkstošie Dati',
+            'gap-desc': 'Uzklikšķini uz jebkuras kārtis, lai uzzinātu, kas ir verificēts un kādi dati jānodod MI modelim.',
+            'gap-note': '* Procenti atspoguļo verificēto empīrisko pētījumu pārklājumu pret nepieciešamo datu bāzi.',
+            'gap-open-dossier': 'Atvērt Datu Dosjē MI Analīzei &rarr;',
+            'gap-m-title': 'Megalītu Akustiskā Matrica',
+            'gap-m-desc': '<strong>Trūkstošie dati:</strong> Dienvidamerikas (Tiwanaku) un Āzijas tempļu akustiskie rezonanses mērījumi frekvenču joslā 100–125 Hz.',
+            'gap-c-title': 'Ciklu Hronoloģija & Precesija',
+            'gap-c-desc': '<strong>Trūkstošie dati:</strong> Precīzi okeāna un ledāju sedimentu dati par kataklizmām pirms 25 920 gadu pilnā precesijas cikla.',
+            'gap-n-title': 'Klīniskās NP & Isoelektriskā EEG',
+            'gap-n-desc': '<strong>Trūkstošie dati:</strong> Vienlaicīga vairāku sensoru smadzeņu skenēšana ārpusķermeņa atdalīšanās brīdī sirds apstāšanās fāzē.',
+            'gap-i-title': 'Neironu-Kosmiskais Izomorfisms',
+            'gap-i-desc': '<strong>Trūkstošie dati:</strong> Nelokālās kvantu informācijas pārneses matemātiskais mehānisms starp mērogiem $10^{27}$.',
+            'modal-verified-title': 'Kas jau ir verificēts un apstiprināts:',
+            'modal-missing-title': 'Trūkstošie dati un kas jānodod MI modelim:',
+            'modal-submit-btn': 'Iesniegt Šos Datus Arhīvā',
+            'form-title': 'Iesniegt Datus Matricā',
+            'form-desc': 'Pievieno novērotās anomālijas, klīniskos pierakstus vai ģeodēziskās sakritības kopējai sintēzei.',
+            'form-cat': 'Novērojuma / Pētījuma Kategorija',
+            'form-ref': 'Autora Atsauce (Pēc izvēles / Anonīmi)',
+            'form-data': 'Empīriskie Dati / Apraksts / Avota Saite',
+            'form-btn': 'Iesniegt Pētniecības Arhīvā',
+            'welcome-ai': 'Esiet sveicināti Project Parallax. Kopā mēs pētām enerģijas, metafizikas un NP klīnisko pētījumu kopsakarības. Kā varu jums šodien palīdzēt?',
+            'ai-placeholder': 'Pajautā par cikliem, NP, megalītiem...',
+            'm1-body': 'Megalītu kompleksi visā pasaulē demonstrē akustisko rezonansi pie 110-120 Hz, aksiālās precesijas marķierus (25 920 gadi) un poligonālo akmens sakabi, kas izveidota, lai pārdzīvotu cikliskās globālās kataklizmas.',
+            'm2-body': 'Vazza & Feletti (2020) apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir strukturāli identiski 27 pakāpju mērogā, pierādot, ka visums darbojas kā vienots, pašapzinošs tīkls.',
+            'm3-body': 'Dokumentēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā pierāda, ka cilvēka apziņa ir nelokāla un nav ierobežota tikai ar bioloģiskajām smadzeņu funkcijām.',
+            'p1-tags': '110–120 Hz • Precession Cycles • Star Shafts',
+            'p2-tags': 'Scale Invariance • Spectral Density • Micro/Macro',
+            'p3-tags': 'Greyson Scale • Flatline EEG • Verified Perception',
+            'pillar-01-tag': 'Pillar 01',
+            'pillar-02-tag': 'Pillar 02',
+            'pillar-03-tag': 'Pillar 03',
+            'cat-phys-title': 'FIZIKĀLAIS & ĢEOLOĢISKAIS CĒLONIS:',
+            'cat-civil-title': 'CIVILIZĀCIJAS SABRUKUMS & ARHITEKTŪRAS SAGLABĀŠANA:',
+            'cat-meta-title': 'METAFIZISKAIS MANTOJUMS & ATMIŅAS SAGLABĀŠANA:',
+            'bridge-h1': 'Empīriskais Mehānisms & Zinātniskais Pamatojums:',
+            'bridge-h2': 'Saikne ar Kosmiskajiem Cikliem & Pasaules Apziņu:',
+            'c1-list': '<li>• <strong>Dr. Sam Parnia (AWARE I & II):</strong> Verificēta uztvere sirds masāžas laikā.</li><li>• <strong>Dr. Bruce Greyson:</strong> 16 punktu kvantitatīvā Greisona skala.</li><li>• <strong>Dr. Jeffrey Long:</strong> 9 empīriski pierādījumi, kas izslēdz halucinācijas.</li>',
+            'c2-list': '<p>• <strong>Spektrālā Jaudas Blīve:</strong> Identisks matērijas sadalījums.</p><p>• <strong>Mezgla Savienojumi:</strong> Identisks savienojumu skaits (4.6 līdz 5.4).</p><p>• <strong>Kosmiskais Novērotājs:</strong> Atbalsts Alana Vatsa atziņai — mēs esam visums, kas apzina pats sevi.</p>',
+            'cons-sec1': 'Klīniskā Datubāze & EEG Rādītāji:',
+            'cons-sec2': 'Fraktālais Kosmiskais Savienojums:',
+            'net-btn-both': 'Sintēze (Abi)',
+            'net-btn-brain': 'Smadzenes (Neironi)',
+            'net-btn-cosmos': 'Visums (Galaktikas)',
+            'net-open-3d': 'Atvērt Pilnekrāna 3D Dziļuma Modeli &rarr;',
+            'net-scale-title': 'Mēroga Atšķirība: 10²⁷',
+            'net-scale-brain': '• Neironu tīkls: ~10¹¹ neironi | Savienojumi: 4.6 uz mezglu',
+            'net-scale-cosmos': '• Kosmiskais tīkls: ~10¹¹ galaktikas | Savienojumi: 4.7 uz mezglu',
+            'modal-net-both': 'Sintēze',
+            'modal-net-brain': 'Smadzenes',
+            'modal-net-cosmos': 'Visums',
+            'u3d-instr': '• Velc ar peli vai pirkstu, lai grozītu tīklu | Rullē vai pietuvini ar diviem pirkstiem',
+            'legend-acoustic': 'Akustiskās Kameras (110 Hz)',
+            'legend-poly': 'Poligonālā Vitrifikācija',
+            'legend-precession': 'Precesija & Pazemes Pilsētas',
+            'opt-1': 'Nāvei Tuvā Pieredze (NP / OBE Verifikācija)',
+            'opt-2': 'Pirmsnāves Vīzijas (ELE / Hospisa Pieraksti)',
+            'opt-3': 'Megalītu Akustika & Frekvences (110 Hz)',
+            'opt-4': 'Astrofizika & Kosmiskā Tīkla Izomorfisms',
+            'opt-5': 'Metafiziskais Novērojums / History Cycles',
+            'ph-ref': 'Vārds, Pētnieka ID vai Anonīmi',
+            'ph-data': 'Norādi koordinātas, EEG mērījumus, akustiskās frekvences vai pētījuma saiti...',
+            'bridge-btn-1': 'Atvērt Kimatiku &rarr;',
+            'bridge-btn-2': 'Atvērt Gaismas Lauku &rarr;',
+            'bridge-btn-3': 'Atvērt Precesiju &rarr;'
+        },
+        EN: {
+            'nav-megaliths-page': 'Megaliths',
+            'nav-nde-page': 'Consciousness & NDE',
+            'footer-whitepaper-en': 'Whitepaper (EN)',
+            'footer-whitepaper-lv': 'Whitepaper (LV)',
+            'nav-sub': 'Cosmology & Consciousness',
+            'nav-framework': 'Framework',
+            'nav-cycles': 'Cycles (6k/12k)',
+            'nav-bridge': 'The Missing Bridge',
+            'nav-consciousness': 'Consciousness & NDE',
+            'nav-tribunal-page': 'Objective Analysis',
+            'nav-network': 'Neural/Cosmic Map',
+            'nav-matrix': '3D Matrix',
+            'nav-contribute': 'Contribute Data',
+            'hero-badge': 'Open-Source Multidimensional Synthesis',
+            'hero-title': 'MORE REAL THAN <br><span class="gold-gradient">THE VISIBLE</span>',
+            'hero-desc': 'Synthesizing ancient megalithic engineering, cyclical cosmology, and clinical near-death studies into an objective, unified framework.',
+            'btn-explore-matrix': 'Explore Synthesis Model',
+            'btn-submit': 'Submit Data / Study',
+            'bridge-sub': 'The Missing Bridge',
+            'bridge-title': 'How Megaliths, Cycles & NDE Connect',
+            'bridge-desc': 'How did the ancient world communicate and build identically without orbital metal satellites? Three synchronization pillars.',
+            'b1-head': '1. Earth’s Natural "Satellite Network"',
+            'b1-sub': 'Telluric Lines & Schumann Resonance',
+            'b1-body': 'Megaliths are anchored at geomagnetic nodes. Using quartz piezoelectric resonance in granite, signals were conducted through Earth’s crust rather than air at ~7.83–110 Hz.',
+            'b2-head': '2. Morphogenetic Field & Telepathy',
+            'b2-sub': 'Quantum Information Access',
+            'b2-body': 'In acoustic resonance chambers, operators reached theta/gamma brain states (identical to 0 EEG flatline in clinical NDE), accessing the species morphogenetic field to transmit blueprints without words.',
+            'b3-head': '3. Global "Keepers of Wisdom" Caste',
+            'b3-sub': 'Antediluvian Standardization',
+            'b3-body': 'Post-cataclysm survivor engineers traveled globally (Edfu "Shining Ones", Viracocha, Thoth), transmitting identical H-block, polygonal masonry, and geodetic canons from Cusco to Mycenae and Egypt.',
+            'triad-title': 'The Triad of Convergence',
+            'triad-sub': 'Click any node to review empirical data and theoretical framework.',
+            'card-exp': 'Explore &rarr;',
+            'p1-title': 'Cyclical Physics & Megaliths',
+            'p1-desc': 'Younger Dryas cataclysms, acoustic resonance (110 Hz), &pi; and &Phi; geometry, and planetary markers.',
+            'p2-title': 'The Cosmic Web & Fractal Mind',
+            'p2-desc': 'Statistical isomorphism between neural networks and galaxy clusters (Vazza & Feletti 2020).',
+            'p3-title': 'Clinical Consciousness & NDE',
+            'p3-desc': 'Flatline EEG perception, verified out-of-body observations (OBE), and end-of-life experiences.',
+            'net-sub': 'Quantitative Isomorphism Blueprint',
+            'net-title': 'Interactive Neural & Cosmic Web Map',
+            'net-desc': 'Compare human brain cerebellar network and galaxy filament web in real-time.',
+            'globe-title': 'Global Megalithic & Subterranean Network',
+            'globe-sub': 'Interactive 3D Matrix mapping telluric lines and color-coded technology nodes.',
+            'globe-badge': 'Active Alignment Grid (Great Circle)',
+            'nav-ctrl': 'Navigation Controls:',
+            'ctrl-drag': 'Click & Drag:',
+            'ctrl-drag-desc': 'Rotate sphere',
+            'ctrl-zoom': 'Mouse Wheel / Touch:',
+            'ctrl-zoom-desc': 'Zoom in / out',
+            'ctrl-click': 'Node Marker:',
+            'ctrl-click-desc': 'Open research dossier',
+            'pop-eng-title': 'Builder Engineering & Physics:',
+            'pop-meta-title': 'Impact on Consciousness & Metaphysics (Frequencies & Telepathy):',
+            'cyc-sub': 'Chronological Cosmology',
+            'cyc-title': 'Cyclical Cataclysm Timeline (6k / 12k BP)',
+            'cyc-desc': 'Click any row below to launch full simulation and detailed research dossier.',
+            'th-epoch': 'Epoch / Period',
+            'th-time': 'Time Window',
+            'th-markers': 'Empirical Markers',
+            'th-impact': 'Civilization Impact',
+            't-yd-title': 'Younger Dryas Impact &rarr;',
+            't-m6-title': '6,000-Year Mid-Cycle &rarr;',
+            't-br-title': 'Bronze Age Collapse &rarr;',
+            't-pr-title': 'Present Cycle Convergence &rarr;',
+            'yd-mark': 'Platinum/Nanodiamond spike, Meltwater Pulse 1B, black mat layer.',
+            'yd-imp': 'Collapse of advanced antediluvian megalithic network (Göbekli Tepe buried).',
+            'm6-mark': 'Abrupt Sahara desertification (African Humid Period end), sea level shifts.',
+            'm6-imp': 'Sudden emergence of Dynastic Egypt & Sumer with fully formed math.',
+            'br-mark': 'Mega-droughts, volcanic sulfur spikes, Mediterranean seismic destruction.',
+            'br-imp': 'Simultaneous fall of Mycenae, Hittites, and Egyptian disruption.',
+            'pr-mark': 'Geomagnetic excursion acceleration, solar cycle anomaly, Galactic alignment.',
+            'pr-imp': 'Consciousness & technological singularity before the next cycle phase.',
+            'c-sub': 'Empirical Epistemology',
+            'c-title': 'Clinical Consciousness & Non-Local Reality (NDE)',
+            'c-desc': 'Medical cardiac arrest protocols and quantum neuroscience prove consciousness is non-local and fundamental.',
+            'c1-head': 'Clinical Flatline EEG Perception',
+            'c1-body': 'Within 10–20 seconds of cardiac arrest, cerebral cortex electrical activity ceases (isoelectric flatline EEG). Despite total absence of brain metabolism, patients describe highly structured, lucid awareness with accurate visual and auditory recall of resuscitation procedures.',
+            'c2-head': 'The Neural-Cosmic Isomorphism',
+            'c2-body': 'In 2020, Vazza & Feletti confirmed that human cerebellar neural networks and the cosmic web share identical quantitative structural properties across 27 orders of magnitude.',
+'cat-phys-title': 'PHYSICAL & GEOLOGICAL CAUSE:',
+            'cat-civil-title': 'CIVILIZATIONAL COLLAPSE & ARCHITECTURAL PRESERVATION:',
+            'cat-meta-title': 'METAPHYSICAL HERITAGE & MEMORY PRESERVATION:',
+            'gap-sub': 'Research Matrix & Knowledge GAPs',
+            'gap-title': 'Knowledge Coverage & Research GAPs',
+            'gap-desc': 'Click any card to review verified facts and data formats required for AI model ingestion.',
+            'gap-note': '* Percentages reflect the coverage of verified empirical studies against the required database.',
+            'gap-open-dossier': 'Open Data Dossier for AI Analysis &rarr;',
+            'gap-m-title': 'Megalithic Acoustic Matrix',
+            'gap-m-desc': '<strong>Missing Data:</strong> Acoustic resonance recordings across South American (Tiwanaku) and Asian temples in the 100–125 Hz band.',
+            'gap-c-title': 'Precession & Cyclical Timeline',
+            'gap-c-desc': '<strong>Missing Data:</strong> Deep ocean and glacial ice-core data for cataclysms preceding the 25,920-year complete precessional cycle.',
+            'gap-n-title': 'Clinical NDE & Isoelectric Flatline',
+            'gap-n-desc': '<strong>Missing Data:</strong> Multi-sensor synchronized brain mapping during verified out-of-body resuscitation phases.',
+            'gap-i-title': 'Neural-Cosmic Isomorphism',
+            'gap-i-desc': '<strong>Missing Data:</strong> Mathematical mechanism of non-local quantum information transfer across 10²⁷ scales.',
+            'modal-verified-title': 'What is already verified and confirmed:',
+            'modal-missing-title': 'Missing data and what needs to be fed to the AI model:',
+            'modal-submit-btn': 'Submit These Data to Archive',
+            'form-title': 'Contribute to the Matrix',
+            'form-desc': 'Submit observed anomalies, clinical records, or geodetic correlations for synthesis.',
+            'form-cat': 'Observation / Study Category',
+            'form-ref': 'Contributor Reference (Optional / Anonymous)',
+            'form-data': 'Empirical Data / Description / Source Link',
+            'form-btn': 'Submit to Research Archive',
+'net-btn-both': 'Synthesis (Both)',
+            'net-btn-brain': 'Brain (Neurons)',
+            'net-btn-cosmos': 'Cosmos (Galaxies)',
+            'net-open-3d': 'Open Fullscreen 3D Depth Model &rarr;',
+            'net-scale-title': 'Scale Difference: 10²⁷',
+            'net-scale-brain': '• Neural network: ~10¹¹ neurons | Connections: 4.6 per node',
+            'net-scale-cosmos': '• Cosmic web: ~10¹¹ galaxies | Connections: 4.7 per node',
+'p1-tags': '110–120 Hz • Precession Cycles • Star Shafts',
+            'p2-tags': 'Scale Invariance • Spectral Density • Micro/Macro',
+            'p3-tags': 'Greyson Scale • Flatline EEG • Verified Perception',
+            'cons-sec1': 'CLINICAL DATABASE & EEG METRICS:',
+            'cons-sec2': 'FRACTAL COSMIC CONNECTION:',
+            'modal-net-both': 'Synthesis',
+            'modal-net-brain': 'Brain',
+            'modal-net-cosmos': 'Cosmos',
+            'u3d-instr': '• Drag with mouse or touch to rotate network | Scroll or pinch to zoom',
+            'legend-acoustic': 'Acoustic Chambers (110 Hz)',
+            'legend-poly': 'Polygonal Vitrification',
+            'legend-precession': 'Precession & Underground Cities',
+            'opt-1': 'Near-Death Experience (NDE / OBE Verification)',
+            'opt-2': 'End-of-Life Experiences (ELE / Hospice Logs)',
+            'opt-3': 'Megalithic Acoustics & Frequencies (110 Hz)',
+            'opt-4': 'Astrophysics & Cosmic Web Isomorphism',
+            'opt-5': 'Metaphysical Observation / History Cycles',
+            'ph-ref': 'Name, Researcher ID or Anonymous',
+            'ph-data': 'Specify coordinates, EEG metrics, acoustic frequencies or study link...',
+'m1-body': 'Megalithic complexes worldwide demonstrate acoustic resonance at 110-120 Hz, axial precession markers (25,920 years), and polygonal masonry engineered to survive cyclical global cataclysms.',
+            'm2-body': 'Vazza & Feletti (2020) confirmed that the human cerebellar neural network and the cosmic web of galaxies are structurally identical across 27 orders of magnitude, proving the universe operates as a unified, self-aware network.',
+            'm3-body': 'Documented visual and auditory perception during cardiac arrest and flatline EEG proves that human consciousness is non-local and not limited strictly to biological brain functions.',
+            'bridge-btn-1': 'Open Cymatics &rarr;',
+            'bridge-btn-2': 'Open Light Field &rarr;',
+            'bridge-btn-3': 'Open Precession &rarr;',
+            'c1-list': '<li>• <strong>Dr. Sam Parnia (AWARE I & II):</strong> Verified perception during cardiac arrest.</li><li>• <strong>Dr. Bruce Greyson:</strong> 16-point quantitative Greyson scale.</li><li>• <strong>Dr. Jeffrey Long:</strong> 9 empirical evidences excluding hallucinations.</li>',
+            'u3d-title': 'Cosmic & Neural Web ($10^{27}$ Scale)',
+'bridge-h1': 'Empirical Mechanism & Scientific Foundation:',
+            'bridge-h2': 'Connection to Cosmic Cycles & Universal Consciousness:',
+            'welcome-ai': "Welcome to Project Parallax. Let's decode the hidden mechanics of energy, metaphysics, and clinical NDE research research together. How can I assist your exploration today?",
+'cons-sec1': 'CLINICAL DATABASE & EEG METRICS:',
+            'cons-sec2': 'FRACTAL COSMIC CONNECTION:',
+'c2-list-item1': '<strong>Spectral Power Density:</strong> Identical matter distribution.',
+            'c2-list-item2': '<strong>Node Connections:</strong> Identical connection count (4.6 to 5.4).',
+            'c2-list-item3': '<strong>Cosmic Observer:</strong> Supporting Alan Watts\' insight — we are the universe experiencing itself.',
+            'ai-placeholder': 'Ask about cycles, NDE, cosmic networks...'
+        }
+    };
+ // EXPANDED MEGALITHS DATA WITH VERIFIED ARCHEOLOGICAL VISUALS
+    const megalithsData = [
+        { 
+            name: { LV: "Gīzas Lielā Piramīda (Ēģipte)", EN: "Great Pyramid of Giza (Egypt)" },
+            coords: "29.9792° N, 31.1342° E", lat: 29.9792, lng: 31.1342,
+            type: "acoustic", color: 0xf59e0b,
+            image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
+            engineering: {
+                LV: "Granīta Karalis kameras akustiskā rezonanse pie 110–121 Hz; orientācija uz īstajiem ziemeļiem ar 3/60 grāda precizitāti. Perimetra un augstuma attiecība iekodē 2π un zelta griezumu Φ (1.618). Zvaigžņu šahtas precīzi mērķētas uz Oriona (Alnitak) un Siriusa stāvokli 10 500 BC.",
+                EN: "King's Chamber granite resonance at 110–121 Hz; aligned to True North within 3/60 of a degree. Encodes 2π and the Golden Ratio Φ (1.618). Star shafts align astronomically with Orion's Belt (Alnitak) and Sirius at 10,500 BC."
+            },
+            metaphysics: {
+                LV: "110 Hz frekvence stimulē teta smadzeņu viļņus labajā puslodē, atslēdzot 3D bioloģiskos filtrus un veicinot ārpusķermeņa uztveri (OBE).",
+                EN: "110 Hz acoustic frequency dampens left-hemisphere dominance, inducing theta wave brain states, OBEs, and non-local conscious resonance."
+            }
+        },
+        { 
+            name: { LV: "Gēbekli Tepe (Turcija)", EN: "Göbekli Tepe (Turkey)" },
+            coords: "37.2232° N, 38.9224° E", lat: 37.2232, lng: 38.9224,
+            type: "precession", color: 0x22d3ee,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/G%C3%B6bekli_Tepe%2C_Urfa.jpg/800px-G%C3%B6bekli_Tepe%2C_Urfa.jpg",
+            engineering: {
+                LV: "Datēts ar ~9600 BC (Jaunākā driasa beigas). 10–20 tonnu T-veida monolīti izvietoti astronomiskās observatorijas ģeometrijā ar precīzu Siriusa heliakālo lēktu fiksāciju un apzināti aprakti ar zemi.",
+                EN: "Dated to ~9600 BC (Younger Dryas boundary). Massive 10–20 ton T-pillars deliberately buried in a geometric astronomical observatory layout tracking Sirius heliacal rising."
+            },
+            metaphysics: {
+                LV: "Saglabā 25 920 gadu precesijas ciklu un Sirijusa zvaigžņu sistēmas koordinātas, lai pārnestu kosmisko atmiņu pāri kataklizmu slieksnim.",
+                EN: "Preserves the 25,920-year precessional calendar and Sirius stellar alignment to transmit cosmic memory matrix across cataclysms."
+            }
+        },
+        { 
+            name: { LV: "Derinkuyu Pazemes Pilsēta (Turcija)", EN: "Derinkuyu Underground City (Turkey)" },
+            coords: "38.3736° N, 34.7347° E", lat: 38.3736, lng: 34.7347,
+            type: "precession", color: 0x22d3ee,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Derinkuyu_underground_city_6846.jpg/800px-Derinkuyu_underground_city_6846.jpg",
+            engineering: {
+                LV: "18 stāvu dziļumā klintī izcirsta autonoma pazemes pilsēta ar ventilācijas šahtām līdz 85 metriem, kas spēja uzturēt 20 000 cilvēku un aizsargāt pret virszemes temperatūras lēcieniem.",
+                EN: "18-level deep subterranean city carved into volcanic rock with 85m ventilation shafts capable of sheltering 20,000 people from atmospheric surface cataclysms."
+            },
+            metaphysics: {
+                LV: "Izveidota kā patvertne pret kosmiskajiem un saules radiācijas uzliesmojumiem Younger Dryas kataklizmas laikā.",
+                EN: "Engineered as an antediluvian fallout vault against cosmic rays, solar micro-novas, and thermal surface shockwaves."
+            }
+        },
+        { 
+            name: { LV: "Barabar Granīta Rezonanses Alas (Indija)", EN: "Barabar Caves (India)" },
+            coords: "25.0065° N, 85.0622° E", lat: 25.0065, lng: 85.0622,
+            type: "acoustic", color: 0xf59e0b,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Sudama_Cave_entrance%2C_Barabar.jpg/800px-Sudama_Cave_entrance%2C_Barabar.jpg",
+            engineering: {
+                LV: "Granīta masīvā izcirstas rezonanses kameras ar mikronu spoguļgludumu. Akustiskā atbalss saglabājas līdz pat 30 sekundēm, ģenerējot stabilus stāvviļņus.",
+                EN: "Hyper-polished granite vaults carved with optical-level flat surfaces producing standing wave audio reverberation exceeding 30 seconds."
+            },
+            metaphysics: {
+                LV: "Frekvenču kameras, kas kalpoja kā skaņas meditācijas un apziņas paplašināšanas rezonatori.",
+                EN: "Harmonic standing-wave resonators engineered to entrain human consciousness into non-local samadhi states."
+            }
+        },
+        { 
+            name: { LV: "Tiwanaku & Puma Punku (Bolīvija)", EN: "Tiwanaku & Puma Punku (Bolivia)" },
+            coords: "16.5547° S, 68.6732° W", lat: -16.5547, lng: -68.6732,
+            type: "polygonal", color: 0xc084fc,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Pumapunku_Pared.jpg/800px-Pumapunku_Pared.jpg",
+            engineering: {
+                LV: "Andesīta H-bloki ar mikronu taisnleņķa precizitāti un iekšējiem urbumiem. Izmantoti lieti vara-arsēna-niķeļa skavu savienojumi.",
+                EN: "Precision-machined andesite H-blocks with micron-level right angles and internal blind conduit channels fastened with cast copper-arsenic metal clamps."
+            },
+            metaphysics: {
+                LV: "Piezoelektriskais kvarcs andesītā rada spēcīgas elektromagnētiskā lauka anomālijas, stimulējot epifīzi un telpas uztveri.",
+                EN: "Piezoelectric quartz composition creates localized electromagnetic anomalies stimulating the pineal gland and spatial perception."
+            }
+        },
+        { 
+            name: { LV: "Ollantaytambo & Sacsayhuamán (Peru)", EN: "Ollantaytambo & Sacsayhuamán (Peru)" },
+            coords: "13.2584° S, 72.2633° W", lat: -13.2584, lng: -72.2633,
+            type: "polygonal", color: 0xc084fc,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Sacsayhuam%C3%A1n_Cusco_Peru.jpg/800px-Sacsayhuam%C3%A1n_Cusco_Peru.jpg",
+            engineering: {
+                LV: "Poligonālie akmens bloki līdz 120 tonnām ar stiklotām (vitrificētām) virsmām, kas savienoti bez javas un absorbē zemestrīču viļņus.",
+                EN: "Polygonal cyclopean masonry up to 120 tons with vitrified, interlocking curved surfaces immune to seismic shear waves."
+            },
+            metaphysics: {
+                LV: "Matērijas frekvences mīkstināšana — celtnieki spēja mainīt akmens kristālisko režģi akustiski, lai to veidotu kā mīkstu masu.",
+                EN: "Frequency stone softening and matter state modulation — altering crystal lattice structures through acoustic manipulation."
+            }
+        },
+        { 
+            name: { LV: "Gunung Padang Piramīda (Indonēzija)", EN: "Gunung Padang (Indonesia)" },
+            coords: "6.9961° S, 107.0565° E", lat: -6.9961, lng: 107.0565,
+            type: "precession", color: 0x22d3ee,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gunung_Padang_Site_1.jpg/800px-Gunung_Padang_Site_1.jpg",
+            engineering: {
+                LV: "Ģeofizikālie radiolokācijas dati apliecina iekšējās kameras un megalītu slāņus, kuru dziļākie līmeņi datēti no 16 000 līdz 25 000 BP.",
+                EN: "Multi-layer megalithic pyramid structure with subterranean chambers carbon-dated between 16,000 and 25,000 BP."
+            },
+            metaphysics: {
+                LV: "Pierādījums civilizācijas augstajai inženierijai pirms pēdējā ledus laikmeta maksimuma.",
+                EN: "Empirical proof of advanced antediluvian geodetic engineering constructed prior to the Last Glacial Maximum."
+            }
+        },
+        { 
+            name: { LV: "Kailash Monolīta Templis (Ellora, Indija)", EN: "Kailash Temple (Ellora, India)" },
+            coords: "20.0238° N, 75.1793° E", lat: 20.0238, lng: 75.1793,
+            type: "polygonal", color: 0xc084fc,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Ellora_cave16_001.jpg/800px-Ellora_cave16_001.jpg",
+            engineering: {
+                LV: "No vienlaidu bazalta klints no augšas uz leju izcirsts gigantisks templis, izceļot vairāk nekā 200 000 tonnu akmens bez kļūdas iespējas.",
+                EN: "Monolithic complex carved vertically top-down out of solid basalt rock, excavating 200,000+ tons with perfect 3D mathematical precision."
+            },
+            metaphysics: {
+                LV: "Sakrālā fraktālā ģeometrija, kas kalpo kā telpisks kosmiskā enerģētiskā lauka uztvērējs.",
+                EN: "Spatial fractal architecture designed as a macroscopic antenna harmonizing cosmic energetic grids."
+            }
+        },
+        { 
+            name: { LV: "Lieldienu sala (Rapa Nui)", EN: "Easter Island (Rapa Nui)" },
+            coords: "27.1127° S, 109.3497° W", lat: -27.1127, lng: -109.3497,
+            type: "acoustic", color: 0xf59e0b,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ahu_Tongariki.jpg/800px-Ahu_Tongariki.jpg",
+            engineering: {
+                LV: "Moai statujas izvietotas pa planētas Lielā Riņķa līniju, kas ar matemātisku precizitāti savieno Gīzu, Nasku un Angkoru.",
+                EN: "Moai platforms aligned with mathematical precision along the planetary Great Circle connecting Giza, Nazca, and Angkor."
+            },
+            metaphysics: {
+                LV: "Planētas enerģētisko meridiānu (Ley Lines) mezgli, kas stabilizē Zemes ģeomagnētisko lauku.",
+                EN: "Telluric grid nodes (planetary acupuncture points) stabilizing geomagnetic field fluctuations."
+            }
+        },
+        { 
+            name: { LV: "Angkor Wat (Kambodža)", EN: "Angkor Wat (Cambodia)" },
+            coords: "13.4125° N, 103.8670° E", lat: 13.4125, lng: 103.8670,
+            type: "precession", color: 0x22d3ee,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Angkor_Wat_Atmospheric.jpg/800px-Angkor_Wat_Atmospheric.jpg",
+            engineering: {
+                LV: "Saulgriežu un ekvinokcijas asu orientācija, kas precīzi atspoguļo Pūķa (Draco) zvaigznāja konfigurāciju 10 500 BC.",
+                EN: "Exact equinox solar alignments mirroring the constellation Draco configuration as it appeared in 10,500 BC."
+            },
+            metaphysics: {
+                LV: "Fraktālā sakrālā arhitektūra, kas harmonizē bioloģisko neironu tīklu ar kosmiskā tīkla ģeometriju.",
+                EN: "Fractal sacred architecture harmonizing biological neural clusters with cosmic filament architecture."
+            }
+        },
+        { 
+            name: { LV: "Ħal Saflieni Hipogejs (Malta)", EN: "Ħal Saflieni Hypogeum (Malta)" },
+            coords: "35.8696° N, 14.5069° E", lat: 35.8696, lng: 14.5069,
+            type: "acoustic", color: 0xf59e0b,
+            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hypogeum_of_%C4%A6al-Saflieni_01.jpg/800px-Hypogeum_of_%C4%A6al-Saflieni_01.jpg",
+            engineering: {
+                LV: "Kaļķakmenī izcirsts pazemes templis 3 līmeņos, akustiski noskaņots precīzi uz 111 Hz telpas rezonansi.",
+                EN: "Three-level subterranean limestone sanctuary acoustically tuned precisely to 111 Hz standing soundwaves."
+            },
+            metaphysics: {
+                LV: "111 Hz rezonanse aktivizē prefrontālo garozu, veicinot kolektīvās apziņas sinhronizāciju un telepatisko uztveri.",
+                EN: "111 Hz standing waves selectively activate the prefrontal cortex, enhancing collective synchronization and telepathic receptivity."
+            }
+        }
+    ];
+// RESEARCH GAPS DEEP DATA
+    const gapDetailsData = {
+        'gap-m': {
+            category: "Megalithic Acoustic Matrix",
+            title: { LV: "Megalītu Akustiskā Matrica & Frekvences", EN: "Megalithic Acoustic Matrix & Resonances" },
+            known: {
+                LV: "Verificēta 110–121 Hz stāvviļņu rezonanse Gīzas Karaļa kamerā, Ħal Saflieni hipogejā un Barabar granīta alās. Pjezoelektriskais kvarca efekts granītā un andesītā.",
+                EN: "Verified 110–121 Hz standing wave acoustic resonance in Giza King's Chamber, Malta Hypogeum, and Barabar caves. Piezoelectric quartz mechanics mapped."
+            },
+            missing: {
+                LV: "1. Augstas izšķirtspējas akustiskie osciloskopa ieraksti no Tiwanaku (Bolīvija) un Angkor Wat.<br>2. Granīta iekšējo dobumu 3D fotogrammetrija un pjezoelektriskā lauka sprieguma mērījumi skaņas slodzē.<br>3. Failu formāti MI analīzei: WAV (24-bit/96kHz), CSV frekvenču spektrogrammas, 3D OBJ/PLY modeļi.",
+                EN: "1. High-resolution oscilloscope frequency recordings from Tiwanaku and Angkor.<br>2. 3D photogrammetry of subterranean granite chambers and piezoelectric field voltage measurements.<br>3. Target formats for AI ingestion: 24-bit/96kHz WAV, CSV frequency spectrograms, OBJ/PLY 3D point-clouds."
+            }
+        },
+        'gap-c': {
+            category: "Precession & Cyclical Timeline",
+            title: { LV: "Ciklu Hronoloģija & Precesijas Dinamika", EN: "Precession & Cyclical Cataclysm Timeline" },
+            known: {
+                LV: "Younger Dryas platīna/nanodimdiņu un melnā paklāja slānis (12.8k BP); Sahāras straujā pārtuksnešošanās (~6k BP); Bronzas laikmeta vienlaicīgais sabrukums (3.2k BP).",
+                EN: "Younger Dryas platinum/nanodiamond boundary layer (12.8k BP); abrupt Sahara desertification (~6k BP); Late Bronze Age simultaneous collapse (3.2k BP)."
+            },
+            missing: {
+                LV: "1. Dziļo okeāna un ledāju sedimentu dati par kataklizmām pirms pilnā 25 920 gadu cikla (25k–50k BP).<br>2. Ģeomagnētisko ekskursiju (Laschamp, Mono Lake) korelācija ar saules mikronovas radioizotopiem (Be-10, C-14).<br>3. Dati MI: Stratigrāfiskie CSV dati, radiometriskā oglekļa C-14 un urāna-torija tabulas.",
+                EN: "1. Deep-sea and ice-core sediment layers preceding the 25.9k full cycle (25k–50k BP).<br>2. Correlation tables between geomagnetic excursions (Laschamp) and solar cosmogenic isotopes (Be-10, C-14).<br>3. Target formats: Stratigraphic CSV tables, radiometric isotope raw logs."
+            }
+        },
+        'gap-n': {
+            category: "Clinical NDE & Isoelectric Flatline",
+            title: { LV: "Klīniskās NP & Isoelektriskā EEG Uztvere", EN: "Clinical NDE & Flatline EEG Verification" },
+            known: {
+                LV: "Verificēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā (AWARE I/II pētījumi, Dr. Sam Parnia, Dr. Bruce Greyson).",
+                EN: "Verified visual and auditory perception during cardiac arrest at isoelectric flatline EEG (AWARE I/II, Dr. Sam Parnia, Dr. Bruce Greyson 16-point scale)."
+            },
+            missing: {
+                LV: "1. Vienlaicīga vairāku sensoru smadzeņu skenēšana (qEEG, fNIRS) ārpusķermeņa atdalīšanās brīdī reanimācijā.<br>2. Kvantitatīvi klīniskie dati par terminalo lucīdumu un pirmsnāves vīzijām (ELE) hospisa pacientiem.<br>3. Dati MI: EDF/EDF+ neirofizioloģiskie EEG ieraksti, klīniskās anamnēzes transkripti ar laika zīmogu korelāciju.",
+                EN: "1. Multi-sensor synchronized neural imaging (qEEG, fNIRS) during verified out-of-body CPR phases.<br>2. Quantitative clinical logs on terminal lucidity and end-of-life visions (ELE).<br>3. Target formats: EDF/EDF+ EEG raw time-series, timestamped clinical resuscitation logs."
+            }
+        },
+        'gap-i': {
+            category: "Neural-Cosmic Isomorphism",
+            title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti)", EN: "Neural-Cosmic Structural Isomorphism" },
+            known: {
+                LV: "Kvantitatīvi identisks spektrālais jaudas blīvums un mezglu savienojamība (4.6–5.4) starp cilvēka smadzenītēm un galaktiku kosmisko tīklu $10^{27}$ mērogā.",
+                EN: "Quantitatively identical spatial power spectral density and node degree (4.6–5.4) between human cerebellum and galaxy web across 27 orders of magnitude."
+            },
+            missing: {
+                LV: "1. Matemātiskais vienādojums nelokālās kvantu informācijas pārnesei starp fraktālajiem mērogiem.<br>2. Grafu teorijas salīdzinošie modeļi par sinaptiskās plastiskuma un galaktiku gravitācijas klasterizācijas dinamiku.<br>3. Dati MI: HDF5 kosmoloģisko simulāciju faili (IllustrisTNG), neironu rekonstrukcijas SWC/H5 faili.",
+                EN: "1. Unified mathematical framework for non-local information transfer across scale-invariant fractal networks.<br>2. Graph-theory topological comparison of synaptic plasticity vs galaxy clustering.<br>3. Target formats: HDF5 cosmological data (IllustrisTNG), SWC/H5 neuronal tracing trees."
+            }
+        }
+    };
+
+    // CATACLYSMS DEEP DATA
+    const cataclysmsData = {
+        yd: {
+            epoch: "12,800 – 11,600 BP",
+            title: { LV: "Younger Dryas Komētas Trieciens & Plūdi", EN: "Younger Dryas Impact & Meltwater Pulse" },
+            trigger: {
+                LV: "Komētas fragmentu trieciens Ziemeļamerikas ledājos (~12.8k BP) un saules mikro-uzliesmojums (~11.6k BP), kas izraisīja tūlītēju ledāju kušanu (Meltwater Pulse 1B) un okeāna celšanos par 120 m.",
+                EN: "Fragmented comet bombardment across the Laurentide Ice Sheet (~12.8k BP) followed by a solar micro-nova spike (~11.6k BP), causing catastrophic glacial melting (Meltwater Pulse 1B) and sea level rises of up to 120 meters."
+            },
+            collapse: {
+                LV: "Antediluviānās civilizācijas globālais sabrukums. Izdzīvojušie uzbūvēja un apzināti apraka Göbekli Tepe un Karahan Tepe kā astronomiskās atmiņas glabātavas.",
+                EN: "Destruction of advanced antediluvian civil networks. Survivors constructed and intentionally buried complexes like Göbekli Tepe and Karahan Tepe as underground vaults encoding astronomical precession coordinates."
+            },
+            meta: {
+                LV: "Cikliskās apziņas datu iekodēšana megalītiskajās rezonanses kamerās, kas spēj pārdzīvot ārkārtēju kinētisko un seismisko triecienu.",
+                EN: "Preservation of cyclical consciousness data through megalithic acoustic resonance chambers designed to survive extreme kinetic and seismic shockwaves."
+            },
+            simType: 'comet-impact'
+        },
+        mid6k: {
+            epoch: "~6,000 – 5,500 BP",
+            title: { LV: "6,000 Gadu Cikls & Sahāras Pārtuksnešošanās", EN: "6,000-Year Mid-Cycle & Desertification" },
+            trigger: {
+                LV: "Strauja Zemes ass nobīde un saules starojuma svārstības, kas dažu gadsimtu laikā zaļo, ezeriem bagāto Sahāru pārvērta par hiper-arīdu tuksnesi.",
+                EN: "Rapid orbital tilt shift coupled with solar excursion, abruptly ending the African Humid Period and turning lush green savannas into the hyper-arid Sahara desert within centuries."
+            },
+            collapse: {
+                LV: "Megalītisko zināšanu nesēju migrācija uz Nīlas un Divupes ielejām, ienesot jau pilnībā noformētu astronomiju, ģeometriju un akmens apstrādi.",
+                EN: "Mass migration of megalithic priesthoods into the Nile River Valley and Mesopotamian basins, bringing fully formed high astronomy, geometry, and stone engineering."
+            },
+            meta: {
+                LV: "Saules kalendāra sistēmu un zvaigžņu ciklu fiksācija, lai sekotu 6000 gadu sub-harmoniskajām kosmiskajām perturbācijām.",
+                EN: "Construction of dynastic solar calendar systems to track recurring 6,000-year sub-harmonic cosmic disruptions."
+            },
+            simType: 'solar-sand'
+        },
+        bronze: {
+            epoch: "~3,200 BP (1200 BC)",
+            title: { LV: "Vēlā Bronzas Laikmeta Sabrukums", EN: "Late Bronze Age Collapse" },
+            trigger: {
+                LV: "Vienlaicīgs 150 gadu megasausums, seismiskās zemestrīču vētras Vidusjūrā un atmosfēras aptumšošanās masīvu vulkānu izvirdumu dēļ (Thera/Hekla).",
+                EN: "Simultaneous 150-year mega-drought, Mediterranean tectonic earthquake storms, and atmospheric sulfur darkening caused by massive volcanic eruptions (Thera/Hekla)."
+            },
+            collapse: {
+                LV: "Vairāk nekā 40 lielākās impērijas un pilsētvalstis (Hetu, Mikēnu, Ugaritas) sabruka 50 gadu laikā, aizsākot reģionālo tumšo laikmetu.",
+                EN: "Over 40 major cities and imperial networks (Hittite, Mycenaean, Ugarit) collapsed simultaneously within 50 years, wiping out literate bureaucracies and plunging the region into a dark age."
+            },
+            meta: {
+                LV: "Senās tempļu zinātnes pāreja slepenajās brālībās, mitoloģijā un mutvārdu mistēriju tradīcijās.",
+                EN: "Transition from solar megalithic priesthood wisdom to fragmented esoteric mythologies and oral mystery traditions."
+            },
+            simType: 'volcano-quake'
+        },
+        present: {
+            epoch: "2026+",
+            title: { LV: "Mūsdienu Cikla Konverģence & Singularitāte", EN: "Present Precessional Cycle Convergence" },
+            trigger: {
+                LV: "Ģeomagnētisko polu paātrināta migrācija (>50 km gadā), saules 25./26. cikla anomālijas un 25 920 gadu aksiālās precesijas cikla noslēgums.",
+                EN: "Rapid geomagnetic pole migration (>50 km/year), solar cycle 25/26 grand maximum anomalies, and galactic current sheet alignment completing the 25,920-year axial precession cycle."
+            },
+            collapse: {
+                LV: "Globālā mikroelektronikas tīkla ievainojamība pret magnētiskajām vētrām un cilvēka smadzeņu viļņu (Šūmaņa rezonanses) frekvenču nobīde.",
+                EN: "High vulnerability of modern micro-electronic grids contrasted with human consciousness frequency shifts (Schumann resonance fluctuations)."
+            },
+            meta: {
+                LV: "Parallakses Singularitāte: Kvantu fizikas, klīnisko NP datu un kosmiskās rezonanses sintēze vienotā cilvēces nelokālajā apziņā.",
+                EN: "The Parallax Singularity: Integration of quantum mechanics, clinical NDE verification, and cosmic resonance into a transcendent non-local human consciousness network."
+            },
+            simType: 'geomagnetic-energy'
+        }
+    };
+
+    // BRIDGE DEEP DOSSIERS
+    const bridgeData = {
+        b1: {
+            tag: "Acoustic Cymatics & Telluric Waveguide",
+            title: { LV: "Zemes Telūriskais Tīkls & Akustiskā Levitācija (110 Hz)", EN: "Earth's Telluric Network & Acoustic Levitation" },
+            desc1: {
+                LV: "110–111 Hz stāvviļņi granīta un kaļķakmens telpās ierosina pjezoelektrisko efektu kvarca kristālos. Akustiskā levitācija un virsmas vitrifikācija tika panākta ar frekvenču harmonizāciju kimatiskajos mezglos.",
+                EN: "110–111 Hz standing waves in granite and limestone evoke piezoelectric reactions in quartz crystals. Acoustic levitation was achieved via frequency matching in cymatic standing nodes."
+            },
+            desc2: {
+                LV: "Zeme darbojās kā milzīgs viļņvads: signāli un spēks tika vadīti caur iežu slāni, izmantojot Zemes rezonansi (~7.83–110 Hz), līdzīgi kā mūsdienu satelīti izmanto radioviļņus.",
+                EN: "The planet functioned as a global waveguide: signals and harmonic resonance propagated directly through bedrock utilizing natural telluric lines without orbital relays."
+            },
+            simType: 'cymatics'
+        },
+        b2: {
+            tag: "Morphogenetic Resonance & Non-Local Consciousness",
+            title: { LV: "Morfoģenētiskais Lauks & Telepātiskā Piekļuve", EN: "Morphogenetic Resonance & Telepathic Access" },
+            desc1: {
+                LV: "Rūperta Šeldreika morfoģenētiskais lauks apliecina: kad prasme tiek apgūta vienā vietā, tā kļūst pieejama visai sugai. Senās akustiskās kameras kalpoja kā izolēti uztvērēji.",
+                EN: "Rupert Sheldrake's morphogenetic field confirms non-local information transfer across species without physical contact. Resonant stone chambers served as biological quantum receivers."
+            },
+            desc2: {
+                LV: "Pie 0 EEG (kā klīniskajā NP) apziņa atvienojas no 3D sensoriem filtriem un uztver kosmisko tīklu holistiski, ļaujot sazināties pāri okeāniem bez tehnoloģijām.",
+                EN: "At zero EEG flatline states (identical to clinical NDE), human consciousness uncouples from biological filters to directly interface with non-local cosmic web data."
+            },
+            simType: 'light-tunnel'
+        },
+        b3: {
+            tag: "Antediluvian Keepers of Wisdom & Precession",
+            title: { LV: "Pirmskataklizmas Skolotāju Kasta & Precesijas Cikli", EN: "Antediluvian Masters & Precession Canons" },
+            desc1: {
+                LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.",
+                EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthood standardizing polygonal canons across continents."
+            },
+            desc2: {
+                LV: "Megalīti tika radīti no neiznīcināma granīta kā ģeodēziskie marķieri, lai modinātu cilvēci pirms 25 920 gadu precesijas noslēguma.",
+                EN: "Megaliths were constructed from indestructible granite and diorite along the planetary Great Circle to encode cyclical astronomies before future resets."
+            },
+            simType: 'precession-orbit'
+        }
+    };
+
+    // CONSCIOUSNESS DEEP DOSSIERS
+    const consciousnessData = {
+        flatline: {
+            title: { LV: "Klīniskā Uztvere pie Plakanas EEG Līnijas (AWARE I/II)", EN: "Clinical Perception at Flatline EEG (AWARE I/II)" },
+            desc1: {
+                LV: "Dr. Sam Parnia un Dr. Bruce Greyson pētījumi apliecina, ka vizuālā un audiālā uztvere sirds apstāšanās laikā notiek brīdī, kad smadzeņu stumbrā un garozā nav asinsrites un mērāmas elektriskās aktivitātes.",
+                EN: "Dr. Sam Parnia and Dr. Bruce Greyson's multi-center studies demonstrate accurate auditory and visual recall during cardiac arrest when cerebral perfusion and brainwave activity have ceased."
+            },
+            desc2: {
+                LV: "Tas apgāž mehānisko materiālismu: smadzenes nav apziņas ģenerators, bet gan kvantu uztvērējs un filtrs, kas sašaurina kosmiskā tīkla pieredzi 3D izdzīvošanai.",
+                EN: "This refutes reductionist materialism: the biological brain acts as a quantum transducer and sensory filter rather than the creator of consciousness."
+            }
+        },
+        isomorphism: {
+            title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" },
+            desc1: {
+                LV: "Kvantitatīvā analīze starp cilvēka smadzenīšu neironu tīklu (10^11 neironi) un novērojamā visuma kosmisko tīklu (10^11 galaktikas) atklāja identisku spektrālo jaudas blīvumu.",
+                EN: "Quantitative structural comparison between human cerebellar neuronal networks and the cosmic web of galaxies revealed identical spatial density across 27 orders of magnitude."
+            },
+            desc2: {
+                LV: "Abas sistēmas attīstās pēc vienādiem pašorganizēšanās principiem, apstiprinot fraktālo hermētisko aksiomu: 'Kā augšā, tā apakšā'.",
+                EN: "Both systems evolve under identical self-organizing network dynamics, proving scale invariance and Alan Watts' unified observer framework."
+            }
+        }
+    };
+// MOBILE MENU TOGGLE
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Aizver izvēlni, kad uzklikšķina uz jebkuras saites tajā
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
+    // LANGUAGE TOGGLE EVENT
+    document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+        currentLang = currentLang === 'LV' ? 'EN' : 'LV';
+        document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[currentLang][key]) {
+                el.setAttribute('placeholder', translations[currentLang][key]);
+            }
+        });
+
+        if (document.getElementById('gemini-welcome-msg')) {
+            document.getElementById('gemini-welcome-msg').innerText = translations[currentLang]['welcome-ai'];
+        }
+        if (document.getElementById('gemini-input')) {
+            document.getElementById('gemini-input').placeholder = translations[currentLang]['ai-placeholder'];
+        }
+
+        if (currentSelectedSite) {
+            updateMegalithPopup(currentSelectedSite);
+        }
+    });
+
+    function openModal(id) { document.getElementById(id)?.classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id)?.classList.add('hidden'); }
+
+    function openGapModal(gapKey) {
+        const data = gapDetailsData[gapKey];
+        if (!data) return;
+
+        document.getElementById('gap-modal-category').innerText = data.category;
+        document.getElementById('gap-modal-title').innerText = data.title[currentLang];
+        document.getElementById('gap-modal-known').innerHTML = data.known[currentLang];
+        document.getElementById('gap-modal-missing').innerHTML = data.missing[currentLang];
+
+        document.getElementById('gap-modal').classList.remove('hidden');
+    }
+
+    function closeGapModal() {
+        document.getElementById('gap-modal').classList.add('hidden');
+    }
+
+    const policiesData = {
+        privacy: {
+            tag: "Data Protection & Privacy",
+            title: "Privacy Policy",
+            content: `
+                <p><strong>Last updated: 2026</strong></p>
+                <p>Project Parallax ("we", "our", or "site") respects your privacy. This Privacy Policy outlines how we handle information collected through our open-source research platform.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">1. Information Collection</h4>
+                <p>When you use our research submission form ("Contribute Data"), we collect the information you voluntarily provide, such as your category selection, optional reference/name, and description data. This data is securely processed and stored via Netlify Forms.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">2. Cookies and Analytics</h4>
+                <p>We do not use intrusive tracking cookies or third-party advertising scripts. Basic operational logs may be kept by our hosting provider (Netlify) solely for security and performance optimization.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">3. Contact</h4>
+                <p>If you have any questions regarding data privacy, please contact the site administrator.</p>
+            `
+        },
+        terms: {
+            tag: "Platform Guidelines",
+            title: "Terms of Use",
+            content: `
+                <p><strong>Last updated: 2026</strong></p>
+                <p>Welcome to Project Parallax. By accessing or using this website, you agree to comply with and be bound by the following terms.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">1. Intellectual Property & Open-Source</h4>
+                <p>Project Parallax is an open-source multidimensional synthesis framework created by Reinis Pavlovs. You are free to reference, share, and discuss our theoretical framework for educational and research purposes, provided proper attribution is given.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">2. User Submissions</h4>
+                <p>By submitting research data, observations, or theories through our submission form, you grant Project Parallax the right to synthesize, analyze, and display such data within the scope of our open-source research models.</p>
+            `
+        },
+        disclaimer: {
+            tag: "Scientific & Philosophical Scope",
+            title: "Disclaimer",
+            content: `
+                <p><strong>Last updated: 2026</strong></p>
+                <p>The contents of Project Parallax—including theories on cyclical cataclysms, acoustic megalithic engineering, neural-cosmic isomorphism, and non-local consciousness (NDE)—are presented for open-source academic exploration, philosophical inquiry, and synthesis.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">1. No Medical or Professional Advice</h4>
+                <p>References to clinical near-death studies (such as AWARE trials or flatline EEG research) represent empirical scientific literature and medical data summaries, not individual medical advice.</p>
+                <h4 class="text-amber-400 font-semibold mt-3">2. Exploratory Framework</h4>
+                <p>Our AI models and probability matrices are analytical tools designed to map correlations between historical anomalies and modern neuroscience. They are intended to stimulate critical thought and interdisciplinary research.</p>
+            `
+        }
+    };
+
+    function openPolicyModal(type) {
+        const data = policiesData[type];
+        if (!data) return;
+
+        document.getElementById('policy-modal-tag').innerText = data.tag;
+        document.getElementById('policy-modal-title').innerText = data.title;
+        document.getElementById('policy-modal-content').innerHTML = data.content;
+
+        document.getElementById('policy-modal').classList.remove('hidden');
+    }
+
+    function closePolicyModal() {
+        document.getElementById('policy-modal').classList.add('hidden');
+    }
+
+    let animId = null;
+    function openCataclysmModal(type) {
+        const data = cataclysmsData[type];
+        if (!data) return;
+
+        document.getElementById('cat-epoch').innerText = data.epoch;
+        document.getElementById('cat-title').innerText = data.title[currentLang];
+        document.getElementById('cat-trigger').innerText = data.trigger[currentLang];
+        document.getElementById('cat-collapse').innerText = data.collapse[currentLang];
+        document.getElementById('cat-meta').innerText = data.meta[currentLang];
+
+        document.getElementById('cataclysm-modal').classList.remove('hidden');
+        startPhysicalSimulation(data.simType);
+    }
+
+    function closeCataclysmModal() {
+        document.getElementById('cataclysm-modal').classList.add('hidden');
+        if (animId) cancelAnimationFrame(animId);
+    }
+
+    let bridgeAnimId = null;
+    function openBridgeModal(type) {
+        const data = bridgeData[type];
+        if (!data) return;
+
+        document.getElementById('bridge-modal-tag').innerText = data.tag;
+        document.getElementById('bridge-modal-title').innerText = data.title[currentLang];
+        document.getElementById('bridge-modal-desc1').innerText = data.desc1[currentLang];
+        document.getElementById('bridge-modal-desc2').innerText = data.desc2[currentLang];
+
+        document.getElementById('bridge-modal').classList.remove('hidden');
+        startDistinctBridgeAnimation(data.simType);
+    }
+
+    function closeBridgeModal() {
+        document.getElementById('bridge-modal').classList.add('hidden');
+        if (bridgeAnimId) cancelAnimationFrame(bridgeAnimId);
+    }
+
+    function startDistinctBridgeAnimation(type) {
+        const canvas = document.getElementById('bridge-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+
+        let frame = 0;
+
+        if (type === 'cymatics') {
+            let particles = [];
+            for (let i = 0; i < 180; i++) {
+                particles.push({
+                    angle: Math.random() * Math.PI * 2,
+                    dist: Math.random() * (canvas.height * 0.42),
+                    baseDist: Math.random() * (canvas.height * 0.42),
+                    speed: Math.random() * 0.02 + 0.01,
+                    size: Math.random() * 2 + 1
+                });
+            }
+
+            function drawCymatics() {
+                ctx.fillStyle = 'rgba(2, 6, 23, 0.22)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cx = canvas.width / 2;
+                const cy = canvas.height / 2;
+
+                for (let r = 25; r <= 95; r += 22) {
+                    ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+                    ctx.lineWidth = 1.2;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, r + Math.sin(frame * 0.08 + r) * 2.5, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                for (let a = 0; a <= Math.PI * 2; a += 0.05) {
+                    let rad = 65 + Math.sin(a * 6 + frame * 0.04) * 18;
+                    let x = cx + Math.cos(a) * rad;
+                    let y = cy + Math.sin(a) * rad;
+                    if (a === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.stroke();
+
+                particles.forEach(p => {
+                    p.angle += p.speed;
+                    let targetNode = p.baseDist < 55 ? 45 : (p.baseDist < 85 ? 70 : 95);
+                    p.dist += (targetNode - p.dist) * 0.04;
+
+                    let x = cx + Math.cos(p.angle * 4) * Math.cos(p.angle) * p.dist;
+                    let y = cy + Math.sin(p.angle * 4) * Math.sin(p.angle) * p.dist;
+
+                    ctx.fillStyle = '#fbbf24';
+                    ctx.beginPath();
+                    ctx.arc(x, y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                frame++;
+                bridgeAnimId = requestAnimationFrame(drawCymatics);
+            }
+            drawCymatics();
+        } else if (type === 'light-tunnel') {
+            let tunnelRings = [];
+            for (let i = 0; i < 24; i++) {
+                tunnelRings.push({ z: i * 15, rot: i * 0.2 });
+            }
+
+            function drawTunnel() {
+                ctx.fillStyle = 'rgba(2, 6, 23, 0.28)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cx = canvas.width / 2;
+                const cy = canvas.height / 2;
+
+                const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60);
+                coreGrad.addColorStop(0, '#ffffff');
+                coreGrad.addColorStop(0.4, '#38bdf8');
+                coreGrad.addColorStop(1, 'transparent');
+                ctx.fillStyle = coreGrad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+                ctx.fill();
+
+                tunnelRings.forEach(ring => {
+                    ring.z -= 0.8;
+                    if (ring.z <= 0) ring.z = 24 * 15;
+
+                    let radius = 2500 / (ring.z + 10);
+                    let alpha = Math.min(1, ring.z / 180);
+
+                    ctx.strokeStyle = `rgba(245, 158, 11, ${alpha * 0.75})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    for (let a = 0; a <= Math.PI * 2; a += Math.PI / 3) {
+                        let x = cx + Math.cos(a + ring.rot + frame * 0.01) * radius;
+                        let y = cy + Math.sin(a + ring.rot + frame * 0.01) * radius;
+                        if (a === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                });
+
+                frame++;
+                bridgeAnimId = requestAnimationFrame(drawTunnel);
+            }
+            drawTunnel();
+        } else if (type === 'precession-orbit') {
+            function drawPrecession() {
+                ctx.fillStyle = 'rgba(2, 6, 23, 0.22)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cx = canvas.width / 2;
+                const cy = canvas.height * 0.58;
+
+                const waveY = cy + Math.sin(frame * 0.04) * 8;
+                const waveGrad = ctx.createLinearGradient(0, waveY, canvas.width, waveY);
+                waveGrad.addColorStop(0, 'transparent');
+                waveGrad.addColorStop(0.5, 'rgba(168, 85, 247, 0.35)');
+                waveGrad.addColorStop(1, 'transparent');
+                ctx.fillStyle = waveGrad;
+                ctx.fillRect(0, waveY - 12, canvas.width, 24);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.strokeStyle = '#38bdf8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 32, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+
+                const coneTopY = cy - 75;
+                const coneRadiusX = 55;
+                const coneRadiusY = 16;
+
+                ctx.strokeStyle = 'rgba(251, 191, 36, 0.4)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.ellipse(cx, coneTopY, coneRadiusX, coneRadiusY, 0, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                const axisAngle = frame * 0.02;
+                const topX = cx + Math.cos(axisAngle) * coneRadiusX;
+                const topY = coneTopY + Math.sin(axisAngle) * coneRadiusY;
+
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 2.5;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(topX, topY);
+                ctx.stroke();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(topX, topY, 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                if (Math.abs(Math.sin(axisAngle)) > 0.92) {
+                    ctx.fillStyle = 'rgba(245, 158, 11, 0.8)';
+                    ctx.font = '10px monospace';
+                    ctx.fillText('12,000-YR RESET TRIGGER', cx - 65, cy + 55);
+                }
+
+                frame++;
+                bridgeAnimId = requestAnimationFrame(drawPrecession);
+            }
+            drawPrecession();
+        }
+    }
+
+    let consAnimId = null;
+    function openConsciousnessModal(type) {
+        const data = consciousnessData[type];
+        if (!data) return;
+
+        document.getElementById('consciousness-modal-title').innerText = data.title[currentLang];
+        document.getElementById('consciousness-modal-desc1').innerText = data.desc1[currentLang];
+        document.getElementById('consciousness-modal-desc2').innerText = data.desc2[currentLang];
+
+        document.getElementById('consciousness-modal').classList.remove('hidden');
+        startConsciousnessAnimation();
+    }
+
+    function closeConsciousnessModal() {
+        document.getElementById('consciousness-modal').classList.add('hidden');
+        if (consAnimId) cancelAnimationFrame(consAnimId);
+    }
+
+    function startConsciousnessAnimation() {
+        const canvas = document.getElementById('consciousness-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+
+        let nodes = [];
+        for (let i = 0; i < 45; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                radius: Math.random() * 3 + 1.5
+            });
+        }
+
+        function drawNetwork() {
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.25)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                    if (dist < 90) {
+                        ctx.strokeStyle = `rgba(245, 158, 11, ${1 - dist / 90})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            nodes.forEach(n => {
+                ctx.fillStyle = '#38bdf8';
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                n.x += n.vx;
+                n.y += n.vy;
+
+                if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+            });
+
+            consAnimId = requestAnimationFrame(drawNetwork);
+        }
+        if (consAnimId) cancelAnimationFrame(consAnimId);
+        drawNetwork();
+    }
+
+    function startPhysicalSimulation(type) {
+        const canvas = document.getElementById('cataclysm-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+
+        let frame = 0;
+        let shockwave = 0;
+        let particles = [];
+
+        if (type === 'comet-impact') {
+            let bolide = { x: 0, y: 0, targetX: canvas.width * 0.55, targetY: canvas.height * 0.7, exploded: false };
+            
+            function drawComet() {
+                ctx.fillStyle = 'rgba(2, 6, 23, 0.25)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#1e293b';
+                ctx.fillRect(0, canvas.height * 0.72, canvas.width, canvas.height * 0.28);
+                ctx.fillStyle = '#94a3b8';
+                ctx.fillRect(0, canvas.height * 0.72, canvas.width, 3);
+
+                if (!bolide.exploded) {
+                    bolide.x += (bolide.targetX - bolide.x) * 0.08 + 4;
+                    bolide.y += (bolide.targetY - bolide.y) * 0.08 + 2.5;
+
+                    const grad = ctx.createLinearGradient(bolide.x, bolide.y, bolide.x - 80, bolide.y - 45);
+                    grad.addColorStop(0, '#ffffff');
+                    grad.addColorStop(0.3, '#f59e0b');
+                    grad.addColorStop(1, 'transparent');
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = 6;
+                    ctx.beginPath();
+                    ctx.moveTo(bolide.x, bolide.y);
+                    ctx.lineTo(bolide.x - 90, bolide.y - 50);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(bolide.x, bolide.y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    if (Math.hypot(bolide.targetX - bolide.x, bolide.targetY - bolide.y) < 10) {
+                        bolide.exploded = true;
+                        shockwave = 1;
+                        for (let i = 0; i < 70; i++) {
+                            particles.push({
+                                x: bolide.targetX, y: bolide.targetY,
+                                vx: (Math.random() - 0.5) * 14,
+                                vy: (Math.random() - 0.7) * 12,
+                                size: Math.random() * 3 + 1,
+                                color: Math.random() > 0.4 ? '#f59e0b' : '#38bdf8'
+                            });
+                        }
+                    }
+                } else {
+                    if (shockwave > 0 && shockwave < canvas.width * 0.8) {
+                        ctx.strokeStyle = `rgba(245, 158, 11, ${1 - shockwave / (canvas.width * 0.8)})`;
+                        ctx.lineWidth = 4;
+                        ctx.beginPath();
+                        ctx.ellipse(bolide.targetX, bolide.targetY, shockwave * 1.5, shockwave * 0.6, 0, 0, Math.PI * 2);
+                        ctx.stroke();
+                        shockwave += 6;
+                    }
+
+                    ctx.fillStyle = 'rgba(56, 189, 248, 0.4)';
+                    ctx.beginPath();
+                    ctx.moveTo(0, canvas.height);
+                    for (let x = 0; x <= canvas.width; x += 15) {
+                        let y = canvas.height * 0.72 - Math.sin((x + frame * 4) * 0.03) * 18 - (shockwave * 0.15);
+                        ctx.lineTo(x, y);
+                    }
+                    ctx.lineTo(canvas.width, canvas.height);
+                    ctx.fill();
+
+                    particles.forEach(p => {
+                        ctx.fillStyle = p.color;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.vy += 0.2;
+                    });
+
+                    if (shockwave >= canvas.width * 0.8 && Math.random() < 0.05) {
+                        bolide = { x: -20, y: -10, targetX: canvas.width * (0.3 + Math.random() * 0.4), targetY: canvas.height * 0.7, exploded: false };
+                        particles = [];
+                        shockwave = 0;
+                    }
+                }
+
+                frame++;
+                animId = requestAnimationFrame(drawComet);
+            }
+            drawComet();
+        } else if (type === 'solar-sand') {
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: canvas.height * 0.5 + Math.random() * (canvas.height * 0.5),
+                    vx: Math.random() * 6 + 4,
+                    vy: (Math.random() - 0.5) * 1.5,
+                    size: Math.random() * 2 + 0.8
+                });
+            }
+
+            function drawDesert() {
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.3)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const sunGrad = ctx.createRadialGradient(canvas.width / 2, 20, 10, canvas.width / 2, 20, 120);
+                sunGrad.addColorStop(0, '#ffffff');
+                sunGrad.addColorStop(0.3, '#f59e0b');
+                sunGrad.addColorStop(0.7, 'rgba(239, 68, 68, 0.4)');
+                sunGrad.addColorStop(1, 'transparent');
+                ctx.fillStyle = sunGrad;
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, 20, 120, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.08)';
+                for (let i = 0; i < 4; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, canvas.height * 0.55 + i * 15);
+                    for (let x = 0; x <= canvas.width; x += 20) {
+                        ctx.lineTo(x, canvas.height * 0.55 + i * 15 + Math.sin((x + frame * 3 + i * 40) * 0.04) * 6);
+                    }
+                    ctx.lineTo(canvas.width, canvas.height);
+                    ctx.lineTo(0, canvas.height);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = '#fbbf24';
+                particles.forEach(p => {
+                    ctx.fillRect(p.x, p.y, p.size, p.size);
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x > canvas.width) {
+                        p.x = 0;
+                        p.y = canvas.height * 0.5 + Math.random() * (canvas.height * 0.5);
+                    }
+                });
+
+                frame++;
+                animId = requestAnimationFrame(drawDesert);
+            }
+            drawDesert();
+        } else if (type === 'volcano-quake') {
+            for (let i = 0; i < 90; i++) {
+                particles.push({
+                    x: canvas.width * 0.5,
+                    y: canvas.height * 0.65,
+                    vx: (Math.random() - 0.5) * 8,
+                    vy: -(Math.random() * 8 + 3),
+                    size: Math.random() * 3.5 + 1.2,
+                    life: Math.random() * 40 + 20
+                });
+            }
+
+            function drawVolcano() {
+                ctx.fillStyle = 'rgba(2, 6, 23, 0.3)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.moveTo(canvas.width * 0.2, canvas.height);
+                ctx.lineTo(canvas.width * 0.45, canvas.height * 0.65);
+                ctx.lineTo(canvas.width * 0.55, canvas.height * 0.65);
+                ctx.lineTo(canvas.width * 0.8, canvas.height);
+                ctx.fill();
+
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(canvas.width * 0.1, canvas.height);
+                ctx.lineTo(canvas.width * 0.25, canvas.height * 0.88);
+                ctx.lineTo(canvas.width * 0.35, canvas.height * 0.95);
+                ctx.lineTo(canvas.width * 0.6, canvas.height * 0.85);
+                ctx.lineTo(canvas.width * 0.9, canvas.height);
+                ctx.stroke();
+
+                particles.forEach(p => {
+                    ctx.fillStyle = p.vy < 0 ? '#f97316' : '#71717a';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.18;
+                    p.life--;
+
+                    if (p.life <= 0 || p.y > canvas.height) {
+                        p.x = canvas.width * (0.48 + Math.random() * 0.04);
+                        p.y = canvas.height * 0.65;
+                        p.vx = (Math.random() - 0.5) * 9;
+                        p.vy = -(Math.random() * 7 + 4);
+                        p.life = Math.random() * 50 + 20;
+                    }
+                });
+
+                frame++;
+                animId = requestAnimationFrame(drawVolcano);
+            }
+            drawVolcano();
+        } else if (type === 'geomagnetic-energy') {
+            function drawGeomagnetic() {
+                ctx.fillStyle = 'rgba(2, 6, 23, 0.25)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                const cx = canvas.width / 2;
+                const cy = canvas.height / 2;
+
+                ctx.fillStyle = '#0f172a';
+                ctx.beginPath();
+                ctx.arc(cx, cy, 28, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#38bdf8';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                for (let i = 1; i <= 6; i++) {
+                    const radiusX = i * 32 + Math.sin(frame * 0.04 + i) * 6;
+                    const radiusY = i * 16;
+                    ctx.strokeStyle = `rgba(168, 85, 247, ${0.8 - i * 0.12})`;
+                    ctx.lineWidth = 1.8;
+                    ctx.beginPath();
+                    ctx.ellipse(cx, cy, radiusX, radiusY, Math.PI / 4, 0, Math.PI * 2);
+                    ctx.stroke();
+
+                    ctx.strokeStyle = `rgba(245, 158, 11, ${0.8 - i * 0.12})`;
+                    ctx.beginPath();
+                    ctx.ellipse(cx, cy, radiusX, radiusY, -Math.PI / 4, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+
+                ctx.fillStyle = '#38bdf8';
+                for (let j = 0; j < 6; j++) {
+                    const streamX = (frame * 6 + j * 70) % canvas.width;
+                    const streamY = cy + Math.sin((streamX + frame) * 0.05) * 20;
+                    ctx.fillRect(streamX, streamY, 8, 2);
+                }
+
+                frame++;
+                animId = requestAnimationFrame(drawGeomagnetic);
+            }
+            drawGeomagnetic();
+        }
+    }
+
+    let netMode = 'both';
+    let netAnimId = null;
+
+    function setNetworkMode(mode) {
+        netMode = mode;
+        ['both', 'brain', 'cosmos'].forEach(m => {
+            const btn = document.getElementById('net-btn-' + m);
+            if (btn) {
+                if (m === mode) btn.className = 'px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition';
+                else btn.className = 'px-3 py-1.5 rounded-lg text-slate-300 hover:text-white transition';
+            }
+        });
+    }
+
+    function initIsomorphismMap() {
+        const canvas = document.getElementById('isomorphism-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+
+        let nodes = [];
+        const count = 75;
+
+        for (let i = 0; i < count; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                radius: Math.random() * 2.5 + 1.5,
+                type: Math.random() > 0.5 ? 'neuron' : 'galaxy'
+            });
+        }
+
+        let frame = 0;
+
+        function drawMap() {
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.28)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
+                    if (dist < 100) {
+                        let strokeColor = 'rgba(245, 158, 11, 0.25)';
+                        if (netMode === 'brain') strokeColor = 'rgba(56, 189, 248, 0.35)';
+                        else if (netMode === 'both') strokeColor = `rgba(168, 85, 247, ${1 - dist / 100})`;
+
+                        ctx.strokeStyle = strokeColor;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            nodes.forEach(n => {
+                let color = n.type === 'neuron' ? '#38bdf8' : '#f59e0b';
+                if (netMode === 'brain') color = '#38bdf8';
+                if (netMode === 'cosmos') color = '#f59e0b';
+
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius + Math.sin(frame * 0.05 + n.x) * 0.6, 0, Math.PI * 2);
+                ctx.fill();
+
+                n.x += n.vx;
+                n.y += n.vy;
+
+                if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+                if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+            });
+
+            frame++;
+            netAnimId = requestAnimationFrame(drawMap);
+        }
+        drawMap();
+    }
+
+    function createRealisticGalaxyTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+        const cx = 128, cy = 128;
+
+        const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 45);
+        coreGrad.addColorStop(0, '#ffffff');
+        coreGrad.addColorStop(0.3, '#fef08a');
+        coreGrad.addColorStop(0.7, 'rgba(234, 179, 8, 0.85)');
+        coreGrad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = coreGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 45, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let arm = 0; arm < 2; arm++) {
+            const armOffset = arm * Math.PI;
+            for (let i = 0; i < 280; i++) {
+                const theta = (i / 280) * Math.PI * 2.8;
+                const r = Math.pow(theta / (Math.PI * 2.8), 0.85) * 95;
+                const spread = (Math.random() - 0.5) * (18 * (r / 95));
+                const angle = theta + armOffset + spread * 0.08;
+
+                const x = cx + Math.cos(angle) * (r + spread);
+                const y = cy + Math.sin(angle) * (r + spread);
+                const alpha = Math.max(0.08, 0.7 - (r / 100));
+
+                ctx.fillStyle = arm === 0 ? `rgba(253, 224, 71, ${alpha})` : `rgba(216, 180, 254, ${alpha})`;
+                ctx.beginPath();
+                ctx.arc(x, y, Math.random() * 1.8 + 0.6, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        return new THREE.CanvasTexture(canvas);
+    }
+
+    function createRealisticNeuronTexture() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+        const cx = 128, cy = 128;
+
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 42);
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.3, '#86efac');
+        grad.addColorStop(0.65, 'rgba(34, 197, 94, 0.9)');
+        grad.addColorStop(0.9, 'rgba(239, 68, 68, 0.3)');
+        grad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, 42, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let i = 0; i < 7; i++) {
+            const baseAngle = (i / 7) * Math.PI * 2 + (Math.random() - 0.5) * 0.3;
+            ctx.strokeStyle = Math.random() > 0.4 ? 'rgba(74, 222, 128, 0.65)' : 'rgba(248, 113, 113, 0.55)';
+            ctx.lineWidth = 1.8;
+            ctx.beginPath();
+            ctx.moveTo(cx, cy);
+
+            let currX = cx;
+            let currY = cy;
+            const segments = 4;
+            const segLen = 22;
+
+            for (let s = 1; s <= segments; s++) {
+                const angle = baseAngle + (Math.random() - 0.5) * 0.45;
+                currX += Math.cos(angle) * segLen;
+                currY += Math.sin(angle) * segLen;
+                ctx.lineTo(currX, currY);
+
+                if (s === 2 || s === 3) {
+                    ctx.moveTo(currX, currY);
+                    ctx.lineTo(currX + (Math.random() - 0.5) * 16, currY + (Math.random() - 0.5) * 16);
+                    ctx.moveTo(currX, currY);
+                }
+            }
+            ctx.stroke();
+        }
+
+        return new THREE.CanvasTexture(canvas);
+    }
+
+    let u3dScene, u3dCamera, u3dRenderer, u3dGroup, u3dAnimId, u3dGalaxyMesh, u3dNeuronMesh, u3dFilamentsGroup;
+    let modalNetMode = 'both';
+
+    function setModalNetworkMode(mode) {
+        modalNetMode = mode;
+        ['both', 'brain', 'cosmos'].forEach(m => {
+            const btn = document.getElementById('modal-net-btn-' + m);
+            if (btn) {
+                if (m === mode) btn.className = 'px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold transition';
+                else btn.className = 'px-3 py-1 rounded-lg text-slate-300 transition';
+            }
+        });
+
+        if (u3dGalaxyMesh && u3dNeuronMesh) {
+            if (mode === 'brain') {
+                u3dGalaxyMesh.visible = false;
+                u3dNeuronMesh.visible = true;
+                if (u3dFilamentsGroup) {
+                    u3dFilamentsGroup.children.forEach(l => l.material.color.setHex(0x22c55e));
+                }
+            } else if (mode === 'cosmos') {
+                u3dGalaxyMesh.visible = true;
+                u3dNeuronMesh.visible = false;
+                if (u3dFilamentsGroup) {
+                    u3dFilamentsGroup.children.forEach(l => l.material.color.setHex(0xa855f7));
+                }
+            } else {
+                u3dGalaxyMesh.visible = true;
+                u3dNeuronMesh.visible = true;
+                if (u3dFilamentsGroup) {
+                    u3dFilamentsGroup.children.forEach(l => l.material.color.setHex(0xc084fc));
+                }
+            }
+        }
+    }
+
+    function open3DUniverseModal() {
+        document.getElementById('universe-3d-modal').classList.remove('hidden');
+        setTimeout(init3DUniverseViewport, 50);
+    }
+
+    function close3DUniverseModal() {
+        document.getElementById('universe-3d-modal').classList.add('hidden');
+        if (u3dAnimId) cancelAnimationFrame(u3dAnimId);
+    }
+
+    function init3DUniverseViewport() {
+        const container = document.getElementById('universe-3d-viewport');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const width = container.clientWidth || 800;
+        const height = container.clientHeight || 500;
+
+        u3dScene = new THREE.Scene();
+        u3dCamera = new THREE.PerspectiveCamera(48, width / height, 0.1, 2000);
+        u3dCamera.position.z = 210;
+
+        u3dRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        u3dRenderer.setSize(width, height);
+        u3dRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(u3dRenderer.domElement);
+
+        u3dGroup = new THREE.Group();
+        u3dScene.add(u3dGroup);
+
+        const majorHubs = [];
+        for (let h = 0; h < 6; h++) {
+            majorHubs.push(new THREE.Vector3(
+                (Math.random() - 0.5) * 140,
+                (Math.random() - 0.5) * 140,
+                (Math.random() - 0.5) * 120
+            ));
+        }
+
+        const allNodes = [];
+        const majorPos = [];
+        const minorPos = [];
+
+        majorHubs.forEach(hub => {
+            majorPos.push(hub.x, hub.y, hub.z);
+            allNodes.push(hub);
+
+            for (let k = 0; k < 24; k++) {
+                const offset = new THREE.Vector3(
+                    (Math.random() - 0.5) * 65 + (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 65 + (Math.random() - 0.5) * 20,
+                    (Math.random() - 0.5) * 55 + (Math.random() - 0.5) * 20
+                );
+                const pos = new THREE.Vector3().addVectors(hub, offset);
+                allNodes.push(pos);
+                minorPos.push(pos.x, pos.y, pos.z);
+            }
+        });
+
+        const galaxyGeo = new THREE.BufferGeometry();
+        galaxyGeo.setAttribute('position', new THREE.Float32BufferAttribute([...majorPos, ...minorPos], 3));
+        const galaxyMat = new THREE.PointsMaterial({
+            map: createRealisticGalaxyTexture(),
+            color: 0xfde047,
+            size: 30,
+            transparent: true,
+            opacity: 0.95,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+        u3dGalaxyMesh = new THREE.Points(galaxyGeo, galaxyMat);
+        u3dGroup.add(u3dGalaxyMesh);
+
+        const neuronGeo = new THREE.BufferGeometry();
+        neuronGeo.setAttribute('position', new THREE.Float32BufferAttribute([...majorPos, ...minorPos], 3));
+        const neuronMat = new THREE.PointsMaterial({
+            map: createRealisticNeuronTexture(),
+            color: 0x86efac,
+            size: 26,
+            transparent: true,
+            opacity: 0.92,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+        u3dNeuronMesh = new THREE.Points(neuronGeo, neuronMat);
+        u3dGroup.add(u3dNeuronMesh);
+
+        u3dFilamentsGroup = new THREE.Group();
+        u3dGroup.add(u3dFilamentsGroup);
+
+        for (let i = 0; i < allNodes.length; i++) {
+            for (let j = i + 1; j < allNodes.length; j++) {
+                const dist = allNodes[i].distanceTo(allNodes[j]);
+                if (dist < 44 && Math.random() > 0.45) {
+                    const midPoint = new THREE.Vector3()
+                        .addVectors(allNodes[i], allNodes[j])
+                        .multiplyScalar(0.5)
+                        .add(new THREE.Vector3(
+                            (Math.random() - 0.5) * 8,
+                            (Math.random() - 0.5) * 8,
+                            (Math.random() - 0.5) * 8
+                        ));
+
+                    const curve = new THREE.CatmullRomCurve3([allNodes[i], midPoint, allNodes[j]]);
+                    const points = curve.getPoints(10);
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+
+                    const lineMat = new THREE.LineBasicMaterial({
+                        color: 0xc084fc,
+                        transparent: true,
+                        opacity: Math.max(0.18, 0.65 - dist / 50),
+                        blending: THREE.AdditiveBlending
+                    });
+
+                    u3dFilamentsGroup.add(new THREE.Line(lineGeo, lineMat));
+                }
+            }
+        }
+
+        let isDragging = false;
+        let prevPos = { x: 0, y: 0 };
+
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            prevPos = { x: e.clientX, y: e.clientY };
+        });
+        window.addEventListener('mouseup', () => isDragging = false);
+        container.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - prevPos.x;
+            const dy = e.clientY - prevPos.y;
+            u3dGroup.rotation.y += dx * 0.004;
+            u3dGroup.rotation.x += dy * 0.004;
+            prevPos = { x: e.clientX, y: e.clientY };
+        });
+
+        container.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            u3dCamera.position.z += e.deltaY * 0.15;
+            u3dCamera.position.z = Math.max(80, Math.min(450, u3dCamera.position.z));
+        }, { passive: false });
+
+        let frameCounter = 0;
+        function animate3DUniverse() {
+            u3dAnimId = requestAnimationFrame(animate3DUniverse);
+            frameCounter += 0.025;
+            if (!isDragging) {
+                u3dGroup.rotation.y += 0.0015;
+            }
+            if (u3dGalaxyMesh) {
+                u3dGalaxyMesh.material.size = 30 + Math.sin(frameCounter) * 3;
+            }
+            if (u3dNeuronMesh) {
+                u3dNeuronMesh.material.size = 26 + Math.sin(frameCounter + 1) * 2.5;
+            }
+            u3dRenderer.render(u3dScene, u3dCamera);
+        }
+        animate3DUniverse();
+    }
+
+    function updateMegalithPopup(site) {
+        document.getElementById('popup-title').innerText = site.name[currentLang];
+        document.getElementById('popup-coords').innerText = site.coords;
+        const imgEl = document.getElementById('popup-img');
+        imgEl.setAttribute('src', site.image);
+        document.getElementById('popup-engineering').innerText = site.engineering[currentLang];
+        document.getElementById('popup-metaphysics').innerText = site.metaphysics[currentLang];
+    }
+
+    let globeLines = [];
+    window.addEventListener('DOMContentLoaded', () => {
+        initIsomorphismMap();
+
+        const container = document.getElementById('globe-container');
+        if (!container || typeof THREE === 'undefined') return;
+
+        const width = container.clientWidth || 800;
+        const height = container.clientHeight || 540;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        camera.position.z = 210;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        const globeGroup = new THREE.Group();
+        globeGroup.rotation.y = 0.6;
+        scene.add(globeGroup);
+
+        const textureLoader = new THREE.TextureLoader();
+        const earthTexture = textureLoader.load('https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg', () => {
+            renderer.render(scene, camera);
+        });
+
+        const sphereGeo = new THREE.SphereGeometry(75, 48, 48);
+        const sphereMat = new THREE.MeshBasicMaterial({ map: earthTexture, color: 0xffffff });
+        globeGroup.add(new THREE.Mesh(sphereGeo, sphereMat));
+
+        function latLngToVec(lat, lng, radius) {
+            const phi = (90 - lat) * (Math.PI / 180);
+            const theta = (lng + 180) * (Math.PI / 180);
+            return new THREE.Vector3(
+                -(radius * Math.sin(phi) * Math.cos(theta)),
+                radius * Math.cos(phi),
+                radius * Math.sin(phi) * Math.sin(theta)
+            );
+        }
+
+        const clickableDots = [];
+        const siteVectors = [];
+
+        megalithsData.forEach(site => {
+            const pos = latLngToVec(site.lat, site.lng, 75.6);
+            siteVectors.push(pos);
+
+            const dot = new THREE.Mesh(
+                new THREE.SphereGeometry(1.8, 16, 16),
+                new THREE.MeshBasicMaterial({ color: site.color })
+            );
+            dot.position.copy(pos);
+            dot.userData = site;
+            globeGroup.add(dot);
+            clickableDots.push(dot);
+
+            const line = new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints([pos, latLngToVec(site.lat, site.lng, 84)]),
+                new THREE.LineBasicMaterial({ color: site.color, transparent: true, opacity: 0.85 })
+            );
+            globeGroup.add(line);
+        });
+
+        for (let i = 0; i < siteVectors.length; i++) {
+            for (let j = i + 1; j < siteVectors.length; j++) {
+                const dist = siteVectors[i].distanceTo(siteVectors[j]);
+                if (dist < 90) {
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints([siteVectors[i], siteVectors[j]]);
+                    const lineMat = new THREE.LineBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.35 });
+                    const lMesh = new THREE.Line(lineGeo, lineMat);
+                    globeGroup.add(lMesh);
+                    globeLines.push(lMesh);
+                }
+            }
+        }
+
+        const ringPoints = [];
+        for (let i = 0; i <= 64; i++) {
+            const t = (i / 64) * Math.PI * 2;
+            ringPoints.push(new THREE.Vector3(Math.cos(t) * 76, Math.sin(t) * 76, 0));
+        }
+        const ring = new THREE.Line(
+            new THREE.BufferGeometry().setFromPoints(ringPoints),
+            new THREE.LineBasicMaterial({ color: 0xf59e0b, transparent: true, opacity: 0.5 })
+        );
+        ring.rotation.x = Math.PI / 3.2;
+        ring.rotation.y = Math.PI / 5.5;
+        globeGroup.add(ring);
+        globeLines.push(ring);
+
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        
+        let isInteracting = false;
+        let hasMoved = false;
+        let prevPos = { x: 0, y: 0 };
+
+        function onStart(x, y) { isInteracting = true; hasMoved = false; prevPos = { x, y }; }
+        function onMove(x, y) {
+            if (!isInteracting) return;
+            const deltaX = x - prevPos.x;
+            const deltaY = y - prevPos.y;
+            if (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2) {
+                hasMoved = true;
+                globeGroup.rotation.y += deltaX * 0.005;
+                globeGroup.rotation.x += deltaY * 0.005;
+                renderer.render(scene, camera);
+            }
+            prevPos = { x, y };
+        }
+        function onEnd() { isInteracting = false; }
+
+        container.addEventListener('mousedown', (e) => onStart(e.clientX, e.clientY));
+        window.addEventListener('mouseup', onEnd);
+        container.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                onStart(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+        window.addEventListener('touchend', onEnd);
+        container.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                onMove(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        container.addEventListener('click', (e) => {
+            if (hasMoved) return;
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(clickableDots);
+
+            if (intersects.length > 0) {
+                currentSelectedSite = intersects[0].object.userData;
+                updateMegalithPopup(currentSelectedSite);
+                document.getElementById('megalith-popup').classList.remove('hidden');
+            }
+        });
+
+        let pulseFrame = 0;
+        function renderLoop() {
+            requestAnimationFrame(renderLoop);
+            pulseFrame += 0.04;
+            const pulseOpacity = 0.25 + Math.sin(pulseFrame) * 0.2;
+            globeLines.forEach(l => { if (l.material) l.material.opacity = pulseOpacity; });
+            renderer.render(scene, camera);
+        }
+        renderLoop();
+    });
+
+    const GEMINI_API_KEY = "TAVA_GEMINI_ATSLEGA_BUS_SERVERI";
+    const SYSTEM_INSTRUCTION = "You are the Project Parallax Core Intelligence — an analytical research assistant based on the framework 'More Real Than the Visible' by Reinis Pavlovs, embodying Alan Watts' wisdom.";
+
+    let conversationHistory = [];
+    const toggleBtn = document.getElementById("gemini-toggle-btn");
+    const chatBox = document.getElementById("gemini-chat-box");
+    const messagesContainer = document.getElementById("gemini-messages");
+    const inputField = document.getElementById("gemini-input");
+    const sendBtn = document.getElementById("gemini-send-btn");
+
+    toggleBtn.addEventListener("click", () => chatBox.classList.toggle("hidden"));
+
+    async function sendMessage() {
+        const text = inputField.value.trim();
+        if (!text) return;
+
+        messagesContainer.innerHTML += `<div class="flex justify-end"><div class="bg-amber-500 text-slate-950 font-medium px-3.5 py-2.5 rounded-xl max-w-[80%] text-xs leading-relaxed">${escapeHtml(text)}</div></div>`;
+        inputField.value = "";
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        conversationHistory.push({ role: "user", parts: [{ text: text }] });
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ system_instruction: { parts: [{ text: SYSTEM_INSTRUCTION }] }, contents: conversationHistory })
+            });
+            const data = await response.json();
+            if (data.candidates && data.candidates[0].content.parts[0].text) {
+                const aiReply = data.candidates[0].content.parts[0].text;
+                conversationHistory.push({ role: "model", parts: [{ text: aiReply }] });
+                messagesContainer.innerHTML += `<div class="bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/50 text-slate-200 text-xs leading-relaxed">${formatResponse(aiReply)}</div>`;
+            }
+        } catch (err) {
+            messagesContainer.innerHTML += `<div class="text-red-400 text-xs">Kļūda sazinieties ar serveri.</div>`;
+        }
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function escapeHtml(str) { return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+    function formatResponse(text) { return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>"); }
+
+    sendBtn.addEventListener("click", sendMessage);
+    inputField.addEventListener("keydown", (e) => { if (e.key === "Enter") sendMessage(); });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('lang-indicator').innerText = currentLang === 'EN' ? 'LV' : 'EN';
+        
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-html]').forEach(el => {
+            const key = el.getAttribute('data-i18n-html');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[currentLang][key]) {
+                el.setAttribute('placeholder', translations[currentLang][key]);
+            }
+        });
+
+        if (document.getElementById('gemini-welcome-msg')) {
+            document.getElementById('gemini-welcome-msg').innerText = translations[currentLang]['welcome-ai'];
+        }
+        if (document.getElementById('gemini-input')) {
+            document.getElementById('gemini-input').placeholder = translations[currentLang]['ai-placeholder'];
+        }
+    });
+    </script>
+</body>
+</html>

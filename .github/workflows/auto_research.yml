@@ -1,0 +1,38 @@
+name: Auto Research Generator
+
+on:
+  schedule:
+    - cron: '0 9 * * 1' # Nostrādās automātiski katru pirmdienu plkst. 09:00 UTC
+  workflow_dispatch: # Ļauj to palaist arī manuāli ar vienu klikšķi GitHub lapā
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install openai requests python-dotenv GitPython
+
+      - name: Run script
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REPO_PATH: '.'
+        run: |
+          python main.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "Project Parallax Bot"
+          git config --global user.email "bot@myparallax.org"
+          git add posts/
+          git commit -m "Auto-generated research paper via GitHub Actions" || echo "No changes to commit"
+          git push

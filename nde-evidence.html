@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="lv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDE & OBE Research | Project Parallax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #02030a; color: #e0e6ed; }
+        h1, h2, h3, h4, .brand-font { font-family: 'Cinzel', serif; }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .modal-backdrop { background-color: rgba(2, 6, 23, 0.94); backdrop-filter: blur(14px); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Navigation -->
+    <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-amber-400 hover:text-amber-300 font-medium text-sm transition">&larr; <span data-i18n="back-home">Atpakaļ uz galveno lapu</span></a>
+            <div class="flex items-center gap-4">
+                <a href="megaliths-cosmology.html" class="text-xs text-slate-300 hover:text-amber-400 transition hidden sm:inline" data-i18n="nav-megaliths">Megalīti & Cikli</a>
+                <button id="lang-toggle-btn" class="text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-400 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <span id="lang-indicator">EN</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-16 flex-grow space-y-16">
+        
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="sub-title">Apziņas Arhitektūra</span>
+            <h1 class="text-3xl sm:text-5xl font-bold text-white brand-font" data-i18n="main-title">Klīniskās Nāves Pieredze & Nelokālā Apziņa</h1>
+            <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed" data-i18n="main-desc">
+                Mēs dzīvojam ar 100% varbūtību, ka mūsu ķermenis vienreiz izpūtīs pēdējo elpu. Tomēr mēs iemācāmies dzīvot tikai tad, ja pārstājam baidīties no nāves, un tikai tad mēs varam izbaudīt brīnumu, kas tiek uzskatīts par pašsaprotamu – dzīvi. Gadsimtiem ilgi zinātne ir uzskatījusi apziņu par bioloģisku blakusproduktu, taču pētījumi un tūkstošiem liecību atklāj stabilu, objektīvu realitātes struktūru ārpus fiziskā ķermeņa.
+            </p>
+        </div>
+
+        <!-- HTML VIZUALIZĀCIJA: Apziņas / Enerģijas atdalīšanās no miesas -->
+        <section class="w-full h-64 sm:h-72 bg-slate-900/60 border border-amber-500/30 rounded-3xl relative overflow-hidden flex items-center justify-center shadow-2xl">
+            <canvas id="consciousness-separation-canvas" class="w-full h-full absolute inset-0"></canvas>
+            <div class="absolute bottom-3 left-4 right-4 text-center pointer-events-none">
+                <span class="text-[11px] font-mono tracking-widest uppercase text-amber-400/90 bg-slate-950/80 px-4 py-1.5 rounded-full border border-amber-500/30 backdrop-blur-md" data-i18n="viz-caption">
+                    Kvantitatīvā simulācija: Apziņas lauka atdalīšanās no fiziskā matricas rāmja
+                </span>
+            </div>
+        </section>
+
+        <!-- 9 Evidence Points Container -->
+        <div class="space-y-6">
+            
+            <!-- Point 1 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">01</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p1-title">Veridiskā uztvere ārpus palātas (Neklīniskie apstākļi)</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p1-ev">Tā kā lielākā daļa traumu un negadījumu nenotiek slimnīcās, cietušie bieži ziņo par precīzām vizuālām un dzirdes uztverēm no ārpuses pēkšņas traumas laikā (piemēram, precīzas autoavārijas detaļas, kas piedzīvotas absolūtā mierā).</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p1-con">Atlikusī smadzeņu aktivitāte, kas sašūta no vēlāk dzirdētiem fragmentiem.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p1-chk">Cilvēki precīzi ziņo par notikumiem laikā, kad smadzeņu asinsrite bija pārtraukta un atmiņas veidošanās bioloģiski nebija iespējama.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 2 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">02</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p2-title">"Reālāks par reālo" fenomens (Hiperreālitāte)</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p2-ev">Caur tūkstošiem gadījumu subjekti apgalvo, ka šī pieredze šķitusi nesalīdzināti spilgtāka, skaidrāka un reālāka nekā nomoda reālitāte – pat gadu desmitiem vēlāk.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p2-con">Ekstēma hipoksija vai endogēnā DMT izdalīšanās rada intensīvus sapņu stāvokļus.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p2-chk">Hipoksija rada haotisku un miglainu delīriju, turpretī NDE raksturo hiperluciditāte un strukturēta kognitīvā skaidrība.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 3 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">03</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p3-title">Dr. Sam Parnia (AWARE II) & Smadzeņu Viļņu Pīķi</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums (2023. gada pētījums)</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p3-ev">Kardioreanimācijas (CPR) laikā aptuveni 40% izdzīvojušo uzrādīja apziņas klātbūtni. Reģistrēti pēkšņi alfa, beta un gamma viļņu uzliesmojumi stundu pēc sirds apstāšanās, norādot uz augstākām garīgajām funkcijām.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p3-con">Ne vienmēr var tieši saistīt konkrēto pacienta atmiņu ar fiksēto smadzeņu viļņu precīzu sekundi.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p3-chk">Apstiprina, ka apziņa saglabājas vai aktivizējas brīžos, kad medicīniski smadzenēm vajadzētu būt pilnībā neaktīvām.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 4 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">04</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p4-title">Akli cilvēki, kas pirmo dzīves reizi "redz"</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p4-ev">Cilvēki, kas piedzimuši pilnīgi akli, NDE laikā ziņo par sarežģītu, precīzu vizuālo uztveri (redz telpas, apkārtni, personālu).</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p4-con">Akli cilvēki vienkārši iztēlojas vizuālos jēdzienus, balstoties uz tausti un dzirdi.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p4-chk">Iedzimti aklajiem nav vizuālās atmiņas garozas ceļu. Apraksti tomēr detalizē precīzu gaismas dinamiku, ko viņi nekad nav pieredzējuši.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 5 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">05</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p5-title">Transkulturāla vienotība dažādos nāves scenārijos</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p5-ev">Neatkarīgi no avārijas vai slimnīcas, pamatelementi – robeža, tuvinieki, dzīves apskate un gaisma – parādās universāli dažādās kultūrās un uzskatos.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p5-con">Kultūras kondicionēšana un sabiedrības mīti veido kopīgas cerības par pēcnāvi.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p5-chk">Materiālisti un ateisti bez iepriekšējas ticības bieži ziņo par identiskām strukturētām vidēm, aktīvi pretojoties stāstam līdz pieredzei.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 6 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">06</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p6-title">Objektīva uzvedības un neatgriezeniska transformācija</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p6-ev">Piedzīvojušie iegūst paliekošas izmaiņas vienas nakts laikā: pilnīgu nāves baiļu zudumu, radikāli palielinātu empātiju un alkatības atmešanu.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p6-con">Tas ir tikai psiholoģisks aizsardzības mehānisms pārdzīvotajai traumai.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p6-chk">Standarta trauma (PTSD) izraisa trauksmi un fragmentāciju. NDE rada noturīgu psiholoģisko integrāciju un skaidrību gadu desmitiem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 7 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">07</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p7-title">Panorāmiska dzīves apskate ar empātisko atgriezenisko saiti</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p7-ev">Subjekti piedzīvo visas savas dzīves holistisku apskati vienlaikus, izjūtot savas rīcības emocionālo ietekmi uz katru iesaistīto cilvēku.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p7-con">Atmiņas paātrināta saspiešana ārkārtēja stresa un smadzeņu panikas brīžos.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p7-chk">Parasta atmiņa ir secīga un ego filtrēta. NDE dzīves apskate ir nelineāra un ietver ārēju empātisko atgriezenisko saiti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 8 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">08</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p8-title">Tikšanās ar autonomām, nefiziskām būtnēm</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p8-ev">Mijiedarbība ar inteliģentām būtnēm vai mirušiem tuviniekiem, kuriem ir neatkarīga griba un kuri sniedz agrāk nezināmu informāciju.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p8-con">Smadzenes ģenerē iekšēju dialogu vai projicē zemapziņas arhetipus un tēlus.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p8-chk">Būtnes nodod pārbaudāmu informāciju (piemēram, ģimenes noslēpumus, ko vēlāk apstiprina dzīvie radinieki), pieradot ārējas informācijas ieguvi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point 9 -->
+            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                <div class="flex items-center gap-3">
+                    <span class="text-amber-400 font-mono text-sm font-bold">09</span>
+                    <h3 class="text-lg font-bold text-white brand-font" data-i18n="p9-title">Robeža un neatgriešanās punkts</h3>
+                </div>
+                <div class="space-y-3">
+                    <div class="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80">
+                        <span class="text-amber-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-evidence">Pierādījums</span>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light" data-i18n="p9-ev">Daudzi sasniedz slieksni, kur tiek teikts "tavs laiks vēl nav pienācis", kā rezultātā notiek tūlītēja atgriešanās ķermenī pretēji fiziskajiem noteikumiem.</p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-red-950/40">
+                            <span class="text-red-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-con">Skeptiķa arguments</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p9-con">Mirstošu smadzeņu pēdējais izmisuma aizsardzības mehānisms izdzīvošanai.</p>
+                        </div>
+                        <div class="p-3 bg-slate-950/60 rounded-xl border border-emerald-950/40">
+                            <span class="text-emerald-400 font-bold text-[11px] uppercase tracking-wider block mb-1" data-i18n="lbl-check">Empīriskā pārbaude</span>
+                            <p class="text-xs text-slate-300 font-light" data-i18n="p9-chk">Šī robežas pieredze notiek brīdī, kad fiziskās sistēmas atsakās. Piespiedu atgriešanās sakrīt ar neizskaidrojamu atdzīvināšanos pretēji prognozēm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SPECIAL OBE DEEP-DIVE MODULE & SECRET FILE BUTTON -->
+        <section class="bg-gradient-to-br from-amber-500/10 via-slate-900/60 to-slate-900/80 border border-amber-500/40 rounded-3xl p-8 sm:p-10 shadow-2xl relative overflow-hidden space-y-6">
+            <div class="absolute -right-16 -top-16 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="space-y-3">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-[11px] font-semibold uppercase tracking-wider">
+                    <span class="w-1.5 h-1.5 bg-amber-400 rounded-full animate-ping"></span>
+                    <span data-i18n="obe-badge">Padziļināts Pētījums</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font" data-i18n="obe-title">Ārpusķermeņa Pieredze (OBE) & Neironu Atraušanās Mehānisms</h2>
+                <p class="text-slate-300 text-sm font-light leading-relaxed" data-i18n="obe-desc">
+                    Ārpusķermeņa pieredze nav vienkārši sapnis vai malds – tās ir brīdis, kad apziņas uztveres centrs pilnībā atdalās no telpiskā ķermeņa rāmja. Pētījumi rāda, ka subjekti spēj precīzi novērot apkārtni no skatpunkta, kas atrodas metru virs viņu fiziskā ķermeņa, reģistrējot sarunas, instrumentus un apkārtējo telpu ar absolūtu telpisko orientāciju.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+                <button onclick="openSecretFileModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition shadow-lg hover:shadow-amber-500/20 text-xs uppercase tracking-wider flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span data-i18n="btn-open-secret">Atvērt Klasificēto Failu (Secret Dossier)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- DECLASSIFIED GOVERNMENT & INTELLIGENCE ARCHIVE -->
+        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-8 sm:p-10 space-y-6">
+            <div class="space-y-3">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="doc-badge">Valsts & Militārais Arhīvs // Deklasificētie Protokoli</span>
+                <h2 class="text-2xl font-bold text-white brand-font" data-i18n="doc-title">Nelokālās Apziņas & Biofizikas Pētījumi (CIA / NSA / SRI)</h2>
+                <p class="text-slate-300 text-xs sm:text-sm font-light leading-relaxed" data-i18n="doc-desc">
+                    Aukstā kara laikā ASV izlūkdienesti un pētniecības institūti (piemēram, Stanford Research Institute) veica gadu desmitiem ilgus, stingri kontrolētus pētniecības projektus (tādus kā <i>Stargate</i> un <i>Gateway</i>). Šie dokumenti sniedz empīrisku pamatojumu tam, ka apziņa var funkcionēt ārpus fiziskā ķermeņa robežām:
+                </p>
+            </div>
+
+            <!-- Konspektīvie secinājumi -->
+            <div class="grid sm:grid-cols-2 gap-4 text-xs text-slate-300 font-light">
+                <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1.5">
+                    <h4 class="text-amber-400 font-semibold" data-i18n="cons1-h">1. Apziņa kā Enerģijas Režģis</h4>
+                    <p data-i18n="cons1-p">Kā norādīts CIP Gateway ziņojumā, cilvēka apziņa nav tikai smadzeņu bioloģisks blakusprodukts, bet gan smalks enerģijas un informācijas režģis, kas spēj darboties neatkarīgi no fiziskā ķermeņa (šūnu un neironu sistēmas).</p>
+                </div>
+                <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1.5">
+                    <h4 class="text-amber-400 font-semibold" data-i18n="cons2-h">2. Telpiskā Atdalīšanās un Faradeja Būri</h4>
+                    <p data-i18n="cons2-p">Tālskatīšanas (<i>remote viewing</i>) eksperimentos subjekti ar prātu pārvietojās un precīzi aprakstīja vietas tūkstošiem kilometru attālumā, ignorējot telpas šķēršļus un elektromagnētiskos ekranējumus (Faradeja būrus).</p>
+                </div>
+            </div>
+
+            <!-- Dokumentu saraksts ar atveramām saitēm jaunā tabulā -->
+            <div class="space-y-3 pt-2 text-xs text-slate-300">
+                <!-- 1 -->
+                <div class="p-4 bg-slate-950/90 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-white font-bold mb-0.5">1. CIA "Analysis and Assessment of Gateway Process" (1983)</h4>
+                        <p class="text-slate-400 text-[11px] font-light" data-i18n="doc1-sub">Oficiālais militārais pētījums par apziņas hologrāfisko dabu un pusložu sinhronizāciju.</p>
+                    </div>
+                    <a href="https://archive.org/details/CIA-RDP96-00788R001000400001-7/page/n38/mode/1up" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 whitespace-nowrap font-mono text-[11px] border border-amber-500/30 px-3 py-1.5 rounded-lg transition" data-i18n="open-doc">Atvērt Dokumentu &rarr;</a>
+                </div>
+
+                <!-- 2 -->
+                <div class="p-4 bg-slate-950/90 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-white font-bold mb-0.5">2. CIA Operational Protocols & SRI Psychoenergetics Assessment</h4>
+                        <p class="text-slate-400 text-[11px] font-light" data-i18n="doc2-sub">Stanford Research Institute protokoli tālskatīšanas un nelokālās uztveres pārbaudei.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00791R000200180005-5.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 whitespace-nowrap font-mono text-[11px] border border-amber-500/30 px-3 py-1.5 rounded-lg transition" data-i18n="open-doc1">Protokoli (PDF) &rarr;</a>
+                        <a href="https://www.cia.gov/readingroom/docs/cia-rdp96-00788r001700210016-5.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 whitespace-nowrap font-mono text-[11px] border border-amber-500/30 px-3 py-1.5 rounded-lg transition" data-i18n="open-doc2">Pētījums (PDF) &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="p-4 bg-slate-950/90 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-white font-bold mb-0.5">3. NSA & Defense Intelligence Parapsychology Logs</h4>
+                        <p class="text-slate-400 text-[11px] font-light" data-i18n="doc3-sub">Nacionālās drošības aģentūras un aizsardzības izlūkošanas ziņojumi par anomālo biofiziku.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.cia.gov/readingroom/docs/NSA-RDP96X00790R000100030019-5.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 whitespace-nowrap font-mono text-[11px] border border-amber-500/30 px-3 py-1.5 rounded-lg transition" data-i18n="open-doc1">Logs 1 (PDF) &rarr;</a>
+                        <a href="https://www.cia.gov/readingroom/docs/NSA-RDP96X00790R000100010041-2.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 whitespace-nowrap font-mono text-[11px] border border-amber-500/30 px-3 py-1.5 rounded-lg transition" data-i18n="open-doc2">Logs 2 (PDF) &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="p-4 bg-slate-950/90 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <h4 class="text-white font-bold mb-0.5">4. Stargate Project Evaluation & Target Assessment Archives</h4>
+                        <p class="text-slate-400 text-[11px] font-light" data-i18n="doc4-sub">Papildu deklasificētie ziņojumi par mērķu izvērtēšanu un metodoloģiju.</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R001700210026-4.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 font-mono text-[10px] border border-amber-500/30 px-2 py-1 rounded transition">PDF 1</a>
+                        <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00792R000600360001-2.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 font-mono text-[10px] border border-amber-500/30 px-2 py-1 rounded transition">PDF 2</a>
+                        <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00789R002600250001-6.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 font-mono text-[10px] border border-amber-500/30 px-2 py-1 rounded transition">PDF 3</a>
+                        <a href="https://www.cia.gov/readingroom/docs/CIA-RDP96-00788R000200150002-3.pdf" target="_blank" rel="noopener noreferrer" class="text-amber-400 hover:text-amber-300 font-mono text-[10px] border border-amber-500/30 px-2 py-1 rounded transition">PDF 4</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bibliogrāfija / Atsauces -->
+        <div class="bg-slate-900/20 border border-slate-800 rounded-2xl p-6 text-xs text-slate-400 space-y-2">
+            <h4 class="text-amber-400 font-bold brand-font uppercase tracking-wider" data-i18n="biblio-h">Zinātniskā Bibliogrāfija & Avoti</h4>
+            <ul class="space-y-1 font-light">
+                <li>• Parnia, S. et al. (2023). <em>AWARE II Study: Consciousness and cerebral electrophysiology during cardiac arrest.</em> Resuscitation.</li>
+                <li>• Greyson, B. (2000). <em>The Near-Death Experience Scale.</em> Journal of Nervous and Mental Disease.</li>
+                <li>• Long, J. (2010). <em>Evidence of the Afterlife: The Science of Near-Death Experiences.</em> HarperOne.</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <!-- SECRET FILE / OBE DOSSIER MODAL -->
+    <div id="secret-file-modal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-amber-500/60 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+            <button onclick="closeSecretFileModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            <div class="flex items-center gap-2 mb-2">
+                <span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
+                <span class="text-red-400 text-xs font-mono uppercase tracking-widest" data-i18n="sec-badge">TOP SECRET // NON-LOCAL DOSSIER</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white brand-font mb-4" data-i18n="sec-title">Project Parallax: OBE Quantum Field Log</h3>
+            
+            <div class="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                    <h4 class="text-amber-400 font-semibold uppercase text-xs" data-i18n="sec-h1">1. Telpiskās Atraušanās Vektors</h4>
+                    <p data-i18n="sec-p1">Klīniskajos pētījumos fiksēts, ka apziņas uztveres punkts OBE laikā nav pakļauts gaismas ātruma vai trīsdimensionālās telpas fiziskajiem ierobežojumiem. Subjekti spēj acumirklī pārvietoties caur cietiem šķēršļiem un novērot notikumus citās telpās pirms reanimācijas atgriešanās fāzes.</p>
+                </div>
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                    <h4 class="text-amber-400 font-semibold uppercase text-xs" data-i18n="sec-h2">2. Kvantu Neiro-Saites Atvienošana</h4>
+                    <p data-i18n="sec-p2">Kamēr bioloģiskās smadzenes uzrāda pilnīgu elektrisko klusumu (isoelectric flatline), neironu kvantu lauks turpina apstrādāt informāciju. Tas norāda uz to, ka smadzenes ir kvantu antena, kas uztver nelokāmo apziņu no kosmiskā tīkla, nevis rada to patstāvīgi.</p>
+                </div>
+                <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-2">
+                    <h4 class="text-amber-400 font-semibold uppercase text-xs" data-i18n="sec-h3">3. Atgriešanās Sinhronizācija</h4>
+                    <p data-i18n="sec-p3">Atgriešanās fiziskajā ķermenī notiek caur precīzu rezonanses pīķi, ko bieži pavada spēcīgs trieciens vai gaismas tuneļa sajūta, atjaunojot garozas elektroķīmisko aktivitāti.</p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeSecretFileModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl transition text-xs shadow-lg uppercase tracking-wider" data-i18n="sec-close">
+                    Aizvērt Dosjē
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500 space-y-2">
+        <p data-i18n="footer-txt">© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.</p>
+        <p class="text-amber-400/70 font-mono text-[11px]">Reinis Pavlovs — "Reālāks par redzamo"</p>
+    </footer>
+
+    <!-- Script for Language Toggle, Secret Modal & Canvas Separation Animation -->
+    <script>
+    let currentLang = 'EN';
+// Automātiska lapas sagatavošana EN valodā ielādes brīdī
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('lang-indicator').innerText = currentLang === 'EN' ? 'LV' : 'EN';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+    });
+    function openSecretFileModal() {
+        document.getElementById('secret-file-modal').classList.remove('hidden');
+    }
+
+    function closeSecretFileModal() {
+        document.getElementById('secret-file-modal').classList.add('hidden');
+    }
+
+    // Canvas Vizuualizācija: Enerģijas atdalīšanās no miesas
+    window.addEventListener('DOMContentLoaded', () => {
+        const canvas = document.getElementById('consciousness-separation-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        let particles = [];
+        for (let i = 0; i < 90; i++) {
+            particles.push({
+                x: (Math.random() - 0.5) * 70,
+                y: (Math.random() - 0.5) * 40,
+                vy: -Math.random() * 1.2 - 0.4,
+                vx: (Math.random() - 0.5) * 0.6,
+                size: Math.random() * 2.5 + 1,
+                alpha: Math.random()
+            });
+        }
+
+        let frame = 0;
+        function animateViz() {
+            ctx.fillStyle = 'rgba(2, 6, 23, 0.25)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2 + 25;
+
+            // Fiziskā miesa / siluets (blīvs matricas rāmis)
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.35)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.ellipse(cx, cy + 15, 35, 55, 0, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Galvas siluets
+            ctx.beginPath();
+            ctx.arc(cx, cy - 35, 16, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Paceļošanās punkts (Gars / Enerģijas centrs)
+            const floatY = cy - 40 - Math.sin(frame * 0.03) * 12;
+
+            // Aura ap garu
+            const auraGrad = ctx.createRadialGradient(cx, floatY, 2, cx, floatY, 45);
+            auraGrad.addColorStop(0, 'rgba(251, 191, 36, 0.85)');
+            auraGrad.addColorStop(0.5, 'rgba(245, 158, 11, 0.25)');
+            auraGrad.addColorStop(1, 'transparent');
+            ctx.fillStyle = auraGrad;
+            ctx.beginPath();
+            ctx.arc(cx, floatY, 45, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Gara kodols
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(cx, floatY, 5, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Enerģijas daļiņas, kas plūst augšup
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.008;
+
+                if (p.alpha <= 0 || p.y < -70) {
+                    p.x = (Math.random() - 0.5) * 50;
+                    p.y = (Math.random() - 0.5) * 20;
+                    p.alpha = 1;
+                }
+
+                ctx.fillStyle = `rgba(251, 191, 36, ${p.alpha})`;
+                ctx.beginPath();
+                ctx.arc(cx + p.x, (cy - 10) + p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            frame++;
+            requestAnimationFrame(animateViz);
+        }
+        animateViz();
+    });
+
+    const translations = {
+        LV: {
+            'back-home': 'Atpakaļ uz galveno lapu',
+            'nav-megaliths': 'Megalīti & Cikli',
+            'sub-title': 'Apziņas Arhitektūra',
+            'main-title': 'Klīniskās Nāves Pieredze & Nelokālā Apziņa',
+            'main-desc': 'Mēs dzīvojam ar 100% varbūtību, ka mūsu ķermenis vienreiz izpūtīs pēdējo elpu. Tomēr mēs iemācāmies dzīvot tikai tad, ja pārstājam baidīties no nāves, un tikai tad mēs varam izbaudīt brīnumu, kas tiek uzskatīts par pašsaprotamu – dzīvi. Gadsimtiem ilgi zinātne ir uzskatījusi apziņu par bioloģisku blakusproduktu, taču pētījumi un tūkstošiem liecību atklāj stabilu, objektīvu realitātes struktūru ārpus fiziskā ķermeņa.',
+            
+            'viz-caption': 'Kvantitatīvā simulācija: Apziņas lauka atdalīšanās no fiziskā matricas rāmja',
+            'obe-badge': 'Padziļināts Pētījums',
+            'obe-title': 'Ārpusķermeņa Pieredze (OBE) & Neironu Atraušanās Mehānisms',
+            'obe-desc': 'Ārpusķermeņa pieredze nav vienkārši sapnis vai malds – tās ir brīdis, kad apziņas uztveres centrs pilnībā atdalās no telpiskā ķermeņa rāmja. Pētījumi rāda, ka subjekti spēj precīzi novērot apkārtni no skatpunkta, kas atrodas metru virs viņu fiziskā ķermeņa, reģistrējot sarunas, instrumentus un apkārtējo telpu ar absolūtu telpisko orientāciju.',
+            'btn-open-secret': 'Atvērt Klasificēto Failu (Secret Dossier)',
+
+            'doc-badge': 'Valsts & Militārais Arhīvs // Deklasificētie Protokoli',
+            'doc-title': 'Nelokālās Apziņas & Biofizikas Pētījumi (CIA / NSA / SRI)',
+            'doc-desc': 'Aukstā kara laikā ASV izlūkdienesti un pētniecības institūti (piemēram, Stanford Research Institute) veica gadu desmitiem ilgus, stingri kontrolētus pētniecības projektus (tādus kā <i>Stargate</i> un <i>Gateway</i>). Šie dokumenti sniedz empīrisku pamatojumu tam, ka apziņa var funkcionēt ārpus fiziskā ķermeņa robežām:',
+            'cons1-h': '1. Apziņa kā Enerģijas Režģis',
+            'cons1-p': 'Kā norādīts CIP Gateway ziņojumā, cilvēka apziņa nav tikai smadzeņu bioloģisks blakusprodukts, bet gan smalks enerģijas un informācijas režģis, kas spēj darboties neatkarīgi no fiziskā ķermeņa (šūnu un neironu sistēmas).',
+            'cons2-h': '2. Telpiskā Atdalīšanās un Faradeja Būri',
+            'cons2-p': 'Tālskatīšanas (<i>remote viewing</i>) eksperimentos subjekti ar prātu pārvietojās un precīzi aprakstīja vietas tūkstošiem kilometru attālumā, ignorējot telpas šķēršļus un elektromagnētiskos ekranējumus (Faradeja būrus).',
+            'doc1-sub': 'Oficiālais militārais pētījums par apziņas hologrāfisko dabu un pusložu sinhronizāciju.',
+            'doc2-sub': 'Stanford Research Institute protokoli tālskatīšanas un nelokālās uztveres pārbaudei.',
+            'doc3-sub': 'Nacionālās drošības aģentūras un aizsardzības izlūkošanas ziņojumi par anomālo biofiziku.',
+            'doc4-sub': 'Papildu deklasificētie ziņojumi par mērķu izvērtēšanu un metodoloģiju.',
+
+            'sec-badge': 'TOP SECRET // NON-LOCAL DOSSIER',
+            'sec-title': 'Project Parallax: OBE Quantum Field Log',
+            'sec-h1': '1. Telpiskās Atraušanās Vektors',
+            'sec-p1': 'Klīniskajos pētījumos fiksēts, ka apziņas uztveres punkts OBE laikā nav pakļauts gaismas ātruma vai trīsdimensionālās telpas fiziskajiem ierobežojumiem. Subjekti spēj acumirklī pārvietoties caur cietiem šķēršļiem un novērot notikumus citās telpās pirms reanimācijas atgriešanās fāzes.',
+            'sec-h2': '2. Kvantu Neiro-Saites Atvienošana',
+            'sec-p2': 'Kamēr bioloģiskās smadzenes uzrāda pilnīgu elektrisko klusumu (isoelectric flatline), neironu kvantu lauks turpina apstrādāt informāciju. Tas norāda uz to, ka smadzenes ir kvantu antena, kas uztver nelokāmo apziņu no kosmiskā tīkla, nevis rada to patstāvīgi.',
+            'sec-h3': '3. Atgriešanās Sinhronizācija',
+            'sec-p3': 'Atgriešanās fiziskajā ķermenī notiek caur precīzu rezonanses pīķi, ko bieži pavada spēcīgs trieciens vai gaismas tuneļa sajūta, atjaunojot garozas elektroķīmisko aktivitāti.',
+            'sec-close': 'Aizvērt Dosjē',
+
+            'lbl-evidence': 'Pierādījums',
+            'lbl-con': 'Skeptiķa arguments',
+            'lbl-check': 'Empīriskā pārbaude',
+            'biblio-h': 'Zinātniskā Bibliogrāfija & Avoti',
+            
+            'p1-title': 'Veridiskā uztvere ārpus palātas (Neklīniskie apstākļi)',
+            'p1-ev': 'Tā kā lielākā daļa traumu un negadījumu nenotiek slimnīcās, cietušie bieži ziņo par precīzām vizuālām un dzirdes uztverēm no ārpuses pēkšņas traumas laikā (piemēram, precīzas autoavārijas detaļas, kas piedzīvotas absolūtā mierā).',
+            'p1-con': 'Atlikusī smadzeņu aktivitāte, kas sašūta no vēlāk dzirdētiem fragmentiem.',
+            'p1-chk': 'Cilvēki precīzi ziņo par notikumiem laikā, kad smadzeņu asinsrite bija pārtraukta un atmiņas veidošanās bioloģiski nebija iespējama.',
+
+            'p2-title': '"Reālāks par reālo" fenomens (Hiperreālitāte)',
+            'p2-ev': 'Caur tūkstošiem gadījumu subjekti apgalvo, ka šī pieredze šķitusi nesalīdzināti spilgtāka, skaidrāka un reālāka nekā nomoda reālitāte – pat gadu desmitiem vēlāk.',
+            'p2-con': 'Ekstēma hipoksija vai endogēnā DMT izdalīšanās rada intensīvus sapņu stāvokļus.',
+            'p2-chk': 'Hipoksija rada haotisku un miglainu delīriju, turpretī NDE raksturo hiperluciditāte un strukturēta kognitīvā skaidrība.',
+
+            'p3-title': 'Dr. Sam Parnia (AWARE II) & Smadzeņu Viļņu Pīķi',
+            'p3-ev': 'Kardioreanimācijas (CPR) laikā aptuveni 40% izdzīvojušo uzrādīja apziņas klātbūtni. Reģistrēti pēkšņi alfa, beta un gamma viļņu uzliesmojumi stundu pēc sirds apstāšanās, norādot uz augstākām garīgajām funkcijām.',
+            'p3-con': 'Ne vienmēr var tieši saistīt konkrēto pacienta atmiņu ar fiksēto smadzeņu viļņu precīzu sekundi.',
+            'p3-chk': 'Apstiprina, ka apziņa saglabājas vai aktivizējas brīžos, kad medicīniski smadzenēm vajadzētu būt pilnībā neaktīvām.',
+
+            'p4-title': 'Akli cilvēki, kas pirmo dzīves reizi "redz"',
+            'p4-ev': 'Cilvēki, kas piedzimuši pilnīgi akli, NDE laikā ziņo par sarežģītu, precīzu vizuālo uztveri (redz telpas, apkārtni, personālu).',
+            'p4-con': 'Akli cilvēki vienkārši iztēlojas vizuālos jēdzienus, balstoties uz tausti un dzirdi.',
+            'p4-chk': 'Iedzimti aklajiem nav vizuālās atmiņas garozas ceļu. Apraksti tomēr detalizē precīzu gaismas dinamiku, ko viņi nekad nav pieredzējuši.',
+
+            'p5-title': 'Transkulturāla vienotība dažādos nāves scenārijos',
+            'p5-ev': 'Neatkarīgi no avārijas vai slimnīcas, pamatelementi – robeža, tuvinieki, dzīves apskate un gaisma – parādās universāli dažādās kultūrās un uzskatos.',
+            'p5-con': 'Kultūras kondicionēšana un sabiedrības mīti veido kopīgas cerības par pēcnāvi.',
+            'p5-chk': 'Materiālisti un ateisti bez iepriekšējas ticības bieži ziņo par identiskām strukturētām vidēm, aktīvi pretojoties stāstam līdz pieredzei.',
+
+            'p6-title': 'Objektīva uzvedības un neatgriezeniska transformācija',
+            'p6-ev': 'Piedzīvojušie iegūst paliekošas izmaiņas vienas nakts laikā: pilnīgu nāves baiļu zudumu, radikāli palielinātu empātiju un alkatības atmešanu.',
+            'p6-con': 'Tas ir tikai psiholoģisks aizsardzības mehānisms pārdzīvotajai traumai.',
+            'p6-chk': 'Standarta trauma (PTSD) izraisa trauksmi un fragmentāciju. NDE rada noturīgu psiholoģisko integrāciju un skaidrību gadu desmitiem.',
+
+            'p7-title': 'Panorāmiska dzīves apskate ar empātisko atgriezenisko saiti',
+            'p7-ev': 'Subjekti piedzīvo visas savas dzīves holistisku apskati vienlaikus, izjūtot savas rīcības emocionālo ietekmi uz katru iesaistīto cilvēku.',
+            'p7-con': 'Atmiņas paātrināta saspiešana ārkārtēja stresa un smadzeņu panikas brīžos.',
+            'p7-chk': 'Parasta atmiņa ir secīga un ego filtrēta. NDE dzīves apskate ir nelineāra un ietver ārēju empātisko atgriezenisko saiti.',
+
+            'p8-title': 'Tikšanās ar autonomām, nefiziskām būtnēm',
+            'p8-ev': 'Mijiedarbība ar inteliģentām būtnēm vai mirušiem tuviniekiem, kuriem ir neatkarīga griba un kuri sniedz agrāk nezināmu informāciju.',
+            'p8-con': 'Smadzenes ģenerē iekšēju dialogu vai projicē zemapziņas arhetipus un tēlus.',
+            'p8-chk': 'Būtnes nodod pārbaudāmu informāciju (piemēram, ģimenes noslēpumus, ko vēlāk apstiprina dzīvie radinieki), pieradot ārējas informācijas ieguvi.',
+
+            'p9-title': 'Robeža un neatgriešanās punkts',
+            'p9-ev': 'Daudzi sasniedz slieksni, kur tiek teikts "tavs laiks vēl nav pienācis", kā rezultātā notiek tūlītēja atgriešanās ķermenī pretēji fiziskajiem noteikumiem.',
+            'p9-con': 'Mirstošu smadzeņu pēdējais izmisuma aizsardzības mehānisms izdzīvošanai.',
+            'p9-chk': 'Šī robežas pieredze notiek brīdī, kad fiziskās sistēmas atsakās. Piespiedu atgriešanās sakrīt ar neizskaidrojamu atdzīvināšanos pretēji prognozēm.',
+
+            'footer-txt': '© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.'
+        },
+        EN: {
+            'back-home': 'Back to Main Page',
+            'nav-megaliths': 'Megaliths & Cycles',
+            'sub-title': 'Architecture of Consciousness',
+            'main-title': 'Near-Death Experiences & Non-Local Consciousness',
+            'main-desc': 'We live with a 100% certainty that our bodies will one day breathe their last breath. Yet, we truly learn to live only when we stop fearing death, allowing us to experience the miracle we take for granted – life itself. For centuries, modern science has treated consciousness as a biological byproduct, but research and thousands of testimonies reveal a stable, objective reality structure beyond the physical body.',
+            
+            'viz-caption': 'Quantitative Simulation: Uncoupling of the Consciousness Field from the Physical Matrix',
+            'obe-badge': 'Deep-Dive Research',
+            'obe-title': 'Out-of-Body Experience (OBE) & Neural Detachment Mechanics',
+            'obe-desc': 'Out-of-body experiences are far more than mere hallucinations—they represent moments when the center of conscious awareness completely uncouples from the spatial framework of the physical body. Research shows subjects accurately observe surroundings from a vantage point hovering above their physical shell, registering medical staff conversations, instruments, and room details with absolute spatial orientation.',
+            'btn-open-secret': 'Open Classified File (Secret Dossier)',
+
+            'doc-badge': 'State & Military Archive // Declassified Protocols',
+            'doc-title': 'Non-Local Consciousness & Biophysics Research (CIA / NSA / SRI)',
+            'doc-desc': 'During the Cold War, US intelligence agencies and research institutes (such as Stanford Research Institute) conducted decades-long, strictly controlled research projects (such as <i>Stargate</i> and <i>Gateway</i>). These documents provide empirical backing that consciousness can function beyond physical body boundaries:',
+            'cons1-h': '1. Consciousness as an Energy Matrix',
+            'cons1-p': 'As noted in the CIA Gateway report, human consciousness is not merely a biological byproduct of the brain, but a refined energy and information grid capable of operating independently of the physical body.',
+            'cons2-h': '2. Spatial Detachment & Faraday Cages',
+            'cons2-p': 'In remote viewing experiments, subjects mentally navigated and accurately described distant locations thousands of miles away, bypassing physical barriers and electromagnetic shielding (Faraday cages).',
+            'doc1-sub': 'Official military research on holographic consciousness and hemispheric synchronization.',
+            'doc2-sub': 'Stanford Research Institute protocols for remote viewing and non-local perception.',
+            'doc3-sub': 'National Security Agency and defense intelligence logs on anomalous biophysics.',
+            'doc4-sub': 'Additional declassified reports on target assessment and operational methodology.',
+
+            'sec-badge': 'TOP SECRET // NON-LOCAL DOSSIER',
+            'sec-title': 'Project Parallax: OBE Quantum Field Log',
+            'sec-h1': '1. Spatial Detachment Vector',
+            'sec-p1': 'Clinical studies verify that the point of conscious perception during OBEs is unbound by light speed or 3D physical constraints. Subjects instantly navigate through solid structures and perceive events in adjacent rooms prior to cardiac resuscitation return phases.',
+            'sec-h2': '2. Quantum Neural-Link Uncoupling',
+            'sec-p2': 'While biological brains exhibit complete electrical silence (isoelectric flatline), the neural quantum field continues processing complex data. This confirms the brain acts as a quantum antenna receiving non-local consciousness from the cosmic web rather than generating it locally.',
+            'sec-h3': '3. Return Synchronization',
+            'sec-p3': 'Re-entry into the physical vessel occurs via a precise resonance frequency surge, often accompanied by a kinetic jolt or light-tunnel sensation, restoring cortical electrochemical activity.',
+            'sec-close': 'Close Dossier',
+
+            'lbl-evidence': 'Evidence',
+            'lbl-con': 'Skeptic Argument',
+            'lbl-check': 'Empirical Check',
+            'biblio-h': 'Scientific Bibliography & Sources',
+
+            'p1-title': 'Veridical Perception Beyond the Room (Non-Clinical Settings)',
+            'p1-ev': 'Since most traumas do not happen in hospitals, survivors report precise visual and auditory perceptions from outside the physical body during sudden trauma (e.g. crash details felt in absolute peace).',
+            'p1-con': 'Residual brain activity stitched together from fragments heard post-resuscitation.',
+            'p1-chk': 'Subjects accurately report events precisely during zero cerebral blood flow where normal memory creation is biologically impossible.',
+
+            'p2-title': 'The "More Real Than Real" Phenomenon (Hyper-Reality)',
+            'p2-ev': 'Across thousands of cases, subjects state the experience felt vastly more vivid, lucid, and real than waking reality – even decades later.',
+            'p2-con': 'Extreme hypoxia or endogenous DMT release creates intense dream states.',
+            'p2-chk': 'Hypoxia causes chaotic delirium, whereas NDEs are characterized by hyper-lucidity and structured cognitive clarity.',
+
+            'p3-title': 'Dr. Sam Parnia (AWARE II) & Brain Wave Surges',
+            'p3-ev': 'During cardiopulmonary resuscitation (CPR), about 40% of survivors showed markers of consciousness. Sudden alpha, beta, and gamma wave surges were registered hours into cardiac arrest, indicating higher mental functions.',
+            'p3-con': 'It is not always possible to directly link a specific patient memory to the exact second of recorded brain waves.',
+            'p3-chk': 'Confirms that consciousness persists or activates during times when medical models dictate complete brain inactivity.',
+
+            'p4-title': 'Blind Subjects "Seeing" for the First Time',
+            'p4-ev': 'People born completely blind report complex, accurate visual perception (rooms, surroundings, staff) during an NDE.',
+            'p4-con': 'Blind people simply imagine visual concepts based on touch and hearing.',
+            'p4-chk': 'Congenitally blind individuals lack visual memory cortex pathways. Yet, descriptions detail precise light dynamics they never experienced.',
+
+            'p5-title': 'Transcultural Uniformity Across Death Scenarios',
+            'p5-ev': 'Whether in sudden crashes or quiet passings, core elements – boundary, relatives, life review, and light – appear universally across cultures and beliefs.',
+            'p5-con': 'Cultural conditioning and societal myths shape expectations of the afterlife.',
+            'p5-chk': 'Materialists and staunch atheists with zero prior belief report identical structured environments, actively resisting the narrative.',
+
+            'p6-title': 'Objective Behavioral and Permanent Transformation',
+            'p6-ev': 'Experiencers undergo profound, permanent psychological shifts overnight: complete loss of fear of death, radically increased empathy, and abandonment of greed.',
+            'p6-con': 'It is merely a psychological coping mechanism for surviving trauma.',
+            'p6-chk': 'Standard trauma (PTSD) causes anxiety and fragmentation. NDE transformation results in enduring psychological integration and clarity.',
+
+            'p7-title': 'Panoramic Life Review with Empathic Feedback',
+            'p7-ev': 'Subjects experience a holistic review of their entire life simultaneously, feeling the emotional impact of their actions on every other person involved.',
+            'p7-con': 'Memory compression during moments of extreme stress and panic.',
+            'p7-chk': 'Normal memory is sequential and ego-filtered. NDE life review is non-linear and incorporates an external empathetic feedback loop.',
+
+            'p8-title': 'Encounters with Autonomous Non-Physical Entities',
+            'p8-ev': 'Interaction with intelligent entities or deceased loved ones who possess independent agency and provide previously unknown information.',
+            'p8-con': 'The brain generating internal dialog or projecting subconscious archetypes.',
+            'p8-chk': 'Entities convey verifiable information (e.g., family secrets later verified with living relatives), proving external information retrieval.',
+
+            'p9-title': 'The Boundary and the Point of No Return',
+            'p9-ev': 'Many experiencers reach a threshold where they are told "your time has not come yet," resulting in instant return to the body against all odds.',
+            'p9-con': 'The final defense mechanism of a failing brain trying to rationalize survival.',
+            'p9-chk': 'This barrier experience occurs when physical systems fail completely. Forced return coincides with sudden, unexplained resuscitation.',
+
+            'footer-txt': '© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.'
+        }
+    };
+
+    document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+        currentLang = currentLang === 'LV' ? 'EN' : 'LV';
+        document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+    });
+    </script>
+</body>
+</html>
