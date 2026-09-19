@@ -1,0 +1,99 @@
+{
+  "global_config": {
+    "N0_stability_coefficient": 20.0,
+    "stance_values": { "supports": 100.0, "challenges": 0.0 },
+    "checklist_schema_version": "1.2"
+  },
+  "topics": {
+    "megalithic_engineering_acoustics": {
+      "id": "megalithic_engineering_acoustics",
+      "name": "Megalithic Engineering, Acoustics & Granite Resonance",
+      "epistemic_class": "C",
+      "checklist_version": "1.2",
+      "ceiling_disclaimer": true,
+      "current_weight": 20.0,
+      "base_weight": 20.0,
+      "weight_history": [
+        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
+      ],
+      "class_history": [
+        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
+      ],
+      "data_completeness": {
+        "percent_mapped": 0,
+        "total_checklist_items": 10,
+        "completed_items": 0,
+        "missing_items": ["No checklist items completed yet — pending initial research pass."]
+      },
+      "pending_reclassification_review": false
+    },
+    "cyclical_cataclysms_precession": {
+      "id": "cyclical_cataclysms_precession",
+      "name": "Cyclical Catastrophism & Orbital Eccentricity",
+      "epistemic_class": "C",
+      "checklist_version": "1.2",
+      "ceiling_disclaimer": true,
+      "current_weight": 20.0,
+      "base_weight": 20.0,
+      "weight_history": [
+        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
+      ],
+      "class_history": [
+        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
+      ],
+      "data_completeness": {
+        "percent_mapped": 0,
+        "total_checklist_items": 10,
+        "completed_items": 0,
+        "missing_items": ["No checklist items completed yet — pending initial research pass."]
+      },
+      "pending_reclassification_review": false
+    },
+    "consciousness_independence_nde": {
+      "id": "consciousness_independence_nde",
+      "name": "Independence of Consciousness (NDE)",
+      "epistemic_class": "C",
+      "checklist_version": "1.2",
+      "ceiling_disclaimer": true,
+      "current_weight": 34.6,
+      "base_weight": 20.0,
+      "weight_history": [
+        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
+      ],
+      "class_history": [
+        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
+      ],
+      "data_completeness": {
+        "percent_mapped": 40,
+        "total_checklist_items": 10,
+        "completed_items": 4,
+        "missing_items": [
+          "reproducible theta-synchronization telepathy protocol, EDF format, N>=30, preregistered"
+        ]
+      },
+      "pending_reclassification_review": false
+    },
+    "neural_cosmic_isomorphism": {
+      "id": "neural_cosmic_isomorphism",
+      "name": "Structural Isomorphism Between Neural Networks and the Cosmic Web",
+      "epistemic_class": "C",
+      "checklist_version": "1.2",
+      "ceiling_disclaimer": true,
+      "current_weight": 20.0,
+      "base_weight": 20.0,
+      "weight_history": [
+        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
+      ],
+      "class_history": [
+        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
+      ],
+      "data_completeness": {
+        "percent_mapped": 0,
+        "total_checklist_items": 10,
+        "completed_items": 0,
+        "missing_items": ["No checklist items completed yet — pending initial research pass."]
+      },
+      "pending_reclassification_review": false
+    }
+  }
+}
