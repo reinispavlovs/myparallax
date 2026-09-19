@@ -1,3 +1,5 @@
+numpy
+openai
 requests
 python-dotenv
-numpy
+GitPython
