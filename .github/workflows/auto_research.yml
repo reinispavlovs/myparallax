@@ -2,8 +2,11 @@ name: Auto Research Generator
 
 on:
   schedule:
-    - cron: '0 9 * * 1' # Nostrādās automātiski katru pirmdienu plkst. 09:00 UTC
-  workflow_dispatch: # Ļauj to palaist arī manuāli ar vienu klikšķi GitHub lapā
+    - cron: '0 9 * * 1' # Katru pirmdienu plkst. 09:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Nepieciešams, lai bots varētu push'ot izmaiņas
 
 jobs:
   run-python-script:
@@ -11,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -29,10 +34,15 @@ jobs:
         run: |
           python main.py
 
-      - name: Commit and push changes
+      - name: Commit and push draft
         run: |
           git config --global user.name "Project Parallax Bot"
           git config --global user.email "bot@myparallax.org"
-          git add posts/
-          git commit -m "Auto-generated research paper via GitHub Actions" || echo "No changes to commit"
-          git push
+          git add myparallax_repo/drafts/
+          git status
+          if git diff --staged --quiet; then
+            echo "No new draft files to commit."
+          else
+            git commit -m "Auto-generated draft via GitHub Actions [skip ci]"
+            git push
+          fi
