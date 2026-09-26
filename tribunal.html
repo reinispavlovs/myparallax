@@ -451,9 +451,7 @@ applyLanguage(currentLang);
         <span class="ara-arrow" aria-hidden="true">▾</span>
       </button>
       <div class="ara-panel" role="region">
-        <div class="ara-panel-inner">
-          <p><strong>Abstract:</strong> Šeit varat ielikt īsu aprakstu/kontekstu par tēmu.</p>
-        </div>
+        <div class="ara-panel-inner"><p class="mb-2"><strong>Corpus Analysis Status:</strong> Credibility Score 0.975 &middot; Risk Level: MEDIUM &middot; Updated 2026-09-26</p><p><a href="content/articles/consciousness_independence_nde.html" class="text-amber-400 hover:underline font-semibold">Read Full Statistical Breakdown &rarr;</a></p></div>
       </div>
     </div>
 
@@ -464,9 +462,7 @@ applyLanguage(currentLang);
         <span class="ara-arrow" aria-hidden="true">▾</span>
       </button>
       <div class="ara-panel" role="region">
-        <div class="ara-panel-inner">
-          <p><strong>Abstract:</strong> Šeit varat ielikt īsu aprakstu/kontekstu par tēmu.</p>
-        </div>
+        <div class="ara-panel-inner"><p class="mb-2"><strong>Corpus Analysis Status:</strong> Credibility Score 1.95 &middot; Risk Level: MEDIUM &middot; Updated 2026-09-27</p><p><a href="content/articles/megalithic_engineering_acoustics.html" class="text-amber-400 hover:underline font-semibold">Read Full Statistical Breakdown &rarr;</a></p></div>
       </div>
     </div>
 
@@ -477,13 +473,32 @@ applyLanguage(currentLang);
         <span class="ara-arrow" aria-hidden="true">▾</span>
       </button>
       <div class="ara-panel" role="region">
-        <div class="ara-panel-inner">
-          <p><strong>Abstract:</strong> Šeit varat ielikt īsu aprakstu/kontekstu par tēmu.</p>
-        </div>
+        <div class="ara-panel-inner"><p class="mb-2"><strong>Corpus Analysis Status:</strong> Credibility Score 1.95 &middot; Risk Level: MEDIUM &middot; Updated 2026-09-22</p><p><a href="content/articles/cyclical_cataclysms_precession.html" class="text-amber-400 hover:underline font-semibold">Read Full Statistical Breakdown &rarr;</a></p></div>
       </div>
     </div>
   </div>
 </section>
+
+
+<script data-marker='ARA_TOGGLE_MARKER'>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.ara-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.closest('.ara-item');
+      var panel = item.querySelector('.ara-panel');
+      panel.style.transition = 'max-height 0.35s ease';
+      var isOpen = item.classList.contains('open');
+      if (isOpen) {
+        item.classList.remove('open');
+        panel.style.maxHeight = '0px';
+      } else {
+        item.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+});
+</script>
 
 </body>
 </html>
