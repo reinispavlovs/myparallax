@@ -34,7 +34,7 @@
   "reviewer": "Reinis",
   "review_notes": "Approved. Draft correctly decouples the ~12,800 BP platinum/impact anomaly from the illustrative orbital-eccentricity model. Explicit hedging present (\"not a proven correlation mechanism\"); no unhedged \"proven/proves\" language found. arXiv source (cosmogenic nuclide test of Younger Dryas impact hypothesis) is topically relevant — confirms relevance filter fix. Known non-blocking flag: unsourced_precise_decimal on orbital_flux_peak_illustrative (99.9995...) — value is clearly labeled illustrative_model, tracked under backlog #61 (flag dedup/negation-awareness), not a content issue.",
   "credibility_score_C_i": 1.95,
-  "credibility_scored_at": "2026-09-22T09:17:29.375025Z",
+  "credibility_scored_at": "2026-09-26T20:52:01.936797Z",
   "reviewed_at": "2026-09-22T08:56:48.066029+00:00",
   "promoted": true,
   "promoted_at": "2026-09-22T09:06:45.190837+00:00",

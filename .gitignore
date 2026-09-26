@@ -1,1 +1,10 @@
 .env 
+
+__pycache__/
+*.pyc
+*.bak.*
+dump_*.py
+patch_*.py
+*.bak_round*
+index.html.bak*
+_archive/*.zip

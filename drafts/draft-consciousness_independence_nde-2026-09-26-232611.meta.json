@@ -1478,5 +1478,8 @@
         "classification": "inconclusive"
       }
     ]
-  }
+  },
+  "credibility_score_C_i": 0.975,
+  "risk_level": "MEDIUM",
+  "credibility_scored_at": "2026-09-26T20:52:01.904441Z"
 }

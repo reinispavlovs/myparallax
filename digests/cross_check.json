@@ -1,9 +1,14 @@
 {
-  "generated_at": "2026-09-22T09:17:29.417214+00:00",
+  "generated_at": "2026-09-26T20:52:02.003214+00:00",
   "schema_version": "1.1",
   "credibility_engine": "claim_layers_utils",
-  "total_drafts_scanned": 8,
-  "flagged_for_review": [],
+  "total_drafts_scanned": 10,
+  "flagged_for_review": [
+    {
+      "draft": "draft-consciousness_independence_nde-2026-09-22-113022.meta.json",
+      "reason": "content_flags drift: stored=['forbidden_absolute_term:proves', 'unsourced_precise_decimal:0.84'] recomputed=['forbidden_absolute_term:proves']"
+    }
+  ],
   "entries": [
     {
       "draft_file": "draft-consciousness_independence_nde-2026-09-20-220214.html",
@@ -41,10 +46,47 @@
       "content_hash_verified": true,
       "conflict_flag": false,
       "recomputed_content_flags": [
-        "forbidden_absolute_term:proves",
-        "unsourced_precise_decimal:0.84"
+        "forbidden_absolute_term:proves"
       ],
       "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-consciousness_independence_nde-2026-09-25-215756.html",
+      "meta_file": "draft-consciousness_independence_nde-2026-09-25-215756.meta.json",
+      "topic_id": "consciousness_independence_nde",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "pending",
+      "content_hash_expected": "c39d338c075c",
+      "content_hash_actual": "c39d338c075c",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-consciousness_independence_nde-2026-09-26-232611.html",
+      "meta_file": "draft-consciousness_independence_nde-2026-09-26-232611.meta.json",
+      "topic_id": "consciousness_independence_nde",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "pending",
+      "content_hash_expected": "5da1d100dc36",
+      "content_hash_actual": "5da1d100dc36",
+      "content_hash_verified": true,
+      "conflict_flag": true,
+      "recomputed_content_flags": [],
+      "credibility_score_C_i": 0.975,
       "current_topic_weight": 1.325,
       "auto_merge_eligible": false
     },

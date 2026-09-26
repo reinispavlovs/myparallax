@@ -34,7 +34,7 @@
   "reviewer": "Reinis",
   "review_notes": "Skeptiķa \"no fact without citable study\" prasība pārspīlēta attiecībā uz agregētiem NDE datiem, taču šis konkrētais draft to pareizi respektē — nav neviena \"kaila\" skaitļa, hardkodētais 0.84 izņemts, boundary_status=REQUIRES_HUMAN_SOURCED_CITATION. Approved as conservative/hedged illustrative_model record. Language-mixing (LV metadata strings in EN narrative) needs template-level fix before public rendering — see action item.",
   "credibility_score_C_i": 1.95,
-  "credibility_scored_at": "2026-09-22T09:17:29.333827Z",
+  "credibility_scored_at": "2026-09-26T20:52:01.822414Z",
   "reviewed_at": "2026-09-21T08:43:29.601556+00:00",
   "promoted": true,
   "promoted_at": "2026-09-21T09:18:29.900250+00:00",
