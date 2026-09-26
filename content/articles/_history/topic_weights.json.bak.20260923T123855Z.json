@@ -1,0 +1,64 @@
+{
+  "global_config": {
+    "N0_stability_coefficient": 20.0,
+    "stance_values": {
+      "supports": 100.0,
+      "challenges": 0.0
+    },
+    "checklist_schema_version": "1.2"
+  },
+  "consciousness_independence_nde": 1.325,
+  "cyclical_cataclysms_precession": 1.325,
+  "megalithic_engineering_acoustics": 1.325,
+  "neural_cosmic_isomorphism": 1.325,
+  "topics": {
+    "megalithic_engineering_acoustics": {
+      "epistemic_class": "B",
+      "potential_reclass_target": "A",
+      "percent_mapped": 25.0,
+      "capped_by_conflict": true,
+      "total_checklist_items": 6,
+      "satisfied_count": 1,
+      "partial_count": 1,
+      "missing_count": 3,
+      "flagged_conflict_count": 1,
+      "last_synced_at": "2026-09-23T11:53:32.912274+00:00"
+    },
+    "cyclical_cataclysms_precession": {
+      "epistemic_class": "C",
+      "potential_reclass_target": null,
+      "percent_mapped": 25.0,
+      "capped_by_conflict": true,
+      "total_checklist_items": 6,
+      "satisfied_count": 0,
+      "partial_count": 3,
+      "missing_count": 2,
+      "flagged_conflict_count": 1,
+      "last_synced_at": "2026-09-23T11:53:32.912321+00:00"
+    },
+    "consciousness_independence_nde": {
+      "epistemic_class": "B",
+      "potential_reclass_target": null,
+      "percent_mapped": 58.3,
+      "capped_by_conflict": false,
+      "total_checklist_items": 6,
+      "satisfied_count": 3,
+      "partial_count": 1,
+      "missing_count": 2,
+      "flagged_conflict_count": 0,
+      "last_synced_at": "2026-09-23T11:53:32.912339+00:00"
+    },
+    "neural_cosmic_isomorphism": {
+      "epistemic_class": "B",
+      "potential_reclass_target": null,
+      "percent_mapped": 41.7,
+      "capped_by_conflict": false,
+      "total_checklist_items": 6,
+      "satisfied_count": 2,
+      "partial_count": 1,
+      "missing_count": 3,
+      "flagged_conflict_count": 0,
+      "last_synced_at": "2026-09-23T11:53:32.912352+00:00"
+    }
+  }
+}

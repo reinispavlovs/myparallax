@@ -1,0 +1,30 @@
+Total file length: 165955 chars
+
+ANCHOR                                   COUNT    STATUS
+----------------------------------------------------------------------
+b1-body LV (telluric)                   0         MISSING
+b1-body EN (telluric)                   1         OK (unique)
+levitation desc1 LV                     0         MISSING
+levitation desc1 EN                     1         OK (unique)
+sheldrake b2                            1         OK (unique)
+3pillars b1 LV                          2         UNSAFE (ambiguous)
+3pillars b1 EN                          1         OK (unique)
+3pillars b2 LV                          0         MISSING
+3pillars b2 EN                          1         OK (unique)
+3pillars b3 LV                          0         MISSING
+3pillars b3 EN                          1         OK (unique)
+mbody m2 LV                             0         MISSING
+mbody m2 EN                             1         OK (unique)
+mbody m3 LV                             0         MISSING
+mbody m3 EN                             2         UNSAFE (ambiguous)
+c-desc/c2body                           1         OK (unique)
+consciousness fundamental               1         OK (unique)
+flatline AWARE                          1         OK (unique)
+flatline refutes                        1         OK (unique)
+isomorphism identical density           1         OK (unique)
+isomorphism scale invariance            1         OK (unique)
+c2-list identical matter                2         UNSAFE (ambiguous)
+precession 25920                        4         UNSAFE (ambiguous)
+shining ones                            2         UNSAFE (ambiguous)
+aware flatline eeg                      4         UNSAFE (ambiguous)
+vazza feletti                           13        UNSAFE (ambiguous)

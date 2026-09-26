@@ -1,0 +1,4 @@
+﻿
+===== 3-Pillars b1/b2/b3 body block (LV, HTML) (lines 220-260) =====
+220: 
+221:             <div class="grid md:grid-cols-3 gap-6">

@@ -1,0 +1,384 @@
+#!/usr/bin/env python3
+"""
+digest_generator.py
+--------------------
+Phase 3 pipeline step: scans myparallax_repo/drafts/ for pending Agent-3
+outputs (.html + .meta.json pairs), cross-references topic_weights.json
+and index.json, computes credibility scores via
+scripts/shared/claim_layers_utils.py, and produces digests/cross_check.json
+-- a machine-readable summary consumed by the human reviewer (and later by
+promote_drafts.yml) to decide which drafts get merged into content/articles/.
+
+v1.1 change: claim_layers is now the PRIMARY data source (produced by
+main.py's build_claim_layer()). normalize_claim_layers() bridges legacy
+drafts (flat risk_level/arxiv_source_found fields, no claim_layers array)
+so both formats flow through the SAME scoring/eligibility path.
+
+v1.2 fix: compute_credibility_coefficient() operates on ONE layer dict,
+not a list, and has NO conflict_flag parameter — it already handles
+per-layer conflict_detected internally via MULTIPLIER_CONFLICT. Batch-level
+conflicts (same topic_id twice in one run) are a cross-draft signal a
+single layer can't know about, so that penalty is applied separately,
+once, in generate_digest() — see step 5 below.
+
+Usage:
+    python digest_generator.py
+
+Output:
+    digests/cross_check.json
+"""
+
+import json
+
+import sys
+from pathlib import Path as _PatchPath
+_REPO_ROOT_FOR_IMPORT = _PatchPath(__file__).resolve().parent
+if str(_REPO_ROOT_FOR_IMPORT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT_FOR_IMPORT))
+from main import TOPICS as _CANONICAL_TOPICS_SOURCE
+
+import sys
+import hashlib
+from datetime import datetime, timezone
+from pathlib import Path
+
+# --- Path setup -------------------------------------------------------
+REPO_ROOT = Path(__file__).resolve().parent
+DRAFTS_DIR = REPO_ROOT / "drafts"
+DIGESTS_DIR = REPO_ROOT / "digests"
+TOPIC_WEIGHTS_PATH = REPO_ROOT / "content" / "articles" / "topic_weights.json"
+INDEX_PATH = REPO_ROOT / "content" / "articles" / "index.json"
+
+sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
+
+try:
+    from claim_layers_utils import (
+        normalize_claim_layers,
+        compute_credibility_coefficient,
+        determine_auto_merge_eligibility,
+        validate_content_flags,
+        calculate_credibility_score,  # kept for legacy callers/back-compat only
+        MULTIPLIER_CONFLICT,
+    )
+    USING_LEGACY_FALLBACK = False
+except ImportError as e:
+    print(f"[WARN] Could not import claim_layers_utils: {e}")
+    print("[WARN] Falling back to inline (DEGRADED) credibility calculation.")
+    USING_LEGACY_FALLBACK = True
+
+    # RECONCILED (action item #15): MEDIUM fallback weight is 1.5, matching
+    # claim_layers_utils.py. The OLD inline fallback here used 1.0, which
+    # silently under-scored MEDIUM-risk drafts whenever the import failed.
+    BASE_WEIGHTS_BY_RISK = {"LOW": 3.0, "MEDIUM": 1.5, "HIGH": 0.5}
+    MULTIPLIER_CONFLICT = 0.5
+
+    def normalize_claim_layers(meta):
+        layers = meta.get("claim_layers")
+        if layers:
+            return layers
+        # Legacy draft (pre-claim_layers main.py): synthesize one layer
+        # from the old flat fields so downstream logic never branches on
+        # "does this draft have claim_layers or not".
+        return [{
+            "layer_type": "legacy_flat",
+            "text": None,
+            "stance": "unresolved",
+            "risk_level": meta.get("risk_level", "MEDIUM"),
+            "bridge_verified": False,
+            "arxiv_source_found": bool(meta.get("arxiv_source_found", False)),
+            "evidence_level": None,
+            "conflict_detected": False,
+            "counts_toward_topic": bool(meta.get("arxiv_source_found", False)),
+            "is_legacy_synthesized": True,
+        }]
+
+    def compute_credibility_coefficient(layer):
+        """Fallback mirrors claim_layers_utils.py signature exactly: ONE
+        layer dict in, ONE float out. Internal conflict_detected handling
+        matches the real module so generate_digest() can call this
+        identically regardless of which branch loaded."""
+        base = BASE_WEIGHTS_BY_RISK.get(layer.get("risk_level"), 1.5)
+        if layer.get("arxiv_source_found"):
+            base *= 1.3
+        if layer.get("conflict_detected"):
+            base *= MULTIPLIER_CONFLICT
+        return base
+
+    def determine_auto_merge_eligibility(claim_layers, hash_ok, topic_valid,
+                                          conflict_flag, review_status):
+        if not (hash_ok and topic_valid and not conflict_flag and review_status == "pending"):
+            return False
+        for layer in claim_layers:
+            if layer.get("risk_level") == "HIGH":
+                return False
+            if layer.get("layer_type") == "inferential_bridge" and not layer.get("bridge_verified", False):
+                return False
+        return True
+
+    def validate_content_flags(layer):
+        return []  # degraded mode: no forbidden-term / unsourced-decimal scan available
+
+    def calculate_credibility_score(risk_level, arxiv_source_found=False, conflict_flag=False):
+        base = BASE_WEIGHTS_BY_RISK.get(risk_level, 1.5)
+        if arxiv_source_found:
+            base *= 1.3
+        if conflict_flag:
+            base *= MULTIPLIER_CONFLICT
+        return round(base, 3)
+
+
+# --- Helpers ------------------------------------------------------------
+
+def load_json(path, default=None):
+    if not path.exists():
+        print(f"[WARN] Missing file: {path}")
+        return default if default is not None else {}
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def find_draft_pairs(drafts_dir):
+    """Return list of (html_path, meta_path) tuples for every draft that
+    has both an .html fragment and a matching .meta.json sidecar."""
+    pairs = []
+    if not drafts_dir.exists():
+        print(f"[WARN] Drafts directory does not exist: {drafts_dir}")
+        return pairs
+
+    for meta_path in sorted(drafts_dir.glob("*.meta.json")):
+        slug = meta_path.name.replace(".meta.json", "")
+        html_candidate = drafts_dir / f"{slug}.html"
+        if html_candidate.exists():
+            pairs.append((html_candidate, meta_path))
+        else:
+            print(f"[WARN] Orphan meta file (no matching .html): {meta_path.name}")
+    return pairs
+
+
+def verify_content_hash(html_path, expected_hash):
+    """Recompute SHA-256 (first 12 chars) of the HTML fragment and compare
+    against the hash recorded at generation time. Flags tampering or
+    post-generation edits."""
+    content = html_path.read_bytes()
+    actual_hash = hashlib.sha256(content).hexdigest()[:12]
+    return actual_hash == expected_hash, actual_hash
+
+
+def aggregate_risk_level(claim_layers):
+    """Worst-case risk across all claim layers in this draft. Forward-
+    compatible with multi-layer drafts — main.py currently emits exactly 1
+    layer per draft, but Agent 1 may later emit several distinct claims
+    per topic (roadmap item #10)."""
+    order = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}
+    worst = "LOW"
+    for layer in claim_layers:
+        lvl = layer.get("risk_level", "MEDIUM")
+        if order.get(lvl, 2) > order.get(worst, 1):
+            worst = lvl
+    return worst
+
+
+def aggregate_arxiv_found(claim_layers):
+    """True if AT LEAST ONE claim layer in this draft cites a found source.
+    NOTE: 'arxiv_source_found' currently reflects ONLY the arXiv API query
+    run by Agent 1 — it is one signal among many possible databases, NOT a
+    definitive 'no evidence exists anywhere' statement. See roadmap note
+    below re: multi-source search expansion."""
+    return any(bool(layer.get("arxiv_source_found")) for layer in claim_layers)
+
+
+# --- Main pipeline --------------------------------------------------------
+
+def generate_digest():
+    topic_weights = load_json(TOPIC_WEIGHTS_PATH, default={"topics": {}})
+    index_data = load_json(INDEX_PATH, default={"articles": [], "topic_keys_reference": []})
+    canonical_topics = {t["id"] for t in _CANONICAL_TOPICS_SOURCE}
+
+    draft_pairs = find_draft_pairs(DRAFTS_DIR)
+
+    digest_entries = []
+    topic_seen_this_run = {}
+    flagged_for_review = []
+
+    for html_path, meta_path in draft_pairs:
+        meta = load_json(meta_path)
+
+        topic_id = meta.get("topic_id")
+        review_status = meta.get("review_status", "pending")
+        expected_hash = meta.get("content_hash")
+
+        # 0. Normalize claim_layers — works for BOTH new-schema drafts
+        # (meta["claim_layers"] populated by main.py's build_claim_layer())
+        # AND legacy drafts that only have flat risk_level/arxiv_source_found.
+        # This is what reconciles action items #11 and #12: ONE code path,
+        # no more parallel scoring logic drifting apart over time.
+        claim_layers = normalize_claim_layers(meta)
+        has_native_claim_layers = bool(meta.get("claim_layers"))
+
+        risk_level = aggregate_risk_level(claim_layers)
+        arxiv_found = aggregate_arxiv_found(claim_layers)
+
+        # 1. Integrity check — HTML content vs recorded hash
+        hash_ok, actual_hash = (True, expected_hash)
+        if expected_hash:
+            hash_ok, actual_hash = verify_content_hash(html_path, expected_hash)
+        else:
+            hash_ok = False
+            flagged_for_review.append({
+                "draft": meta_path.name,
+                "reason": "missing content_hash in meta.json — cannot verify integrity",
+            })
+
+        # 2. Topic validation against canonical list
+        topic_valid = topic_id in canonical_topics
+        if not topic_valid:
+            flagged_for_review.append({
+                "draft": meta_path.name,
+                "reason": f"topic_id '{topic_id}' not in canonical topic_keys_reference",
+            })
+
+        # 3. Conflict detection: duplicate topic THIS batch, OR a claim layer
+        # that was already marked conflict_detected=True by an earlier
+        # cross-draft check (reserved for future multi-run conflict tracking).
+        topic_seen_this_run[topic_id] = topic_seen_this_run.get(topic_id, 0) + 1
+        batch_conflict = topic_seen_this_run[topic_id] > 1
+        layer_conflict = any(layer.get("conflict_detected") for layer in claim_layers)
+        conflict_flag = batch_conflict or layer_conflict
+
+        # 4. Re-validate content flags NOW — do not trust the value stored at
+        # generation time. The .html could have been hand-edited afterward,
+        # or generated by an older main.py version with weaker validation.
+        recomputed_flags_raw = []
+        for layer in claim_layers:
+            recomputed_flags_raw.extend(validate_content_flags(layer))
+        # Order-preserving dedup: the same flagged pattern (e.g. an
+        # unsourced decimal) can legitimately appear in multiple claim
+        # layers (data / skeptic / synthesis) without being a distinct
+        # violation. main.py stores flags deduped at generation time,
+        # so recompute must match that shape or every draft false-flags
+        # as "drifted" on every digest run.
+        recomputed_flags = list(dict.fromkeys(recomputed_flags_raw))
+        stored_flags = meta.get("content_flags", [])
+        # Both main.py (at generation) and this recompute can legitimately
+        # emit the SAME flag once per claim layer that trips it — duplicate
+        # counts are a function of layer topology, not content drift.
+        # Compare deduplicated SETS on both sides; only a flag type being
+        # added or removed indicates real drift worth a human's attention.
+        if sorted(set(recomputed_flags)) != sorted(set(stored_flags)):
+            flagged_for_review.append({
+                "draft": meta_path.name,
+                "reason": (
+                    f"content_flags drift: stored={stored_flags} "
+                    f"recomputed={recomputed_flags}"
+                ),
+            })
+
+        # 5. Credibility score (C_i) — Bayesian-weighted across all claim layers.
+        # compute_credibility_coefficient() takes ONE layer and ALREADY
+        # applies MULTIPLIER_CONFLICT internally when that layer's own
+        # conflict_detected=True. It cannot see batch_conflict (same
+        # topic_id appearing twice in THIS run) — that's cross-draft
+        # information. So: average per-layer scores first, then apply the
+        # batch-conflict penalty ONCE afterward, to avoid double-penalizing
+        # a draft that already carries a per-layer conflict flag.
+        if claim_layers:
+            layer_scores = [compute_credibility_coefficient(layer) for layer in claim_layers]
+            credibility_score = sum(layer_scores) / len(layer_scores)
+        else:
+            credibility_score = 0.0
+
+        if batch_conflict:
+            credibility_score *= MULTIPLIER_CONFLICT
+
+        credibility_score = round(credibility_score, 3)
+
+        # Persist C_i back onto the draft's own .meta.json so promote_drafts.py
+        # has a real score to compare against (fixes silent Score Guard bypass).
+        meta["credibility_score_C_i"] = credibility_score
+        meta["credibility_scored_at"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        with open(meta_path, "w", encoding="utf-8", newline="") as f:
+            json.dump(meta, f, indent=2, ensure_ascii=False)
+
+        # 6. Auto-merge eligibility — single source of truth is now
+        # claim_layers_utils.determine_auto_merge_eligibility(). It also
+        # blocks merge whenever an inferential_bridge layer has
+        # bridge_verified=False, which is ALWAYS true today (main.py never
+        # sets it True) — so auto-merge is intentionally inert until a
+        # verification step is built. That's expected, not a bug.
+        auto_merge_eligible, auto_merge_reasons = determine_auto_merge_eligibility(claim_layers)
+        auto_merge_reasons = list(auto_merge_reasons)
+
+        if not hash_ok:
+            auto_merge_eligible = False
+            auto_merge_reasons.append("content_hash_mismatch")
+        if not topic_valid:
+            auto_merge_eligible = False
+            auto_merge_reasons.append("invalid_topic_id")
+        if conflict_flag or batch_conflict:
+            auto_merge_eligible = False
+            auto_merge_reasons.append("batch_conflict_detected")
+        if review_status != "pending":
+            auto_merge_eligible = False
+            auto_merge_reasons.append(f"review_status_is_{review_status}_not_pending")
+
+        # 7. Current topic weight lookup (best-effort match by id/name)
+        current_weight = None
+        for t in topic_weights.get("topics", {}).values():
+            if t.get("id") == topic_id or topic_id in t.get("name", "").lower().replace(" ", "_"):
+                current_weight = t.get("current_weight")
+                break
+
+        entry = {
+            "draft_file": html_path.name,
+            "meta_file": meta_path.name,
+            "topic_id": topic_id,
+            "topic_valid": topic_valid,
+            "risk_level": risk_level,
+            "arxiv_source_found": arxiv_found,
+            "has_native_claim_layers": has_native_claim_layers,
+            "claim_layers_count": len(claim_layers),
+            "review_status": review_status,
+            "content_hash_expected": expected_hash,
+            "content_hash_actual": actual_hash,
+            "content_hash_verified": hash_ok,
+            "conflict_flag": conflict_flag,
+            "recomputed_content_flags": recomputed_flags,
+            "credibility_score_C_i": credibility_score,
+            "current_topic_weight": current_weight,
+            "auto_merge_eligible": auto_merge_eligible,
+        }
+
+        digest_entries.append(entry)
+
+        if expected_hash and not hash_ok:
+            flagged_for_review.append({
+                "draft": meta_path.name,
+                "reason": f"content_hash mismatch (expected {expected_hash}, got {actual_hash})",
+            })
+
+    digest = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "schema_version": "1.1",
+        "credibility_engine": "degraded_inline_fallback" if USING_LEGACY_FALLBACK else "claim_layers_utils",
+        "total_drafts_scanned": len(draft_pairs),
+        "flagged_for_review": flagged_for_review,
+        "entries": digest_entries,
+    }
+
+    DIGESTS_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = DIGESTS_DIR / "cross_check.json"
+    with open(output_path, "w", encoding="utf-8", newline="") as f:
+        json.dump(digest, f, indent=2, ensure_ascii=False)
+
+    print(f"[OK] Digest written to {output_path}")
+    print(f"[OK] Scanned {len(draft_pairs)} draft(s); "
+          f"{len(flagged_for_review)} flagged for manual review.")
+    if USING_LEGACY_FALLBACK:
+        print("[WARN] Ran in DEGRADED mode — claim_layers_utils.py import failed. "
+              "Fix scripts/shared/claim_layers_utils.py before trusting these scores.")
+
+    return digest
+
+
+if __name__ == "__main__":
+    generate_digest()

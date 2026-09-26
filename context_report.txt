@@ -1,0 +1,160 @@
+================================================================================
+ANCHOR: b1-body LV (telluric)  (needle: 'tellurišām līnijām')
+================================================================================
+  >> NOT FOUND IN FILE <<
+================================================================================
+ANCHOR: levitation desc1 LV  (needle: 'Akustiskā levitācija')
+================================================================================
+--- occurrence 1 (char offset 106922) ---
+ion" }, \n             desc1: { \n                 LV: "110–111 Hz stāvviļņi granīta un kaļķakmens telpās ierosina pjezoelektrisko efektu kvarca kristālos. Akustiskā levitācija un virsmas vitrifikācija tika panākta ar frekvenču harmonizāciju kimatiskajos mezglos.", \n                 EN: "110–111 Hz standing
+
+================================================================================
+ANCHOR: 3pillars b1 LV  (needle: 'pjezoelektrisko kvarcu')
+================================================================================
+--- occurrence 1 (char offset 18920) ---
+d font-light mb-4" data-i18n="b1-body"> \n                             Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz. \n                         </
+
+--- occurrence 2 (char offset 60997) ---
+': 'Telūriskās Līnijas & Šūmaņa Rezonanse', \n             'b1-body': 'Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz.', \n             'b2-head': '
+
+================================================================================
+ANCHOR: 3pillars b2 LV  (needle: 'teta/gamma smadzeņu stāvokli')
+================================================================================
+--- occurrence 1 (char offset 20100) ---
+ss="text-slate-300 text-xs leading-relaxed font-light mb-4" data-i18n="b2-body"> \n                             Akustiskajās kamerās operators sasniedza teta/gamma smadzeņu stāvokli (līdzīgi kā pie 0 EEG klīniskajā NP). Apziņa pieslēdzās kopējam morfoģenētiskajam laukam, noraidot un uztverot formulas b
+
+--- occurrence 2 (char offset 61310) ---
+iskais Lauks & Telepātija', \n             'b2-sub': 'Kvantiskā Informācijas Piekļuve', \n             'b2-body': 'Akustiskajās kamerās operators sasniedza teta/gamma smadzeņu stāvokli (līdzīgi kā pie 0 EEG klīniskajā NP). Apziņa pieslēdzās kopējam morfoģenētiskajam laukam, noraidot un uztverot formulas b
+
+================================================================================
+ANCHOR: 3pillars b3 LV  (needle: 'Pirmskataklizmas Standartizācija')
+================================================================================
+--- occurrence 1 (char offset 21105) ---
+abātāju" Kasta</div> \n                         <h4 class="text-white font-bold text-base mb-2 group-hover:text-amber-300 transition" data-i18n="b3-sub">Pirmskataklizmas Standartizācija</h4> \n                         <p class="text-slate-300 text-xs leading-relaxed font-light mb-4" data-i18n="b3-body"> \n  
+
+--- occurrence 2 (char offset 61561) ---
+ētiskajam laukam, noraidot un uztverot formulas bez vārdiem.', \n             'b3-head': '3. Globālā "Gudrības Glabātāju" Kasta', \n             'b3-sub': 'Pirmskataklizmas Standartizācija', \n             'b3-body': 'Pēc kataklizmas izdzīvojušie inženieri ceļoja pa pasauli (Edfu "Spīdošie", Virakoča, Tots),
+
+================================================================================
+ANCHOR: mbody m2 LV  (needle: 'struktūrāli identiski 27 pakāpēs')
+================================================================================
+  >> NOT FOUND IN FILE <<
+================================================================================
+ANCHOR: mbody m3 LV  (needle: 'apziņa ir nelokāla')
+================================================================================
+--- occurrence 1 (char offset 56151) ---
+300 leading-relaxed font-light" data-i18n="m3-body">Dokumentēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā pierāda, ka cilvēka apziņa ir nelokāla un nav ierobežota tikai ar bioloģiskajām smadzeņu funkcijām.</p> \n         </div> \n     </div> \n  \n     <!-- Gemini AI Chat Widget --> \n     
+
+--- occurrence 2 (char offset 68500) ---
+enots, pašapzinošs tīkls.', \n             'm3-body': 'Dokumentēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā pierāda, ka cilvēka apziņa ir nelokāla un nav ierobežota tikai ar bioloģiskajām smadzeņu funkcijām.', \n             'p1-tags': '110–120 Hz • Precession Cycles • Star Shafts
+
+================================================================================
+ANCHOR: mbody m3 EN  (needle: 'consciousness is non-local')
+================================================================================
+--- occurrence 1 (char offset 77316) ---
+'c-title': 'Clinical Consciousness & Non-Local Reality (NDE)', \n             'c-desc': 'Medical cardiac arrest protocols and quantum neuroscience prove consciousness is non-local and fundamental.', \n             'c1-head': 'Clinical Flatline EEG Perception', \n             'c1-body': 'Within 10–20 seconds 
+
+--- occurrence 2 (char offset 82410) ---
+ied, self-aware network.', \n             'm3-body': 'Documented visual and auditory perception during cardiac arrest and flatline EEG proves that human consciousness is non-local and not limited strictly to biological brain functions.', \n             'bridge-btn-1': 'Open Cymatics &rarr;', \n             '
+
+================================================================================
+ANCHOR: c2-list identical matter  (needle: 'Identical')
+================================================================================
+--- occurrence 1 (char offset 83535) ---
+'CLINICAL DATABASE & EEG METRICS:', \n             'cons-sec2': 'FRACTAL COSMIC CONNECTION:', \n 'c2-list-item1': '<strong>Spectral Power Density:</strong> Identical matter distribution.', \n             'c2-list-item2': '<strong>Node Connections:</strong> Identical connection count (4.6 to 5.4).', \n          
+
+--- occurrence 2 (char offset 83633) ---
+t-item1': '<strong>Spectral Power Density:</strong> Identical matter distribution.', \n             'c2-list-item2': '<strong>Node Connections:</strong> Identical connection count (4.6 to 5.4).', \n             'c2-list-item3': '<strong>Cosmic Observer:</strong> Supporting Alan Watts\' insight — we are th
+
+================================================================================
+ANCHOR: precession 25920  (needle: '25,920')
+================================================================================
+--- occurrence 1 (char offset 79041) ---
+ion & Cyclical Timeline', \n             'gap-c-desc': '<strong>Missing Data:</strong> Deep ocean and glacial ice-core data for cataclysms preceding the 25,920-year complete precessional cycle.', \n             'gap-n-title': 'Clinical NDE & Isoelectric Flatline', \n             'gap-n-desc': '<strong>Missin
+
+--- occurrence 2 (char offset 81945) ---
+tic frequencies or study link...', \n 'm1-body': 'Megalithic complexes worldwide demonstrate acoustic resonance at 110-120 Hz, axial precession markers (25,920 years), and polygonal masonry engineered to survive cyclical global cataclysms.', \n             'm2-body': 'Vazza & Feletti (2020) confirmed that
+
+--- occurrence 3 (char offset 86314) ---
+cesijas ciklu un Sirijusa zvaigžņu sistēmas koordinātas, lai pārnestu kosmisko atmiņu pāri kataklizmu slieksnim.", \n                 EN: "Preserves the 25,920-year precessional calendar and Sirius stellar alignment to transmit cosmic memory matrix across cataclysms." \n             } \n         }, \n         {
+
+--- occurrence 4 (char offset 105667) ---
+  EN: "Rapid geomagnetic pole migration (>50 km/year), solar cycle 25/26 grand maximum anomalies, and galactic current sheet alignment completing the 25,920-year axial precession cycle." \n             }, \n             collapse: { \n                 LV: "Globālā mikroelektronikas tīkla ievainojamība pret ma
+
+================================================================================
+ANCHOR: shining ones  (needle: 'Shining Ones')
+================================================================================
+--- occurrence 1 (char offset 73866) ---
+dom" Caste', \n             'b3-sub': 'Antediluvian Standardization', \n             'b3-body': 'Post-cataclysm survivor engineers traveled globally (Edfu "Shining Ones", Viracocha, Thoth), transmitting identical H-block, polygonal masonry, and geodetic canons from Cusco to Mycenae and Egypt.', \n           
+
+--- occurrence 2 (char offset 109275) ---
+ots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.", \n                 EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthood standardizing polygonal canons across continents." \n  
+
+================================================================================
+ANCHOR: aware flatline eeg  (needle: 'flatline EEG')
+================================================================================
+--- occurrence 1 (char offset 77541) ---
+cal Flatline EEG Perception', \n             'c1-body': 'Within 10–20 seconds of cardiac arrest, cerebral cortex electrical activity ceases (isoelectric flatline EEG). Despite total absence of brain metabolism, patients describe highly structured, lucid awareness with accurate visual and auditory recal
+
+--- occurrence 2 (char offset 82379) ---
+the universe operates as a unified, self-aware network.', \n             'm3-body': 'Documented visual and auditory perception during cardiac arrest and flatline EEG proves that human consciousness is non-local and not limited strictly to biological brain functions.', \n             'bridge-btn-1': 'Open 
+
+--- occurrence 3 (char offset 98858) ---
+/II pētījumi, Dr. Sam Parnia, Dr. Bruce Greyson).", \n                 EN: "Verified visual and auditory perception during cardiac arrest at isoelectric flatline EEG (AWARE I/II, Dr. Sam Parnia, Dr. Bruce Greyson 16-point scale)." \n             }, \n             missing: { \n                 LV: "1. Vienlaicīg
+
+--- occurrence 4 (char offset 117921) ---
+0 font-semibold mt-3">1. No Medical or Professional Advice</h4> \n                 <p>References to clinical near-death studies (such as AWARE trials or flatline EEG research) represent empirical scientific literature and medical data summaries, not individual medical advice.</p> \n                 <h4 cl
+
+================================================================================
+ANCHOR: vazza feletti  (needle: 'Vazza')
+================================================================================
+--- occurrence 1 (char offset 10758) ---
+"text-slate-400 text-sm leading-relaxed mb-4" data-i18n="p2-desc"> \n                         Neironu tīklu un galaktiku kopu strukturālais izomorfisms (Vazza & Feletti 2020). \n                     </p> \n                     <div class="text-xs text-amber-400/80 font-semibold" data-i18n="p2-tags">Scale Inv
+
+--- occurrence 2 (char offset 24470) ---
+  </h3> \n                     <p class="text-sm text-slate-300 leading-relaxed mb-4 font-light" data-i18n="c2-body"> \n                         2020. gadā Vazza & Feletti apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir kvantitatīvi identiski 27 pakāpju mērogā. \n          
+
+--- occurrence 3 (char offset 44633) ---
+r">• Velc ar peli vai pirkstu, lai grozītu telpisko tīklu | Rullē, lai tuvinātos</span> \n                 <span class="font-mono text-amber-400">Franco Vazza & Alberto Feletti (2020) Dataset</span> \n             </div> \n         </div> \n     </div> \n  \n     <div id="cataclysm-modal" class="fixed inset-0 z-50 mo
+
+--- occurrence 4 (char offset 55063) ---
+i18n="p2-title">Kosmiskais Tīkls & Fraktālais Prāts</h3> \n             <p class="text-sm text-slate-300 leading-relaxed font-light" data-i18n="m2-body">Vazza & Feletti (2020) apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir strukturāli identiski 27 pakāpju mērogā, pie
+
+--- occurrence 5 (char offset 62321) ---
+.', \n             'p2-title': 'Kosmiskais Tīkls & Fraktālais Prāts', \n             'p2-desc': 'Neironu tīklu un galaktiku kopu strukturālais izomorfisms (Vazza & Feletti 2020).', \n             'p3-title': 'Klīniskā Apziņa & NP', \n             'p3-desc': 'Apziņas nepārtrauktība izoelektriskas EEG (plakanas l
+
+--- occurrence 6 (char offset 65546) ---
+o, pacienti spēj precīzi atstāstīt reanimācijas norisi.', \n             'c2-head': 'Neironu-Kosmiskais Izomorfisms', \n             'c2-body': '2020. gadā Vazza & Feletti apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir kvantitatīvi identiski 27 pakāpju mērogā.', \n        
+
+--- occurrence 7 (char offset 68169) ---
+ecesijas marķierus (25 920 gadi) un poligonālo akmens sakabi, kas izveidota, lai pārdzīvotu cikliskās globālās kataklizmas.', \n             'm2-body': 'Vazza & Feletti (2020) apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir strukturāli identiski 27 pakāpju mērogā, pie
+
+--- occurrence 8 (char offset 74533) ---
+            'p2-title': 'The Cosmic Web & Fractal Mind', \n             'p2-desc': 'Statistical isomorphism between neural networks and galaxy clusters (Vazza & Feletti 2020).', \n             'p3-title': 'Clinical Consciousness & NDE', \n             'p3-desc': 'Flatline EEG perception, verified out-of-body
+
+--- occurrence 9 (char offset 77813) ---
+te visual and auditory recall of resuscitation procedures.', \n             'c2-head': 'The Neural-Cosmic Isomorphism', \n             'c2-body': 'In 2020, Vazza & Feletti confirmed that human cerebellar neural networks and the cosmic web share identical quantitative structural properties across 27 orders
+
+--- occurrence 10 (char offset 82058) ---
+10-120 Hz, axial precession markers (25,920 years), and polygonal masonry engineered to survive cyclical global cataclysms.', \n             'm2-body': 'Vazza & Feletti (2020) confirmed that the human cerebellar neural network and the cosmic web of galaxies are structurally identical across 27 orders o
+
+--- occurrence 11 (char offset 99778) ---
+         } \n         }, \n         'gap-i': { \n             category: "Neural-Cosmic Isomorphism", \n             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti)", EN: "Neural-Cosmic Structural Isomorphism" }, \n             known: { \n                 LV: "Kvantitatīvi identisks spektrālais jaudas b
+
+--- occurrence 12 (char offset 111047) ---
+ rather than the creator of consciousness." \n             } \n         }, \n         isomorphism: { \n             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" }, \n             desc1: { \n                 LV: "Kvantitatīvā analīze starp
+
+--- occurrence 13 (char offset 111103) ---
+} \n         }, \n         isomorphism: { \n             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" }, \n             desc1: { \n                 LV: "Kvantitatīvā analīze starp cilvēka smadzenīšu neironu tīklu (10^11 neironi) un nov
+
+================================================================================
+ANCHOR: 3pillars b1 LV dup  (needle: 'pjezoelektrisko')
+================================================================================
+--- occurrence 1 (char offset 18920) ---
+d font-light mb-4" data-i18n="b1-body"> \n                             Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz. \n                         </
+
+--- occurrence 2 (char offset 60997) ---
+': 'Telūriskās Līnijas & Šūmaņa Rezonanse', \n             'b1-body': 'Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz.', \n             'b2-head': '
+
+--- occurrence 3 (char offset 106881) ---
+rth's Telluric Network & Acoustic Levitation" }, \n             desc1: { \n                 LV: "110–111 Hz stāvviļņi granīta un kaļķakmens telpās ierosina pjezoelektrisko efektu kvarca kristālos. Akustiskā levitācija un virsmas vitrifikācija tika panākta ar frekvenču harmonizāciju kimatiskajos mezglos.",

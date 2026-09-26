@@ -1,0 +1,74 @@
+=== ROUND 4 CONTEXT DUMP ===
+
+
+--- gap-i known block (pos 37902) ---
+        <span class="text-white font-bold text-sm group-hover:text-amber-300 transition" data-i18n="gap-i-title">Neironu-Kosmiskais Izomorfisms</span>
+                        <span class="text-amber-400 font-mono text-xs font-bold">40% Mapped</span>
+                    </div>
+                    <div class="w-full h-2 bg-slate-950 rounded-full mb-3 overflow-hidden">
+                        <div class="h-full bg-amber-500 rounded-full w-[40%]"></div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light" data-i18n="gap-i-desc"><strong>Trūkstošie dati:</strong> Nelokālās kvantu informācijas pārneses matemātiskais mehānisms starp mērogiem 10²⁷.</p>
+                    <div class="text-amber-400 text-[11px] font-semibold mt-3 flex items-center gap-1" data-i18n="gap-open-dossier">Atvērt Datu Dosjē MI Analīzei &rarr;</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crowdsourced Data Submission Form -->
+     
+
+--- isomorphism duplicate near cerebellar (pos 113992) ---
+u spektrālo jaudas blīvumu.",
+                EN: "Quantitative structural comparison between human cerebellar neuronal networks and the cosmic web of galaxies revealed identical spatial density across 27 orders of magnitude."
+            },
+            desc2: {
+                LV: "Abas sistēmas attīstās pēc vienādiem pašorganizēšanās principiem, apstiprinot fraktālo hermētisko aksiomu: 'Kā augšā, tā apakšā'.",
+                EN: "Both systems evolve under identical self-organizing network dynamics, proving scale invariance and Alan Watts' unified observer framework."
+            }
+        }
+    };
+// MOBILE MENU TOGGLE
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Aizver izvēlni, kad uzklikšķina uz jebkuras saites tajā
+        mo
+
+--- bridgeData b3 (''b3': {') NOT FOUND ---
+
+--- bridgeData b3 (alt quote style) (pos 111404) ---
+h non-local cosmic web data."
+            },
+            simType: 'light-tunnel'
+        },
+        b3: {
+            tag: "Antediluvian Keepers of Wisdom & Precession",
+            title: { LV: "Pirmskataklizmas Skolotāju Kasta & Precesijas Cikli", EN: "Antediluvian Masters & Precession Canons" },
+            desc1: {
+                LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.",
+                EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthood standardizing polygonal canons across continents."
+            },
+            desc2: {
+                LV: "Megalīti tika radīti no neiznīcināma granīta kā ģeodēziskie marķieri, lai modinātu cilvēci pirms 25 920 gadu precesijas noslēguma.",
+                EN: "Megaliths were constructed from indestructible granite and diorite along the planetary Great Ci
+
+--- uncouples consciousness (pos 111245) ---
+,
+                EN: "At zero EEG flatline states (identical to clinical NDE), human consciousness uncouples from biological filters to directly interface with non-local cosmic web data."
+            },
+            simType: 'light-tunnel'
+        },
+        b3: {
+            tag: "Antediluvian Keepers of Wisdom & Precession",
+            title: { LV: "Pirmskataklizmas Skolotāju Kasta & Precesijas Cikli", EN: "Antediluvian Masters & Precession Canons" },
+            desc1: {
+                LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.",
+                EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthood standardizing polygonal canons across continents."
+            },
+            desc2: {
+                LV: "Megalīti tika radīti no neiznīcināma granīta kā ģeodēziskie marķieri, lai modinātu cilvēci

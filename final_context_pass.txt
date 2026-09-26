@@ -1,0 +1,71 @@
+==========================================================================================
+KEY: 'b1-body'
+==========================================================================================
+--- occurrence 1 (offset 60903) ---
+nanse', \n             'b1-body': 'Megalīti izvietoti planētas ģeomagnētisko līniju krustpunktos. Izmantojot granīta pjezoelektrisko kvarcu, signāls un enerģija tika vadīta nevis caur gaisu, bet caur Zemes iežu slāni frekvencē ~7.83–110 Hz.', \n             'b2-head': '2. Morfoģenētiskais Lauks & Telepātija', \n             'b2-sub': 'Kvantiskā Informācijas Piekļuve', \n             'b2-body': 'Akustiskajās kamerās operators sasniedza teta/gamma smadzeņu stāvokli (līdzīgi kā pi
+
+--- occurrence 2 (offset 73140) ---
+nance', \n             'b1-body': 'Megaliths are anchored at geomagnetic nodes. Using quartz piezoelectric resonance in granite, signals were conducted through Earth’s crust rather than air at ~7.83–110 Hz.', \n             'b2-head': '2. Morphogenetic Field & Telepathy', \n             'b2-sub': 'Quantum Information Access', \n             'b2-body': 'In acoustic resonance chambers, operators reached theta/gamma brain states (identical to 0 EEG flatline in clinical NDE), acces
+
+==========================================================================================
+KEY: 'b2-body'
+==========================================================================================
+--- occurrence 1 (offset 61257) ---
+kļuve', \n             'b2-body': 'Akustiskajās kamerās operators sasniedza teta/gamma smadzeņu stāvokli (līdzīgi kā pie 0 EEG klīniskajā NP). Apziņa pieslēdzās kopējam morfoģenētiskajam laukam, noraidot un uztverot formulas bez vārdiem.', \n             'b3-head': '3. Globālā "Gudrības Glabātāju" Kasta', \n             'b3-sub': 'Pirmskataklizmas Standartizācija', \n             'b3-body': 'Pēc kataklizmas izdzīvojušie inženieri ceļoja pa pasauli (Edfu "Spīdošie", Virakoča, To
+
+--- occurrence 2 (offset 73451) ---
+ccess', \n             'b2-body': 'In acoustic resonance chambers, operators reached theta/gamma brain states (identical to 0 EEG flatline in clinical NDE), accessing the species morphogenetic field to transmit blueprints without words.', \n             'b3-head': '3. Global "Keepers of Wisdom" Caste', \n             'b3-sub': 'Antediluvian Standardization', \n             'b3-body': 'Post-cataclysm survivor engineers traveled globally (Edfu "Shining Ones", Viracocha, Thoth), t
+
+==========================================================================================
+KEY: 'b3-body'
+==========================================================================================
+--- occurrence 1 (offset 61608) ---
+ācija', \n             'b3-body': 'Pēc kataklizmas izdzīvojušie inženieri ceļoja pa pasauli (Edfu "Spīdošie", Virakoča, Tots), nododot vienotus H-bloku, poligonālos un mērvienību kanonus no Kusko līdz Mikēnām un Ēģiptei.', \n             'triad-title': 'Konverģences Triāde', \n             'triad-sub': 'Noklikšķini uz jebkura mezgla, lai atvērtu pētniecības datus.', \n             'card-exp': 'Izpētīt &rarr;', \n             'p1-title': 'Cikliskā Fizika & Megalīti', \n             'p
+
+--- occurrence 2 (offset 73795) ---
+ation', \n             'b3-body': 'Post-cataclysm survivor engineers traveled globally (Edfu "Shining Ones", Viracocha, Thoth), transmitting identical H-block, polygonal masonry, and geodetic canons from Cusco to Mycenae and Egypt.', \n             'triad-title': 'The Triad of Convergence', \n             'triad-sub': 'Click any node to review empirical data and theoretical framework.', \n             'card-exp': 'Explore &rarr;', \n             'p1-title': 'Cyclical Physics & Meg
+
+==========================================================================================
+KEY: 'm2-body'
+==========================================================================================
+--- occurrence 1 (offset 68157) ---
+zmas.', \n             'm2-body': 'Vazza & Feletti (2020) apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir strukturāli identiski 27 pakāpju mērogā, pierādot, ka visums darbojas kā vienots, pašapzinošs tīkls.', \n             'm3-body': 'Dokumentēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā pierāda, ka cilvēka apziņa ir nelokāla un nav ierobežota tikai ar bioloģiskajām smadzeņu funkcijām.', \n             'p1-tags': '1
+
+--- occurrence 2 (offset 82046) ---
+ysms.', \n             'm2-body': 'Vazza & Feletti (2020) confirmed that the human cerebellar neural network and the cosmic web of galaxies are structurally identical across 27 orders of magnitude, proving the universe operates as a unified, self-aware network.', \n             'm3-body': 'Documented visual and auditory perception during cardiac arrest and flatline EEG proves that human consciousness is non-local and not limited strictly to biological brain functions.', \n  
+
+==========================================================================================
+KEY: 'c2-body'
+==========================================================================================
+--- occurrence 1 (offset 65523) ---
+fisms', \n             'c2-body': '2020. gadā Vazza & Feletti apstiprināja, ka cilvēka smadzenīšu neironu tīkls un galaktiku kosmiskais tīkls ir kvantitatīvi identiski 27 pakāpju mērogā.', \n             'gap-sub': 'Pētniecības Matrica & Baltie Plankumi', \n             'gap-title': 'Zināšanu Pārklājums & Trūkstošie Dati', \n             'gap-desc': 'Uzklikšķini uz jebkuras kārtis, lai uzzinātu, kas ir verificēts un kādi dati jānodod MI modelim.', \n             'gap-note': '* Pro
+
+--- occurrence 2 (offset 77792) ---
+phism', \n             'c2-body': 'In 2020, Vazza & Feletti confirmed that human cerebellar neural networks and the cosmic web share identical quantitative structural properties across 27 orders of magnitude.', \n 'cat-phys-title': 'PHYSICAL & GEOLOGICAL CAUSE:', \n             'cat-civil-title': 'CIVILIZATIONAL COLLAPSE & ARCHITECTURAL PRESERVATION:', \n             'cat-meta-title': 'METAPHYSICAL HERITAGE & MEMORY PRESERVATION:', \n             'gap-sub': 'Research Matrix & Know
+
+==========================================================================================
+KEY: 'gap-i'
+==========================================================================================
+--- occurrence 1 (offset 37055) ---
+click="openGapModal('gap-i')" class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/40 p-6 rounded-2xl cursor-pointer transition transform hover:-translate-y-1 group"> \n                     <div class="flex justify-between items-center mb-2"> \n                         <span class="text-white font-bold text-sm group-hover:text-amber-300 transition" data-i18n="gap-i-title">Neironu-Kosmiskais Izomorfisms</span> \n                         <span class="text-ambe
+
+--- occurrence 2 (offset 99658) ---
+ \n         }, \n         'gap-i': { \n             category: "Neural-Cosmic Isomorphism", \n             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti)", EN: "Neural-Cosmic Structural Isomorphism" }, \n             known: { \n                 LV: "Kvantitatīvi identisks spektrālais jaudas blīvums un mezglu savienojamība (4.6–5.4) starp cilvēka smadzenītēm un galaktiku kosmisko tīklu $10^{27}$ mērogā.", \n                 EN: "Quantitatively identical spatial power spect
+
+==========================================================================================
+KEY: isomorphism:
+==========================================================================================
+--- occurrence 1 (offset 110974) ---
+ \n         }, \n         isomorphism: { \n             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" }, \n             desc1: { \n                 LV: "Kvantitatīvā analīze starp cilvēka smadzenīšu neironu tīklu (10^11 neironi) un novērojamā visuma kosmisko tīklu (10^11 galaktikas) atklāja identisku spektrālo jaudas blīvumu.", \n                 EN: "Quantitative structural comparison between human cerebe
+
+==========================================================================================
+KEY: b2: {
+==========================================================================================
+--- occurrence 1 (offset 107728) ---
+ \n         }, \n         b2: { \n             tag: "Morphogenetic Resonance & Non-Local Consciousness", \n             title: { LV: "Morfoģenētiskais Lauks & Telepātiskā Piekļuve", EN: "Morphogenetic Resonance & Telepathic Access" }, \n             desc1: { \n                 LV: "Rūperta Šeldreika morfoģenētiskais lauks apliecina: kad prasme tiek apgūta vienā vietā, tā kļūst pieejama visai sugai. Senās akustiskās kameras kalpoja kā izolēti uztvērēji.", \n                 EN: "Rupert S
+
+==========================================================================================
+KEY: b3: {
+==========================================================================================
+--- occurrence 1 (offset 108830) ---
+ \n         }, \n         b3: { \n             tag: "Antediluvian Keepers of Wisdom & Precession", \n             title: { LV: "Pirmskataklizmas Skolotāju Kasta & Precesijas Cikli", EN: "Antediluvian Masters & Precession Canons" }, \n             desc1: { \n                 LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.", \n                 EN: "The antediluvian 'Shini

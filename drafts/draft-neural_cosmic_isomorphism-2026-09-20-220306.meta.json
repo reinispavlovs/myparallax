@@ -1,0 +1,41 @@
+{
+  "topic_id": "neural_cosmic_isomorphism",
+  "topic_name": "Structural Isomorphism Between Neural Networks and the Cosmic Web",
+  "generated_at": "2026-09-20T22:03:06.312645",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Our view of the low-redshift Cosmic Web has been revolutionized by galaxy redshift surveys such as 6dFGS, SDSS and 2MRS. However, the trade-off between depth and angular coverage limits a systematic three-dimensional account of the entire sky beyond the Local Volume (z&lt;0.05). In order to reliably map the Universe to cosmologically significant depths over the full celestial sphere, one must draw",
+  "data_type": "illustrative_model",
+  "skeptic_critique": "Methodological check: Vizuāla vai topoloģiska 'līdzība' starp diviem tīkliem (neironu un kosmiskā tīkla) NAV cēloniska saikne un NEDRĪKST tikt prezentēta kā zinātnisks 'izomorfisms' bez konkrēta kvantitatīva salīdzinājuma pētījuma ar norādītu metriku un atsauci.",
+  "content_file": "draft-neural_cosmic_isomorphism-2026-09-20-220306.html",
+  "content_hash": "a91ec2925d8c",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div>AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</div>\n<article>\n<header>\n<h1>Research draft: Structural isomorphism between neural networks and the Cosmic Web</h1>\n<p>Project Parallax — dataset-constrained draft. Not a completed literature review.</p>\n</header>\n<section>\n<h2>Limits of this draft</h2>\n<p>This text uses only the supplied dataset. No additional measurements are introduced. The field <code>quantitative_similarity_score</code> is empty (<code>None</code>). <code>boundary_status</code> is <code>REQUIRES_HUMAN_SOURCED_CITATION</code>. The supplied <code>data_type</code> is <code>illustrative_model</code>, not a completed quantitative comparison. Visual or topological resemblance is not treated here as scientific isomorphism, causal linkage, or a settled result.</p>\n</section>\n<section>\n<h2>Supplied Cosmic Web excerpt</h2>\n<p><code>arxiv_source_found</code> is true for the following truncated excerpt only. The excerpt concerns low-redshift mapping and survey coverage. It does not, in the text provided, address neuronal networks, filament-to-synapse mapping, or a similarity metric.</p>\n<blockquote>\n<p>Our view of the low-redshift Cosmic Web has been revolutionized by galaxy redshift surveys such as 6dFGS, SDSS and 2MRS. However, the trade-off between depth and angular coverage limits a systematic three-dimensional account of the entire sky beyond the Local Volume (z&lt;0.05). In order to reliably map the Universe to cosmologically significant depths over the full celestial sphere, one must draw</p>\n</blockquote>\n<p>The excerpt is incomplete in the dataset. No method, sample size, or network-comparison statistic is attached to it here.</p>\n</section>\n<section>\n<h2>Comparison domains in the dataset</h2>\n<p>Listed domains are <code>neuronal_network_topology</code> and <code>cosmic_web_filament_topology</code>. The dataset does not include a quantitative similarity score for those domains. Model notes in the dataset state that structural-similarity claims of the Vazza &amp; Feletti type require a specific citable study with methodology; without that, a publishable quantitative claim is not supported by this file.</p>\n</section>\n<table>\n<caption>Raw input metrics from the supplied dataset (no values invented)</caption>\n<thead>\n<tr>\n<th>Field</th>\n<th>Raw value</th>\n<th>data_type / status</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>arxiv_source_found</td>\n<td>True</td>\n<td>literature-sourced flag for excerpt only</td>\n</tr>\n<tr>\n<td>arxiv_context</td>\n<td>Truncated Cosmic Web / redshift-survey mapping text (6dFGS, SDSS, 2MRS; Local Volume z&lt;0.05). No neural-network comparison in the supplied string.</td>\n<td>literature-sourced excerpt (incomplete)</td>\n</tr>\n<tr>\n<td>comparison_domains</td>\n<td>neuronal_network_topology; cosmic_web_filament_topology</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>quantitative_similarity_score</td>\n<td>None</td>\n<td>illustrative_model (no score supplied)</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>REQUIRES_HUMAN_SOURCED_CITATION</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>model_note</td>\n<td>Strukturālās līdzības apgalvojumi (piem., Vazza &amp; Feletti tipa salīdzinājumi) prasa konkrētu citējamu pētījumu ar metodoloģiju — bez tā nav publicējams kvantitatīvs apgalvojums.</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>skeptic_critique</td>\n<td>Methodological check: Vizuāla vai topoloģiska 'līdzība' starp diviem tīkliem (neironu un kosmiskā tīkla) NAV cēloniska saikne un NEDRĪKST tikt prezentēta kā zinātnisks 'izomorfisms' bez konkrēta kvantitatīva salīdzinājuma pētījuma ar norādītu metriku un atsauci.</td>\n<td>illustrative_model (methodological check; not a result)</td>\n</tr>\n</tbody>\n</table>\n<section>\n<h2>Draft reading of the file (non-assertive)</h2>\n<p>The supplied material is consistent with an unfinished, illustrative framing of two named topologies. It is not consistent with reporting a measured isomorphism. The skeptic critique in the dataset states that likeness between a neuronal network and the Cosmic Web is not a causal link and must not be presented as scientific isomorphism without a specific quantitative comparison, named metric, and citation. That comparison is not in this dataset.</p>\n<p>Human fact-check should supply or reject any citable methodology before any quantitative similarity language is used in a publication track.</p>\n</section>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "literature_context_illustrative_model",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [
+    "unsourced_precise_decimal:0.05",
+    "unsourced_precise_decimal:0.05"
+  ],
+  "human_reviewed": true,
+  "review_status": "approved",
+  "reviewer": "Reinis",
+  "review_notes": "Approved. quantitative_similarity_score=None correctly withheld; boundary_status enforces human-sourced citation requirement. Flag unsourced_precise_decimal:0.05 is false positive (cited z<0.05 redshift threshold from arXiv source, not fabricated similarity metric). Language mixing in meta-only fields (model_note/skeptic_critique) noted as known issue, does not affect public-facing content_hash-verified HTML.",
+  "credibility_score_C_i": 1.95,
+  "credibility_scored_at": "2026-09-22T09:17:29.402625Z",
+  "reviewed_at": "2026-09-21T09:11:38.867417+00:00",
+  "promoted": true,
+  "promoted_at": "2026-09-21T09:18:29.913804+00:00",
+  "risk_level": "MEDIUM"
+}

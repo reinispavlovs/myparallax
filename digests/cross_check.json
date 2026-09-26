@@ -1,0 +1,182 @@
+{
+  "generated_at": "2026-09-22T09:17:29.417214+00:00",
+  "schema_version": "1.1",
+  "credibility_engine": "claim_layers_utils",
+  "total_drafts_scanned": 8,
+  "flagged_for_review": [],
+  "entries": [
+    {
+      "draft_file": "draft-consciousness_independence_nde-2026-09-20-220214.html",
+      "meta_file": "draft-consciousness_independence_nde-2026-09-20-220214.meta.json",
+      "topic_id": "consciousness_independence_nde",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "4d3cece854f4",
+      "content_hash_actual": "4d3cece854f4",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "unsourced_precise_decimal:0.84"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-consciousness_independence_nde-2026-09-22-113022.html",
+      "meta_file": "draft-consciousness_independence_nde-2026-09-22-113022.meta.json",
+      "topic_id": "consciousness_independence_nde",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "e1f3835b17d5",
+      "content_hash_actual": "e1f3835b17d5",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "forbidden_absolute_term:proves",
+        "unsourced_precise_decimal:0.84"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-cyclical_cataclysms_precession-2026-09-20-220122.html",
+      "meta_file": "draft-cyclical_cataclysms_precession-2026-09-20-220122.meta.json",
+      "topic_id": "cyclical_cataclysms_precession",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "58393175e14f",
+      "content_hash_actual": "58393175e14f",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "unsourced_precise_decimal:99.9995045403306"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-cyclical_cataclysms_precession-2026-09-22-112909.html",
+      "meta_file": "draft-cyclical_cataclysms_precession-2026-09-22-112909.meta.json",
+      "topic_id": "cyclical_cataclysms_precession",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "b527eff5f0cf",
+      "content_hash_actual": "b527eff5f0cf",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "forbidden_absolute_term:proven",
+        "unsourced_precise_decimal:99.9995045403306"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-megalithic_engineering_acoustics-2026-09-20-220023.html",
+      "meta_file": "draft-megalithic_engineering_acoustics-2026-09-20-220023.meta.json",
+      "topic_id": "megalithic_engineering_acoustics",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "c579132bea32",
+      "content_hash_actual": "c579132bea32",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "unsourced_precise_decimal:28.98879093718812",
+        "unsourced_precise_decimal:99.98755114530057",
+        "unsourced_precise_decimal:99.99",
+        "unsourced_precise_decimal:99.9876"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-megalithic_engineering_acoustics-2026-09-22-100018.html",
+      "meta_file": "draft-megalithic_engineering_acoustics-2026-09-22-100018.meta.json",
+      "topic_id": "megalithic_engineering_acoustics",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "7ed5655ad9b2",
+      "content_hash_actual": "7ed5655ad9b2",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "unsourced_precise_decimal:28.98879093718812",
+        "unsourced_precise_decimal:99.98755114530057",
+        "unsourced_precise_decimal:99.99"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-neural_cosmic_isomorphism-2026-09-20-220306.html",
+      "meta_file": "draft-neural_cosmic_isomorphism-2026-09-20-220306.meta.json",
+      "topic_id": "neural_cosmic_isomorphism",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "a91ec2925d8c",
+      "content_hash_actual": "a91ec2925d8c",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "unsourced_precise_decimal:0.05"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-neural_cosmic_isomorphism-2026-09-22-113120.html",
+      "meta_file": "draft-neural_cosmic_isomorphism-2026-09-22-113120.meta.json",
+      "topic_id": "neural_cosmic_isomorphism",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "approved",
+      "content_hash_expected": "797ac09c82cf",
+      "content_hash_actual": "797ac09c82cf",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    }
+  ]
+}

@@ -1,99 +1,64 @@
 {
   "global_config": {
     "N0_stability_coefficient": 20.0,
-    "stance_values": { "supports": 100.0, "challenges": 0.0 },
+    "stance_values": {
+      "supports": 100.0,
+      "challenges": 0.0
+    },
     "checklist_schema_version": "1.2"
   },
+  "consciousness_independence_nde": 1.325,
+  "cyclical_cataclysms_precession": 1.325,
+  "megalithic_engineering_acoustics": 1.325,
+  "neural_cosmic_isomorphism": 1.325,
   "topics": {
     "megalithic_engineering_acoustics": {
-      "id": "megalithic_engineering_acoustics",
-      "name": "Megalithic Engineering, Acoustics & Granite Resonance",
-      "epistemic_class": "C",
-      "checklist_version": "1.2",
-      "ceiling_disclaimer": true,
-      "current_weight": 20.0,
-      "base_weight": 20.0,
-      "weight_history": [
-        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
-      ],
-      "class_history": [
-        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
-      ],
-      "data_completeness": {
-        "percent_mapped": 0,
-        "total_checklist_items": 10,
-        "completed_items": 0,
-        "missing_items": ["No checklist items completed yet — pending initial research pass."]
-      },
-      "pending_reclassification_review": false
+      "epistemic_class": "B",
+      "potential_reclass_target": "A",
+      "percent_mapped": 33.3,
+      "capped_by_conflict": false,
+      "total_checklist_items": 6,
+      "satisfied_count": 1,
+      "partial_count": 2,
+      "missing_count": 3,
+      "flagged_conflict_count": 0,
+      "last_synced_at": "2026-09-23T12:38:55.523131+00:00"
     },
     "cyclical_cataclysms_precession": {
-      "id": "cyclical_cataclysms_precession",
-      "name": "Cyclical Catastrophism & Orbital Eccentricity",
       "epistemic_class": "C",
-      "checklist_version": "1.2",
-      "ceiling_disclaimer": true,
-      "current_weight": 20.0,
-      "base_weight": 20.0,
-      "weight_history": [
-        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
-      ],
-      "class_history": [
-        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
-      ],
-      "data_completeness": {
-        "percent_mapped": 0,
-        "total_checklist_items": 10,
-        "completed_items": 0,
-        "missing_items": ["No checklist items completed yet — pending initial research pass."]
-      },
-      "pending_reclassification_review": false
+      "potential_reclass_target": null,
+      "percent_mapped": 25.0,
+      "capped_by_conflict": true,
+      "total_checklist_items": 6,
+      "satisfied_count": 0,
+      "partial_count": 3,
+      "missing_count": 2,
+      "flagged_conflict_count": 1,
+      "last_synced_at": "2026-09-23T12:38:55.523179+00:00"
     },
     "consciousness_independence_nde": {
-      "id": "consciousness_independence_nde",
-      "name": "Independence of Consciousness (NDE)",
-      "epistemic_class": "C",
-      "checklist_version": "1.2",
-      "ceiling_disclaimer": true,
-      "current_weight": 34.6,
-      "base_weight": 20.0,
-      "weight_history": [
-        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
-      ],
-      "class_history": [
-        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
-      ],
-      "data_completeness": {
-        "percent_mapped": 40,
-        "total_checklist_items": 10,
-        "completed_items": 4,
-        "missing_items": [
-          "reproducible theta-synchronization telepathy protocol, EDF format, N>=30, preregistered"
-        ]
-      },
-      "pending_reclassification_review": false
+      "epistemic_class": "B",
+      "potential_reclass_target": null,
+      "percent_mapped": 58.3,
+      "capped_by_conflict": false,
+      "total_checklist_items": 6,
+      "satisfied_count": 3,
+      "partial_count": 1,
+      "missing_count": 2,
+      "flagged_conflict_count": 0,
+      "last_synced_at": "2026-09-23T12:38:55.523196+00:00"
     },
     "neural_cosmic_isomorphism": {
-      "id": "neural_cosmic_isomorphism",
-      "name": "Structural Isomorphism Between Neural Networks and the Cosmic Web",
-      "epistemic_class": "C",
-      "checklist_version": "1.2",
-      "ceiling_disclaimer": true,
-      "current_weight": 20.0,
-      "base_weight": 20.0,
-      "weight_history": [
-        { "date": "2025-01-15", "weight": 20.0, "contributing_layers": 0, "reason": "seed" }
-      ],
-      "class_history": [
-        { "date": null, "from_class": null, "to_class": "C", "reason": "initial_seed" }
-      ],
-      "data_completeness": {
-        "percent_mapped": 0,
-        "total_checklist_items": 10,
-        "completed_items": 0,
-        "missing_items": ["No checklist items completed yet — pending initial research pass."]
-      },
-      "pending_reclassification_review": false
+      "epistemic_class": "B",
+      "potential_reclass_target": null,
+      "percent_mapped": 41.7,
+      "capped_by_conflict": false,
+      "total_checklist_items": 6,
+      "satisfied_count": 2,
+      "partial_count": 1,
+      "missing_count": 3,
+      "flagged_conflict_count": 0,
+      "last_synced_at": "2026-09-23T12:38:55.523209+00:00"
     }
   }
 }

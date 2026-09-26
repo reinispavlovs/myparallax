@@ -1,0 +1,13 @@
+[OK] b1-body LV (piezoelectric telluric) -- replaced 2 occurrence(s)
+[OK] b2-body LV (morphogenetic field) -- replaced 2 occurrence(s)
+[OK] b3-body LV (Shining Ones) -- replaced 2 occurrence(s)
+[OK] m2-body LV (Vazza identisks->statistisks) -- replaced 2 occurrence(s)
+[OK] m3-body LV (consciousness non-local) -- replaced 2 occurrence(s)
+[OK] c2-body LV (Vazza duplicate) -- replaced 2 occurrence(s)
+
+=== SUMMARY (Round 1b - LV anchors) ===
+Applied: 12 replacements across 6 anchors
+Skipped (missing): 0
+Original length: 166458
+New length: 167418
+Delta: 960

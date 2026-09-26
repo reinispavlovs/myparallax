@@ -1,0 +1,162 @@
+{
+  "_schema_version": "1.0",
+  "_draft_pending_review": true,
+  "_generated_at": "2026-09-23",
+  "_notes": "Qualitative SSOT for knowledge-gap checklist per topic. Numeric percent_mapped tracking lives separately in topic_weights.json (Task #153, not yet wired up). Statuses: satisfied | partial | missing | flagged_conflict.",
+  "checklist_template": {
+    "in_situ_measurement": "Direct physical/observational measurement exists (not purely theoretical).",
+    "causal_mechanism": "A specific, testable causal mechanism has been proposed and evaluated.",
+    "statistical_significance": "A statistical/quantitative significance test has been performed.",
+    "independent_replication": "Independently replicated by an unrelated research group/site.",
+    "peer_reviewed_publication": "Published in a peer-reviewed journal (not only preprint/arXiv).",
+    "raw_data_availability": "Underlying raw data is publicly available for independent verification."
+  },
+  "topics": {
+    "megalithic_engineering_acoustics": {
+      "epistemic_class": "B",
+      "potential_reclass_target": "A",
+      "items": [
+        {
+          "id": "in_situ_measurement",
+          "status": "satisfied",
+          "evidence": "Verified 110-121 Hz standing wave acoustic resonance measured on-site at Giza King's Chamber, Malta Hypogeum, and Barabar caves."
+        },
+        {
+          "id": "causal_mechanism",
+          "status": "flagged_conflict",
+          "evidence": "Frontend UI (megaliths-cosmology.html modal) claims piezoelectric quartz mechanics are 'already verified and confirmed'. Backend main.py (fix #204) removed a fabricated/unsourced piezoelectric calculation as a false positive.",
+          "action_required": "Reconcile frontend copy with backend epistemic status before any Class A consideration."
+        },
+        {
+          "id": "statistical_significance",
+          "status": "missing",
+          "evidence": "No statistical test correlating resonance frequency with structural geometry or geographic distribution across sites."
+        },
+        {
+          "id": "independent_replication",
+          "status": "partial",
+          "evidence": "Measured at 3 independent sites (Giza, Malta, Barabar). Missing: Tiwanaku and Angkor oscilloscope frequency recordings."
+        },
+        {
+          "id": "peer_reviewed_publication",
+          "status": "missing",
+          "evidence": "Current arXiv source covers general acoustic impedance theory, not site-specific peer-reviewed publication of the resonance measurements."
+        },
+        {
+          "id": "raw_data_availability",
+          "status": "missing",
+          "evidence": "Not yet ingested: high-resolution oscilloscope recordings, 3D photogrammetry of subterranean granite chambers, piezoelectric field voltage measurements. Target formats: 24-bit/96kHz WAV, CSV frequency spectrograms, OBJ/PLY point-clouds."
+        }
+      ]
+    },
+    "cyclical_cataclysms_precession": {
+      "epistemic_class": "C",
+      "potential_reclass_target": null,
+      "items": [
+        {
+          "id": "in_situ_measurement",
+          "status": "partial",
+          "evidence": "Platinum anomaly at ~12,800 BP measured via sediment core sampling at multiple sites; orbital precession component remains theoretical only."
+        },
+        {
+          "id": "causal_mechanism",
+          "status": "flagged_conflict",
+          "evidence": "Orbital periodicity model is explicitly illustrative and must remain decoupled from the impact event causal claim, per review protocol (#40).",
+          "action_required": "Keep decoupling language enforced in every future draft."
+        },
+        {
+          "id": "statistical_significance",
+          "status": "missing",
+          "evidence": "No statistical correlation test exists between precession cycle timing and impact event dating."
+        },
+        {
+          "id": "independent_replication",
+          "status": "partial",
+          "evidence": "Platinum anomaly independently replicated at multiple global Younger Dryas boundary sites."
+        },
+        {
+          "id": "peer_reviewed_publication",
+          "status": "partial",
+          "evidence": "arXiv source is preprint-stage on cosmogenic nuclides; not yet cross-checked against peer-reviewed Younger Dryas literature."
+        },
+        {
+          "id": "raw_data_availability",
+          "status": "missing",
+          "evidence": "Raw sediment core platinum concentration datasets not ingested into pipeline."
+        }
+      ]
+    },
+    "consciousness_independence_nde": {
+      "epistemic_class": "B",
+      "potential_reclass_target": null,
+      "items": [
+        {
+          "id": "in_situ_measurement",
+          "status": "satisfied",
+          "evidence": "AWARE study (Parnia et al.) and Greyson NDE Scale provide aggregate clinical measurement during cardiac arrest."
+        },
+        {
+          "id": "causal_mechanism",
+          "status": "missing",
+          "evidence": "No verified mechanism for consciousness independent of brain function; correlation only, per approved review notes."
+        },
+        {
+          "id": "statistical_significance",
+          "status": "satisfied",
+          "evidence": "Aggregate statistical analysis across AWARE cohort and Greyson scale scoring, per approved draft review criteria."
+        },
+        {
+          "id": "independent_replication",
+          "status": "partial",
+          "evidence": "Multiple independent NDE studies exist (van Lommel, Parnia, Greyson); individual veridical-perception case claims remain unreplicated."
+        },
+        {
+          "id": "peer_reviewed_publication",
+          "status": "satisfied",
+          "evidence": "Parnia AWARE study is published in a peer-reviewed resuscitation journal (external citation, not currently arXiv-sourced; see backlog #118)."
+        },
+        {
+          "id": "raw_data_availability",
+          "status": "missing",
+          "evidence": "Raw patient-level veridicality case data not ingested; aggregate statistics only."
+        }
+      ]
+    },
+    "neural_cosmic_isomorphism": {
+      "epistemic_class": "B",
+      "potential_reclass_target": null,
+      "items": [
+        {
+          "id": "in_situ_measurement",
+          "status": "satisfied",
+          "evidence": "Vazza & Feletti 2020 quantitative structural comparison of cosmic web and neuronal network topology."
+        },
+        {
+          "id": "causal_mechanism",
+          "status": "missing",
+          "evidence": "Explicitly framed as structural resemblance only, not a shared causal process, per approved draft review notes."
+        },
+        {
+          "id": "statistical_significance",
+          "status": "partial",
+          "evidence": "quantitative_similarity_score intentionally withheld pending human-sourced citation (boundary_status=REQUIRES_HUMAN_SOURCED_CITATION)."
+        },
+        {
+          "id": "independent_replication",
+          "status": "missing",
+          "evidence": "Single primary source (Vazza & Feletti); no independent replication identified yet."
+        },
+        {
+          "id": "peer_reviewed_publication",
+          "status": "satisfied",
+          "evidence": "Vazza & Feletti 2020 published in Frontiers in Physics (peer-reviewed)."
+        },
+        {
+          "id": "raw_data_availability",
+          "status": "missing",
+          "evidence": "Raw cosmic web survey data (6dFGS/SDSS/2MRS) and neuronal connectome datasets not ingested into pipeline."
+        }
+      ]
+    }
+  }
+}

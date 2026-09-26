@@ -1,0 +1,17 @@
+=== B2 FULL BLOCK CONTEXT ===
+
+                EN: "The planet functioned as a global waveguide: signals and harmonic resonance propagated directly through bedrock utilizing natural telluric lines without orbital relays."
+            },
+            simType: 'cymatics'
+        },
+        b2: {
+            tag: "Morphogenetic Resonance & Non-Local Consciousness",
+            title: { LV: "Morfoģenētiskais Lauks & Telepātiskā Piekļuve", EN: "Morphogenetic Resonance & Telepathic Access" },
+            desc1: {
+                LV: "Rūperta Šeldreika morfoģenētiskais lauks apliecina: kad prasme tiek apgūta vienā vietā, tā kļūst pieejama visai sugai. Senās akustiskās kameras kalpoja kā izolēti uztvērēji.",
+                EN: "Rupert Sheldrake's morphogenetic field confirms non-local information transfer across species without physical contact. Resonant stone chambers served as biological quantum receivers."
+            },
+            desc2: {
+                LV: "Pie 0 EEG (kā klīniskajā NP) apziņa atvienojas no 3D sensoriem filtriem un uztver kosmisko tīklu holistiski, ļaujot sazināties pāri okeāniem bez tehnoloģijām.",
+                EN: "At zero EEG flatline states (identical to clinical NDE), human consciousness uncouples from biological filters to directly interface with non-local cosmic web data."
+           

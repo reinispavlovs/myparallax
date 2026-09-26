@@ -1,0 +1,14 @@
+=== ROUND 4C PATCH REPORT ===
+
+[OK] gap-i.known LV -- replaced 1x
+[OK] gap-i.known EN -- replaced 1x
+[OK] isomorphism.desc1 LV tail -- replaced 1x
+[OK] isomorphism.desc1 EN tail -- replaced 1x
+[OK] isomorphism.desc2 LV -- replaced 1x
+[OK] isomorphism.desc2 EN -- replaced 1x
+[OK] b2.desc1 LV -- replaced 1x
+[OK] b2.desc1 EN -- replaced 1x
+[OK] b2.desc2 EN tail -- replaced 1x
+
+Total replacements applied: 9
+New file length: 169133

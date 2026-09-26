@@ -1,0 +1,14 @@
+{
+  "global_config": {
+    "N0_stability_coefficient": 20.0,
+    "stance_values": {
+      "supports": 100.0,
+      "challenges": 0.0
+    },
+    "checklist_schema_version": "1.2"
+  },
+  "consciousness_independence_nde": 1.325,
+  "cyclical_cataclysms_precession": 1.325,
+  "megalithic_engineering_acoustics": 1.325,
+  "neural_cosmic_isomorphism": 1.325
+}

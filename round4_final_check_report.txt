@@ -1,0 +1,17 @@
+=== ROUND 4 FINAL INTEGRITY + SWEEP CHECK ===
+
+File length: 169133 chars
+Double quotes: 1950
+Curly braces: { 319 / } 319
+Parens: ( 1084 / ) 1084
+Mojibake marker hits: 0
+  'verified': 20 hits
+  'verificēts': 4 hits
+  'proven': 3 hits
+  'pierādīts': 3 hits
+  'confirmed': 6 hits
+  'apstiprināts': 3 hits
+  'identical': 2 hits
+  'apliecina': 4 hits
+
+Total remaining overclaim-term hits: 45

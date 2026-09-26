@@ -1,0 +1,7 @@
+=== HIT 1 at pos 93264 ===
+'ctures through acoustic manipulation."\n            }\n        },\n        { \n            name: { LV: "Gunung Padang Piramīda (Indonēzija)", EN: "Gunung Padang (Indonesia)" },\n            coords: "6.9961° S, 107.0565° E", lat: -6.9961, lng: 107.0565,\n            type: "precession", color: 0x22d3ee,\n            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gunung_Padang_Site_1.jpg/800px-Gunung_Padang_Site_1.jpg",\n            engineering: {\n                LV: "Ģeofizikālie radiolokācijas dati apliecina iekšējās kameras un megalītu slāņus, kuru dziļākie līmeņi datēti no 16 000 l'
+
+=== HIT 2 at pos 93307 ===
+'        }\n        },\n        { \n            name: { LV: "Gunung Padang Piramīda (Indonēzija)", EN: "Gunung Padang (Indonesia)" },\n            coords: "6.9961° S, 107.0565° E", lat: -6.9961, lng: 107.0565,\n            type: "precession", color: 0x22d3ee,\n            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Gunung_Padang_Site_1.jpg/800px-Gunung_Padang_Site_1.jpg",\n            engineering: {\n                LV: "Ģeofizikālie radiolokācijas dati apliecina iekšējās kameras un megalītu slāņus, kuru dziļākie līmeņi datēti no 16 000 līdz 25 000 BP.",\n                EN: "Multi'
+
+Total hits: 2

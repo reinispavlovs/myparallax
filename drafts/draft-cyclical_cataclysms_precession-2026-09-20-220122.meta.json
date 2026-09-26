@@ -1,0 +1,41 @@
+{
+  "topic_id": "cyclical_cataclysms_precession",
+  "topic_name": "Cyclical Catastrophism & Orbital Eccentricity",
+  "generated_at": "2026-09-20T22:01:22.216461",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Mediterranean ecosystems such as those found in California, Central Chile, Southern Europe, and Southwest Australia host numerous, diverse, fire-adapted micro-ecosystems. These micro-ecosystems are as diverse as mountainous conifer to desert-like chaparral communities. Over the last few centuries, human intervention, invasive species, and climate warming have drastically affected the composition a",
+  "data_type": "illustrative_model",
+  "skeptic_critique": "Cautionary check: Matemātiskais cikliskais modelis ir ILUSTRATĪVS, ne pierādīts korelācijas mehānisms. Nogulumu platīna pīķi (~12 800 BP) liecina par ārēju trieciena notikumu, kas ir ATSEVIŠĶS jautājums no orbitālās mehānikas cikla — šos divus NEDRĪKST sajaukt vienā secinājumā.",
+  "content_file": "draft-cyclical_cataclysms_precession-2026-09-20-220122.html",
+  "content_hash": "58393175e14f",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div style=\"background:#fff3cd;border:2px solid #856404;padding:1em;margin:0 0 1em;font-weight:bold;\">AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</div>\n<article>\n<header>\n<h1>Research Draft: Cyclical Catastrophism &amp; Orbital Eccentricity</h1>\n<p>Project Parallax — working notes from the supplied dataset only.</p>\n</header>\n<section>\n<h2>Recorded source fragment</h2>\n<p>The dataset marks <code>arxiv_source_found</code> as true and supplies this fragment: Mediterranean ecosystems such as those found in California, Central Chile, Southern Europe, and Southwest Australia host numerous, diverse, fire-adapted micro-ecosystems. These micro-ecosystems are as diverse as mountainous conifer to desert-like chaparral communities. Over the last few centuries, human intervention, invasive species, and climate warming have drastically affected the composition a</p>\n<p>That fragment is recorded as supplied context. This draft does not treat it as a settled account of cyclical catastrophism or orbital eccentricity, and it does not add a causal link that the dataset does not state.</p>\n</section>\n<section>\n<h2>Illustrative model (not a geological measurement)</h2>\n<p>The dataset labels the numerical series as <code>illustrative_model</code>. The accompanying model note states: Sinusoidāls modelis TIKAI ilustrācijai — nav ģeoloģisks mērījums.</p>\n<p>Within that illustrative frame the dataset lists a cycle length of 25920 years, a Younger Dryas marker of 12800 BP, an illustrative orbital flux peak of 99.9995045403306, and a boundary status of CYCLE_SYNCHRONIZED. These values are reported here as dataset entries. They are not presented as measured orbital mechanics or as a verified correlation mechanism.</p>\n</section>\n<section>\n<h2>Cautionary check from the dataset</h2>\n<p>The dataset includes this skeptic critique: Cautionary check: Matemātiskais cikliskais modelis ir ILUSTRATĪVS, ne pierādīts korelācijas mehānisms. Nogulumu platīna pīķi (~12 800 BP) liecina par ārēju trieciena notikumu, kas ir ATSEVIŠĶS jautājums no orbitālās mehānikas cikla — šos divus NEDRĪKST sajaukt vienā secinājumā.</p>\n<p>Consistent with that check, this draft keeps the illustrative sinusoidal cycle and the sediment platinum-peak question as separate items and does not merge them into one conclusion.</p>\n</section>\n<table>\n<caption>Raw input metrics, data type, and skeptic critique (dataset only)</caption>\n<thead>\n<tr>\n<th scope=\"col\">Metric</th>\n<th scope=\"col\">Value</th>\n<th scope=\"col\">Data type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>arxiv_source_found</td>\n<td>True</td>\n<td>literature-sourced (flag only)</td>\n</tr>\n<tr>\n<td>arxiv_context</td>\n<td>Mediterranean ecosystems such as those found in California, Central Chile, Southern Europe, and Southwest Australia host numerous, diverse, fire-adapted micro-ecosystems. These micro-ecosystems are as diverse as mountainous conifer to desert-like chaparral communities. Over the last few centuries, human intervention, invasive species, and climate warming have drastically affected the composition a</td>\n<td>literature-sourced (fragment as supplied)</td>\n</tr>\n<tr>\n<td>cycle_years</td>\n<td>25920</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>younger_dryas_marker_bp</td>\n<td>12800</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>orbital_flux_peak_illustrative</td>\n<td>99.9995045403306</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>CYCLE_SYNCHRONIZED</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>model_note</td>\n<td>Sinusoidāls modelis TIKAI ilustrācijai — nav ģeoloģisks mērījums.</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>skeptic_critique</td>\n<td>Cautionary check: Matemātiskais cikliskais modelis ir ILUSTRATĪVS, ne pierādīts korelācijas mehānisms. Nogulumu platīna pīķi (~12 800 BP) liecina par ārēju trieciena notikumu, kas ir ATSEVIŠĶS jautājums no orbitālās mehānikas cikla — šos divus NEDRĪKST sajaukt vienā secinājumā.</td>\n<td>cautionary check (not a correlation claim)</td>\n</tr>\n</tbody>\n</table>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "literature_context_illustrative_model",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [
+    "unsourced_precise_decimal:99.9995045403306",
+    "unsourced_precise_decimal:99.9995045403306"
+  ],
+  "human_reviewed": true,
+  "review_status": "approved",
+  "reviewer": "Reinis",
+  "review_notes": "APPROVED. Orbital/impact decoupling verified explicitly in narrative",
+  "credibility_score_C_i": 1.95,
+  "credibility_scored_at": "2026-09-22T09:17:29.363736Z",
+  "reviewed_at": "2026-09-21T08:59:59.313551+00:00",
+  "promoted": true,
+  "promoted_at": "2026-09-21T09:18:29.904945+00:00",
+  "risk_level": "MEDIUM"
+}

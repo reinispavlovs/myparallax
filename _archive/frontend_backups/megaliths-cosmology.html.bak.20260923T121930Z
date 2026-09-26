@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Megaliths & Cosmology | Project Parallax</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #02030a; color: #e0e6ed; }
+        h1, h2, h3, h4, .brand-font { font-family: 'Cinzel', serif; }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .touch-none { touch-action: none; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Navigation -->
+    <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="text-amber-400 hover:text-amber-300 font-medium text-sm transition">&larr; <span data-i18n="back-home">Back to Main Page</span></a>
+            <div class="flex items-center gap-4">
+                <a href="nde-evidence.html" class="text-xs text-slate-300 hover:text-amber-400 transition hidden sm:inline" data-i18n="nav-nde">NDE & Consciousness</a>
+                <button id="lang-toggle-btn" class="text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-400 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+                    <span id="lang-indicator">LV</span>
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-16 flex-grow space-y-16">
+        
+        <!-- Header Section -->
+        <div class="text-center max-w-3xl mx-auto space-y-6">
+            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="sub-title">Cyclic Physics & Engineering</span>
+            <h1 class="text-3xl sm:text-5xl font-bold text-white brand-font" data-i18n="main-title">Megaliths, Acoustic Anomalies & Cosmic Cycles</h1>
+            <p class="text-slate-300 text-sm sm:text-base font-light leading-relaxed" data-i18n="intro-quote">
+                A civilization rising from the ashes of a future cataclysm will not know that the internet ever existed. Just as languages vanish over centuries, our concrete structures will not survive the coming millennia. Yet, an indelible language from past civilizations has been left for us to translate – cosmology and mathematics.
+            </p>
+            <p class="text-slate-400 text-xs sm:text-sm font-light leading-relaxed" data-i18n="main-desc">
+                Ancient megastructures are not primitive monuments, but evidence of peak engineering and cosmology. They incorporate universal constants (<span class="font-serif">π</span>, <span class="font-serif">Φ</span>), telluric energy frequencies, and precise markers created before global cataclysms to preserve the core matrix of civilization.
+            </p>
+        </div>
+
+        <!-- FREQUENCY & WAVE PHYSICS MODULE -->
+        <section class="bg-gradient-to-br from-slate-900/90 via-slate-900/60 to-slate-950 border border-amber-500/40 rounded-3xl p-8 sm:p-10 space-y-6 shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="space-y-3">
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="freq-badge">Wave Mechanics & Field Physics</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font" data-i18n="freq-title">Electromagnetic Spectrum and Energy Equation (<span class="font-serif">E = hf</span>)</h2>
+                <p class="text-slate-300 text-sm font-light leading-relaxed" data-i18n="freq-desc">
+                    According to quantum physics fundamentals, energy is directly proportional to frequency (<span class="font-serif">E = hf</span>). Low frequencies and acoustic standing waves penetrate and resonate effortlessly through dense materials (granite, earth, bedrock), whereas higher frequencies are absorbed. Ancient engineers utilized this principle in megalithic chambers to establish stable energy and consciousness fields.
+                </p>
+            </div>
+
+            <!-- KUSTĪGAIS FREKVENČU VIZUALIZĀCIJAS LOGS -->
+            <div class="w-full h-36 sm:h-44 bg-slate-950/90 border border-slate-800 rounded-2xl relative overflow-hidden shadow-inner flex items-center justify-center">
+                <canvas id="frequency-wave-canvas" class="w-full h-full absolute inset-0"></canvas>
+                <div class="absolute bottom-2 left-3 right-3 flex justify-between items-center text-[10px] font-mono text-amber-400/80 pointer-events-none bg-slate-950/60 px-3 py-1 rounded-lg backdrop-blur-sm">
+                    <span data-i18n="wave-low">Low Frequency / Long Waves (Penetrates Earth & Walls)</span>
+                    <span data-i18n="wave-high">High Frequency / Short Waves</span>
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 text-xs text-slate-300 font-light">
+                <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1.5">
+                    <h4 class="text-amber-400 font-semibold" data-i18n="freq-box1-h">Low Frequency Penetration</h4>
+                    <p data-i18n="freq-box1-p">Low frequencies and long waves bypass or pass straight through massive physical barriers, enabling communication and energy transmission across the global megalithic network.</p>
+                </div>
+                <div class="p-4 bg-slate-950/80 rounded-xl border border-slate-800 space-y-1.5">
+                    <h4 class="text-amber-400 font-semibold" data-i18n="freq-box2-h">Acoustic Resonance (110 Hz)</h4>
+                    <p data-i18n="freq-box2-p">In chambers such as the Great Pyramid of Giza and the Malta Hypogeum, granite and limestone structures amplify 110 Hz standing waves, directly altering human neurological states.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chronological Megalithic Archive -->
+        <div class="space-y-12">
+            
+            <!-- ERA 1 -->
+            <div class="space-y-6">
+                <div class="border-b border-amber-500/30 pb-3 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-amber-400 brand-font" data-i18n="era-1-title">Epoch I: Antediluvian Peak & Pre-Younger Dryas (> 12,800 BP)</h2>
+                    <span class="text-xs text-slate-400 font-mono" data-i18n="era-1-sub">Global Megalithic Network</span>
+                </div>
+
+                <!-- Göbekli Tepe -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-gobekli-title">Göbekli Tepe (Turkey)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">37.2231° N, 38.9223° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="gobekli-desc">
+                                Monumental T-shaped monolith complex intentionally buried and sealed ~11,600 years ago in response to a global cataclysm. It demonstrates deep understanding of astronomical cycles and geometry millennia before the official "agricultural revolution". Synchronized with Sirius and Orion constellations, it served as a primary antediluvian cosmological center.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="gobekli-tags">T-Shaped Monoliths • Intentional Burial • Astronomical Orientation</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/gobekli.jpg" alt="Gobekli Tepe" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gunung Padang -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-gunung-title">Gunung Padang Pyramid (Indonesia)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">6.9926° S, 107.0563° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="gunung-desc">
+                                Multi-layered pyramidal structure with deeper layers dating back to the Younger Dryas cataclysm period (over 14,000 – 25,000 BP). Hidden chambers and basalt column structures revealed via ground-penetrating radar confirm the hill is actually a gigantic engineering-planned megalithic construction built during a civilization peak.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="gunung-tags">>14,000 BP • Hidden Chambers • Seismic Column Matrix</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/gunung.jpg" alt="Gunung Padang" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERA 2 -->
+            <div class="space-y-6">
+                <div class="border-b border-amber-500/30 pb-3 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-amber-400 brand-font" data-i18n="era-2-title">Epoch II: Post-Cataclysm Regeneration & Golden Ratio (~6,000 – 3,000 BP)</h2>
+                    <span class="text-xs text-slate-400 font-mono" data-i18n="era-2-sub">Mathematical Peak & Acoustics</span>
+                </div>
+
+                <!-- Giza -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-giza-title">Great Pyramid of Giza (Egypt)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">29.9792° N, 31.1342° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="giza-desc">
+                                The most precise geodetic structure on Earth. Its base proportions encode universal constants <span class="font-serif">π</span> and <span class="font-serif">Φ</span> (golden ratio), perfectly aligned to magnetic and geographic north. The King's Chamber exhibits stable 110–121 Hz standing wave resonance, acting as an energy and consciousness resonator.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="giza-tags">Pi & Phi Proportions • 110 Hz Resonance • Geodetic Meridian</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/giza.jpg" alt="Giza" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barabar -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-barabar-title">Barabar Granite Caves (India)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">25.0060° N, 85.0690° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="barabar-desc">
+                                Chambers hollowed out of solid granite mass with so-called "Mauryan polish" – micron-level smoothness unreplicable with iron age tools. These chambers possess extreme acoustic resonance capable of inducing deep psychoacoustic effects on consciousness through the piezoelectric granite composition.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="barabar-tags">Mauryan Polish • Micron Precision • Acoustic Matrix</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/barabar.jpg" alt="Barabar" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tiwanaku -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-tiwanaku-title">Tiwanaku & Pumapunku (Bolivia)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">16.5585° S, 68.6688° W</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="tiwanaku-desc">
+                                Gigantic andesite and diorite blocks distributed across the Andean high plateau, fitted with complex H-shaped locks, precise internal boreholes, and micron-level channels. These blocks are interlocked using metal clamps, pointing to industrial-scale megalithic technology predating the Inca civilization.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="tiwanaku-tags">H-Blocks • Andesite • Micron Channels</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/tiwanaku.jpg" alt="Tiwanaku" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ollantaytambo -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-ollanta-title">Ollantaytambo & Sacsayhuamán (Peru)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">13.2574° S, 72.2627° W</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="ollanta-desc">
+                                Fortress of the Sacred Valley, whose upper Sun Temple features several 50+ ton pink granite slabs transported across a rushing river and high mountain ridges from an opposite quarry. The polygonal fitting between massive stones is so tight a razor blade cannot pass through, perfectly withstanding earthquakes.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="ollanta-tags">Pink Granite • Polygonal Joints • Seismic Resilience</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/ollantaytambo.jpg" alt="Ollantaytambo" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERA 3 -->
+            <div class="space-y-6">
+                <div class="border-b border-amber-500/30 pb-3 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-amber-400 brand-font" data-i18n="era-3-title">Epoch III: Classical Succession & Synchronous Structures</h2>
+                    <span class="text-xs text-slate-400 font-mono" data-i18n="era-3-sub">Global Terrestrial Networks</span>
+                </div>
+
+                <!-- Malta -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-malta-title">Ħal Saflieni Hypogeum (Malta)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">35.8696° N, 14.5069° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="malta-desc">
+                                Older than the Egyptian pyramids. The Ħal Saflieni Hypogeum is a three-level subterranean acoustic sanctuary where a male voice spoken in the "Oracle Room" resonates through the entire temple while higher frequencies are entirely filtered out. <span class="text-amber-400 font-semibold" data-i18n="malta-sync">This structure is directly synchronized with the resonance bands of the Giza and Malta megalith network.</span>
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="malta-tags">Hal Saflieni • 110 Hz Resonance • Subterranean Architecture</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/malta.jpg" alt="Malta" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angkor Wat -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-angkor-title">Angkor Wat (Cambodia)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">13.4125° N, 103.8670° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="angkor-desc">
+                                Massive temple complex whose layout on the ground mirrors the exact constellation Draco at a specific celestial epoch. Blocks are connected without mortar using tight grooves and tenons.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="angkor-tags">Constellation Mirror • Hydraulic Engineering • Mortarless Blocks</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/angkor.jpg" alt="Angkor" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kailash -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-kailash-title">Kailash Monolithic Temple / Ellora (India)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">20.0258° N, 75.1780° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="kailash-desc">
+                                Monumental monolithic temple carved out of a single continuous rock face **from top to bottom**. Builders had to excavate hundreds of thousands of tons of basalt stone without allowing a single error.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="kailash-tags">Monolith • Top-Down Excavation • Zero Margin for Error</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/kailash.jpg" alt="Kailash" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Derinkuyu -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-derinkuyu-title">Derinkuyu Underground City (Turkey)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">38.3768° N, 34.7345° E</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="derinkuyu-desc">
+                                Multi-level subterranean megastructure extending dozens of meters underground capable of sheltering tens of thousands of people complete with ventilation shafts and rolling stone doors.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="derinkuyu-tags">Subterranean Megastructure • Ventilation Shafts • Cataclysm Shelter</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/derinkuyu.jpg" alt="Derinkuyu" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Easter Island -->
+                <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4 hover:border-amber-500/40 transition">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <h3 class="text-lg font-bold text-white brand-font" data-i18n="site-easter-title">Easter Island (Rapa Nui)</h3>
+                        <span class="text-xs text-amber-400 font-mono bg-slate-950 px-3 py-1 rounded-full border border-slate-800">27.1127° S, 109.3497° W</span>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2 space-y-3">
+                            <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="easter-desc">
+                                Moai statues positioned along the planetary Great Circle line connecting Giza, Nazca, and Angkor with mathematical precision, stabilizing the Earth's geomagnetic field.
+                            </p>
+                            <div class="text-xs text-amber-400 font-mono" data-i18n="easter-tags">Moai • Great Circle Line • Geomagnetic Stabilization</div>
+                        </div>
+                        <div class="h-44 rounded-xl overflow-hidden border border-slate-800 relative shadow-inner">
+                            <img src="images/easter-island.jpg" alt="Easter Island" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3D MEGALITH MATRIX GLOBE -->
+        <section id="globe-section" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">
+            <div class="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white brand-font" data-i18n="globe-title">Global Megalithic & Subterranean Network</h2>
+                    <p class="text-slate-400 text-sm mt-1" data-i18n="globe-sub">Interactive 3D Matrix mapping telluric lines and color-coded technology nodes.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 text-[11px] bg-slate-900 border border-slate-800 px-4 py-2.5 rounded-xl text-slate-300">
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> <span data-i18n="legend-acoustic">Acoustic Chambers (110 Hz)</span></span>
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-400"></span> <span data-i18n="legend-poly">Polygonal Vitrification</span></span>
+                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> <span data-i18n="legend-precession">Precession & Subterranean Cities</span></span>
+                </div>
+            </div>
+
+            <div class="w-full h-[540px] bg-slate-900/40 border border-slate-800 rounded-2xl relative overflow-hidden flex items-center justify-center shadow-2xl cursor-grab active:cursor-grabbing touch-none" id="globe-container">
+                <div class="absolute top-4 left-4 z-10 bg-slate-950/85 border border-slate-800 p-3.5 rounded-xl text-xs text-slate-300 backdrop-blur-sm pointer-events-none">
+                    <p class="font-semibold text-amber-400 mb-1" data-i18n="nav-ctrl">Navigation Controls:</p>
+                    <p>• <strong data-i18n="ctrl-drag">Click & Drag:</strong> <span data-i18n="ctrl-drag-desc">Rotate sphere</span></p>
+                    <p>• <strong data-i18n="ctrl-zoom">Mouse Wheel / Touch:</strong> <span data-i18n="ctrl-zoom-desc">Zoom in / out</span></p>
+                    <p>• <strong data-i18n="ctrl-click">Node Marker:</strong> <span data-i18n="ctrl-click-desc">Open research dossier</span></p>
+                </div>
+
+                <div id="megalith-popup" class="hidden absolute bottom-6 left-6 right-6 sm:right-auto z-20 bg-slate-950/95 border border-amber-500/50 p-6 rounded-2xl max-w-lg backdrop-blur-xl shadow-2xl max-h-[85%] overflow-y-auto">
+                    <div class="flex items-center justify-between gap-4 mb-2">
+                        <h4 id="popup-title" class="font-bold text-white brand-font text-lg text-amber-400">Site Name</h4>
+                        <button onclick="document.getElementById('megalith-popup').classList.add('hidden')" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
+                    </div>
+                    <p id="popup-coords" class="text-xs text-amber-400/90 font-mono mb-3">Coords</p>
+                    
+                    <div class="w-full h-44 rounded-xl overflow-hidden mb-3 border border-slate-800 bg-slate-900 relative">
+                        <img id="popup-img" src="" alt="Megalithic site" loading="lazy" class="w-full h-full object-cover" />
+                    </div>
+
+                    <div class="space-y-3 text-xs text-slate-300 leading-relaxed font-light">
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                            <p class="text-amber-300 font-semibold mb-1 uppercase tracking-wider text-[10px]" data-i18n="pop-eng-title">Builder Engineering & Physics:</p>
+                            <p id="popup-engineering">Engineering details...</p>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+                            <p class="text-amber-300 font-semibold mb-1 uppercase tracking-wider text-[10px]" data-i18n="pop-meta-title">Impact on Consciousness & Metaphysics (Frequencies & Telepathy):</p>
+                            <p id="popup-metaphysics">Metaphysical details...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500 space-y-2">
+        <p data-i18n="footer-txt">© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.</p>
+        <p class="text-amber-400/70 font-mono text-[11px]">Reinis Pavlovs — "More Real Than the Visible"</p>
+    </footer>
+
+    <!-- Script for Language Toggle, Globe & Animated Waves -->
+    <script>
+    let currentLang = 'EN';
+    let currentSelectedSite = null;
+
+    const megalithsData = [
+        { 
+            name: { LV: "Gīzas Lielā Piramīda (Ēģipte)", EN: "Great Pyramid of Giza (Egypt)" },
+            coords: "29.9792° N, 31.1342° E", lat: 29.9792, lng: 31.1342,
+            type: "acoustic", color: 0xf59e0b,
+            image: "images/giza.jpg",
+            engineering: {
+                LV: "Granīta Karalis kameras akustiskā rezonanse pie 110–121 Hz; orientācija uz īstajiem ziemeļiem ar 3/60 grāda precizitāti. Perimetra un augstuma attiecība iekodē 2π un zelta griezumu Φ (1.618). Zvaigžņu šahtas precīzi mērķētas uz Oriona (Alnitak) un Siriusa stāvokli 10 500 BC.",
+                EN: "King's Chamber granite resonance at 110–121 Hz; aligned to True North within 3/60 of a degree. Encodes 2π and the Golden Ratio Φ (1.618). Star shafts align astronomically with Orion's Belt (Alnitak) and Sirius at 10,500 BC."
+            },
+            metaphysics: {
+                LV: "110 Hz frekvence stimulē teta smadzeņu viļņus labajā puslodē, atslēdzot 3D bioloģiskos filtrus un veicinot ārpusķermeņa uztveri (OBE).",
+                EN: "110 Hz acoustic frequency dampens left-hemisphere dominance, inducing theta wave brain states, OBEs, and non-local conscious resonance."
+            }
+        },
+        { 
+            name: { LV: "Gēbekli Tepe (Turcija)", EN: "Göbekli Tepe (Turkey)" },
+            coords: "37.2232° N, 38.9224° E", lat: 37.2232, lng: 38.9224,
+            type: "precession", color: 0x22d3ee,
+            image: "images/gobekli.jpg",
+            engineering: {
+                LV: "Datēts ar ~9600 BC (Jaunākā driasa beigas). 10–20 tonnu T-veida monolīti izvietoti astronomiskās observatorijas ģeometrijā ar precīzu Siriusa heliakālo lēktu fiksāciju un apzināti aprakti ar zemi.",
+                EN: "Dated to ~9600 BC (Younger Dryas boundary). Massive 10–20 ton T-pillars deliberately buried in a geometric astronomical observatory layout tracking Sirius heliacal rising."
+            },
+            metaphysics: {
+                LV: "Saglabā 25 920 gadu precesijas ciklu un Sirijusa zvaigžņu sistēmas koordinātas, lai pārnestu kosmisko atmiņu pāri kataklizmu slieksnim.",
+                EN: "Preserves the 25,920-year precessional calendar and Sirius stellar alignment to transmit cosmic memory matrix across cataclysms."
+            }
+        },
+        { 
+            name: { LV: "Derinkuyu Pazemes Pilsēta (Turcija)", EN: "Derinkuyu Underground City (Turkey)" },
+            coords: "38.3736° N, 34.7347° E", lat: 38.3736, lng: 34.7347,
+            type: "precession", color: 0x22d3ee,
+            image: "images/derinkuyu.jpg",
+            engineering: {
+                LV: "18 stāvu dziļumā klintī izcirsta autonoma pazemes pilsēta ar ventilācijas šahtām līdz 85 metriem, kas spēja uzturēt 20 000 cilvēku un aizsargāt pret virszemes temperatūras lēcieniem.",
+                EN: "18-level deep subterranean city carved into volcanic rock with 85m ventilation shafts capable of sheltering 20,000 people from atmospheric surface cataclysms."
+            },
+            metaphysics: {
+                LV: "Izveidota kā patvertne pret kosmiskajiem un saules radiācijas uzliesmojumiem Younger Dryas kataklizmas laikā.",
+                EN: "Engineered as an antediluvian fallout vault against cosmic rays, solar micro-novas, and thermal surface shockwaves."
+            }
+        },
+        { 
+            name: { LV: "Barabar Granīta Rezonanses Alas (Indija)", EN: "Barabar Caves (India)" },
+            coords: "25.0065° N, 85.0622° E", lat: 25.0065, lng: 85.0622,
+            type: "acoustic", color: 0xf59e0b,
+            image: "images/barabar.jpg",
+            engineering: {
+                LV: "Granīta masīvā izcirstas rezonanses kameras ar mikronu spoguļgludumu. Akustiskā atbalss saglabājas līdz pat 30 sekundēm, ģenerējot stabilus stāvviļņus.",
+                EN: "Hyper-polished granite vaults carved with optical-level flat surfaces producing standing wave audio reverberation exceeding 30 seconds."
+            },
+            metaphysics: {
+                LV: "Frekvenču kameras, kas kalpoja kā skaņas meditācijas un apziņas paplašināšanas rezonatori.",
+                EN: "Harmonic standing-wave resonators engineered to entrain human consciousness into non-local samadhi states."
+            }
+        },
+        { 
+            name: { LV: "Tiwanaku & Puma Punku (Bolīvija)", EN: "Tiwanaku & Puma Punku (Bolivia)" },
+            coords: "16.5547° S, 68.6732° W", lat: -16.5547, lng: -68.6732,
+            type: "polygonal", color: 0xc084fc,
+            image: "images/tiwanaku.jpg",
+            engineering: {
+                LV: "Andesīta H-bloki ar mikronu taisnleņķa precizitāti un iekšējiem urbumiem. Izmantoti lieti vara-arsēna-niķeļa skavu savienojumi.",
+                EN: "Precision-machined andesite H-blocks with micron-level right angles and internal blind conduit channels fastened with cast copper-arsenic metal clamps."
+            },
+            metaphysics: {
+                LV: "Piezoelektriskais kvarcs andesītā rada spēcīgas elektromagnētiskā lauka anomālijas, stimulējot epifīzi un telpas uztveri.",
+                EN: "Piezoelectric quartz composition creates localized electromagnetic anomalies stimulating the pineal gland and spatial perception."
+            }
+        },
+        { 
+            name: { LV: "Ollantaytambo & Sacsayhuamán (Peru)", EN: "Ollantaytambo & Sacsayhuamán (Peru)" },
+            coords: "13.2584° S, 72.2633° W", lat: -13.2584, lng: -72.2633,
+            type: "polygonal", color: 0xc084fc,
+            image: "images/ollantaytambo.jpg",
+            engineering: {
+                LV: "Poligonālie akmens bloki līdz 120 tonnām ar stiklotām (vitrificētām) virsmām, kas savienoti bez javas un absorbē zemestrīču viļņus.",
+                EN: "Polygonal cyclopean masonry up to 120 tons with vitrified, interlocking curved surfaces immune to seismic shear waves."
+            },
+            metaphysics: {
+                LV: "Matērijas frekvences mīkstināšana — celtnieki spēja mainīt akmens kristālisko režģi akustiski, lai to veidotu kā mīkstu masu.",
+                EN: "Frequency stone softening and matter state modulation — altering crystal lattice structures through acoustic manipulation."
+            }
+        },
+        { 
+            name: { LV: "Gunung Padang Piramīda (Indonēzija)", EN: "Gunung Padang (Indonesia)" },
+            coords: "6.9961° S, 107.0565° E", lat: -6.9961, lng: 107.0565,
+            type: "precession", color: 0x22d3ee,
+            image: "images/gunung.jpg",
+            engineering: {
+                LV: "Ģeofizikālie radiolokācijas dati apliecina iekšējās kameras un megalītu slāņus, kuru dziļākie līmeņi datēti no 16 000 līdz 25 000 gadiem pirms mūsdienām.",
+                EN: "Multi-layer megalithic pyramid structure with subterranean chambers carbon-dated between 16,000 and 25,000 BP."
+            },
+            metaphysics: {
+                LV: "Pierādījums civilizācijas augstajai inženierijai pirms pēdējā ledus laikmeta maksimuma.",
+                EN: "Empirical proof of advanced antediluvian geodetic engineering constructed prior to the Last Glacial Maximum."
+            }
+        },
+        { 
+            name: { LV: "Kailasa Monolīta Templis (Ellora, Indija)", EN: "Kailash Temple (Ellora, India)" },
+            coords: "20.0238° N, 75.1793° E", lat: 20.0238, lng: 75.1793,
+            type: "polygonal", color: 0xc084fc,
+            image: "images/kailash.jpg",
+            engineering: {
+                LV: "No vienlaidu bazalta klints no augšas uz leju izcirsts gigantisks templis, izceļot vairāk nekā 200 000 tonnu akmens bez kļūdas iespējas.",
+                EN: "Monolithic complex carved vertically top-down out of solid basalt rock, excavating 200,000+ tons with perfect 3D mathematical precision."
+            },
+            metaphysics: {
+                LV: "Sakrālā fraktālā ģeometrija, kas kalpo kā telpisks kosmiskā enerģētiskā lauka uztvērējs.",
+                EN: "Spatial fractal architecture designed as a macroscopic antenna harmonizing cosmic energetic grids."
+            }
+        },
+        { 
+            name: { LV: "Lieldienu sala (Rapa Nui)", EN: "Easter Island (Rapa Nui)" },
+            coords: "27.1127° S, 109.3497° W", lat: -27.1127, lng: -109.3497,
+            type: "acoustic", color: 0xf59e0b,
+            image: "images/easter-island.jpg",
+            engineering: {
+                LV: "Moai statujas izvietotas pa planētas Lielā Riņķa līniju, kas ar matemātisku precizitāti savieno Gīzu, Nasku un Angkoru.",
+                EN: "Moai platforms aligned with mathematical precision along the planetary Great Circle connecting Giza, Nazca, and Angkor."
+            },
+            metaphysics: {
+                LV: "Planētas enerģētisko meridiānu (Ley Lines) mezgli, kas stabilizē Zemes ģeomagnētisko lauku.",
+                EN: "Telluric grid nodes (planetary acupuncture points) stabilizing geomagnetic field fluctuations."
+            }
+        },
+        { 
+            name: { LV: "Angkor Wat (Kambodža)", EN: "Angkor Wat (Cambodia)" },
+            coords: "13.4125° N, 103.8670° E", lat: 13.4125, lng: 103.8670,
+            type: "precession", color: 0x22d3ee,
+            image: "images/angkor.jpg",
+            engineering: {
+                LV: "Saulgriežu un ekvinokcijas asu orientācija, kas precīzi atspoguļo Pūķa (Draco) zvaigznāja konfigurāciju 10 500 gadu pirms mūsu ēras.",
+                EN: "Exact equinox solar alignments mirroring the constellation Draco configuration as it appeared in 10,500 BC."
+            },
+            metaphysics: {
+                LV: "Fraktālā sakrālā arhitektūra, kas harmonizē bioloģisko neironu tīklu ar kosmiskā tīkla ģeometriju.",
+                EN: "Fractal sacred architecture harmonizing biological neural clusters with cosmic filament architecture."
+            }
+        },
+        { 
+            name: { LV: "Ħal Saflieni Hipogejs (Malta)", EN: "Ħal Saflieni Hypogeum (Malta)" },
+            coords: "35.8696° N, 14.5069° E", lat: 35.8696, lng: 14.5069,
+            type: "acoustic", color: 0xf59e0b,
+            image: "images/malta.jpg",
+            engineering: {
+                LV: "Kaļķakmenī izcirsts pazemes templis 3 līmeņos, akustiski noskaņots precīzi uz 111 Hz telpas rezonansi.",
+                EN: "Three-level subterranean limestone sanctuary acoustically tuned precisely to 111 Hz standing soundwaves."
+            },
+            metaphysics: {
+                LV: "111 Hz rezonanse aktivizē prefrontālo garozu, veicinot kolektīvās apziņas sinhronizāciju un telepatisko uztveri.",
+                EN: "111 Hz standing waves selectively activate the prefrontal cortex, enhancing collective synchronization and telepathic receptivity."
+            }
+        }
+    ];
+
+    const translations = {
+        LV: {
+            'back-home': 'Atpakaļ uz galveno lapu',
+            'nav-nde': 'NDE & Apziņa',
+            'sub-title': 'Cikliskā Fizika & Inženierija',
+            'main-title': 'Megalīti, Akustiskās Anomālijas & Kosmiskie Cikli',
+            'intro-quote': 'Civilizācija, kas celsies no nākamās kataklizmas izdzīvojušiem, nezinās, ka pasaulē pastāv internets. Līdzīgi kā valodas izmirst gadsimtu laikā arī mūsu būves neizdzīvos nākamos gadu tūkstošus. Tomēr mums ir atstāta neizmirstoša valoda no iepriekšējām civilizācijām, kas mums jāiztulko – kosmoloģija un matemātika.',
+            'main-desc': 'Senās megastruktūras nav primitīvi pieminekļi, bet gan augstākās inženierijas un kosmoloģijas pīķa liecības. Tās ietver sevī universālās konstantes (<span class="font-serif">π</span>, <span class="font-serif">Φ</span>), telūrisko enerģiju frekvences un precīzus marķierus, kas radīti pirms globālajām kataklizmām, lai saglabātu civilizācijas pamatmatrici.',
+            
+            'freq-badge': 'Wave Mechanics & Field Physics',
+            'freq-title': 'Elektromagnētiskais Spektrs un Enerģijas Vienādojums (<span class="font-serif">E = hf</span>)',
+            'freq-desc': 'Saskaņā ar kvantu fizikas pamatlikumiem, enerģija ir tieši proporcionāla frekvencei (<span class="font-serif">E = hf</span>). Zemas frekvences un akustiskie stāvviļņi spēj iekļūt un bez traucējumiem rezonēt caur blīviem materiāliem (granītu, zemi, klinšu masīviem), kamēr augstākas frekvences tiek absorbētas. Senie inženieri šo principu izmantoja megalītiskajās kamerās, lai radītu stabilus enerģijas un apziņas laukus.',
+            'wave-low': 'Zema Frekvence / Lieli Viļņi (Caurdzen Zemi & Sienas)',
+            'wave-high': 'Augsta Frekvence / Īsi Viļņi',
+            'freq-box1-h': 'Zemo Frekvenču Caurlaidība',
+            'freq-box1-p': 'Zemas frekvences un garie viļņi apej vai iziet cauri gigantiskiem šķēršļiem, nodrošinot saziņu un enerģijas pārnesi globālajā megalītiskajā tīklā.',
+            'freq-box2-h': 'Akustiskā Rezonanse (110 Hz)',
+            'freq-box2-p': 'Kamerās, piemēram, Gīzas Lielajā Piramīdā un Maltas Hipogejs, granīta un kaļķakmens struktūras pastiprina 110 Hz stāvviļņus, ietekmējot cilvēka smadzeņu darbību.',
+
+            'era-1-title': 'Epoha I: Antediluviārais Pīķis & Pirms Younger Dryas (virs 12 800 gadiem pirms mūsdienām)',
+            'era-1-sub': 'Globālais Megalītiskais Tīkls',
+            'gobekli-desc': 'Monumentāls T veida monolītu komplekts, kas apzināti aprakts un noslēgts pirms ~11 600 gadiem, reaģējot uz globālo kataklizmu. Tas demonstrē dziļu izpratni par astronomiskajiem cikliem un ģeometriju tūkstošiem gadu pirms oficiālās "lauksaimniecības revolūcijas". Sinhronizēts ar Siriusa un Orionas zvaigznājiem, tas kalpoja kā galvenais antediluviārais kosmoloģiskais centrs.',
+            'gobekli-tags': 'T veida Monolīti • Apzināta Aprakšana • Astronomiskā Orientācija',
+            'gunung-desc': 'Daudzslāņu piramidāla struktūra, kuras dziļākie slāņi sniedzas atpakaļ līdz Younger Dryas kataklizmas periodam (virs 14 000 – 25 000 gadu pirms mūsdienām). Zemes iekšienē ar ģeoradaru atklātās slēptās kameras un bazalta kolonnu struktūras apliecina, ka kalns patiesībā ir gigantiska, inženiertehniski plānota megalītiska celtne, kas celta civilizācijas pīķa fāzē.',
+            'gunung-tags': '>14,000 BP • Slēptās Kameras • Seismiskā Kolonnu Matrica',
+
+            'era-2-title': 'Epoha II: Pēckataklizmas Reģenerācija & Zelta Griezums (~6,000 – 3,000 gadi pirms mūsdienām)',
+            'era-2-sub': 'Matemātiskais Pīķis & Akustika',
+            'giza-desc': 'Precīzākā ģeodēziskā struktūra uz Zemes. Tās pamatnes proporcijās iešifrētas universālās konstantes <span class="font-serif">π</span> un <span class="font-serif">Φ</span> (zelta griezums), un tā ir ideāli orientēta pret magnētisko un ģeogrāfisko ziemeļpolu. Karaļa kamerā fiksēta stabila 110–121 Hz stāvviļņu rezonanse, kas darbojas kā enerģijas un apziņas rezonators.',
+            'giza-tags': 'Pi & Phi Proporcijas • 110 Hz Rezonanse • Geodēziskais Meridiāns',
+            'barabar-desc': 'Cietā granīta masīvā izgrebtas telpas ar tā dēvēto "Mauru pulējumu" – mikronu līmeņa gludumu, ko nav iespējams atkārtot ar dzelzs laikmeta instrumentiem. Šīm kamerām piemīt ekstrēma akustiskā rezonanse, kas spēj radīt dziļu psihoakustisku iespaidu uz apziņu, izmantojot pjezoelektrisko granīta sastāvu.',
+            'barabar-tags': 'Mauru Pulējums • Mikronu Precizitāte • Akustiskā Matrica',
+            'tiwanaku-desc': 'Andu kalnu augstplato izvietoti gigantiski andesīta un diorīta bloki, kas aprīkoti ar sarežģītiem H veida slēģiem, precīziem iekšējiem urbumiem un mikronu līmeņa kanāliem. Šie bloki ir burtiski "salietoti" kopā ar metāla skavām, norādot uz rūpnieciska mēroga megalītisku tehnoloģiju, kas pastāvējusi pirms inku civilizācijas.',
+            'tiwanaku-tags': 'H veida Bloki • Andesīts • Mikronu Kanāli',
+            'ollanta-desc': 'Svētās ielejas cietoksnis, kura augšējā Saules templī atrodas vairākas 50+ tonnu smagas rozā granīta plāksnes, kas transportētas pāri straujai upei un augstiem kalnu grēdām no pretējā kalna karjera. Poligonālais savienojums starp milzīgajiem akmeņiem ir tik blīvs, ka starp tiem nevar iebāzt vizlas lapiņu, un tas perfekti iztur zemestrīces.',
+            'ollanta-tags': 'Rozā Granīts • Poligonālā Saķere • Seismiskā Noturība',
+
+            'era-3-title': 'Epoch III: Klasiskais Pēctecības Periods & Sinhronās Celtnes',
+            'era-3-sub': 'Globālie Sauszemes Tīkli',
+            'malta-desc': 'Vecāki par Ēģiptes piramīdām. Hal Saflieni hipogejs ir pazemes akustiskā celtne trīs līmeņos, kuras "Orākula telpā" izteikta vīrieša balss rezonē caur visu templi, bet augstākas frekvences tiek pilnībā slāpētas.',
+            'malta-sync': 'Šī celtne ir tieši sinhronizēta ar Gīzas un Maltas megalītu tīkla rezonanses joslām.',
+            'malta-tags': 'Hal Saflieni • 110 Hz Rezonanse • Pazemes Arhitektūra',
+            'angkor-desc': 'Milzīgs tempļu komplekts, kura izvietojums zemes virspusē ir precīzs Pūķa zvaigznāja spogulis noteiktā debesu gadalaikā. Bloki ir savienoti bez javas, izmantojot ciešas rievas un tapas.',
+            'angkor-tags': 'Zvaigznāja Spogulis • Hidrauliskā Inženierija • Bezjavas Bloki',
+            'kailash-desc': 'Monumentāls monolīts templis, kas izgrebts no vienas veselas klints **no augšas uz leju**. Celtniekiem nācās izņemt simtiem tūkstošu tonnu bazalta akmens, nepieļaujot nevienu kļūdu.',
+            'kailash-tags': 'Monolīts • No Augšas uz Leju • Bez Kļūdu Marža',
+            'derinkuyu-desc': 'Daudzlīmeņu pazemes megastruktūra, kas sniedzas vairākus desmitus metru zem zemes un spēja izmitināt desmitiem tūkstošu cilvēku ar ventilācijas šahtām un rotējošiem akmens vārtiem.',
+            'derinkuyu-tags': 'Pazemes Megastruktūra • Ventilācijas Šahtas • Kataklizmu Patvērums',
+            'easter-desc': 'Moai statujas izvietotas pa planētas Lielā Riņķa līniju, kas ar matemātisku precizitāti savieno Gīzu, Nasku un Angkoru, stabilizējot Zemes ģeomagnētisko lauku.',
+            'easter-tags': 'Moai • Lielā Riņķa Līnija • Ģeomagnētiskā Stabilizācija',
+
+            'globe-title': 'Globālais Megalītu & Pazemes Tīkls',
+            'globe-sub': 'Interaktīva 3D matrica ar pulsējošām Telūriskajām (Ley Lines) līnijām un krāsu kodējumu.',
+            'legend-acoustic': 'Akustiskās Kameras (110 Hz)',
+            'legend-poly': 'Poligonālā Vitrifikācija',
+            'legend-precession': 'Precesija & Pazemes Pilsētas',
+            'nav-ctrl': 'Navigācijas Vadība:',
+            'ctrl-drag': 'Turēt & Vilkt:',
+            'ctrl-drag-desc': 'Grozīt zemeslodi',
+            'ctrl-zoom': 'Peles Rullītis / Pirksti:',
+            'ctrl-zoom-desc': 'Tuvināt / Tālināt',
+            'ctrl-click': 'Mezgla Punkts:',
+            'ctrl-click-desc': 'Atvērt pētniecības dosjē',
+            'pop-eng-title': 'Celtnieku Spējas (Inženierija & Fizika):',
+            'pop-meta-title': 'Ietekme uz Apziņu & Metafiziku (Telepātija & Frekvences):',
+            'footer-txt': '© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.'
+        },
+        EN: {
+            'back-home': 'Back to Main Page',
+            'nav-nde': 'NDE & Consciousness',
+            'sub-title': 'Cyclic Physics & Engineering',
+            'main-title': 'Megaliths, Acoustic Anomalies & Cosmic Cycles',
+            'intro-quote': 'A civilization rising from the ashes of a future cataclysm will not know that the internet ever existed. Just as languages vanish over centuries, our concrete structures will not survive the coming millennia. Yet, an indelible language from past civilizations has been left for us to translate – cosmology and mathematics.',
+            'main-desc': 'Ancient megastructures are not primitive monuments, but evidence of peak engineering and cosmology. They incorporate universal constants (<span class="font-serif">π</span>, <span class="font-serif">Φ</span>), telluric energy frequencies, and precise markers created before global cataclysms to preserve the core matrix of civilization.',
+            
+            'freq-badge': 'Wave Mechanics & Field Physics',
+            'freq-title': 'Electromagnetic Spectrum and Energy Equation (<span class="font-serif">E = hf</span>)',
+            'freq-desc': 'According to quantum physics fundamentals, energy is directly proportional to frequency (<span class="font-serif">E = hf</span>). Low frequencies and acoustic standing waves penetrate and resonate effortlessly through dense materials (granite, earth, bedrock), whereas higher frequencies are absorbed. Ancient engineers utilized this principle in megalithic chambers to establish stable energy and consciousness fields.',
+            'wave-low': 'Low Frequency / Long Waves (Penetrates Earth & Walls)',
+            'wave-high': 'High Frequency / Short Waves',
+            'freq-box1-h': 'Low Frequency Penetration',
+            'freq-box1-p': 'Low frequencies and long waves bypass or pass straight through massive physical barriers, enabling communication and energy transmission across the global megalithic network.',
+            'freq-box2-h': 'Acoustic Resonance (110 Hz)',
+            'freq-box2-p': 'In chambers such as the Great Pyramid of Giza and the Malta Hypogeum, granite and limestone structures amplify 110 Hz standing waves, directly altering human neurological states.',
+
+            'era-1-title': 'Epoch I: Antediluvian Peak & Pre-Younger Dryas (> 12,800 BP)',
+            'era-1-sub': 'Global Megalithic Network',
+            'gobekli-desc': 'Monumental T-shaped monolith complex intentionally buried and sealed ~11,600 years ago in response to a global cataclysm. It demonstrates deep understanding of astronomical cycles and geometry millennia before the official "agricultural revolution". Synchronized with Sirius and Orion constellations, it served as a primary antediluvian cosmological center.',
+            'gobekli-tags': 'T-Shaped Monoliths • Intentional Burial • Astronomical Orientation',
+            'gunung-desc': 'Multi-layered pyramidal structure with deeper layers dating back to the Younger Dryas cataclysm period (over 14,000 – 25,000 BP). Hidden chambers and basalt column structures revealed via ground-penetrating radar confirm the hill is actually a gigantic engineering-planned megalithic construction built during a civilization peak.',
+            'gunung-tags': '>14,000 BP • Hidden Chambers • Seismic Column Matrix',
+
+            'era-2-title': 'Epoch II: Post-Cataclysm Regeneration & Golden Ratio (~6,000 – 3,000 BP)',
+            'era-2-sub': 'Mathematical Peak & Acoustics',
+            'giza-desc': "The most precise geodetic structure on Earth. Its base proportions encode universal constants <span class=\"font-serif\">π</span> and <span class=\"font-serif\">Φ</span> (golden ratio), perfectly aligned to magnetic and geographic north. The King's Chamber exhibits stable 110–121 Hz standing wave resonance, acting as an energy and consciousness resonator.",
+            'giza-tags': 'Pi & Phi Proportions • 110 Hz Resonance • Geodetic Meridian',
+            'barabar-desc': 'Chambers hollowed out of solid granite mass with so-called "Mauryan polish" – micron-level smoothness unreplicable with iron age tools. These chambers possess extreme acoustic resonance capable of inducing deep psychoacoustic effects on consciousness through the piezoelectric granite composition.',
+            'barabar-tags': 'Mauryan Polish • Micron Precision • Acoustic Matrix',
+            'tiwanaku-desc': 'Gigantic andesite and diorite blocks distributed across the Andean high plateau, fitted with complex H-shaped locks, precise internal boreholes, and micron-level channels. These blocks are interlocked using metal clamps, pointing to industrial-scale megalithic technology predating the Inca civilization.',
+            'tiwanaku-tags': 'H-Blocks • Andesite • Micron Channels',
+            'ollanta-desc': 'Fortress of the Sacred Valley, whose upper Sun Temple features several 50+ ton pink granite slabs transported across a rushing river and high mountain ridges from an opposite quarry. The polygonal fitting between massive stones is so tight a razor blade cannot pass through, perfectly withstanding earthquakes.',
+            'ollanta-tags': 'Pink Granite • Polygonal Joints • Seismic Resilience',
+
+            'era-3-title': 'Epoch III: Classical Succession & Synchronous Structures',
+            'era-3-sub': 'Global Terrestrial Networks',
+            'malta-desc': 'Older than the Egyptian pyramids. The Ħal Saflieni Hypogeum is a three-level subterranean acoustic sanctuary where a male voice spoken in the "Oracle Room" resonates through the entire temple while higher frequencies are entirely filtered out.',
+            'malta-sync': 'This structure is directly synchronized with the resonance bands of the Giza and Malta megalith network.',
+            'malta-tags': 'Hal Saflieni • 110 Hz Resonance • Subterranean Architecture',
+            'angkor-desc': 'Massive temple complex whose layout on the ground mirrors the exact constellation Draco at a specific celestial epoch. Blocks are connected without mortar using tight grooves and tenons.',
+            'angkor-tags': 'Constellation Mirror • Hydraulic Engineering • Mortarless Blocks',
+            'kailash-desc': 'Monumental monolithic temple carved out of a single continuous rock face **from top to bottom**. Builders had to excavate hundreds of thousands of tons of basalt stone without allowing a single error.',
+            'kailash-tags': 'Monolith • Top-Down Excavation • Zero Margin for Error',
+            'derinkuyu-desc': 'Multi-level subterranean megastructure extending dozens of meters underground capable of sheltering tens of thousands of people complete with ventilation shafts and rolling stone doors.',
+            'derinkuyu-tags': 'Subterranean Megastructure • Ventilation Shafts • Cataclysm Shelter',
+            'easter-desc': "Moai statues positioned along the planetary Great Circle line connecting Giza, Nazca, and Angkor with mathematical precision, stabilizing the Earth's geomagnetic field.",
+            'easter-tags': 'Moai • Great Circle Line • Geomagnetic Stabilization',
+
+            'globe-title': 'Global Megalithic & Subterranean Network',
+            'globe-sub': 'Interactive 3D Matrix mapping telluric lines and color-coded technology nodes.',
+            'legend-acoustic': 'Acoustic Chambers (110 Hz)',
+            'legend-poly': 'Polygonal Vitrification',
+            'legend-precession': 'Precession & Subterranean Cities',
+            'nav-ctrl': 'Navigation Controls:',
+            'ctrl-drag': 'Click & Drag:',
+            'ctrl-drag-desc': 'Rotate sphere',
+            'ctrl-zoom': 'Mouse Wheel / Touch:',
+            'ctrl-zoom-desc': 'Zoom in / out',
+            'ctrl-click': 'Node Marker:',
+            'ctrl-click-desc': 'Open research dossier',
+            'pop-eng-title': 'Builder Engineering & Physics:',
+            'pop-meta-title': 'Impact on Consciousness & Metaphysics (Frequencies & Telepathy):',
+            'footer-txt': '© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.'
+        }
+    };
+
+    // Automātiska lapas sagatavošana EN valodā ielādes brīdī
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById('lang-indicator').innerText = currentLang === 'EN' ? 'LV' : 'EN';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+    });
+
+    document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+        currentLang = currentLang === 'LV' ? 'EN' : 'LV';
+        document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang][key]) {
+                el.innerHTML = translations[currentLang][key];
+            }
+        });
+
+        if (currentSelectedSite) {
+            updateMegalithPopup(currentSelectedSite);
+        }
+    });
+
+    function updateMegalithPopup(site) {
+        document.getElementById('popup-title').innerText = site.name[currentLang];
+        document.getElementById('popup-coords').innerText = site.coords;
+        const imgEl = document.getElementById('popup-img');
+        imgEl.setAttribute('src', site.image);
+        document.getElementById('popup-engineering').innerText = site.engineering[currentLang];
+        document.getElementById('popup-metaphysics').innerText = site.metaphysics[currentLang];
+    }
+
+    // ANIMĒTO VIĻŅU / FREKVENČU CANVAS SKRIPTS
+    window.addEventListener('DOMContentLoaded', () => {
+        const waveCanvas = document.getElementById('frequency-wave-canvas');
+        if (waveCanvas) {
+            const wCtx = waveCanvas.getContext('2d');
+            function resizeWave() {
+                waveCanvas.width = waveCanvas.parentElement.clientWidth;
+                waveCanvas.height = waveCanvas.parentElement.clientHeight;
+            }
+            resizeWave();
+            window.addEventListener('resize', resizeWave);
+
+            let waveStep = 0;
+            function animateWaves() {
+                wCtx.fillStyle = 'rgba(2, 6, 23, 0.3)';
+                wCtx.fillRect(0, 0, waveCanvas.width, waveCanvas.height);
+
+                const w = waveCanvas.width;
+                const h = waveCanvas.height;
+                const cy = h / 2;
+
+                wCtx.strokeStyle = 'rgba(245, 158, 11, 0.85)';
+                wCtx.lineWidth = 2.5;
+                wCtx.beginPath();
+                for (let x = 0; x < w; x++) {
+                    let y = cy + Math.sin(x * 0.015 + waveStep) * 22;
+                    if (x === 0) wCtx.moveTo(x, y);
+                    else wCtx.lineTo(x, y);
+                }
+                wCtx.stroke();
+
+                wCtx.strokeStyle = 'rgba(34, 211, 238, 0.75)';
+                wCtx.lineWidth = 1.5;
+                wCtx.beginPath();
+                for (let x = 0; x < w; x++) {
+                    let y = cy + Math.sin(x * 0.08 - waveStep * 1.5) * 12;
+                    if (x === 0) wCtx.moveTo(x, y);
+                    else wCtx.lineTo(x, y);
+                }
+                wCtx.stroke();
+
+                waveStep += 0.04;
+                requestAnimationFrame(animateWaves);
+            }
+            animateWaves();
+        }
+    });
+
+    // 3D Globe Script
+    let globeLines = [];
+    window.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('globe-container');
+        if (!container || typeof THREE === 'undefined') return;
+
+        const width = container.clientWidth || 800;
+        const height = container.clientHeight || 540;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        camera.position.z = 210;
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        const globeGroup = new THREE.Group();
+        globeGroup.rotation.y = 0.6;
+        scene.add(globeGroup);
+
+        const textureLoader = new THREE.TextureLoader();
+        const earthTexture = textureLoader.load('https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg', () => {
+            renderer.render(scene, camera);
+        });
+
+        const sphereGeo = new THREE.SphereGeometry(75, 48, 48);
+        const sphereMat = new THREE.MeshBasicMaterial({ map: earthTexture, color: 0xffffff });
+        globeGroup.add(new THREE.Mesh(sphereGeo, sphereMat));
+
+        function latLngToVec(lat, lng, radius) {
+            const phi = (90 - lat) * (Math.PI / 180);
+            const theta = (lng + 180) * (Math.PI / 180);
+            return new THREE.Vector3(
+                -(radius * Math.sin(phi) * Math.cos(theta)),
+                radius * Math.cos(phi),
+                radius * Math.sin(phi) * Math.sin(theta)
+            );
+        }
+
+        const clickableDots = [];
+        const siteVectors = [];
+
+        megalithsData.forEach(site => {
+            const pos = latLngToVec(site.lat, site.lng, 75.6);
+            siteVectors.push(pos);
+
+            const dot = new THREE.Mesh(
+                new THREE.SphereGeometry(1.8, 16, 16),
+                new THREE.MeshBasicMaterial({ color: site.color })
+            );
+            dot.position.copy(pos);
+            dot.userData = site;
+            globeGroup.add(dot);
+            clickableDots.push(dot);
+
+            const line = new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints([pos, latLngToVec(site.lat, site.lng, 84)]),
+                new THREE.LineBasicMaterial({ color: site.color, transparent: true, opacity: 0.85 })
+            );
+            globeGroup.add(line);
+        });
+
+        for (let i = 0; i < siteVectors.length; i++) {
+            for (let j = i + 1; j < siteVectors.length; j++) {
+                const dist = siteVectors[i].distanceTo(siteVectors[j]);
+                if (dist < 90) {
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints([siteVectors[i], siteVectors[j]]);
+                    const lineMat = new THREE.LineBasicMaterial({ color: 0xfbbf24, transparent: true, opacity: 0.35 });
+                    const lMesh = new THREE.Line(lineGeo, lineMat);
+                    globeGroup.add(lMesh);
+                    globeLines.push(lMesh);
+                }
+            }
+        }
+
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        
+        let isInteracting = false;
+        let hasMoved = false;
+        let prevPos = { x: 0, y: 0 };
+
+        function onStart(x, y) { isInteracting = true; hasMoved = false; prevPos = { x, y }; }
+        function onMove(x, y) {
+            if (!isInteracting) return;
+            const deltaX = x - prevPos.x;
+            const deltaY = y - prevPos.y;
+            if (Math.abs(deltaX) > 2 || Math.abs(deltaY) > 2) {
+                hasMoved = true;
+                globeGroup.rotation.y += deltaX * 0.005;
+                globeGroup.rotation.x += deltaY * 0.005;
+                renderer.render(scene, camera);
+            }
+            prevPos = { x, y };
+        }
+        function onEnd() { isInteracting = false; }
+
+        container.addEventListener('mousedown', (e) => onStart(e.clientX, e.clientY));
+        window.addEventListener('mouseup', onEnd);
+        container.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                onStart(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+        window.addEventListener('touchend', onEnd);
+        container.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                onMove(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        container.addEventListener('click', (e) => {
+            if (hasMoved) return;
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(clickableDots);
+
+            if (intersects.length > 0) {
+                currentSelectedSite = intersects[0].object.userData;
+                updateMegalithPopup(currentSelectedSite);
+                document.getElementById('megalith-popup').classList.remove('hidden');
+            }
+        });
+
+        let pulseFrame = 0;
+        function renderLoop() {
+            requestAnimationFrame(renderLoop);
+            pulseFrame += 0.04;
+            const pulseOpacity = 0.25 + Math.sin(pulseFrame) * 0.2;
+            globeLines.forEach(l => { if (l.material) l.material.opacity = pulseOpacity; });
+            renderer.render(scene, camera);
+        }
+        renderLoop();
+    });
+    </script>
+</body>
+</html>

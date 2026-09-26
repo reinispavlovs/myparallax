@@ -1,0 +1,44 @@
+=== TERM: 'not accepted by mainstream' | Occurrence #1 | Pos: 111009 ===
+vietā, tā varētu kļūt pieejama visai sugai. Senās akustiskās kameras kalpoja kā izolēti uztvērēji.",
+                EN: "Rupert Sheldrake's fringe morphogenetic field hypothesis (not accepted by mainstream science) proposes non-local information transfer across species without physical contact. Resonant stone chambers served as biological quantum receivers."
+            },
+            desc2: {
+                LV: "Pie 0 E
+
+=== TERM: 'fringe hypothesis' | Occurrence #1 | Pos: 74528 ===
+ synchronization pillars.',
+            'b1-head': '1. Earth’s Natural "Satellite Network"',
+            'b1-sub': 'Telluric Lines & Schumann Resonance',
+            'b1-body': 'A fringe hypothesis proposes megaliths were positioned at geomagnetic nodes, theorizing that quartz’s piezoelectric properties in granite could have facilitated signal transmission through Earth’s crust rather than air. Note: the widely ci
+
+=== TERM: 'fringe hypothesis' | Occurrence #2 | Pos: 75057 ===
+ed 110 Hz phenomenon.',
+            'b2-head': '2. Morphogenetic Field & Telepathy',
+            'b2-sub': 'Quantum Information Access',
+            'b2-body': 'Proponents of this fringe hypothesis claim that in acoustic resonance chambers, operators may have reached theta/gamma brain states (compared by some to 0 EEG flatline in clinical NDE), speculatively accessing a proposed species morphogenetic field to tran
+
+=== TERM: 'fringe hypothesis' | Occurrence #3 | Pos: 109615 ===
+kmens telpās varētu ierosināt pjezoelektrisko efektu kvarca kristālos; apgalvotā akustiskā levitācija un virsmas vitrifikācija arheoloģiski nav pierādīta.",
+                EN: "A fringe hypothesis proposes that 110–111 Hz standing waves in granite and limestone could evoke piezoelectric reactions in quartz crystals; the claimed acoustic levitation and surface vitrification via cymatic frequency matching remain ar
+
+=== TERM: 'unverified hypothesis' | Occurrence #1 | Pos: 87247 ===
+pieņem, ka 110 Hz frekvence varētu ietekmēt teta smadzeņu viļņus labajā puslodē un ārpusķermeņa uztveri (OBE); šis mehānisms zinātniski nav apstiprināts.",
+                EN: "An unverified hypothesis suggests 110 Hz acoustic frequency may dampen left-hemisphere dominance and induce theta wave brain states associated with OBEs; this causal mechanism has not been scientifically confirmed."
+            }
+        },
+   
+
+=== TERM: 'unverified hypothesis' | Occurrence #2 | Pos: 91886 ===
+rcs andesītā varētu radīt elektromagnētiskā lauka anomālijas, kas teorētiski stimulētu epifīzi un telpas uztveri; šis mehānisms nav zinātniski pierādīts.",
+                EN: "An unverified hypothesis suggests that piezoelectric quartz in andesite could create electromagnetic field anomalies theorized to stimulate the pineal gland and spatial perception; this mechanism remains scientifically unproven."
+            }
+
+
+=== TERM: 'unverified hypothesis' | Occurrence #3 | Pos: 98831 ===
+ze.",
+                EN: "Measured 110–121 Hz standing wave acoustic resonance in Giza King's Chamber, Malta Hypogeum, and Barabar caves; piezoelectric quartz mechanics remain an unverified hypothesis."
+            },
+            missing: {
+                LV: "1. Augstas izšķirtspējas akustiskie osciloskopa ieraksti no Tiwanaku (Bolīvija) un Angkor Wat.<br>2. Granīta iekšējo dobumu 3D fotogrammetrija un pjezoelektri
+
+=== TOTAL SCAN COMPLETE ===

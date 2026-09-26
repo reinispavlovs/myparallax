@@ -1,0 +1,82 @@
+<div style="border:2px solid #8a1c1c;background:#fff4e5;color:#1a1a1a;padding:1em;margin:0 0 1.25em 0;" role="note">
+<p><strong>AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</strong></p>
+</div>
+<article>
+<header>
+<h1>Project Parallax — Research Draft</h1>
+<p>Megalithic Acoustics, Granite Impedance &amp; Structural Resonance</p>
+<p>Status: internal draft compiled only from the supplied dataset. Numerical rows below are tagged <code>illustrative_model</code> and are not presented as field measurements or as evidence of archaeological intent.</p>
+</header>
+<section>
+<h2>Attribution and limits</h2>
+<p>An arXiv-indexed excerpt in the dataset (<code>arxiv_source_found</code>: true) discusses extraordinary acoustic transmission and effective-impedance boundary response. That excerpt is literature-sourced wording, not a site report on megaliths. The quantitative rows in this draft are labelled <code>illustrative_model</code>. No granite elastic moduli, densities, chamber dimensions, or piezoelectric terms are present in the dataset; a piezoelectric-charge calculation is explicitly recorded as unfounded and removed.</p>
+<p>This draft does not treat air-borne sound at a stone face as a demonstrated coupling path into megalithic mass. The supplied skeptic note states that a near-total energy-reflection figure is standard impedance physics, not archaeological evidence of design intent.</p>
+</section>
+<section>
+<h2>Literature-sourced excerpt (acoustic transmission / impedance)</h2>
+<p>The supplied arXiv context reports that extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. The same excerpt reports that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance, and that a reduced analytical model together with numerical calculations is used to argue that appropriate impedance tuning leads to enhanced transmission. The supplied text is truncated in the dataset after “leads to eff”; no completion of that sentence is added here.</p>
+<p>That literature context concerns impedance-tuned apertures. It is not, on the material given, a claim about granite megaliths, ritual use, or structural resonance of standing monuments.</p>
+</section>
+<section>
+<h2>Illustrative model outputs and dataset fields</h2>
+<p>The model note in the dataset identifies the reflection term as the standard acoustic intensity-reflection expression <code>(Z1−Z2)²/(Z1+Z2)²</code>. At the listed frequency, the model output is tagged <code>HIGH_REFLECTION_BARRIER</code>. These figures are consistent with a large impedance mismatch in that formula; they are not reported here as measured megalithic acoustics.</p>
+<table>
+<caption>Raw input metrics from the supplied dataset, with data type and the skeptic critique</caption>
+<thead>
+<tr>
+<th scope="col">Field</th>
+<th scope="col">Value (as supplied)</th>
+<th scope="col">data_type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>frequency_hz</td>
+<td>115.0</td>
+<td>illustrative_model</td>
+</tr>
+<tr>
+<td>acoustic_pressure_pa</td>
+<td>28.98879093718812</td>
+<td>illustrative_model</td>
+</tr>
+<tr>
+<td>energy_reflection_pct</td>
+<td>99.98755114530057</td>
+<td>illustrative_model</td>
+</tr>
+<tr>
+<td>boundary_status</td>
+<td>HIGH_REFLECTION_BARRIER</td>
+<td>illustrative_model</td>
+</tr>
+<tr>
+<td>model_note</td>
+<td>Standarta akustiskās impedances vienādojums (Z1-Z2)^2/(Z1+Z2)^2. NAV iekļauts izgudrots pjezoelektriskā lādiņa aprēķins — tas tika identificēts kā nepamatots un noņemts.</td>
+<td>illustrative_model</td>
+</tr>
+<tr>
+<td>arxiv_context</td>
+<td>Extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. In this work, we show that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance. Using a reduced analytical model together with numerical calculations, we demonstrate that appropriate impedance tuning leads to eff</td>
+<td>literature-sourced</td>
+</tr>
+<tr>
+<td>arxiv_source_found</td>
+<td>true</td>
+<td>literature-sourced</td>
+</tr>
+<tr>
+<td>skeptic_critique</td>
+<td>Failsafe check: 99.99% akustiskās energijas atstarošanās aprēķins ir standarta impedances fizika, NE arheoloģisks pierādījums par nodomu. Gaisa akustiskie viļņi vien nevar pārvarēt akmens masu bez papildu savienojuma mehānisma (seismiska sprieguma vai slēgtas Helmholtz ģeometrijas).</td>
+<td>critique (dataset field; not a measurement)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section>
+<h2>Working reading for Project Parallax (non-final)</h2>
+<p>The illustrative model’s energy-reflection percentage (~99.9876% at 115.0 Hz) is consistent with a high-reflection boundary under the standard two-media impedance formula named in <code>model_note</code>. The associated pressure value is 28.98879093718812 Pa. Those outputs suggest a barrier-like air–stone mismatch in the model, not a transmission channel through granite.</p>
+<p>The literature excerpt is consistent with a different geometry: impedance-tuned subwavelength slits and extraordinary acoustic transmission in engineered apertures. Mapping that mechanism onto megalithic joints or chambers would require coupling data that are not in this dataset (for example closed Helmholtz-type geometry or a mechanical/seismic path). The skeptic critique states that air acoustic waves alone are not a sufficient coupling mechanism across stone mass.</p>
+<p>Pending human fact-check: do not cite this fragment as confirmation of intentional megalithic acoustic design, granite “resonance engineering,” or piezoelectric charge in stone. Those extensions are outside the supplied numbers and are flagged in-dataset as unsupported where they were previously invented.</p>
+</section>
+</article>

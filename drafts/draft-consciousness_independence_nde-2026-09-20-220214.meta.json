@@ -1,0 +1,42 @@
+{
+  "topic_id": "consciousness_independence_nde",
+  "topic_name": "Independence of Consciousness: Non-Local Mind Models & Reported Perceptual Anomalies",
+  "generated_at": "2026-09-20T22:02:14.586399",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Disorders of consciousness are a heterogeneous mixture of different diseases or injuries. Although some indicators and models have been proposed for prognostication, any single method when used alone carries a high risk of false prediction. This study aimed to develop a multidomain prognostic model that combines resting state functional MRI with three clinical characteristics to predict one year o",
+  "data_type": "illustrative_model",
+  "skeptic_critique": "Methodological check: Subjektīvo ziņojumu patiesuma (veridicality) apstiprināšanai nepieciešams konkrēts, citējams pētījums ar metodoloģiju. Bez tā NEVIENS skaitlis vai apgalvojums NAV publicējams kā fakts.",
+  "content_file": "draft-consciousness_independence_nde-2026-09-20-220214.html",
+  "content_hash": "4d3cece854f4",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div role=\"alert\"><strong>AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</strong></div>\n<article>\n<header>\n<h1>Research draft: Independence of consciousness — non-local mind models and reported perceptual anomalies</h1>\n<p>Project Parallax. Status: illustrative working notes only. This fragment uses solely the supplied dataset and does not treat any claim as established fact.</p>\n</header>\n<section>\n<h2>Scope and source limits</h2>\n<p>The supplied record sets <code>arxiv_source_found</code> to true and provides a truncated excerpt on disorders of consciousness and prognostication. That excerpt is consistent with clinical heterogeneity and with the reported aim of combining resting-state functional MRI with three clinical characteristics to predict one-year outcome. It does not, on its face, address non-local mind models or the veridicality of anomalous perceptual reports. No additional figures, identifiers, or effect sizes are introduced here.</p>\n<p><code>boundary_status</code> is <strong>REQUIRES_HUMAN_SOURCED_CITATION</strong>. <code>perceptual_recall_score</code> is absent (<code>None</code>). A prior hardcoded metric (0.84) was removed because it lacked a citation; a human must attach a specific study and that study’s reported indicator before any publication use. Until then, no numerical claim about model performance or recall is stated as a finding.</p>\n</section>\n<section>\n<h2>What the supplied arXiv excerpt reports</h2>\n<p>The excerpt describes disorders of consciousness as a heterogeneous mixture of diseases or injuries. It states that indicators and models have been proposed for prognostication, and that any single method used alone carries a high risk of false prediction. The study’s stated aim is development of a multidomain prognostic model combining resting-state functional MRI with three clinical characteristics to predict one-year outcome (text truncated at “predict one year o”). These points are attributed to the excerpt only and are not extended to independence of consciousness or non-local mind.</p>\n</section>\n<section>\n<h2>Literature-flagged electrophysiology notes (not new measurements)</h2>\n<p>The dataset flags an isoelectric EEG duration literature range of 10–30 seconds and an auditory evoked potential status of typically absent per literature. Both are recorded below as supplied labels, not as independently verified measurements in this draft. They are not used here to argue for or against non-local mind.</p>\n</section>\n<section>\n<h2>Reported perceptual anomalies</h2>\n<p>No perceptual recall score is present in the dataset. Subjective-report veridicality is not treated as documented. The skeptic critique in the record states that confirmation of the truthfulness of subjective reports requires a specific, citable study with methodology, and that without it no number or assertion is publishable as fact. That constraint is applied in this draft: anomalous perception is named as a topic heading only, not as an evidenced result.</p>\n</section>\n<section>\n<h2>Raw input metrics</h2>\n<table>\n<caption>Dataset fields as supplied. <code>data_type</code> for the record is <code>illustrative_model</code>. Literature-range labels are not reclassified as primary data. No unpublished or invented values are added.</caption>\n<thead>\n<tr>\n<th scope=\"col\">Field</th>\n<th scope=\"col\">Raw value</th>\n<th scope=\"col\">data_type / sourcing note</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>arxiv_source_found</td>\n<td>True</td>\n<td>illustrative_model (source flag only; excerpt truncated)</td>\n</tr>\n<tr>\n<td>arxiv_context</td>\n<td>Disorders of consciousness are a heterogeneous mixture of different diseases or injuries. Although some indicators and models have been proposed for prognostication, any single method when used alone carries a high risk of false prediction. This study aimed to develop a multidomain prognostic model that combines resting state functional MRI with three clinical characteristics to predict one year o</td>\n<td>illustrative_model (truncated excerpt; not a complete citation)</td>\n</tr>\n<tr>\n<td>isoelectric_eeg_duration_sec_literature_range</td>\n<td>10-30</td>\n<td>literature-sourced range label in an illustrative_model record</td>\n</tr>\n<tr>\n<td>auditory_evoked_potential_status</td>\n<td>TYPICALLY_ABSENT_PER_LITERATURE</td>\n<td>literature-sourced status label in an illustrative_model record</td>\n</tr>\n<tr>\n<td>perceptual_recall_score</td>\n<td>None</td>\n<td>illustrative_model; no score supplied</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>REQUIRES_HUMAN_SOURCED_CITATION</td>\n<td>illustrative_model; publication hold</td>\n</tr>\n<tr>\n<td>model_note</td>\n<td>Iepriekšējā versijā šeit bija hardkodēts skaitlis (0.84) bez atsauces. Tas ir noņemts. Cilvēkam PIRMS publicēšanas jāpievieno konkrēts pētījums un tā ziņotais rādītājs.</td>\n<td>illustrative_model; prior uncited 0.84 removed; human must add a cited study metric before publication</td>\n</tr>\n<tr>\n<td>skeptic_critique</td>\n<td>Methodological check: Subjektīvo ziņojumu patiesuma (veridicality) apstiprināšanai nepieciešams konkrēts, citējams pētījums ar metodoloģiju. Bez tā NEVIENS skaitlis vai apgalvojums NAV publicējams kā fakts.</td>\n<td>methodological hold on the whole record: without a citable veridicality study, no number or claim is publishable as fact</td>\n</tr>\n</tbody>\n</table>\n</section>\n<section>\n<h2>Draft implications (non-publishable as findings)</h2>\n<p>Within this dataset, a clinical-prognosis excerpt, literature-range EEG/AEP labels, and an explicit citation gap coexist. That combination is consistent with treating non-local mind and perceptual-anomaly claims as untested relative to these inputs. It does not suggest a validated independence-of-consciousness model. Human review must supply citable methods for any veridicality claim and must not restore uncited scalars.</p>\n</section>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "literature_context_illustrative_model",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [
+    "unsourced_precise_decimal:0.84",
+    "unsourced_precise_decimal:0.84",
+    "unsourced_precise_decimal:0.84"
+  ],
+  "human_reviewed": true,
+  "review_status": "approved",
+  "reviewer": "Reinis",
+  "review_notes": "Skeptiķa \"no fact without citable study\" prasība pārspīlēta attiecībā uz agregētiem NDE datiem, taču šis konkrētais draft to pareizi respektē — nav neviena \"kaila\" skaitļa, hardkodētais 0.84 izņemts, boundary_status=REQUIRES_HUMAN_SOURCED_CITATION. Approved as conservative/hedged illustrative_model record. Language-mixing (LV metadata strings in EN narrative) needs template-level fix before public rendering — see action item.",
+  "credibility_score_C_i": 1.95,
+  "credibility_scored_at": "2026-09-22T09:17:29.333827Z",
+  "reviewed_at": "2026-09-21T08:43:29.601556+00:00",
+  "promoted": true,
+  "promoted_at": "2026-09-21T09:18:29.900250+00:00",
+  "risk_level": "MEDIUM"
+}

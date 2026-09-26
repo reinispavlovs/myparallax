@@ -1,0 +1,23 @@
+--- MATCH 1 at offset 74170 ---
+    'b1-head': '1. Earth’s Natural "Satellite Network"',
+            'b1-sub': 'Telluric Lines & Schumann Resonance',
+            'b1-body': 'Megaliths are anchored at geomagnetic nodes. Using quartz piezoelectric resonance in granite, signals were conducted through Earth’s crust rather than air at ~7.83–110 Hz.',
+            'b2-head': '2. Morphogenetic Field & Telepathy',
+            'b2-sub': 'Quantum Information Access',
+            'b2-body': 'Proponents of this fringe hypothesis claim that
+
+--- MATCH 2 at offset 98399 ---
+u spektrogrammas, 3D OBJ/PLY modeļi.",
+                EN: "1. High-resolution oscilloscope frequency recordings from Tiwanaku and Angkor.<br>2. 3D photogrammetry of subterranean granite chambers and piezoelectric field voltage measurements.<br>3. Target formats for AI ingestion: 24-bit/96kHz WAV, CSV frequency spectrograms, OBJ/PLY 3D point-clouds."
+            }
+        },
+        'gap-c': {
+            category: "Precession & Cyclical Timeline",
+            title: { LV: "Ciklu Hronoloģija & P
+
+--- MATCH 3 at offset 108573 ---
+ kristālos. Akustiskā levitācija un virsmas vitrifikācija tika panākta ar frekvenču harmonizāciju kimatiskajos mezglos.",
+                EN: "110–111 Hz standing waves in granite and limestone evoke piezoelectric reactions in quartz crystals. Acoustic levitation was achieved via frequency matching in cymatic standing nodes."
+            },
+            desc2: {
+                LV: "Zeme darbojās kā milzīgs viļņvads: signāli un spēks tika vadīti caur iežu slāni, izmantojot Zemes rezonansi (~7.83–

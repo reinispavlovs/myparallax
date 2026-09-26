@@ -1,0 +1,10 @@
+b1-body LV: expected=2 found=0 -> MISSING
+consciousnessData LV: expected=1 found=0 -> MISSING
+consciousnessData EN: expected=1 found=1 -> OK
+bridgeData.b1.desc2 LV: expected=1 found=0 -> MISSING
+bridgeData.b1.title LV: expected=1 found=1 -> OK
+bridgeData.b1.desc1 LV: expected=1 found=0 -> MISSING
+bridgeData.b1.desc1 EN: expected=1 found=1 -> OK
+
+Total replacements applied: 3/7
+index.html written. New length: 167769 (was 167619)

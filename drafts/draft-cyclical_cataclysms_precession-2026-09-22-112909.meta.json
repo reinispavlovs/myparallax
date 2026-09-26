@@ -1,0 +1,42 @@
+{
+  "topic_id": "cyclical_cataclysms_precession",
+  "topic_name": "Cyclical Catastrophism & Orbital Eccentricity",
+  "generated_at": "2026-09-22T11:29:09.853637",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Cosmogenic nuclide enhancement via deposition from long-period comets as a test of the Younger Dryas impact hypothesis We explore the idea that detectable excursions in 26Al may arise from direct deposition by any bolide, and excursions in 14C and 10Be abundances in the atmosphere may result from long-period comet impacts. This is very different from the usual processes of production by cosmic ray",
+  "data_type": "illustrative_model",
+  "skeptic_critique": "Cautionary check: The mathematical cyclical model is ILLUSTRATIVE, not a proven correlation mechanism. The sediment platinum peak (~12,800 BP) indicates an external impact event, which is a SEPARATE issue from the orbital mechanics cycle — the two must NOT be conflated into a single conclusion.",
+  "content_file": "draft-cyclical_cataclysms_precession-2026-09-22-112909.html",
+  "content_hash": "b527eff5f0cf",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div style=\"border:2px solid #000;padding:0.75em;margin-bottom:1em;font-weight:bold;\" role=\"status\">AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</div>\n<article>\n<header>\n<h1>Research Draft: Cyclical Catastrophism and Orbital Eccentricity</h1>\n<p>Project Parallax — research draft assembled only from the supplied dataset. This text is not a final publication. Numerical cycle values below are labeled in the dataset as an illustrative model and are not presented as geological measurements.</p>\n</header>\n<section>\n<h2>Reported literature context</h2>\n<p>A source record was found. The associated arXiv-context text reports an exploration of the idea that detectable excursions in <sup>26</sup>Al may arise from direct deposition by any bolide, and that excursions in <sup>14</sup>C and <sup>10</sup>Be abundances in the atmosphere may result from long-period comet impacts. The same text states that this proposed pathway is very different from the usual processes of production by cosmic rays, and it frames the discussion as a test of the Younger Dryas impact hypothesis. Those statements are attributed to the supplied source text and are not treated here as settled conclusions.</p>\n</section>\n<section>\n<h2>Illustrative cyclical model</h2>\n<p>The dataset includes a sinusoidal model marked for illustration only. It lists a cycle length of 25920 years, a Younger Dryas marker at 12800 years before present, an illustrative orbital-flux peak of 99.9995045403306, and a boundary status labeled CYCLE_SYNCHRONIZED. The model note states that the sinusoidal model is for illustration only and is not a geological measurement. No additional numbers are introduced in this draft.</p>\n<p>The supplied material does not establish a physical mechanism that would require treating orbital eccentricity, the listed cycle length, and impact-related deposits as a single process. The label CYCLE_SYNCHRONIZED is a model status in the dataset, not an independent field observation. Any apparent alignment with the Younger Dryas marker is therefore reported only as a property of the illustrative model.</p>\n</section>\n<section>\n<h2>Input metrics</h2>\n<figure>\n<figcaption>Raw input metrics from the supplied dataset, with data type and the skeptic critique.</figcaption>\n<table>\n<thead>\n<tr>\n<th scope=\"col\">Metric</th>\n<th scope=\"col\">Value</th>\n<th scope=\"col\">Data type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>arxiv_source_found</td>\n<td>True</td>\n<td>literature-sourced</td>\n</tr>\n<tr>\n<td>arxiv_context</td>\n<td>Cosmogenic nuclide enhancement via deposition from long-period comets as a test of the Younger Dryas impact hypothesis. The source text reports that detectable excursions in <sup>26</sup>Al may arise from direct deposition by any bolide, and that excursions in <sup>14</sup>C and <sup>10</sup>Be abundances in the atmosphere may result from long-period comet impacts, described as very different from the usual processes of production by cosmic rays.</td>\n<td>literature-sourced</td>\n</tr>\n<tr>\n<td>cycle_years</td>\n<td>25920</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>younger_dryas_marker_bp</td>\n<td>12800</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>orbital_flux_peak_illustrative</td>\n<td>99.9995045403306</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>CYCLE_SYNCHRONIZED</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>model_note</td>\n<td>Sinusoidal model for ILLUSTRATION ONLY — not a geological measurement.</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>dataset data_type</td>\n<td>illustrative_model</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>skeptic_critique</td>\n<td>Cautionary check: The mathematical cyclical model is ILLUSTRATIVE, not a proven correlation mechanism. The sediment platinum peak (~12,800 BP) indicates an external impact event, which is a SEPARATE issue from the orbital mechanics cycle — the two must NOT be conflated into a single conclusion.</td>\n<td>literature-sourced</td>\n</tr>\n</tbody>\n</table>\n</figure>\n</section>\n<section>\n<h2>Interpretive caution</h2>\n<p>The skeptic critique supplied with the dataset states that the mathematical cyclical model is illustrative, not a proven correlation mechanism. It further states that a sediment platinum peak around 12800 years before present indicates an external impact event, which is a separate issue from the orbital-mechanics cycle, and that the two must not be conflated into a single conclusion.</p>\n<p>This draft follows that separation. The cosmogenic-nuclide discussion is reported from the source text as a proposed test of the Younger Dryas impact hypothesis. The cycle length, flux peak, and CYCLE_SYNCHRONIZED status remain illustrative-model values. The dataset is consistent with keeping impact-deposit evidence and the sinusoidal cycle model in distinct columns of interpretation rather than merging them into one claim.</p>\n</section>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "literature_context_illustrative_model",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [
+    "forbidden_absolute_term:proven",
+    "unsourced_precise_decimal:99.9995045403306",
+    "unsourced_precise_decimal:99.9995045403306"
+  ],
+  "human_reviewed": true,
+  "review_status": "approved",
+  "reviewer": "Reinis",
+  "review_notes": "Approved. Draft correctly decouples the ~12,800 BP platinum/impact anomaly from the illustrative orbital-eccentricity model. Explicit hedging present (\"not a proven correlation mechanism\"); no unhedged \"proven/proves\" language found. arXiv source (cosmogenic nuclide test of Younger Dryas impact hypothesis) is topically relevant — confirms relevance filter fix. Known non-blocking flag: unsourced_precise_decimal on orbital_flux_peak_illustrative (99.9995...) — value is clearly labeled illustrative_model, tracked under backlog #61 (flag dedup/negation-awareness), not a content issue.",
+  "credibility_score_C_i": 1.95,
+  "credibility_scored_at": "2026-09-22T09:17:29.375025Z",
+  "reviewed_at": "2026-09-22T08:56:48.066029+00:00",
+  "promoted": true,
+  "promoted_at": "2026-09-22T09:06:45.190837+00:00",
+  "risk_level": "MEDIUM"
+}

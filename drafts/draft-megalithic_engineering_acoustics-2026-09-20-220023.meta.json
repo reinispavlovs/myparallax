@@ -1,0 +1,44 @@
+{
+  "topic_id": "megalithic_engineering_acoustics",
+  "topic_name": "Megalithic Acoustics, Granite Impedance & Structural Resonance",
+  "generated_at": "2026-09-20T22:00:23.228516",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. In this work, we show that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance. Using a reduced analytical model together with numerical calculations, we demonstrate that appropriate impedance tuning leads to eff",
+  "data_type": "illustrative_model",
+  "skeptic_critique": "Failsafe check: 99.99% akustiskās energijas atstarošanās aprēķins ir standarta impedances fizika, NE arheoloģisks pierādījums par nodomu. Gaisa akustiskie viļņi vien nevar pārvarēt akmens masu bez papildu savienojuma mehānisma (seismiska sprieguma vai slēgtas Helmholtz ģeometrijas).",
+  "content_file": "draft-megalithic_engineering_acoustics-2026-09-20-220023.html",
+  "content_hash": "c579132bea32",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div style=\"border:2px solid #8a1c1c;background:#fff4e5;color:#1a1a1a;padding:1em;margin:0 0 1.25em 0;\" role=\"note\">\n<p><strong>AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</strong></p>\n</div>\n<article>\n<header>\n<h1>Project Parallax — Research Draft</h1>\n<p>Megalithic Acoustics, Granite Impedance &amp; Structural Resonance</p>\n<p>Status: internal draft compiled only from the supplied dataset. Numerical rows below are tagged <code>illustrative_model</code> and are not presented as field measurements or as evidence of archaeological intent.</p>\n</header>\n<section>\n<h2>Attribution and limits</h2>\n<p>An arXiv-indexed excerpt in the dataset (<code>arxiv_source_found</code>: true) discusses extraordinary acoustic transmission and effective-impedance boundary response. That excerpt is literature-sourced wording, not a site report on megaliths. The quantitative rows in this draft are labelled <code>illustrative_model</code>. No granite elastic moduli, densities, chamber dimensions, or piezoelectric terms are present in the dataset; a piezoelectric-charge calculation is explicitly recorded as unfounded and removed.</p>\n<p>This draft does not treat air-borne sound at a stone face as a demonstrated coupling path into megalithic mass. The supplied skeptic note states that a near-total energy-reflection figure is standard impedance physics, not archaeological evidence of design intent.</p>\n</section>\n<section>\n<h2>Literature-sourced excerpt (acoustic transmission / impedance)</h2>\n<p>The supplied arXiv context reports that extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. The same excerpt reports that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance, and that a reduced analytical model together with numerical calculations is used to argue that appropriate impedance tuning leads to enhanced transmission. The supplied text is truncated in the dataset after “leads to eff”; no completion of that sentence is added here.</p>\n<p>That literature context concerns impedance-tuned apertures. It is not, on the material given, a claim about granite megaliths, ritual use, or structural resonance of standing monuments.</p>\n</section>\n<section>\n<h2>Illustrative model outputs and dataset fields</h2>\n<p>The model note in the dataset identifies the reflection term as the standard acoustic intensity-reflection expression <code>(Z1−Z2)²/(Z1+Z2)²</code>. At the listed frequency, the model output is tagged <code>HIGH_REFLECTION_BARRIER</code>. These figures are consistent with a large impedance mismatch in that formula; they are not reported here as measured megalithic acoustics.</p>\n<table>\n<caption>Raw input metrics from the supplied dataset, with data type and the skeptic critique</caption>\n<thead>\n<tr>\n<th scope=\"col\">Field</th>\n<th scope=\"col\">Value (as supplied)</th>\n<th scope=\"col\">data_type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>frequency_hz</td>\n<td>115.0</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>acoustic_pressure_pa</td>\n<td>28.98879093718812</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>energy_reflection_pct</td>\n<td>99.98755114530057</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>HIGH_REFLECTION_BARRIER</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>model_note</td>\n<td>Standarta akustiskās impedances vienādojums (Z1-Z2)^2/(Z1+Z2)^2. NAV iekļauts izgudrots pjezoelektriskā lādiņa aprēķins — tas tika identificēts kā nepamatots un noņemts.</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>arxiv_context</td>\n<td>Extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. In this work, we show that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance. Using a reduced analytical model together with numerical calculations, we demonstrate that appropriate impedance tuning leads to eff</td>\n<td>literature-sourced</td>\n</tr>\n<tr>\n<td>arxiv_source_found</td>\n<td>true</td>\n<td>literature-sourced</td>\n</tr>\n<tr>\n<td>skeptic_critique</td>\n<td>Failsafe check: 99.99% akustiskās energijas atstarošanās aprēķins ir standarta impedances fizika, NE arheoloģisks pierādījums par nodomu. Gaisa akustiskie viļņi vien nevar pārvarēt akmens masu bez papildu savienojuma mehānisma (seismiska sprieguma vai slēgtas Helmholtz ģeometrijas).</td>\n<td>critique (dataset field; not a measurement)</td>\n</tr>\n</tbody>\n</table>\n</section>\n<section>\n<h2>Working reading for Project Parallax (non-final)</h2>\n<p>The illustrative model’s energy-reflection percentage (~99.9876% at 115.0 Hz) is consistent with a high-reflection boundary under the standard two-media impedance formula named in <code>model_note</code>. The associated pressure value is 28.98879093718812 Pa. Those outputs suggest a barrier-like air–stone mismatch in the model, not a transmission channel through granite.</p>\n<p>The literature excerpt is consistent with a different geometry: impedance-tuned subwavelength slits and extraordinary acoustic transmission in engineered apertures. Mapping that mechanism onto megalithic joints or chambers would require coupling data that are not in this dataset (for example closed Helmholtz-type geometry or a mechanical/seismic path). The skeptic critique states that air acoustic waves alone are not a sufficient coupling mechanism across stone mass.</p>\n<p>Pending human fact-check: do not cite this fragment as confirmation of intentional megalithic acoustic design, granite “resonance engineering,” or piezoelectric charge in stone. Those extensions are outside the supplied numbers and are flagged in-dataset as unsupported where they were previously invented.</p>\n</section>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "literature_context_illustrative_model",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [
+    "unsourced_precise_decimal:28.98879093718812",
+    "unsourced_precise_decimal:99.98755114530057",
+    "unsourced_precise_decimal:99.99",
+    "unsourced_precise_decimal:99.9876",
+    "unsourced_precise_decimal:28.98879093718812"
+  ],
+  "human_reviewed": true,
+  "review_status": "approved",
+  "reviewer": "Reinis",
+  "review_notes": "APPROVED. Orbital/impact decoupling verified explicitly in narrative (\"keeps the illustrative sinusoidal cycle and the sediment platinum-peak question as separate items\"). Illustrative model correctly labeled as non-geological. Two non-blocking issues logged for pipeline fix: (1) arxiv_context is topically irrelevant (Mediterranean fire ecology paper, unrelated to precession/catastrophism) — inflates C_i via MULTIPLIER_ARXIV_SOURCE despite zero topical relevance; recommend Agent 1 relevance-check before setting arxiv_source_found=True. (2) model_note/skeptic_critique fields contain Latvian text embedded in English draft (localization leak, same as NDE draft) — flagged for template fix, not corrected here per hash-integrity policy.",
+  "credibility_score_C_i": 1.95,
+  "credibility_scored_at": "2026-09-22T09:17:29.386896Z",
+  "reviewed_at": "2026-09-21T09:00:21.271749+00:00",
+  "promoted": true,
+  "promoted_at": "2026-09-21T09:18:29.909492+00:00",
+  "risk_level": "MEDIUM"
+}

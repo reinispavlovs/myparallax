@@ -1,0 +1,244 @@
+﻿1: 
+2: ===== bridgeData b2 desc1/desc2 + b3 full (lines 1290-1345) =====
+3: 1290:             desc1: {
+4: 1291:                 LV: "Rūperta Šeldreika morfoģenētiskais lauks apliecina: kad prasme tiek apgūta vienā vietā, tā kļūst pieejama visai sugai. Senās akustiskās kameras kalpoja kā izolēti uztvērēji.",
+5: 1292:                 EN: "Rupert Sheldrake's morphogenetic field confirms non-local information transfer across species without physical contact. Resonant stone chambers served as biological quantum receivers."
+6: 1293:             },
+7: 1294:             desc2: {
+8: 1295:                 LV: "Pie 0 EEG (kā klīniskajā NP) apziņa atvienojas no 3D sensoriem filtriem un uztver kosmisko tīklu holistiski, ļaujot sazināties pāri okeāniem bez tehnoloģijām.",
+9: 1296:                 EN: "At zero EEG flatline states (identical to clinical NDE), human consciousness uncouples from biological filters to directly interface with non-local cosmic web data."
+10: 1297:             },
+11: 1298:             simType: 'light-tunnel'
+12: 1299:         },
+13: 1300:         b3: {
+14: 1301:             tag: "Antediluvian Keepers of Wisdom & Precession",
+15: 1302:             title: { LV: "Pirmskataklizmas Skolotāju Kasta & Precesijas Cikli", EN: "Antediluvian Masters & Precession Canons" },
+16: 1303:             desc1: {
+17: 1304:                 LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.",
+18: 1305:                 EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthood standardizing polygonal canons across continents."
+19: 1306:             },
+20: 1307:             desc2: {
+21: 1308:                 LV: "Megalīti tika radīti no neiznīcināma granīta kā ģeodēziskie marķieri, lai modinātu cilvēci pirms 25 920 gadu precesijas noslēguma.",
+22: 1309:                 EN: "Megaliths were constructed from indestructible granite and diorite along the planetary Great Circle to encode cyclical astronomies before future resets."
+23: 1310:             },
+24: 1311:             simType: 'precession-orbit'
+25: 1312:         }
+26: 1313:     };
+27: 1314: 
+28: 1315:     // CONSCIOUSNESS DEEP DOSSIERS
+29: 1316:     const consciousnessData = {
+30: 1317:         flatline: {
+31: 1318:             title: { LV: "Klīniskā Uztvere pie Plakanas EEG Līnijas (AWARE I/II)", EN: "Clinical Perception at Flatline EEG (AWARE I/II)" },
+32: 1319:             desc1: {
+33: 1320:                 LV: "Dr. Sam Parnia un Dr. Bruce Greyson pētījumi apliecina, ka vizuālā un audiālā uztvere sirds apstāšanās laikā notiek brīdī, kad smadzeņu stumbrā un garozā nav asinsrites un mērāmas elektriskās aktivitātes.",
+34: 1321:                 EN: "Dr. Sam Parnia and Dr. Bruce Greyson's multi-center studies demonstrate accurate auditory and visual recall during cardiac arrest when cerebral perfusion and brainwave activity have ceased."
+35: 1322:             },
+36: 1323:             desc2: {
+37: 1324:                 LV: "Tas apgāž mehānisko materiālismu: smadzenes nav apziņas ģenerators, bet gan kvantu uztvērējs un filtrs, kas sašaurina kosmiskā tīkla pieredzi 3D izdzīvošanai.",
+38: 1325:                 EN: "This refutes reductionist materialism: the biological brain acts as a quantum transducer and sensory filter rather than the creator of consciousness."
+39: 1326:             }
+40: 1327:         },
+41: 1328:         isomorphism: {
+42: 1329:             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" },
+43: 1330:             desc1: {
+44: 1331:                 LV: "Kvantitatīvā analīze starp cilvēka smadzenīšu neironu tīklu (10^11 neironi) un novērojamā visuma kosmisko tīklu (10^11 galaktikas) atklāja identisku spektrālo jaudas blīvumu.",
+45: 1332:                 EN: "Quantitative structural comparison between human cerebellar neuronal networks and the cosmic web of galaxies revealed identical spatial density across 27 orders of magnitude."
+46: 1333:             },
+47: 1334:             desc2: {
+48: 1335:                 LV: "Abas sistēmas attīstās pēc vienādiem pašorganizēšanās principiem, apstiprinot fraktālo hermētisko aksiomu: 'Kā augšā, tā apakšā'.",
+49: 1336:                 EN: "Both systems evolve under identical self-organizing network dynamics, proving scale invariance and Alan Watts' unified observer framework."
+50: 1337:             }
+51: 1338:         }
+52: 1339:     };
+53: 1340: // MOBILE MENU TOGGLE
+54: 1341:     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+55: 1342:     const mobileMenu = document.getElementById('mobile-menu');
+56: 1343: 
+57: 1344:     if (mobileMenuBtn && mobileMenu) {
+58: 1345:         mobileMenuBtn.addEventListener('click', () => {
+59: 
+60: ===== gapDetailsData FULL (lines 1149-1239) =====
+61: 1149:     const gapDetailsData = {
+62: 1150:         'gap-m': {
+63: 1151:             category: "Megalithic Acoustic Matrix",
+64: 1152:             title: { LV: "Megalītu Akustiskā Matrica & Frekvences", EN: "Megalithic Acoustic Matrix & Resonances" },
+65: 1153:             known: {
+66: 1154:                 LV: "Verificēta 110–121 Hz stāvviļņu rezonanse Gīzas Karaļa kamerā, Ħal Saflieni hipogejā un Barabar granīta alās. Pjezoelektriskais kvarca efekts granītā un andesītā.",
+67: 1155:                 EN: "Verified 110–121 Hz standing wave acoustic resonance in Giza King's Chamber, Malta Hypogeum, and Barabar caves. Piezoelectric quartz mechanics mapped."
+68: 1156:             },
+69: 1157:             missing: {
+70: 1158:                 LV: "1. Augstas izšķirtspējas akustiskie osciloskopa ieraksti no Tiwanaku (Bolīvija) un Angkor Wat.<br>2. Granīta iekšējo dobumu 3D fotogrammetrija un pjezoelektriskā lauka sprieguma mērījumi skaņas slodzē.<br>3. Failu formāti MI analīzei: WAV (24-bit/96kHz), CSV frekvenču spektrogrammas, 3D OBJ/PLY modeļi.",
+71: 1159:                 EN: "1. High-resolution oscilloscope frequency recordings from Tiwanaku and Angkor.<br>2. 3D photogrammetry of subterranean granite chambers and piezoelectric field voltage measurements.<br>3. Target formats for AI ingestion: 24-bit/96kHz WAV, CSV frequency spectrograms, OBJ/PLY 3D point-clouds."
+72: 1160:             }
+73: 1161:         },
+74: 1162:         'gap-c': {
+75: 1163:             category: "Precession & Cyclical Timeline",
+76: 1164:             title: { LV: "Ciklu Hronoloģija & Precesijas Dinamika", EN: "Precession & Cyclical Cataclysm Timeline" },
+77: 1165:             known: {
+78: 1166:                 LV: "Younger Dryas platīna/nanodimdiņu un melnā paklāja slānis (12.8k BP); Sahāras straujā pārtuksnešošanās (~6k BP); Bronzas laikmeta vienlaicīgais sabrukums (3.2k BP).",
+79: 1167:                 EN: "Younger Dryas platinum/nanodiamond boundary layer (12.8k BP); abrupt Sahara desertification (~6k BP); Late Bronze Age simultaneous collapse (3.2k BP)."
+80: 1168:             },
+81: 1169:             missing: {
+82: 1170:                 LV: "1. Dziļo okeāna un ledāju sedimentu dati par kataklizmām pirms pilnā 25 920 gadu cikla (25k–50k BP).<br>2. Ģeomagnētisko ekskursiju (Laschamp, Mono Lake) korelācija ar saules mikronovas radioizotopiem (Be-10, C-14).<br>3. Dati MI: Stratigrāfiskie CSV dati, radiometriskā oglekļa C-14 un urāna-torija tabulas.",
+83: 1171:                 EN: "1. Deep-sea and ice-core sediment layers preceding the 25.9k full cycle (25k–50k BP).<br>2. Correlation tables between geomagnetic excursions (Laschamp) and solar cosmogenic isotopes (Be-10, C-14).<br>3. Target formats: Stratigraphic CSV tables, radiometric isotope raw logs."
+84: 1172:             }
+85: 1173:         },
+86: 1174:         'gap-n': {
+87: 1175:             category: "Clinical NDE & Isoelectric Flatline",
+88: 1176:             title: { LV: "Klīniskās NP & Isoelektriskā EEG Uztvere", EN: "Clinical NDE & Flatline EEG Verification" },
+89: 1177:             known: {
+90: 1178:                 LV: "Verificēta vizuālā un audiālā uztvere sirds apstāšanās un plakanas EEG laikā (AWARE I/II pētījumi, Dr. Sam Parnia, Dr. Bruce Greyson).",
+91: 1179:                 EN: "Verified visual and auditory perception during cardiac arrest at isoelectric flatline EEG (AWARE I/II, Dr. Sam Parnia, Dr. Bruce Greyson 16-point scale)."
+92: 1180:             },
+93: 1181:             missing: {
+94: 1182:                 LV: "1. Vienlaicīga vairāku sensoru smadzeņu skenēšana (qEEG, fNIRS) ārpusķermeņa atdalīšanās brīdī reanimācijā.<br>2. Kvantitatīvi klīniskie dati par terminalo lucīdumu un pirmsnāves vīzijām (ELE) hospisa pacientiem.<br>3. Dati MI: EDF/EDF+ neirofizioloģiskie EEG ieraksti, klīniskās anamnēzes transkripti ar laika zīmogu korelāciju.",
+95: 1183:                 EN: "1. Multi-sensor synchronized neural imaging (qEEG, fNIRS) during verified out-of-body CPR phases.<br>2. Quantitative clinical logs on terminal lucidity and end-of-life visions (ELE).<br>3. Target formats: EDF/EDF+ EEG raw time-series, timestamped clinical resuscitation logs."
+96: 1184:             }
+97: 1185:         },
+98: 1186:         'gap-i': {
+99: 1187:             category: "Neural-Cosmic Isomorphism",
+100: 1188:             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti)", EN: "Neural-Cosmic Structural Isomorphism" },
+101: 1189:             known: {
+102: 1190:                 LV: "Kvantitatīvi identisks spektrālais jaudas blīvums un mezglu savienojamība (4.6–5.4) starp cilvēka smadzenītēm un galaktiku kosmisko tīklu $10^{27}$ mērogā.",
+103: 1191:                 EN: "Quantitatively identical spatial power spectral density and node degree (4.6–5.4) between human cerebellum and galaxy web across 27 orders of magnitude."
+104: 1192:             },
+105: 1193:             missing: {
+106: 1194:                 LV: "1. Matemātiskais vienādojums nelokālās kvantu informācijas pārnesei starp fraktālajiem mērogiem.<br>2. Grafu teorijas salīdzinošie modeļi par sinaptiskās plastiskuma un galaktiku gravitācijas klasterizācijas dinamiku.<br>3. Dati MI: HDF5 kosmoloģisko simulāciju faili (IllustrisTNG), neironu rekonstrukcijas SWC/H5 faili.",
+107: 1195:                 EN: "1. Unified mathematical framework for non-local information transfer across scale-invariant fractal networks.<br>2. Graph-theory topological comparison of synaptic plasticity vs galaxy clustering.<br>3. Target formats: HDF5 cosmological data (IllustrisTNG), SWC/H5 neuronal tracing trees."
+108: 1196:             }
+109: 1197:         }
+110: 1198:     };
+111: 1199: 
+112: 1200:     // CATACLYSMS DEEP DATA
+113: 1201:     const cataclysmsData = {
+114: 1202:         yd: {
+115: 1203:             epoch: "12,800 – 11,600 BP",
+116: 1204:             title: { LV: "Younger Dryas Komētas Trieciens & Plūdi", EN: "Younger Dryas Impact & Meltwater Pulse" },
+117: 1205:             trigger: {
+118: 1206:                 LV: "Komētas fragmentu trieciens Ziemeļamerikas ledājos (~12.8k BP) un saules mikro-uzliesmojums (~11.6k BP), kas izraisīja tūlītēju ledāju kušanu (Meltwater Pulse 1B) un okeāna celšanos par 120 m.",
+119: 1207:                 EN: "Fragmented comet bombardment across the Laurentide Ice Sheet (~12.8k BP) followed by a solar micro-nova spike (~11.6k BP), causing catastrophic glacial melting (Meltwater Pulse 1B) and sea level rises of up to 120 meters."
+120: 1208:             },
+121: 1209:             collapse: {
+122: 1210:                 LV: "Antediluviānās civilizācijas globālais sabrukums. Izdzīvojušie uzbūvēja un apzināti apraka Göbekli Tepe un Karahan Tepe kā astronomiskās atmiņas glabātavas.",
+123: 1211:                 EN: "Destruction of advanced antediluvian civil networks. Survivors constructed and intentionally buried complexes like Göbekli Tepe and Karahan Tepe as underground vaults encoding astronomical precession coordinates."
+124: 1212:             },
+125: 1213:             meta: {
+126: 1214:                 LV: "Cikliskās apziņas datu iekodēšana megalītiskajās rezonanses kamerās, kas spēj pārdzīvot ārkārtēju kinētisko un seismisko triecienu.",
+127: 1215:                 EN: "Preservation of cyclical consciousness data through megalithic acoustic resonance chambers designed to survive extreme kinetic and seismic shockwaves."
+128: 1216:             },
+129: 1217:             simType: 'comet-impact'
+130: 1218:         },
+131: 1219:         mid6k: {
+132: 1220:             epoch: "~6,000 – 5,500 BP",
+133: 1221:             title: { LV: "6,000 Gadu Cikls & Sahāras Pārtuksnešošanās", EN: "6,000-Year Mid-Cycle & Desertification" },
+134: 1222:             trigger: {
+135: 1223:                 LV: "Strauja Zemes ass nobīde un saules starojuma svārstības, kas dažu gadsimtu laikā zaļo, ezeriem bagāto Sahāru pārvērta par hiper-arīdu tuksnesi.",
+136: 1224:                 EN: "Rapid orbital tilt shift coupled with solar excursion, abruptly ending the African Humid Period and turning lush green savannas into the hyper-arid Sahara desert within centuries."
+137: 1225:             },
+138: 1226:             collapse: {
+139: 1227:                 LV: "Megalītisko zināšanu nesēju migrācija uz Nīlas un Divupes ielejām, ienesot jau pilnībā noformētu astronomiju, ģeometriju un akmens apstrādi.",
+140: 1228:                 EN: "Mass migration of megalithic priesthoods into the Nile River Valley and Mesopotamian basins, bringing fully formed high astronomy, geometry, and stone engineering."
+141: 1229:             },
+142: 1230:             meta: {
+143: 1231:                 LV: "Saules kalendāra sistēmu un zvaigžņu ciklu fiksācija, lai sekotu 6000 gadu sub-harmoniskajām kosmiskajām perturbācijām.",
+144: 1232:                 EN: "Construction of dynastic solar calendar systems to track recurring 6,000-year sub-harmonic cosmic disruptions."
+145: 1233:             },
+146: 1234:             simType: 'solar-sand'
+147: 1235:         },
+148: 1236:         bronze: {
+149: 1237:             epoch: "~3,200 BP (1200 BC)",
+150: 1238:             title: { LV: "Vēlā Bronzas Laikmeta Sabrukums", EN: "Late Bronze Age Collapse" },
+151: 1239:             trigger: {
+152: 
+153: ===== consciousnessData FULL (lines 1316-1406) =====
+154: 1316:     const consciousnessData = {
+155: 1317:         flatline: {
+156: 1318:             title: { LV: "Klīniskā Uztvere pie Plakanas EEG Līnijas (AWARE I/II)", EN: "Clinical Perception at Flatline EEG (AWARE I/II)" },
+157: 1319:             desc1: {
+158: 1320:                 LV: "Dr. Sam Parnia un Dr. Bruce Greyson pētījumi apliecina, ka vizuālā un audiālā uztvere sirds apstāšanās laikā notiek brīdī, kad smadzeņu stumbrā un garozā nav asinsrites un mērāmas elektriskās aktivitātes.",
+159: 1321:                 EN: "Dr. Sam Parnia and Dr. Bruce Greyson's multi-center studies demonstrate accurate auditory and visual recall during cardiac arrest when cerebral perfusion and brainwave activity have ceased."
+160: 1322:             },
+161: 1323:             desc2: {
+162: 1324:                 LV: "Tas apgāž mehānisko materiālismu: smadzenes nav apziņas ģenerators, bet gan kvantu uztvērējs un filtrs, kas sašaurina kosmiskā tīkla pieredzi 3D izdzīvošanai.",
+163: 1325:                 EN: "This refutes reductionist materialism: the biological brain acts as a quantum transducer and sensory filter rather than the creator of consciousness."
+164: 1326:             }
+165: 1327:         },
+166: 1328:         isomorphism: {
+167: 1329:             title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" },
+168: 1330:             desc1: {
+169: 1331:                 LV: "Kvantitatīvā analīze starp cilvēka smadzenīšu neironu tīklu (10^11 neironi) un novērojamā visuma kosmisko tīklu (10^11 galaktikas) atklāja identisku spektrālo jaudas blīvumu.",
+170: 1332:                 EN: "Quantitative structural comparison between human cerebellar neuronal networks and the cosmic web of galaxies revealed identical spatial density across 27 orders of magnitude."
+171: 1333:             },
+172: 1334:             desc2: {
+173: 1335:                 LV: "Abas sistēmas attīstās pēc vienādiem pašorganizēšanās principiem, apstiprinot fraktālo hermētisko aksiomu: 'Kā augšā, tā apakšā'.",
+174: 1336:                 EN: "Both systems evolve under identical self-organizing network dynamics, proving scale invariance and Alan Watts' unified observer framework."
+175: 1337:             }
+176: 1338:         }
+177: 1339:     };
+178: 1340: // MOBILE MENU TOGGLE
+179: 1341:     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+180: 1342:     const mobileMenu = document.getElementById('mobile-menu');
+181: 1343: 
+182: 1344:     if (mobileMenuBtn && mobileMenu) {
+183: 1345:         mobileMenuBtn.addEventListener('click', () => {
+184: 1346:             mobileMenu.classList.toggle('hidden');
+185: 1347:         });
+186: 1348: 
+187: 1349:         // Aizver izvēlni, kad uzklikšķina uz jebkuras saites tajā
+188: 1350:         mobileMenu.querySelectorAll('a').forEach(link => {
+189: 1351:             link.addEventListener('click', () => {
+190: 1352:                 mobileMenu.classList.add('hidden');
+191: 1353:             });
+192: 1354:         });
+193: 1355:     }
+194: 1356:     // LANGUAGE TOGGLE EVENT
+195: 1357:     document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+196: 1358:         currentLang = currentLang === 'LV' ? 'EN' : 'LV';
+197: 1359:         document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
+198: 1360:         
+199: 1361:         document.querySelectorAll('[data-i18n]').forEach(el => {
+200: 1362:             const key = el.getAttribute('data-i18n');
+201: 1363:             if (translations[currentLang][key]) {
+202: 1364:                 el.innerHTML = translations[currentLang][key];
+203: 1365:             }
+204: 1366:         });
+205: 1367: 
+206: 1368:         document.querySelectorAll('[data-i18n-html]').forEach(el => {
+207: 1369:             const key = el.getAttribute('data-i18n-html');
+208: 1370:             if (translations[currentLang][key]) {
+209: 1371:                 el.innerHTML = translations[currentLang][key];
+210: 1372:             }
+211: 1373:         });
+212: 1374: 
+213: 1375:         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+214: 1376:             const key = el.getAttribute('data-i18n-placeholder');
+215: 1377:             if (translations[currentLang][key]) {
+216: 1378:                 el.setAttribute('placeholder', translations[currentLang][key]);
+217: 1379:             }
+218: 1380:         });
+219: 1381: 
+220: 1382:         if (document.getElementById('gemini-welcome-msg')) {
+221: 1383:             document.getElementById('gemini-welcome-msg').innerText = translations[currentLang]['welcome-ai'];
+222: 1384:         }
+223: 1385:         if (document.getElementById('gemini-input')) {
+224: 1386:             document.getElementById('gemini-input').placeholder = translations[currentLang]['ai-placeholder'];
+225: 1387:         }
+226: 1388: 
+227: 1389:         if (currentSelectedSite) {
+228: 1390:             updateMegalithPopup(currentSelectedSite);
+229: 1391:         }
+230: 1392:     });
+231: 1393: 
+232: 1394:     function openModal(id) { document.getElementById(id)?.classList.remove('hidden'); }
+233: 1395:     function closeModal(id) { document.getElementById(id)?.classList.add('hidden'); }
+234: 1396: 
+235: 1397:     function openGapModal(gapKey) {
+236: 1398:         const data = gapDetailsData[gapKey];
+237: 1399:         if (!data) return;
+238: 1400: 
+239: 1401:         document.getElementById('gap-modal-category').innerText = data.category;
+240: 1402:         document.getElementById('gap-modal-title').innerText = data.title[currentLang];
+241: 1403:         document.getElementById('gap-modal-known').innerHTML = data.known[currentLang];
+242: 1404:         document.getElementById('gap-modal-missing').innerHTML = data.missing[currentLang];
+243: 1405: 
+244: 1406:         document.getElementById('gap-modal').classList.remove('hidden');

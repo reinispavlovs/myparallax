@@ -1,0 +1,76 @@
+=== ROUND 4B FULL CONTEXT ===
+
+
+--- gapDetailsData gap-i object (pos 102065) ---
+u un pirmsnāves vīzijām (ELE) hospisa pacientiem.<br>3. Dati MI: EDF/EDF+ neirofizioloģiskie EEG ieraksti, klīniskās anamnēzes transkripti ar laika zīmogu korelāciju.",
+                EN: "1. Multi-sensor synchronized neural imaging (qEEG, fNIRS) during verified out-of-body CPR phases.<br>2. Quantitative clinical logs on terminal lucidity and end-of-life visions (ELE).<br>3. Target formats: EDF/EDF+ EEG raw time-series, timestamped clinical resuscitation logs."
+            }
+        },
+        'gap-i': {
+            category: "Neural-Cosmic Isomorphism",
+            title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti)", EN: "Neural-Cosmic Structural Isomorphism" },
+            known: {
+                LV: "Kvantitatīvi identisks spektrālais jaudas blīvums un mezglu savienojamība (4.6–5.4) starp cilvēka smadzenītēm un galaktiku kosmisko tīklu $10^{27}$ mērogā.",
+                EN: "Quantitatively identical spatial power spectral density and node degree (4.6–5.4) between human cerebellum and galaxy web across 27 orders of magnitude."
+            },
+            missing: {
+                LV: "1. Matemātiskais vienādojums nelokālās kvantu informācijas pārnesei starp fraktāl
+
+--- gapDetailsData gap-i object (alt) ('gap-i: {') NOT FOUND ---
+
+--- isomorphism duplicate desc1 full (pos 113956) ---
+ sensory filter rather than the creator of consciousness."
+            }
+        },
+        isomorphism: {
+            title: { LV: "Neironu-Kosmiskais Izomorfisms (Vazza & Feletti 2020)", EN: "Neural-Cosmic Isomorphism (Vazza & Feletti 2020)" },
+            desc1: {
+                LV: "Kvantitatīvā analīze starp cilvēka smadzenīšu neironu tīklu (10^11 neironi) un novērojamā visuma kosmisko tīklu (10^11 galaktikas) atklāja identisku spektrālo jaudas blīvumu.",
+                EN: "Quantitative structural comparison between human cerebellar neuronal networks and the cosmic web of galaxies revealed identical spatial density across 27 orders of magnitude."
+            },
+            desc2: {
+                LV: "Abas sistēmas attīstās pēc vienādiem pašorganizēšanās principiem, apstiprinot fraktālo hermētisko aksiomu: 'Kā augšā, tā apakšā'.",
+                EN: "Both systems evolve under identical self-organizing network dynamics, proving scale invariance and Alan Watts' unified observer framework."
+            }
+        }
+    };
+// MOBILE MENU TOGGLE
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+
+
+--- b2 uncouples LV pair (pos 111245) ---
+upert Sheldrake's morphogenetic field confirms non-local information transfer across species without physical contact. Resonant stone chambers served as biological quantum receivers."
+            },
+            desc2: {
+                LV: "Pie 0 EEG (kā klīniskajā NP) apziņa atvienojas no 3D sensoriem filtriem un uztver kosmisko tīklu holistiski, ļaujot sazināties pāri okeāniem bez tehnoloģijām.",
+                EN: "At zero EEG flatline states (identical to clinical NDE), human consciousness uncouples from biological filters to directly interface with non-local cosmic web data."
+            },
+            simType: 'light-tunnel'
+        },
+        b3: {
+            tag: "Antediluvian Keepers of Wisdom & Precession",
+            title: { LV: "Pirmskataklizmas Skolotāju Kasta & Precesijas Cikli", EN: "Antediluvian Masters & Precession Canons" },
+            desc1: {
+                LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.",
+                EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthoo
+
+--- b3 desc2 full (pos 112129) ---
+            LV: "Edfu tempļa tekstos minētie 'Spīdošie', Virakoča un Tots bija izdzīvojušo inženieru kasta, kas ceļoja pa Zemi, standartizējot poligonālo arhitektūru un H-blokus.",
+                EN: "The antediluvian 'Shining Ones' (Edfu texts, Viracocha, Thoth) represented a mobile survivor engineering priesthood standardizing polygonal canons across continents."
+            },
+            desc2: {
+                LV: "Megalīti tika radīti no neiznīcināma granīta kā ģeodēziskie marķieri, lai modinātu cilvēci pirms 25 920 gadu precesijas noslēguma.",
+                EN: "Megaliths were constructed from indestructible granite and diorite along the planetary Great Circle to encode cyclical astronomies before future resets."
+            },
+            simType: 'precession-orbit'
+        }
+    };
+
+    // CONSCIOUSNESS DEEP DOSSIERS
+    const consciousnessData = {
+        flatline: {
+            title: { LV: "Klīniskā Uztvere pie Plakanas EEG Līnijas (AWARE I/II)", EN: "Clinical Perception at Flatline EEG (AWARE I/II)" },
+            desc1: {
+                LV: "Dr. Sam Parnia un Dr. Bruce Greyson pētījumi apliecina, ka vizuālā un audiālā uztvere sirds apstāšanās laikā notiek brīdī, 

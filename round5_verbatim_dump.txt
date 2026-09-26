@@ -1,0 +1,96 @@
+=== ROUND 5 VERBATIM CONTEXT DUMP ===
+
+
+============================================================
+ANCHOR: 'Verified Perception'
+COUNT: 3
+============================================================
+
+--- Hit #1 at pos 12076 ---
+'emibold" data-i18n="p3-tags">Greyson Scale • Flatline EEG • Verified Perception</div>\n                </div>\n            </div>\n        </section>\n\n        <!-- CYCLES SECTION -->\n        <section id="cycles" class="max-w-6xl mx-auto px-6 py-16 border-t border-slate-800/80">\n   '
+
+--- Hit #2 at pos 70069 ---
+"ro',\n            'p3-tags': 'Greyson Scale • Flatline EEG • Verified Perception',\n            'pillar-01-tag': 'Pillar 01',\n            'pillar-02-tag': 'Pillar 02',\n            'pillar-03-tag': 'Pillar 03',\n            'cat-phys-title': 'FIZIKĀLAIS & ĢEOLOĢISKAIS CĒLONIS:',\n   "
+
+--- Hit #3 at pos 82567 ---
+"ro',\n            'p3-tags': 'Greyson Scale • Flatline EEG • Verified Perception',\n            'cons-sec1': 'CLINICAL DATABASE & EEG METRICS:',\n            'cons-sec2': 'FRACTAL COSMIC CONNECTION:',\n            'modal-net-both': 'Synthesis',\n            'modal-net-brain': 'Brain'"
+
+============================================================
+ANCHOR: 'Verified perception during cardiac arrest'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 84758 ---
+"st': '<li>• <strong>Dr. Sam Parnia (AWARE I & II):</strong> Verified perception during cardiac arrest.</li><li>• <strong>Dr. Bruce Greyson:</strong> 16-point quantitative Greyson scale.</li><li>• <strong>Dr. Jeffrey Long:</strong> 9 empirical evidences excluding hallucinations.</li>',\n            'u3"
+
+============================================================
+ANCHOR: 'Verified visual and auditory perception during cardiac arrest'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 101188 ---
+' Dr. Sam Parnia, Dr. Bruce Greyson).",\n                EN: "Verified visual and auditory perception during cardiac arrest at isoelectric flatline EEG (AWARE I/II, Dr. Sam Parnia, Dr. Bruce Greyson 16-point scale)."\n            },\n            missing: {\n                LV: "1. Vienlaicīga vairāku sensoru smadzeņu skenēša'
+
+============================================================
+ANCHOR: 'verified out-of-body resuscitation phases'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 81029 ---
+"ta:</strong> Multi-sensor synchronized brain mapping during verified out-of-body resuscitation phases.',\n            'gap-i-title': 'Neural-Cosmic Isomorphism',\n            'gap-i-desc': '<strong>Missing Data:</strong> Mathematical mechanism of non-local quantum information transfer across 10²⁷ scale"
+
+============================================================
+ANCHOR: 'verified out-of-body CPR phases'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 101820 ---
+'lti-sensor synchronized neural imaging (qEEG, fNIRS) during verified out-of-body CPR phases.<br>2. Quantitative clinical logs on terminal lucidity and end-of-life visions (ELE).<br>3. Target formats: EDF/EDF+ EEG raw time-series, timestamped clinical resuscitation logs."\n            }\n     '
+
+============================================================
+ANCHOR: 'verified out-of-body observations (OBE)'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 76355 ---
+"ss & NDE',\n            'p3-desc': 'Flatline EEG perception, verified out-of-body observations (OBE), and end-of-life experiences.',\n            'net-sub': 'Quantitative Isomorphism Blueprint',\n            'net-title': 'Interactive Neural & Cosmic Web Map',\n            'net-desc': 'Compare human bra"
+
+============================================================
+ANCHOR: 'build identically without orbital metal satellites'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 74265 ---
+'  \'bridge-desc\': \'How did the ancient world communicate and build identically without orbital metal satellites? Three synchronization pillars.\',\n            \'b1-head\': \'1. Earth’s Natural "Satellite Network"\',\n            \'b1-sub\': \'Telluric Lines & Schumann Resonance\',\n            \'b1-body\': \'A fringe hypoth'
+
+============================================================
+ANCHOR: 'evolve under identical self-organizing network dynamics'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 114838 ---
+'ulatīva un nepierādīta.",\n                EN: "Both systems evolve under identical self-organizing network dynamics, which some researchers interpret as suggestive of scale-invariant patterns – an intriguing but unproven and speculative parallel, not a demonstrated causal or ontological link."\n            }\n      '
+
+============================================================
+ANCHOR: 'apliecina, ka apziņa ir fundamentāla'
+COUNT: 2
+============================================================
+
+--- Hit #1 at pos 22664 ---
+'="c-desc">Sirds apstāšanās protokoli un kvantu neirozinātne apliecina, ka apziņa ir fundamentāla.</p>\n            </div>\n\n            <div class="grid md:grid-cols-2 gap-8">\n                <div onclick="openConsciousnessModal(\'flatline\')" class="bg-slate-900/50 border border-slate-800 hover:bor'
+
+--- Hit #2 at pos 66158 ---
+"c-desc': 'Sirds apstāšanās protokoli un kvantu neirozinātne apliecina, ka apziņa ir fundamentāla.',\n            'c1-head': 'Klīniskā Uztvere pie Plakanas EEG Līnijas',\n            'c1-body': '10–20 sekundes pēc sirds apstāšanās smadzeņu garozas elektriskā aktivitāte izzūd. Neskatoties uz to, pac"
+
+============================================================
+ANCHOR: 'apliecina iešējās kameras'
+COUNT: 0
+============================================================
+
+============================================================
+ANCHOR: 'pētījumi apliecina, ka vizuālā'
+COUNT: 1
+============================================================
+
+--- Hit #1 at pos 113027 ---
+' {\n                LV: "Dr. Sam Parnia un Dr. Bruce Greyson pētījumi apliecina, ka vizuālā un audiālā uztvere sirds apstāšanās laikā notiek brīdī, kad smadzeņu stumbrā un garozā nav asinsrites un mērāmas elektriskās aktivitātes.",\n                EN: "Dr. Sam Parnia and Dr. Bruce Greyson\'s'

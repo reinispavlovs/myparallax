@@ -1,0 +1,28 @@
+PATTERN='?' pos=421 count=1
+  context: ' href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&fami'
+PATTERN='?' pos=17786 count=2
+  context: 'tle">Kā Megalīti, Cikli un NP Savienojas?</h2>\n                <p class="text-sl'
+PATTERN='?' pos=17941 count=3
+  context: 'a identiski bez metāla satelītiem orbītā? Trīs sinhronizācijas pīlāri.</p>\n     '
+PATTERN='?' pos=59073 count=4
+  context: 'psakarības. Kā varu jums šodien palīdzēt?\n                </div>\n            </d'
+PATTERN='?' pos=61307 count=5
+  context: "e': 'Kā Megalīti, Cikli un NP Savienojas?',\n            'bridge-desc': 'Kā senā "
+TOTAL for '?': 25
+---
+TOTAL for '??': 0
+---
+PATTERN='?' pos=421 count=1
+  context: ' href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&fami'
+PATTERN='?' pos=17786 count=2
+  context: 'tle">Kā Megalīti, Cikli un NP Savienojas?</h2>\n                <p class="text-sl'
+PATTERN='?' pos=17941 count=3
+  context: 'a identiski bez metāla satelītiem orbītā? Trīs sinhronizācijas pīlāri.</p>\n     '
+PATTERN='?' pos=59073 count=4
+  context: 'psakarības. Kā varu jums šodien palīdzēt?\n                </div>\n            </d'
+PATTERN='?' pos=61307 count=5
+  context: "e': 'Kā Megalīti, Cikli un NP Savienojas?',\n            'bridge-desc': 'Kā senā "
+TOTAL for '?': 25
+---
+TOTAL for '�': 0
+---

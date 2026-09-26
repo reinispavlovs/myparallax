@@ -1,0 +1,485 @@
+import os
+import re
+import json
+import datetime
+import hashlib
+import time
+from pathlib import Path
+from urllib.parse import quote
+from dotenv import load_dotenv
+import requests
+import numpy as np
+
+from scripts.shared.claim_layers_utils import validate_content_flags
+
+# Ielādē vides mainīgos no .env faila
+load_dotenv(override=True)
+
+XAI_API_KEY = os.getenv("XAI_API_KEY")
+
+# --- Piespiedu tīrīšana (fix trailing whitespace/newline/quotes issues) ---
+if XAI_API_KEY:
+    XAI_API_KEY = XAI_API_KEY.strip().strip('"').strip("'")
+
+
+BASE_DIR = Path(__file__).resolve().parent  # vienmēr = Project Parallax/, neatkarīgi no cwd
+REPO_PATH = os.getenv("REPO_PATH", str(BASE_DIR))
+FAILED_LOG_PATH = Path(REPO_PATH) / "digests" / "failed_topics.json"
+DRAFTS_DIR = BASE_DIR / "drafts"
+
+# Project Parallax tēmas un meklēšanas vaicājumi arXiv datubāzei
+# PIEZĪME: nosaukumi un vaicājumi ir formulēti NEITRĀLI (nevis "verified", "confirmed"),
+# jo tas ir izejas punkts pētījumam, ne secinājums.
+TOPICS = [
+    {
+        "id": "megalithic_engineering_acoustics",
+        "name": "Megalithic Acoustics, Granite Impedance & Structural Resonance",
+        "arxiv_query": "acoustic impedance granite resonance",
+    },
+    {
+        "id": "cyclical_cataclysms_precession",
+        "name": "Cyclical Catastrophism & Orbital Eccentricity",
+        "arxiv_query": "Younger Dryas impact hypothesis climate cycle",
+    },
+    {
+        "id": "consciousness_independence_nde",
+        "name": "Independence of Consciousness: Non-Local Mind Models & Reported Perceptual Anomalies",
+        "arxiv_query": "quantum brain biology consciousness out-of-body experience clinical",
+    },
+    {
+        "id": "neural_cosmic_isomorphism",
+        "name": "Structural Isomorphism Between Neural Networks and the Cosmic Web",
+        "arxiv_query": "cosmic web neuronal network structural similarity",
+    },
+]
+
+
+def fetch_real_arxiv_summary(query: str) -> dict:
+    """Fetches a real recent paper summary from the open arXiv API.
+    Returns a dict with 'text' and 'found' (bool) so downstream code
+    never confuses fallback text with a real citation.
+
+    Relevance filter: arXiv's 'all:' search field ranks poorly on
+    multi-keyword queries, sometimes returning topically unrelated
+    papers (e.g. Mediterranean fire ecology for a precession query).
+    This function fetches up to 5 candidates and scores each by
+    keyword overlap between the query and the candidate's title+summary,
+    picking the best match. If no candidate clears the relevance
+    threshold, it returns found=False rather than a misleading source.
+    """
+    STOPWORDS = {"a", "an", "the", "of", "in", "on", "and", "or", "to",
+                 "for", "with", "at", "by"}
+
+    def _tokenize(s: str) -> set:
+        s = s.lower()
+        s = s.replace("out-of-body", " outofbodyanchor ")
+        s = s.replace("out of body", " outofbodyanchor ")
+        s = s.replace("near-death", " neardeathanchor ")
+        s = s.replace("near death", " neardeathanchor ")
+        s = re.sub(r"[^a-z0-9\s-]", " ", s)
+        s = s.replace("-", " ")
+        return {t for t in s.split() if t and t not in STOPWORDS}
+
+    query_tokens = _tokenize(query)
+    MIN_OVERLAP_COUNT = 2
+    MIN_OVERLAP_RATIO = 0.34
+
+    encoded_query = quote(query)
+    url = f"http://export.arxiv.org/api/query?search_query=all:{encoded_query}&start=0&max_results=5"
+    try:
+        r = requests.get(url, timeout=8)
+        if r.status_code == 200 and "<entry>" in r.text:
+            entries = r.text.split("<entry>")[1:]
+            best = None
+            best_overlap = 0
+            best_ratio = 0.0
+            for entry_block in entries:
+                title = ""
+                summary = ""
+                if "<title>" in entry_block:
+                    title = entry_block.split("<title>")[1].split("</title>")[0]
+                if "<summary>" in entry_block:
+                    summary = entry_block.split("<summary>")[1].split("</summary>")[0]
+                combined = re.sub(r"\s+", " ", f"{title} {summary}").strip()
+                if len(combined) <= 20:
+                    continue
+                candidate_tokens = _tokenize(combined)
+                overlap = query_tokens & candidate_tokens
+                overlap_count = len(overlap)
+                overlap_ratio = overlap_count / len(query_tokens) if query_tokens else 0.0
+                if overlap_count > best_overlap or (overlap_count == best_overlap and overlap_ratio > best_ratio):
+                    best = combined
+                    best_overlap = overlap_count
+                    best_ratio = overlap_ratio
+
+            if best is not None and best_overlap >= MIN_OVERLAP_COUNT and best_ratio >= MIN_OVERLAP_RATIO:
+                return {
+                    "text": best[:400],
+                    "found": True,
+                    "raw_query": query,
+                    "relevance_overlap_count": best_overlap,
+                    "relevance_overlap_ratio": round(best_ratio, 2),
+                }
+            else:
+                return {
+                    "text": None,
+                    "found": False,
+                    "raw_query": query,
+                    "note": (
+                        "NO_RELEVANT_SOURCE_FOUND \u2014 best candidate failed keyword relevance "
+                        f"threshold (overlap={best_overlap}, ratio={round(best_ratio, 2)}); a human "
+                        "must manually add a citation before publication."
+                    ),
+                }
+    except Exception as e:
+        print(f"[!] arXiv request failed: {e}")
+
+    return {
+        "text": None,
+        "found": False,
+        "raw_query": query,
+        "note": "NO_SOURCE_FOUND \u2014 a human must manually add a citation before publication.",
+    }
+
+def agent_1_multi_source_simulation(topic):
+    """1. Aģents: Apvieno reālus arXiv datus ar VIENKĀRŠOTU ILUSTRATĪVU modeli.
+    SVARĪGI: šie skaitļi NAV mērījumi — tie ir vienkāršots matemātiskais modelis
+    un jāatzīmē kā tādi metadatos ('data_type': 'illustrative_model')."""
+    print(f"[*] [Aģents 1] Iegūst datus no arXiv priekš: {topic['name']}...")
+    arxiv_result = fetch_real_arxiv_summary(topic["arxiv_query"])
+
+    base = {
+        "arxiv_context": arxiv_result["text"],
+        "arxiv_source_found": arxiv_result["found"],
+        "data_type": "illustrative_model",  # NEKAD nav "measured_data"
+    }
+
+    if topic["id"] == "megalithic_engineering_acoustics":
+        freq = 115.0
+        z_air = 1.225 * 343.0
+        z_granite = 2700.0 * 5000.0
+        reflection_coeff = ((z_granite - z_air) / (z_granite + z_air)) ** 2
+        delta_p = float(np.sqrt(2 * 1.225 * 343.0 * 1.0))
+
+        base.update({
+            "frequency_hz": freq,
+            "acoustic_pressure_pa": delta_p,
+            "energy_reflection_pct": float(reflection_coeff * 100),
+            "boundary_status": "HIGH_REFLECTION_BARRIER",
+            "model_note": "Standard acoustic impedance mismatch equation (Z1-Z2)^2/(Z1+Z2)^2. "
+                          "Does NOT include a fabricated piezoelectric charge calculation — it was "
+                          "identified as unsubstantiated and removed.",
+        })
+        return base
+
+    elif topic["id"] == "cyclical_cataclysms_precession":
+        years = np.linspace(0, 25920, 500)
+        flux_peak = float(np.max(np.sin(2 * np.pi * years / 25920) * 100))
+        base.update({
+            "cycle_years": 25920,
+            "younger_dryas_marker_bp": 12800,
+            "orbital_flux_peak_illustrative": flux_peak,
+            "boundary_status": "CYCLE_SYNCHRONIZED",
+            "model_note": "Sinusoidal model for ILLUSTRATION ONLY — not a geological measurement.",
+        })
+        return base
+
+    elif topic["id"] == "consciousness_independence_nde":
+        base.update({
+            "isoelectric_eeg_duration_sec_literature_range": "10-30",
+            "auditory_evoked_potential_status": "TYPICALLY_ABSENT_PER_LITERATURE",
+            "perceptual_recall_score": None,  # TODO(human): pievienot konkrētu pētījuma vērtību ar atsauci
+            "boundary_status": "REQUIRES_HUMAN_SOURCED_CITATION",
+            "model_note": "A previous version hardcoded a number (0.84) here without a citation. "
+                          "It has been removed. A human must add a specific "
+                          "study and its reported figure PRIOR to publication.",
+        })
+        return base
+
+    else:  # neural_cosmic_isomorphism
+        base.update({
+            "comparison_domains": ["neuronal_network_topology", "cosmic_web_filament_topology"],
+            "quantitative_similarity_score": None,  # TODO(human): pievienot konkrētu pētījuma vērtību ar atsauci
+            "boundary_status": "REQUIRES_HUMAN_SOURCED_CITATION",
+            "model_note": "Structural-similarity claims (e.g., Vazza & Feletti-type comparisons) "
+                          "require a specific, citable study with methodology — without it, no "
+                          "quantitative claim is publishable.",
+        })
+        return base
+
+
+def agent_2_skeptic_evaluator(sim_data, topic):
+    """2. Aģents (Skeptiķis): Iezīmē stingras materiālās un metodoloģiskās robežas."""
+    print("[*] [Aģents 2] Veic skeptisko recenziju...")
+
+    if topic["id"] == "megalithic_engineering_acoustics":
+        critique = (
+            f"Failsafe check: The {sim_data['energy_reflection_pct']:.2f}% acoustic energy reflection figure "
+            "is standard impedance physics, NOT archaeological proof of intent. "
+            "Airborne acoustic waves alone cannot overcome stone mass without an additional coupling mechanism "
+            "(seismic strain or a closed Helmholtz geometry)."
+        )
+    elif topic["id"] == "cyclical_cataclysms_precession":
+        critique = (
+            "Cautionary check: The mathematical cyclical model is ILLUSTRATIVE, not a proven correlation mechanism. "
+            "The sediment platinum peak (~12,800 BP) indicates an external impact event, which is a SEPARATE issue "
+            "from the orbital mechanics cycle — the two must NOT be conflated into a single conclusion."
+        )
+    elif topic["id"] == "consciousness_independence_nde":
+        critique = (
+            "Methodological check: Confirming the veridicality of subjective reports requires "
+            "a specific, citable study with methodology. Without it, NO figure or claim "
+            "is publishable as fact."
+        )
+    else:  # neural_cosmic_isomorphism
+        critique = (
+            "Methodological check: A visual or topological 'resemblance' between two networks (neural and cosmic "
+            "web) is NOT a causal link and must NOT be presented as a scientific 'isomorphism' without a specific "
+            "quantitative comparison study with a stated metric and citation."
+        )
+
+    sim_data["skeptic_critique"] = critique
+    return sim_data
+
+
+def agent_3_author_generator(topic, verified_data):
+    """3. Aģents (Autors): Ģenerē HTML DRAFTU (ne galīgo publikāciju).
+    Ietver retry loģiku ar exponential backoff xAI (grok-4.6) timeout/tīkla kļūdu gadījumā."""
+    print("[*] [Aģents 3] Ģenerē semantisko HTML draftu ar xAI (grok-4.6)...")
+    url = "https://api.x.ai/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {XAI_API_KEY}",
+    }
+
+    prompt = (
+        f"You are drafting a RESEARCH DRAFT (not a final publication) for Project Parallax on: {topic['name']}. "
+        f"Use ONLY this dataset — do not invent additional numbers: {verified_data}. "
+        "0. Write your ENTIRE response in English only, regardless of the language of any "
+        "notes, critiques, or source text provided above. Translate any non-English fragments "
+        "into English before including them in your output. "
+        "STRICT RULES:\n"
+        "1. If 'arxiv_source_found' is false, explicitly state 'No verified source found for this claim' — "
+        "do NOT present the topic as settled fact.\n"
+        "2. Avoid definitive verbs like 'proves', 'confirms', 'demonstrates conclusively'. Use "
+        "'suggests', 'is consistent with', 'the study reports' instead, and attribute claims to their source.\n"
+        "3. Include an HTML <table> showing the raw input metrics AND their 'data_type' "
+        "(illustrative_model vs literature-sourced), plus the skeptic critique.\n"
+        "4. Add a visible disclaimer <div> at the top stating: "
+        "'AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.'\n"
+        "OUTPUT ONLY clean, semantic HTML fragments without markdown code blocks or extra text."
+    )
+
+    payload = {
+        "model": "grok-4.6",
+        "messages": [
+            {"role": "system", "content": "You output only valid HTML fragments. You never state unverified claims as fact."},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.3,
+    }
+
+    max_retries = 3
+    base_delay = 10  # sekundes
+
+    for attempt in range(1, max_retries + 1):
+        response = None
+        try:
+            response = requests.post(url, headers=headers, json=payload, timeout=180)
+
+            if response.status_code != 200:
+                raise Exception(f"xAI API kļūda [{response.status_code}]: {response.text}")
+
+            return response.json()["choices"][0]["message"]["content"]
+
+        except requests.exceptions.ReadTimeout:
+            print(f"[WARN] [Aģents 3] xAI API timeout (mēģinājums {attempt}/{max_retries}) tēmai: {topic['name']}")
+
+        except requests.exceptions.RequestException as e:
+            print(f"[WARN] [Aģents 3] Tīkla kļūda (mēģinājums {attempt}/{max_retries}): {e}")
+
+        except Exception as e:
+            # Ja tā ir klienta kļūda (4xx), neatkārtojam bezjēdzīgi
+            if response is not None and 400 <= response.status_code < 500:
+                print(f"[ERROR] [Aģents 3] Klienta kļūda ({response.status_code}), pārtraucu retry: {e}")
+                raise
+            print(f"[WARN] [Aģents 3] Kļūda (mēģinājums {attempt}/{max_retries}): {e}")
+
+        if attempt < max_retries:
+            delay = base_delay * attempt  # 10s, 20s, 30s
+            print(f"[*] [Aģents 3] Atkārtoju pēc {delay}s...")
+            time.sleep(delay)
+        else:
+            print(f"[ERROR] [Aģents 3] Visi {max_retries} mēģinājumi neizdevās tēmai: {topic['name']}")
+            raise Exception(f"Agent 3 failed after {max_retries} attempts for topic '{topic['name']}'")
+
+
+def build_claim_layer(verified_data: dict, html_content: str, topic: dict) -> list[dict]:
+    """Konstruē claim_layers masīvu ŠIM draftam.
+
+    PIEZĪME: Agent 1/2 pašlaik ražo VIENU apgalvojumu/modeli per topic,
+    tāpēc šī funkcija atgriež viena-elementa sarakstu. Kad Agent 1 sāks
+    ražot vairākus atsevišķi verificējamus apgalvojumus, šī funkcija
+    jāpaplašina, lai atgrieztu vairākus layers (skat. action item #10).
+
+    Risk_level tiek noteikts NO REĀLIEM datiem (arxiv_source_found,
+    data_type) — NE no legacy fallback ar piespiedu MEDIUM."""
+
+    arxiv_found = verified_data.get("arxiv_source_found", False)
+
+    # Risks: bez arXiv avota -> HIGH (nesubstantēts inferential bridge).
+    # Ar arXiv avotu, bet illustrative_model (ne measured_data) -> MEDIUM.
+    # measured_data + arxiv_found šobrīd main.py nekad nenotiek, tāpēc
+    # LOW pašreiz nav sasniedzams ar šo pipeline versiju.
+    if not arxiv_found:
+        risk_level = "HIGH"
+        evidence_level = None
+    elif verified_data.get("data_type") == "illustrative_model":
+        risk_level = "MEDIUM"
+        evidence_level = "literature_context_illustrative_model"
+    else:
+        risk_level = "LOW"
+        evidence_level = "literature_sourced"
+
+    layer = {
+        "layer_type": "inferential_bridge",
+        "text": html_content,
+        "stance": "literature_consistent" if arxiv_found else "unresolved",
+        "confidence": None,  # TODO(human): formāla varbūtība, ja pieejama
+        "risk_level": risk_level,
+        "bridge_verified": False,  # inferential_bridge NEKAD nav auto-verificēts (blokē auto-merge)
+        "arxiv_source_found": arxiv_found,
+        "evidence_level": evidence_level,
+        "conflict_detected": False,  # cross-draft konfliktus nosaka digest_generator.py, ne šeit
+        "counts_toward_topic": arxiv_found,  # bez avota nedrīkst svērt Bayesian summu
+        "is_legacy_synthesized": False,
+    }
+
+    return [layer]
+
+
+def log_failed_topic(topic, error_message):
+    """Pieraksta neizdevušos tēmu failed_topics.json failā, lai vēlāk varētu re-run."""
+    failed_entry = {
+        "topic_id": topic.get("id", "unknown"),
+        "topic_name": topic.get("name", "unknown"),
+        "error": str(error_message),
+        "timestamp": datetime.datetime.now().isoformat(),
+    }
+
+    existing = []
+    if FAILED_LOG_PATH.exists():
+        try:
+            existing = json.loads(FAILED_LOG_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing = []
+
+    existing.append(failed_entry)
+    FAILED_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    FAILED_LOG_PATH.write_text(
+        json.dumps(existing, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    print(f"[LOGGED] Tēma '{topic.get('name')}' pievienota {FAILED_LOG_PATH.name}")
+
+
+def process_topic(topic):
+    """Apstrādā VIENU tēmu caur visiem 3 aģentiem un saglabā draftu.
+    Izmet exception, ja kāds solis neizdodas — to noķer augšējais loop."""
+
+    # 1. Aģents 1: Datu ieguve un ilustratīvais modelis
+    sim_results = agent_1_multi_source_simulation(topic)
+
+    # 2. Aģents 2: Skeptiķa recenzija
+    verified_data = agent_2_skeptic_evaluator(sim_results, topic)
+
+    # 3. Aģents 3: HTML draft ģenerēšana
+    html_content = agent_3_author_generator(topic, verified_data)
+
+    # 4. Saglabā DRAFTU — NEVIS gatavu publikāciju
+    # Mape "drafts/" NEDRĪKST būt saitēta no publiskās vietnes navigācijas / index.html
+    DRAFTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H%M%S")
+    base_filename = f"draft-{topic['id']}-{timestamp}"
+    html_path = DRAFTS_DIR / f"{base_filename}.html"
+    meta_path = DRAFTS_DIR / f"{base_filename}.meta.json"
+
+    content_hash = hashlib.sha256(html_content.encode("utf-8")).hexdigest()[:12]
+
+    with open(html_path, "w", encoding="utf-8", newline="") as f:
+        f.write(html_content)
+
+    # 5. Konstruējam claim_layers NO REĀLIEM datiem (novērš legacy fallback)
+    claim_layers = build_claim_layer(verified_data, html_content, topic)
+
+    # 6. Validējam saturu PIRMS saglabāšanas — forbidden termini, nesourcēti
+    # decimāļi utt. jāredz review_cli.py operatoram, ne tikai digest_generator.py
+    content_flags = []
+    for layer in claim_layers:
+        content_flags.extend(validate_content_flags(layer))
+
+    metadata = {
+        "topic_id": topic["id"],
+        "topic_name": topic["name"],
+        "generated_at": datetime.datetime.now().isoformat(),
+        "model": "grok-4.6",
+        "arxiv_source_found": verified_data.get("arxiv_source_found"),
+        "arxiv_context": verified_data.get("arxiv_context"),
+        "data_type": verified_data.get("data_type"),
+        "skeptic_critique": verified_data.get("skeptic_critique"),
+        "content_file": html_path.name,
+        "content_hash": content_hash,
+        "claim_layers": claim_layers,
+        "content_flags": content_flags,
+        "human_reviewed": False,
+        "review_status": "pending",
+        "reviewer": None,
+        "review_notes": None,
+    }
+
+    with open(meta_path, "w", encoding="utf-8", newline="") as f:
+        json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+    print(f"[*] DRAFTS saglabāti (NAV publicēti): {html_path}")
+    print(f"[*] Metadati: {meta_path}")
+    if content_flags:
+        print(f"[WARN] Content flags konstatēti: {content_flags}")
+
+    return html_path, meta_path
+
+
+def main():
+    print(f"[*] Sākam apstrādi: {len(TOPICS)} tēmas rindā.\n")
+
+    successful = 0
+    failed = 0
+
+    for topic in TOPICS:
+        print(f"{'=' * 60}")
+        print(f"[*] Apstrādāju tēmu: {topic['name']}")
+        print(f"{'=' * 60}")
+
+        try:
+            process_topic(topic)
+            successful += 1
+            print(f"[OK] Tēma '{topic['name']}' pabeigta veiksmīgi.\n")
+
+        except Exception as e:
+            failed += 1
+            print(f"[ERROR] Tēma '{topic['name']}' neizdevās: {e}\n")
+            log_failed_topic(topic, e)
+            continue  # KRITISKI: pāriet uz nākamo tēmu, process NEAPSTĀJAS
+
+    print(f"{'=' * 60}")
+    print(f"[SUMMARY] Pabeigts: {successful} veiksmīgi, {failed} neizdevās no {len(TOPICS)} kopā.")
+    print(f"{'=' * 60}")
+
+    if failed > 0:
+        print(f"[INFO] Skatīt {FAILED_LOG_PATH} pilnam neizdevušos tēmu sarakstam.")
+
+    print("[*] Nākamais solis: cilvēka pārbaude ar review_cli.py, tad pārvietošana uz posts/.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,1482 @@
+{
+  "topic_id": "consciousness_independence_nde",
+  "topic_name": "Independence of Consciousness: Non-Local Mind Models & Reported Perceptual Anomalies",
+  "generated_at": "2026-09-26T23:26:11.870769",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Corpus meta-analysis across 88 deduplicated sources (Semantic Scholar + PubMed): 3.4% supports_veridical, 0.0% null_result, 9.1% neuro_mechanism, 87.5% inconclusive.",
+  "data_type": "meta_analysis_illustrative",
+  "skeptic_critique": "Methodological check: This is a statistical aggregate of 88 abstracts classified by an LLM, NOT a hand-verified systematic review. Category boundaries (supports_veridical vs. neuro_mechanism vs. inconclusive) are inherently fuzzy, and a consistent pattern of reported near-death perceptions does NOT by itself distinguish between competing explanations (non-local consciousness vs. common neurological substrates such as hypoxia, temporal lobe activation, or REM intrusion). Percentages should be read as a rough corpus-level signal, not a peer-reviewed effect size.",
+  "content_file": "draft-consciousness_independence_nde-2026-09-26-232611.html",
+  "content_hash": "5da1d100dc36",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div role=\"note\" style=\"border:2px solid #8a6d3b;background:#fcf8e3;color:#333;padding:0.75rem 1rem;margin:0 0 1.25rem 0;font-weight:700;\">AI-GENERATED DRAFT - PENDING HUMAN FACT-CHECK. Not for publication without review.</div>\n<article lang=\"en\">\n<header>\n<h1>Independence of Consciousness: Non-Local Mind Models and Reported Perceptual Anomalies</h1>\n<p>Project Parallax — research draft (not a final publication). All figures below are copied from a single supplied dataset. No additional counts, percentages, or study results are introduced.</p>\n</header>\n<section>\n<h2>Scope and status</h2>\n<p>This draft summarizes a supplied corpus-scale aggregate on reported near-death, end-of-life, and related perceptual anomalies, and on how those reports are classified relative to non-local mind models versus neural-mechanism accounts. The dataset field <code>arxiv_source_found</code> is true for the corpus-aggregate description. That flag does not mean the independence of consciousness is an established finding.</p>\n<p>The supplied <code>data_type</code> is <strong>meta_analysis_illustrative</strong>. The accompanying model note states that 88 abstracts were statistically classified by an LLM into four labels (<code>supports_veridical</code>, <code>null_result</code>, <code>neuro_mechanism</code>, <code>inconclusive</code>). The note describes a corpus-scale aggregate, not a single-paper effect size and not a hand-verified systematic review.</p>\n<p>Boundary status in the dataset is reported as <code>CORPUS_ANALYSIS_COMPLETE</code>.</p>\n</section>\n<section>\n<h2>Reported corpus metrics</h2>\n<p>The dataset reports a classified total of 88 records, matching the stated corpus size of 88. Raw tallies as supplied: 3 <code>supports_veridical</code>, 0 <code>null_result</code>, 8 <code>neuro_mechanism</code>, and 77 <code>inconclusive</code>. Corresponding percentages as supplied: 3.4%, 0.0%, 9.1%, and 87.5%. The arXiv-context string in the dataset restates the same percentages for 88 deduplicated sources attributed to Semantic Scholar and PubMed.</p>\n<table>\n<caption>Raw input metrics from the supplied dataset, including data type and skeptic critique. Values are as provided; they are not independently recalculated beyond checking that the stated counts sum to 88.</caption>\n<thead>\n<tr>\n<th scope=\"col\">Metric</th>\n<th scope=\"col\">Value as supplied</th>\n<th scope=\"col\">Data type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>data_type</td>\n<td>meta_analysis_illustrative</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>corpus_size</td>\n<td>88</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>classified_total</td>\n<td>88</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>supports_veridical (count)</td>\n<td>3</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>supports_veridical (percent)</td>\n<td>3.4</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>null_result (count)</td>\n<td>0</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>null_result (percent)</td>\n<td>0.0</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>neuro_mechanism (count)</td>\n<td>8</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>neuro_mechanism (percent)</td>\n<td>9.1</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>inconclusive (count)</td>\n<td>77</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>inconclusive (percent)</td>\n<td>87.5</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>arxiv_source_found</td>\n<td>true (for the corpus-aggregate description)</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>CORPUS_ANALYSIS_COMPLETE</td>\n<td>meta_analysis_illustrative</td>\n</tr>\n</tbody>\n<tfoot>\n<tr>\n<th scope=\"row\">Skeptic critique (verbatim from dataset)</th>\n<td colspan=\"2\">Methodological check: This is a statistical aggregate of 88 abstracts classified by an LLM, NOT a hand-verified systematic review. Category boundaries (supports_veridical vs. neuro_mechanism vs. inconclusive) are inherently fuzzy, and a consistent pattern of reported near-death perceptions does NOT by itself distinguish between competing explanations (non-local consciousness vs. common neurological substrates such as hypoxia, temporal lobe activation, or REM intrusion). Percentages should be read as a rough corpus-level signal, not a peer-reviewed effect size.</td>\n</tr>\n</tfoot>\n</table>\n</section>\n<section>\n<h2>Draft reading of the aggregate (attributive, not settled)</h2>\n<p>On the numbers as supplied, the large majority of the corpus (87.5%; 77 of 88) is labeled inconclusive. That distribution is consistent with a retrieval set in which most abstracts do not clearly support a veridical, non-local interpretation and also do not clearly isolate a single neural mechanism. It is not a basis for treating non-local mind models as shown.</p>\n<p>A small slice (3.4%; 3 of 88) is labeled <code>supports_veridical</code> in the dataset. The three titles so labeled are: a 2026 case discussion of a distressing near-death experience with reported veridical perceptions during coma; a 2025 scoping review of end-of-life experiences and implications for the mind-brain relationship; and a 2013 case study of terminal lucidity (the death of Anna Katharina Ehmer). Those labels are LLM classifications of abstracts in the supplied list. This draft does not treat the labels as verified evidence that perception occurred independently of brain function.</p>\n<p>Another slice (9.1%; 8 of 88) is labeled <code>neuro_mechanism</code>. Titles in that bin include work on brain “twilight zones,” associations of near-death experiences with REM-sleep intrusion and with migraine aura, a 2006 paper asking whether the arousal system contributes to near-death experience, a 2026 “dying-moment dream” hypothesis, a comparative analysis of a near-death experience and a subsequent 5-MeO-DMT experience, and a large-scale semantic-similarity study of neurochemical models of near-death reports. Those items are consistent with accounts that locate anomalous perception in known or candidate neural and neurochemical processes. They do not, on the supplied metadata alone, rule out other models, and they are not here described as conclusive.</p>\n<p>The dataset reports 0.0% <code>null_result</code> (0 of 88). In an illustrative LLM-labeled corpus, a zero count of null results is consistent with retrieval, labeling, or category-boundary effects. It should not be read as an empirical demonstration that null findings are absent from the wider literature.</p>\n<p>Competing interpretations therefore remain open in this draft:</p>\n<ul>\n<li>Non-local or independence models would expect at least some well-documented veridical perception when cortical function is severely reduced. The supplied corpus contains only three abstracts labeled in that direction, and those labels are unverified.</li>\n<li>Neural-substrate models in the labeled set include hypoxia-related transitional brain states, REM intrusion, migraine aura, arousal-system activity, a terminal dream hypothesis, and overlap with psychedelic phenomenology. The eight <code>neuro_mechanism</code> labels are also unverified as to the correctness of the bin.</li>\n<li>The skeptic critique in the dataset states that a pattern of reported near-death perceptions does not by itself distinguish those families of explanation.</li>\n</ul>\n<p>A further caution, still without new numbers: many titles in the inventory appear only loosely related to independence of consciousness (for example, veterinary stunning, school-zone speed, clavicular anatomy, ovine coenurosis, or oncology case reports). That pattern is consistent with noisy keyword retrieval later marked inconclusive. Human review would need to decide which records belong in a target corpus at all.</p>\n<p>Publication years are reproduced as listed, including multiple 2026 dates. Those dates are unverified and require fact-checking before any downstream use.</p>\n</section>\n<section>\n<h2>Source inventory</h2>\n<p>Access status is taken only from the supplied records: each item lists a PubMed URL and <code>source: pubmed</code>. This draft does not claim that full text was obtained or that link persistence was checked. Non-English or bracketed titles from the input are given in English.</p>\n<table>\n<caption>Citation list as supplied (title, year, classification, access status). Classifications are LLM labels from the dataset, not adjudicated study conclusions.</caption>\n<thead>\n<tr>\n<th scope=\"col\">Title</th>\n<th scope=\"col\">Year</th>\n<th scope=\"col\">Classification</th>\n<th scope=\"col\">Access status</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>A distressing near-death experience with veridical perceptions during coma: psychiatric and clinical reflections from a rare case.</td>\n<td>2026</td>\n<td>supports_veridical</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The veridical Near-Death Experience Scale: construction and a first validation with human and artificial raters.</td>\n<td>2025</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Emergency nursing care of a patient with acute appendicitis complicated by esomeprazole-induced anaphylactic shock: a case report.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Causes and outcome of coma: A nationwide cross-sectional analysis.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>EEG Reactivity and Etiology as Prognostic Modifiers in Alpha and Theta Coma: A Systematic Review and Meta-analysis.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Trends in the incidence and outcomes of cardiopulmonary resuscitation-induced consciousness in out-of-hospital cardiac arrest: a retrospective study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>In patients with cardiopulmonary resuscitation-induced consciousness in cardiac arrest in the pre-hospital setting, does the use of pharmacological interventions impact mortality compared to standard care? A systematic review.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Peri-arrest emergency thoracotomy after trauma: a 5-year case series.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Accidental hypothermia.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The Association Between Signs of Life and Outcomes in Out-of-Hospital Cardiac Arrest: A Systematic Review and Meta-Analysis.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Ultrasound-Measured Optic Nerve Sheath Diameter Predicts Cognitive Dysfunction After Resuscitation: A Retrospective Study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Impact of antiemetic use on stroke cases from the Japanese Society Aeromedical Service Registration System.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Successful management of amniotic fluid embolism with cardiac arrest and liver rupture: a case report.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Resuscitation of a patient with progressive AIDS-related opportunistic infections complicated by MODS through multidisciplinary collaboration: case report.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Profiling and outcomes of medically indigent patients in Southwest China: a single-center retrospective case series survey study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Complications, outcomes, and implications of a prolonged vegetative state in anti-NMDA receptor encephalitis: a retrospective international cohort study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Accidental Environmental Hypothermia in a Nonagenarian Resulting in Cardiac Arrest.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Current challenges in diagnosing homozygous familial hypercholesterolemia: Insights from the historical evolution of diagnostic criteria.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Assessing genetic risk factors for early-onset coronary artery disease in Iranians.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Gender differentials in death registration completeness in Gujarat, India: a policy analysis of structural, economic, and socio-cultural barriers.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Adaptive Palliative Stereotactic Body Radiotherapy for a Large Cervical Lymph Node Metastasis in a Near-Centenarian Patient: A Case Report.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Cardiovascular versus breast cancer mortality in men with breast cancer: An age-stratified SEER competing-risk study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Trends, disparities, and forecasts of peripheral artery disease- and sepsis-associated mortality in the United States, 1999-2023.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Clavicular nutrient foramina in dry human bones: surface distribution, regional localisation, and surgical relevance.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Prevalence and characteristics of ovine coenurosis in the province of Kenitra (Morocco).</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Smartphone-Based Ecological Momentary Assessment to Monitor Opioid Use and Overdose Among People Who Use Opioids: Prospective Observational Feasibility Study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>School zone speed compliance in the ACT, Australia: Risks, findings and recommendations for improved safety.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Does Psychological Flexibility Correlate with Mystical Experiences: A Machine Learning Approach Including State of Surrender, Near-Death Experiences, and Psilocybin Consumption.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Anaerobic Infections.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Assessment of knowledge, attitudes, and practices of primary healthcare physicians in provinces of Armenia towards hypertension management: a cross-sectional study.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Validation of the Double Awareness Scale: A Novel Measure of Psychological Adaptation to Advanced Cancer.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Ecological Implications of Rodenticide Exposure: First Evidence of Bromadiolone Poisoning in an Indian Leopard (Panthera pardus fusca).</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Electroencephalography as a biomarker of brain function in domestic ruminants: a systematic review and critical appraisal.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The spearmint extract L-carvone as a euthanasia agent in sheep.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Electroencephalographic assessment of pneumatic penetrating captive-bolt stunning of donkeys (Equus asinus).</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Post-Coma Neurorehabilitation: Neurophysiological Assessment as an Additional Strategic and Essential Competence for the Physiatrist.</td>\n<td>2025</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Consciousness in deep hypothermic circulatory arrest: a feasibility study.</td>\n<td>2025</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Electroencephalographic and Cardiovascular Assessments of Isoflurane-Anesthetized Dogs.</td>\n<td>2024</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Comparison of recovery of sheep, goats, and calves from reversible electrical head-only and head-to-body stunning for halal meat production.</td>\n<td>2024</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Pre-Slaughter Stunning of Farmed Atlantic Halibut in CO2-Saturated Seawater: Assessment of Unconsciousness by Electroencephalography (EEG).</td>\n<td>2023</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Between life and death: the brain twilight zones.</td>\n<td>2023</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Application of Electroencephalography in Preslaughter Management: A Review.</td>\n<td>2022</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Are neurophysiologic tests reliable, ultra-early prognostic indices after cardiac arrest?</td>\n<td>2021</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>A Forensic Disassembly of the BIS Monitor.</td>\n<td>2020</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Wireless “under the skull” epidural EEG and behavior in piglets during nitrous oxide or carbon dioxide gas euthanasia.</td>\n<td>2020</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Clinical neurophysiology of neurologic rehabilitation.</td>\n<td>2019</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Fulminant thymomatous AMPAR-antibody limbic encephalitis with hypertonic coma, bruxism, an isoelectric electroencephalogram and temporal cortical atrophy, with recovery.</td>\n<td>2019</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Near-death experiences are associated with rapid eye movement (REM) sleep intrusions in migraine patients, independent of migraine aura.</td>\n<td>2023</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Near-death experiences.</td>\n<td>2021</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Migraine aura, a predictor of near-death experiences in a crowdsourced study.</td>\n<td>2019</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Prevalence of near-death experiences in people with and without REM sleep intrusion.</td>\n<td>2019</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>REM desensitization as a new therapeutic method for post-traumatic stress disorder: a randomized controlled trial.</td>\n<td>2015</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Does the arousal system contribute to near death experience?</td>\n<td>2006</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Rich Pinch: Perception of Object Movement with Tactile Illusion.</td>\n<td>2016</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Adenosine Deaminase-Mediated Purine Dysfunction Leads to DNA Repair Inhibition and Senescence in Sporadic Amyotrophic Lateral Sclerosis.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Small Extracellular Vesicles in Cardioprotection, Cardiac Repair, and Regeneration: Cargo Mechanisms, Producer Cell Sources, and Translational Development.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Berberine targets the PI3Kα LYS672 site to suppress the PI3K/Akt/NF-κB axis and modulate microglial functional states after intracerebral hemorrhage.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Disrupted neuronal expression of autism risk genes and white matter micro-organization after infant Zika infection.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Developmental synchrony of retinal waves, apoptosis, and angiogenesis in postnatal retina.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Spared corticospinal neurons activate an endogenous plasticity program after partial CNS injury.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Psychedelics and suicidality: A double-edged sword - risks, mechanisms, and moving forward.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The effects of abused drugs on ferroptosis pathways: potential therapeutic targets for substance use disorders.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Iron-driven secondary injury after intracranial hemorrhage: mitochondrial dysfunction and ferroptosis.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>NAD+ depletion by catalytic TIR domains triggers a distinct form of regulated necrosis in mammalian cells.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>How serially homologous neuroblasts produce different temporal cohorts along the Drosophila larval body axis.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>TRIM28 SUMOylates IRF3 in astrocytes to drive neutrophils infiltration and ischemic cerebral injury.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>UA-30 ameliorates motor deficits through RalA-mediated mitophagy in ALS mice.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>PGC-1α and PPARs cooperatively mediate photoreceptor neuroprotection in rd1 mouse inherited retinal degeneration.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Disruption of cellular iron homeostasis by SRPX2-IRP1 interaction aggravates renal fibrosis in chronic kidney disease.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>End-of-life experiences in patients: a scoping review of types, characteristics, and implications for the mind-brain relationship.</td>\n<td>2025</td>\n<td>supports_veridical</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Terminal lucidity in the teaching hospital setting.</td>\n<td>2020</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The death of Anna Katharina Ehmer: a case study in terminal lucidity.</td>\n<td>2013</td>\n<td>supports_veridical</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Diagnosing and discussing imminent death in the hospital: a secondary analysis of physician interviews.</td>\n<td>2007</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The dying-moment dream hypothesis: heaven and hell as the brain's final dream.</td>\n<td>2026</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Psychedelic Therapy: A Primer for Primary Care Clinicians-5-Methoxy-N,N-Dimethyltryptamine.</td>\n<td>2026</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>An encounter with death: a comparative thematic and content analysis of naturalistic DMT experiences and the near-death experience.</td>\n<td>2025</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Psychedelic Therapy: A Primer for Primary Care Clinicians-N,N-Dimethyltryptamine and Ayahuasca.</td>\n<td>2024</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>This is your brain on death: a comparative analysis of a near-death experience and subsequent 5-Methoxy-DMT experience.</td>\n<td>2023</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>An encounter with the self: A thematic and content analysis of the DMT experience from a naturalistic field study.</td>\n<td>2023</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>An Encounter With the Other: A Thematic and Content Analysis of DMT Experiences From a Naturalistic Field Study.</td>\n<td>2021</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Identification of an iron-responsive subtype in two children diagnosed with relapsing-remitting multiple sclerosis using whole exome sequencing.</td>\n<td>2019</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Neurochemical models of near-death experiences: A large-scale study based on the semantic similarity of written reports.</td>\n<td>2019</td>\n<td>neuro_mechanism</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Liposomal Delivery of Demineralized Dentin Matrix for Dental Tissue Regeneration.</td>\n<td>2018</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>A Multistage Subunit Vaccine Effectively Protects Mice Against Primary Progressive Tuberculosis, Latency and Reactivation.</td>\n<td>2017</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>The Role of Sigma-1 Receptor, an Intracellular Chaperone in Neurodegenerative Diseases.</td>\n<td>2018</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Acute Catecholamine Exposure Causes Reversible Myocyte Injury Without Cardiac Regeneration.</td>\n<td>2016</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Delta-Opioid Receptor (δOR) Targeted Near-Infrared Fluorescent Agent for Imaging of Lung Cancer: Synthesis and Evaluation In Vitro and In Vivo.</td>\n<td>2016</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n<tr>\n<td>Modification of sphingolipid metabolism by tamoxifen and N-desmethyltamoxifen in acute myelogenous leukemia—Impact on enzyme activity and response to cytotoxics.</td>\n<td>2015</td>\n<td>inconclusive</td>\n<td>PubMed URL provided</td>\n</tr>\n</tbody>\n</table>\n</section>\n<section>\n<h2>Items for human fact-check before any later version</h2>\n<ol>\n<li>Re-label or exclude records after reading full abstracts or papers; do not rely on the LLM bins.</li>\n<li>Verify every bibliographic year, title, and PubMed record, including future-dated (2026) entries.</li>\n<li>Separate on-topic consciousness and near-death reports from incidental keyword hits.</li>\n<li>Treat the 3.4% / 0.0% / 9.1% / 87.5% split as an illustrative corpus signal only, in line with the supplied skeptic critique.</li>\n<li>Do not convert this draft into a claim that consciousness is independent of the brain, or that neural models are sufficient, until a protocol-driven, human-coded review exists.</li>\n</ol>\n</section>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "corpus_meta_analysis",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [],
+  "human_reviewed": false,
+  "review_status": "pending",
+  "reviewer": null,
+  "review_notes": null,
+  "corpus_analysis": {
+    "corpus_size": 88,
+    "classified_total": 88,
+    "pct_supports_veridical": 3.4,
+    "pct_null_result": 0.0,
+    "pct_neuro_mechanism": 9.1,
+    "pct_inconclusive": 87.5,
+    "raw_tally": {
+      "supports_veridical": 3,
+      "null_result": 0,
+      "neuro_mechanism": 8,
+      "inconclusive": 77
+    },
+    "citation_list": [
+      {
+        "title": "A distressing near-death experience with veridical perceptions during coma: psychiatric and clinical reflections from a rare case.",
+        "year": "2026",
+        "authors": [
+          "Sepioni F",
+          "Metastasio A",
+          "Monti M"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41665893/",
+        "source": "pubmed",
+        "classification": "supports_veridical"
+      },
+      {
+        "title": "The veridical Near-Death Experience Scale: construction and a first validation with human and artificial raters.",
+        "year": "2025",
+        "authors": [
+          "Greyson B",
+          "Long J",
+          "Holden JM",
+          "Jourdan JP",
+          "King RA",
+          "Mays S",
+          "Mays R",
+          "Rivas T",
+          "Tassell-Matamua N",
+          "van Lommel P",
+          "Woollacott M",
+          "Tressoldi P"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41181682/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Emergency nursing care of a patient with acute appendicitis complicated by esomeprazole-induced anaphylactic shock: a case report.",
+        "year": "2026",
+        "authors": [
+          "Pu J",
+          "Xin L",
+          "Chen Y",
+          "Jiang X"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42774340/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Causes and outcome of coma: A nationwide cross-sectional analysis.",
+        "year": "2026",
+        "authors": [
+          "Weber H",
+          "Lui AK",
+          "Dilip D",
+          "Salazar M",
+          "Yuan G",
+          "Zhang J",
+          "Kusayev J",
+          "Rosenberg J",
+          "Bauerschmidt A",
+          "Al-Mufti F",
+          "Helbok R",
+          "Hemphill JC",
+          "Kondziella D",
+          "Mayer SA"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42743655/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "EEG Reactivity and Etiology as Prognostic Modifiers in Alpha and Theta Coma: A Systematic Review and Meta-analysis.",
+        "year": "2026",
+        "authors": [
+          "Phutinart S",
+          "Kedgan P",
+          "Kosonboon P",
+          "Sinaroj K",
+          "Siranart N",
+          "Anukoolwittaya P",
+          "Surawattanawong T"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42711629/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Trends in the incidence and outcomes of cardiopulmonary resuscitation-induced consciousness in out-of-hospital cardiac arrest: a retrospective study.",
+        "year": "2026",
+        "authors": [
+          "Howard J",
+          "Stub D",
+          "Kennett T",
+          "Humar M",
+          "Olaussen A",
+          "Nehme Z"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42697466/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "In patients with cardiopulmonary resuscitation-induced consciousness in cardiac arrest in the pre-hospital setting, does the use of pharmacological interventions impact mortality compared to standard care? A systematic review.",
+        "year": "2026",
+        "authors": [
+          "Prokop N",
+          "Rice A",
+          "Durham M"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42683417/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "[Peri-arrest emergency thoracotomy after trauma: a 5-year case series].",
+        "year": "2026",
+        "authors": [
+          "Ahrens G",
+          "Hoffmann M",
+          "Proksch N"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42489876/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Accidental hypothermia.",
+        "year": "2026",
+        "authors": [
+          "Darocha T",
+          "Pasquier M",
+          "Mendrala K",
+          "Pluta M",
+          "Oshiro K",
+          "Swol J",
+          "Mariani S",
+          "Hutin A",
+          "Podsiadło P",
+          "Kosiński S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42393082/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "The Association Between Signs of Life and Outcomes in Out-of-Hospital Cardiac Arrest: A Systematic Review and Meta-Analysis.",
+        "year": "2026",
+        "authors": [
+          "Bunya N",
+          "Himuro N",
+          "Taniguchi H",
+          "Wada K",
+          "Kato F",
+          "Nakayama R",
+          "Aoki M",
+          "Terayama T",
+          "Ohnishi H",
+          "Narimatsu E"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42305939/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Ultrasound-Measured Optic Nerve Sheath Diameter Predicts Cognitive Dysfunction After Resuscitation: A Retrospective Study.",
+        "year": "2026",
+        "authors": [
+          "Peng Y",
+          "Huang M",
+          "Sun Y",
+          "Cao H",
+          "Zhou L",
+          "Gao W",
+          "Yu X",
+          "Zhou C",
+          "Zhang Y",
+          "Wang J"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42113697/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Impact of antiemetic use on stroke cases from the Japanese Society Aeromedical Service Registration System.",
+        "year": "2026",
+        "authors": [
+          "Tanaka N",
+          "Nagasawa H",
+          "Maekawa C",
+          "Ota S",
+          "Ohsaka H",
+          "Omori K",
+          "Yanagawa Y"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42006703/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Successful management of amniotic fluid embolism with cardiac arrest and liver rupture: a case report.",
+        "year": "2026",
+        "authors": [
+          "Liu J",
+          "Ma S",
+          "Wang Y",
+          "Wei F"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41958572/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Resuscitation of a patient with progressive AIDS-related opportunistic infections complicated by MODS through multidisciplinary collaboration: case report.",
+        "year": "2026",
+        "authors": [
+          "Huang S",
+          "Wei X"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41933333/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Profiling and outcomes of medically indigent patients in Southwest China: a single-center retrospective case series survey study.",
+        "year": "2026",
+        "authors": [
+          "Wang Z",
+          "Wang BE",
+          "Li J",
+          "Lin Z",
+          "Zhong S",
+          "Gou X",
+          "Chen M",
+          "Yuan Y"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41923060/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Complications, outcomes, and implications of a prolonged vegetative state in anti-NMDA receptor encephalitis: a retrospective international cohort study.",
+        "year": "2026",
+        "authors": [
+          "Guasp M",
+          "Simabukuro MM",
+          "Muñoz-Sánchez G",
+          "Brenner J",
+          "Wurdack K",
+          "Wang K",
+          "Lalive PH",
+          "Olivé-Cirera G",
+          "Yeung J",
+          "Wandinger KP",
+          "Macher S",
+          "Di Liberto G",
+          "Lancaster E",
+          "Casadevall T",
+          "Martínez-González MJ",
+          "Fernández-Carrasco JP",
+          "Shibata M",
+          "Fukao E",
+          "Mishima T",
+          "Nakagawa H",
+          "Takizawa T",
+          "Shimohama S",
+          "Izawa Y",
+          "Neshige S",
+          "Borràs R",
+          "Aguilar E",
+          "Marmolejo L",
+          "Planagumà J",
+          "Heller A",
+          "Tojima M",
+          "Ikeda A",
+          "Wu D",
+          "Spatola M",
+          "Blanco Y",
+          "Du Pasquier R",
+          "Sühs KW",
+          "Leypoldt F",
+          "Höftberger R",
+          "Finke C",
+          "Titulaer MJ",
+          "Armangué T",
+          "Graus F",
+          "Iizuka T",
+          "Dalmau J",
+          "International Anti-NMDAR Encephalitis Study Group"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41864234/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Accidental Environmental Hypothermia in a Nonagenarian Resulting in Cardiac Arrest.",
+        "year": "2026",
+        "authors": [
+          "Stingl J",
+          "Guyette FX",
+          "Drábek T"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41843546/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Current challenges in diagnosing homozygous familial hypercholesterolemia: Insights from the historical evolution of diagnostic criteria.",
+        "year": "2026",
+        "authors": [
+          "Gaudet D",
+          "Godin R",
+          "Rosenson RS",
+          "Watts GF"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42791183/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Assessing genetic risk factors for early-onset coronary artery disease in Iranians.",
+        "year": "2026",
+        "authors": [
+          "Mancini I",
+          "Pagliari MT",
+          "Sadeghian S",
+          "Abbasi SH",
+          "Poorhosseini H",
+          "Boroumand MA",
+          "Lotfi-Tokaldany M",
+          "Pappalardo E",
+          "Agosti P",
+          "Rosendaal FR",
+          "Peyvandi F"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42699092/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Gender differentials in death registration completeness in Gujarat, India: a policy analysis of structural, economic, and socio-cultural barriers.",
+        "year": "2026",
+        "authors": [
+          "Vala A",
+          "Bera OP",
+          "Aggarwal P",
+          "Joshi K",
+          "Kadri AM"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42666286/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Adaptive Palliative Stereotactic Body Radiotherapy for a Large Cervical Lymph Node Metastasis in a Near-Centenarian Patient: A Case Report.",
+        "year": "2026",
+        "authors": [
+          "Mizumatsu S",
+          "Nambu S",
+          "Baba F",
+          "Hasegawa M",
+          "Satoh T"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42643747/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Cardiovascular versus breast cancer mortality in men with breast cancer: An age-stratified SEER competing-risk study.",
+        "year": "2026",
+        "authors": [
+          "Zihni İ",
+          "Zihni B",
+          "Sabuncuoğlu MZ"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42475476/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Trends, disparities, and forecasts of peripheral artery disease- and sepsis-associated mortality in the United States, 1999-2023.",
+        "year": "2026",
+        "authors": [
+          "Chen Z",
+          "Lin R",
+          "Zhang Y"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42465075/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Clavicular nutrient foramina in dry human bones: surface distribution, regional localisation, and surgical relevance.",
+        "year": "2026",
+        "authors": [
+          "Gupta K",
+          "Punja R",
+          "Shetty AK",
+          "Adhikari P",
+          "Nayak S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42417971/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Prevalence and characteristics of ovine cœnurosis in the province of Kenitra (Morocco).",
+        "year": "2026",
+        "authors": [
+          "Brik K",
+          "Taoufik H",
+          "Driss B"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42375418/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Smartphone-Based Ecological Momentary Assessment to Monitor Opioid Use and Overdose Among People Who Use Opioids: Prospective Observational Feasibility Study.",
+        "year": "2026",
+        "authors": [
+          "Gautam K",
+          "Paudel K",
+          "Wickersham JA",
+          "Khati A",
+          "Thapa A",
+          "Bhusal S",
+          "Sujan MSH",
+          "Pagoto S",
+          "Ha T",
+          "Shrestha R"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42372226/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "School zone speed compliance in the ACT, Australia: Risks, findings and recommendations for improved safety.",
+        "year": "2026",
+        "authors": [
+          "Elsegood M",
+          "Thompson J",
+          "Ponte G"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42297527/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Does Psychological Flexibility Correlate with Mystical Experiences: A Machine Learning Approach Including State of Surrender, Near-Death Experiences, and Psilocybin Consumption.",
+        "year": "2026",
+        "authors": [
+          "Briggs D",
+          "Sease TB",
+          "Menou R",
+          "Perkins DR"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42193565/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Anaerobic Infections.",
+        "year": "2026",
+        "authors": [
+          "Hollinger A",
+          "Tobin EH"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29493974/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Assessment of knowledge, attitudes, and practices of primary healthcare physicians in provinces of Armenia towards hypertension management: a cross-sectional study.",
+        "year": "2026",
+        "authors": [
+          "Baghoomian A",
+          "Zhang B",
+          "Libaridian L",
+          "Hovhannisyan MG",
+          "Hovakimyan T",
+          "Shekherdimian S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42104261/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Validation of the Double Awareness Scale: A Novel Measure of Psychological Adaptation to Advanced Cancer.",
+        "year": "2026",
+        "authors": [
+          "Miljanovski M",
+          "Mah K",
+          "Li A",
+          "Rydall A",
+          "McConnell MH",
+          "Shapiro GK",
+          "Hannon B",
+          "Zimmermann C",
+          "Rodin G"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41996528/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Ecological Implications of Rodenticide Exposure: First Evidence of Bromadiolone Poisoning in an Indian Leopard (Panthera pardus fusca).",
+        "year": "2026",
+        "authors": [
+          "Nambirajan K",
+          "Rajesh Kumar K",
+          "Arun PR",
+          "Kannan M",
+          "Senthamarai Kannan B",
+          "Muralidharan S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41928403/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Electroencephalography as a biomarker of brain function in domestic ruminants: a systematic review and critical appraisal.",
+        "year": "2026",
+        "authors": [
+          "Nadalin AR",
+          "Souza BS",
+          "Pankratz JM",
+          "Bernardino T",
+          "Costa EJX",
+          "Pogliani FC"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42767023/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "The spearmint extract L-carvone as a euthanasia agent in sheep.",
+        "year": "2026",
+        "authors": [
+          "Brosnan RJ",
+          "Aleman M",
+          "Costa L",
+          "Knych H",
+          "Dupanloup A",
+          "Vedavally U",
+          "Unkel CM"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42549376/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Electroencephalographic assessment of pneumatic penetrating captive-bolt stunning of donkeys (Equus asinus).",
+        "year": "2026",
+        "authors": [
+          "Fletcher KA",
+          "Benedetti B",
+          "Padalino B",
+          "Hernández Gil M",
+          "Gibson T"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42238875/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Post-Coma Neurorehabilitation: Neurophysiological Assessment as an Additional Strategic and Essential Competence for the Physiatrist.",
+        "year": "2025",
+        "authors": [
+          "Di Lorenzo L",
+          "D'Avanzo C"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40559122/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Consciousness in deep hypothermic circulatory arrest: a feasibility study.",
+        "year": "2025",
+        "authors": [
+          "Ross J",
+          "Jan T",
+          "Smith D",
+          "Gonzales A",
+          "Galloway A",
+          "Leontovich N",
+          "Keshavarz T",
+          "Dickinson A",
+          "Friedman D",
+          "Koopman E",
+          "Huppert E",
+          "Jaffe I",
+          "Burke C",
+          "Kern J",
+          "Stelzer P",
+          "Sabe A",
+          "Spiegel R",
+          "Klein A",
+          "Rajagopal A",
+          "Parr G",
+          "Deakin C",
+          "Parnia S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40426216/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Electroencephalographic and Cardiovascular Assessments of Isoflurane-Anesthetized Dogs.",
+        "year": "2024",
+        "authors": [
+          "Ko JC",
+          "Murillo C",
+          "Weil AB",
+          "Kreuzer M",
+          "Moore GE"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39453106/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Comparison of recovery of sheep, goats, and calves from reversible electrical head-only and head-to-body stunning for halal meat production.",
+        "year": "2024",
+        "authors": [
+          "Beausoleil NJ",
+          "Farouk MM",
+          "Webster J",
+          "Johnson CB",
+          "Dowling S",
+          "Sazili AQ",
+          "Cameron C"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38946044/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Pre-Slaughter Stunning of Farmed Atlantic Halibut in CO(2)-Saturated Seawater: Assessment of Unconsciousness by Electroencephalography (EEG).",
+        "year": "2023",
+        "authors": [
+          "Rucinque DS",
+          "van de Vis H",
+          "Reimert H",
+          "Roth B",
+          "Foss A",
+          "Taconeli CA",
+          "Gerritzen M"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37370503/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Between life and death: the brain twilight zones.",
+        "year": "2023",
+        "authors": [
+          "Charpier S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37260843/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "Application of Electroencephalography in Preslaughter Management: A Review.",
+        "year": "2022",
+        "authors": [
+          "Kumar P",
+          "Abubakar AA",
+          "Sazili AQ",
+          "Kaka U",
+          "Goh YM"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36290243/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Are neurophysiologic tests reliable, ultra-early prognostic indices after cardiac arrest?",
+        "year": "2021",
+        "authors": [
+          "Carrai R",
+          "Spalletti M",
+          "Scarpino M",
+          "Lolli F",
+          "Lanzo G",
+          "Cossu C",
+          "Bonizzoli M",
+          "Socci F",
+          "Lazzeri C",
+          "Amantini A",
+          "Grippo A"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33573889/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "A Forensic Disassembly of the BIS Monitor.",
+        "year": "2020",
+        "authors": [
+          "Connor CW"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33093360/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Wireless 'under the skull' epidural EEG and behavior in piglets during nitrous oxide or carbon dioxide gas euthanasia.",
+        "year": "2020",
+        "authors": [
+          "Rault JL",
+          "Lai A",
+          "Hemsworth L",
+          "Le Chevoir M",
+          "Bauquier S",
+          "Gates RS",
+          "Lay DC Jr"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32822708/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Clinical neurophysiology of neurologic rehabilitation.",
+        "year": "2019",
+        "authors": [
+          "Rollnik JD"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31307600/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Fulminant thymomatous AMPAR-antibody limbic encephalitis with hypertonic coma, bruxism, an isoelectric electroencephalogram and temporal cortical atrophy, with recovery.",
+        "year": "2019",
+        "authors": [
+          "Urriola N",
+          "Soosapilla K",
+          "Drummond J",
+          "Thieben M"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30796080/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Near-death experiences are associated with rapid eye movement (REM) sleep intrusions in migraine patients, independent of migraine aura.",
+        "year": "2023",
+        "authors": [
+          "Raffaelli B",
+          "Kull P",
+          "Mecklenburg J",
+          "Lange KS",
+          "Overeem LH",
+          "Fitzek MP",
+          "Siebert A",
+          "Steinicke M",
+          "Triller P",
+          "Neeb L",
+          "Dreier JP",
+          "Reuter U",
+          "Kondziella D"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37489579/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "[Near-deathexperiences].",
+        "year": "2021",
+        "authors": [
+          "Kondziella D"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34761744/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Migraine aura, a predictor of near-death experiences in a crowdsourced study.",
+        "year": "2019",
+        "authors": [
+          "Kondziella D",
+          "Olsen MH",
+          "Lemale CL",
+          "Dreier JP"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31824781/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "Prevalence of near-death experiences in people with and without REM sleep intrusion.",
+        "year": "2019",
+        "authors": [
+          "Kondziella D",
+          "Dreier JP",
+          "Olsen MH"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31523519/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "REM desensitization as a new therapeutic method for post-traumatic stress disorder: a randomized controlled trial.",
+        "year": "2015",
+        "authors": [
+          "Ahmadi K",
+          "Hazrati M",
+          "Ahmadizadeh M",
+          "Noohi S"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26260553/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Does the arousal system contribute to near death experience?",
+        "year": "2006",
+        "authors": [
+          "Nelson KR",
+          "Mattingly M",
+          "Lee SA",
+          "Schmitt FA"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16606911/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "Rich Pinch: Perception of Object Movement with Tactile Illusion.",
+        "year": "2016",
+        "authors": [
+          "Jaedong Lee",
+          "Youngsun Kim",
+          "Jounghyun Kim G"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26340783/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Adenosine Deaminase-Mediated Purine Dysfunction Leads to DNA Repair Inhibition and Senescence in Sporadic Amyotrophic Lateral Sclerosis.",
+        "year": "2026",
+        "authors": [
+          "Hall B",
+          "Ebrahim YM",
+          "Sharpe JL",
+          "Makhija S",
+          "Ellis BCS",
+          "Wong KE",
+          "Walker H",
+          "Yagüe-Capilla M",
+          "Timmons HO",
+          "Bradley A",
+          "Nightingale E",
+          "Ross R",
+          "Allen CF",
+          "Gatto N",
+          "Garland H",
+          "Soni N",
+          "Kolb SJ",
+          "Highley JR",
+          "Hautbergue GM",
+          "Rudd SG",
+          "West RJH",
+          "Shaw PJ",
+          "Allen SP"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42794664/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Small Extracellular Vesicles in Cardioprotection, Cardiac Repair, and Regeneration: Cargo Mechanisms, Producer Cell Sources, and Translational Development.",
+        "year": "2026",
+        "authors": [
+          "Zhang C",
+          "Kempaiah P",
+          "Rademacher DJ",
+          "Jones WK"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42792732/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Berberine targets the PI3Kα LYS672 site to suppress the PI3K/Akt/NF-κB axis and modulate microglial functional states after intracerebral hemorrhage.",
+        "year": "2026",
+        "authors": [
+          "Wang Q",
+          "Liu X",
+          "Liu Y",
+          "Wei R",
+          "Li Z",
+          "Siddique R",
+          "Guo P",
+          "Chen Y",
+          "Zhou H",
+          "Cao L",
+          "Wee Yong V",
+          "Xue M"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42785129/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Disrupted neuronal expression of autism risk genes and white matter micro-organization after infant Zika infection.",
+        "year": "2026",
+        "authors": [
+          "Edara VV",
+          "Freeman S",
+          "Sampson M",
+          "Moore KM",
+          "Richardson R",
+          "Schoof N",
+          "Burgess D",
+          "Lee MJ",
+          "Tharp GK",
+          "Vlasova R",
+          "Taylor S",
+          "Hodjatzadeh A",
+          "Melendez-Alejandro YP",
+          "Abdallah SM",
+          "Ndungu EW",
+          "Mascarenhas AK",
+          "Hsu CH",
+          "Tu TW",
+          "Styner M",
+          "Suthar MS",
+          "Sanchez MM",
+          "Bosinger SE",
+          "Burke MW",
+          "Sloan SA",
+          "Raper J",
+          "Chahroudi A"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42784251/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Developmental synchrony of retinal waves, apoptosis, and angiogenesis in postnatal retina.",
+        "year": "2026",
+        "authors": [
+          "Savage MA",
+          "Bertram C",
+          "de Montigny J",
+          "Thorne CA",
+          "Queen R",
+          "Lako M",
+          "Hilgen G",
+          "Sernagor E"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42781866/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Spared corticospinal neurons activate an endogenous plasticity program after partial CNS injury.",
+        "year": "2026",
+        "authors": [
+          "Murillo M",
+          "O'Brien CF",
+          "Golan N",
+          "Yin EX",
+          "Brennand KJ",
+          "Cafferty WBJ"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42779646/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Psychedelics and suicidality: A double-edged sword - risks, mechanisms, and moving forward.",
+        "year": "2026",
+        "authors": [
+          "Mallevays M",
+          "Berkovitch L"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42762543/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "The effects of abused drugs on ferroptosis pathways: potential therapeutic targets for substance use disorders.",
+        "year": "2026",
+        "authors": [
+          "Bouchard T",
+          "Russell B",
+          "Guo LL",
+          "Nguyen T",
+          "Cheng Y",
+          "Sanders YY",
+          "Guo ML"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42755539/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Iron-driven secondary injury after intracranial hemorrhage: mitochondrial dysfunction and ferroptosis.",
+        "year": "2026",
+        "authors": [
+          "Maghareh M",
+          "Carrera EM",
+          "Cicala D",
+          "Roknuzzaman A",
+          "Sarker R",
+          "Geldenhuys WJ",
+          "Huber JD"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42755505/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "NAD(+) depletion by catalytic TIR domains triggers a distinct form of regulated necrosis in mammalian cells.",
+        "year": "2026",
+        "authors": [
+          "Espinas NA",
+          "Lacante L",
+          "Hartenian E",
+          "Mack V",
+          "Niou ZX",
+          "Lu HC",
+          "Broz P"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42752230/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "How serially homologous neuroblasts produce different temporal cohorts along the Drosophila larval body axis.",
+        "year": "2026",
+        "authors": [
+          "Vasudevan D",
+          "Wang YW",
+          "Carr H",
+          "Paniel E",
+          "Corcoran S",
+          "Wreden CC",
+          "Kushkowski E",
+          "Lee-Smith C",
+          "Heckscher ES"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42746700/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "TRIM28 SUMOylates IRF3 in astrocytes to drive neutrophils infiltration and ischemic cerebral injury.",
+        "year": "2026",
+        "authors": [
+          "Shu H",
+          "Luo Q",
+          "Hu P",
+          "Xu Y",
+          "Zhu W",
+          "Yang L",
+          "Lei K",
+          "Luo M",
+          "Zhang S",
+          "Zhu X",
+          "Liao Q",
+          "Chen Z",
+          "Zeng Q",
+          "Zhu X",
+          "Zhu Z",
+          "Yan T"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42745034/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "UA-30 ameliorates motor deficits through RalA-mediated mitophagy in ALS mice.",
+        "year": "2026",
+        "authors": [
+          "Zhang B",
+          "He Y",
+          "Su T",
+          "Li X",
+          "Zhang X",
+          "Liu R",
+          "Han X",
+          "Zhang R",
+          "Yang C",
+          "Liu X",
+          "Hou Q",
+          "Zhang Z",
+          "Xie Y",
+          "Liu G",
+          "Yang X"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42741938/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "PGC-1α and PPARs cooperatively mediate photoreceptor neuroprotection in rd1 mouse inherited retinal degeneration.",
+        "year": "2026",
+        "authors": [
+          "Wang L",
+          "Yan J",
+          "Sancho-Pelluz J",
+          "Yang Q",
+          "Hu Z",
+          "Jiao K",
+          "Seeliger MW",
+          "Paquet-Durand F"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42736280/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Disruption of cellular iron homeostasis by SRPX2-IRP1 interaction aggravates renal fibrosis in chronic kidney disease.",
+        "year": "2026",
+        "authors": [
+          "Yin P",
+          "Chen L",
+          "Ding M",
+          "Wei Z",
+          "Huo A",
+          "Wang Y",
+          "Xie M",
+          "Zhang H",
+          "Qin Y",
+          "Ding H",
+          "Lu Y",
+          "Shi Y",
+          "Zhou X",
+          "Zhang Q",
+          "Fang P",
+          "Song K",
+          "Cong Q"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42733101/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "End-of-life experiences in patients: a scoping review of types, characteristics, and implications for the mind-brain relationship.",
+        "year": "2025",
+        "authors": [
+          "Silva TO",
+          "Levy K",
+          "Kerr CW"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40627515/",
+        "source": "pubmed",
+        "classification": "supports_veridical"
+      },
+      {
+        "title": "Terminal lucidity in the teaching hospital setting.",
+        "year": "2020",
+        "authors": [
+          "Lim CY",
+          "Park JY",
+          "Kim DY",
+          "Yoo KD",
+          "Kim HJ",
+          "Kim Y",
+          "Shin SJ"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30513269/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "The death of Anna Katharina Ehmer: a case study in terminal lucidity.",
+        "year": "2013",
+        "authors": [
+          "Nahm M",
+          "Greyson B"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24547666/",
+        "source": "pubmed",
+        "classification": "supports_veridical"
+      },
+      {
+        "title": "Diagnosing and discussing imminent death in the hospital: a secondary analysis of physician interviews.",
+        "year": "2007",
+        "authors": [
+          "Sullivan AM",
+          "Lakoma MD",
+          "Matsuyama RK",
+          "Rosenblatt L",
+          "Arnold RM",
+          "Block SD"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17803409/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "The dying-moment dream hypothesis: heaven and hell as the brain's final dream.",
+        "year": "2026",
+        "authors": [
+          "Kayış R"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41960249/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "Psychedelic Therapy: A Primer for Primary Care Clinicians-5-Methoxy-N,N-Dimethyltryptamine.",
+        "year": "2026",
+        "authors": [
+          "Tabaac BJ",
+          "Shinozuka K",
+          "Weisman A",
+          "Chaudhry S",
+          "Seynaeve M",
+          "Muir OS"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41714909/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "An encounter with death: a comparative thematic and content analysis of naturalistic DMT experiences and the near-death experience.",
+        "year": "2025",
+        "authors": [
+          "Michael P",
+          "Luke D",
+          "Robinson O"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40110076/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Psychedelic Therapy: A Primer for Primary Care Clinicians-N,N-Dimethyltryptamine and Ayahuasca.",
+        "year": "2024",
+        "authors": [
+          "Shinozuka K",
+          "Tabaac BJ",
+          "Arenas A",
+          "Beutler BD",
+          "Cherian K",
+          "Evans VD",
+          "Fasano C",
+          "Muir OS"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38518268/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "This is your brain on death: a comparative analysis of a near-death experience and subsequent 5-Methoxy-DMT experience.",
+        "year": "2023",
+        "authors": [
+          "Michael P",
+          "Luke D",
+          "Robinson O"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37457069/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "An encounter with the self: A thematic and content analysis of the DMT experience from a naturalistic field study.",
+        "year": "2023",
+        "authors": [
+          "Michael P",
+          "Luke D",
+          "Robinson O"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37051610/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "An Encounter With the Other: A Thematic and Content Analysis of DMT Experiences From a Naturalistic Field Study.",
+        "year": "2021",
+        "authors": [
+          "Michael P",
+          "Luke D",
+          "Robinson O"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34975614/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Identification of an iron-responsive subtype in two children diagnosed with relapsing-remitting multiple sclerosis using whole exome sequencing.",
+        "year": "2019",
+        "authors": [
+          "van Rensburg SJ",
+          "Peeters AV",
+          "van Toorn R",
+          "Schoeman J",
+          "Moremi KE",
+          "van Heerden CJ",
+          "Kotze MJ"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30963028/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Neurochemical models of near-death experiences: A large-scale study based on the semantic similarity of written reports.",
+        "year": "2019",
+        "authors": [
+          "Martial C",
+          "Cassol H",
+          "Charland-Verville V",
+          "Pallavicini C",
+          "Sanz C",
+          "Zamberlan F",
+          "Vivot RM",
+          "Erowid F",
+          "Erowid E",
+          "Laureys S",
+          "Greyson B",
+          "Tagliazucchi E"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30711788/",
+        "source": "pubmed",
+        "classification": "neuro_mechanism"
+      },
+      {
+        "title": "Liposomal Delivery of Demineralized Dentin Matrix for Dental Tissue Regeneration.",
+        "year": "2018",
+        "authors": [
+          "Melling GE",
+          "Colombo JS",
+          "Avery SJ",
+          "Ayre WN",
+          "Evans SL",
+          "Waddington RJ",
+          "Sloan AJ"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29316874/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "A Multistage Subunit Vaccine Effectively Protects Mice Against Primary Progressive Tuberculosis, Latency and Reactivation.",
+        "year": "2017",
+        "authors": [
+          "Ma J",
+          "Teng X",
+          "Wang X",
+          "Fan X",
+          "Wu Y",
+          "Tian M",
+          "Zhou Z",
+          "Li L"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28711483/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "The Role of Sigma-1 Receptor, an Intracellular Chaperone in Neurodegenerative Diseases.",
+        "year": "2018",
+        "authors": [
+          "Penke B",
+          "Fulop L",
+          "Szucs M",
+          "Frecska E"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28554311/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Acute Catecholamine Exposure Causes Reversible Myocyte Injury Without Cardiac Regeneration.",
+        "year": "2016",
+        "authors": [
+          "Wallner M",
+          "Duran JM",
+          "Mohsin S",
+          "Troupes CD",
+          "Vanhoutte D",
+          "Borghetti G",
+          "Vagnozzi RJ",
+          "Gross P",
+          "Yu D",
+          "Trappanese DM",
+          "Kubo H",
+          "Toib A",
+          "Sharp TE 3rd",
+          "Harper SC",
+          "Volkert MA",
+          "Starosta T",
+          "Feldsott EA",
+          "Berretta RM",
+          "Wang T",
+          "Barbe MF",
+          "Molkentin JD",
+          "Houser SR"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27461939/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Delta-Opioid Receptor (δOR) Targeted Near-Infrared Fluorescent Agent for Imaging of Lung Cancer: Synthesis and Evaluation In Vitro and In Vivo.",
+        "year": "2016",
+        "authors": [
+          "Cohen AS",
+          "Patek R",
+          "Enkemann SA",
+          "Johnson JO",
+          "Chen T",
+          "Toloza E",
+          "Vagner J",
+          "Morse DL"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26488422/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      },
+      {
+        "title": "Modification of sphingolipid metabolism by tamoxifen and N-desmethyltamoxifen in acute myelogenous leukemia--Impact on enzyme activity and response to cytotoxics.",
+        "year": "2015",
+        "authors": [
+          "Morad SA",
+          "Tan SF",
+          "Feith DJ",
+          "Kester M",
+          "Claxton DF",
+          "Loughran TP Jr",
+          "Barth BM",
+          "Fox TE",
+          "Cabot MC"
+        ],
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25769964/",
+        "source": "pubmed",
+        "classification": "inconclusive"
+      }
+    ]
+  }
+}

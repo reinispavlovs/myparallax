@@ -1,0 +1,21 @@
+[MISSING] b1-body LV (piezoelectric telluric) ? anchor not found, skipped
+[MISSING] b1-body EN (piezoelectric telluric) ? anchor not found, skipped
+[MISSING] b2-body LV (morphogenetic field) ? anchor not found, skipped
+[OK] b2-body EN (morphogenetic field) ? replaced 1 occurrence(s)
+[MISSING] b3-body LV (Shining Ones) ? anchor not found, skipped
+[OK] b3-body EN (Shining Ones) ? replaced 1 occurrence(s)
+[MISSING] m2-body LV (Vazza identisks->statistisks) ? anchor not found, skipped
+[OK] m2-body EN (Vazza identical->statistical) ? replaced 1 occurrence(s)
+[MISSING] m3-body LV (consciousness non-local) ? anchor not found, skipped
+[OK] m3-body EN (consciousness non-local) ? replaced 1 occurrence(s)
+[MISSING] c2-body LV (Vazza duplicate) ? anchor not found, skipped
+[OK] c2-body EN (Vazza duplicate) ? replaced 1 occurrence(s)
+[OK] c2-list-item1 EN (identical matter) ? replaced 1 occurrence(s)
+[OK] c2-list-item2 EN (identical connections) ? replaced 1 occurrence(s)
+
+=== SUMMARY ===
+Applied: 7 replacements across 14 anchors
+Skipped (missing): 7
+Original length: 165955
+New length: 166458
+Delta: 503

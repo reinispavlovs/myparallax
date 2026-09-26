@@ -1,0 +1,44 @@
+{
+  "topic_id": "megalithic_engineering_acoustics",
+  "topic_name": "Megalithic Acoustics, Granite Impedance & Structural Resonance",
+  "generated_at": "2026-09-22T10:00:18.008068",
+  "model": "grok-4.6",
+  "arxiv_source_found": true,
+  "arxiv_context": "Achieving Extraordinary Acoustic Transmission in a Single Slit by Boundary Impedance Engineering Extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. In this work, we show that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance. Using a reduced analytical model to",
+  "data_type": "illustrative_model",
+  "skeptic_critique": "Failsafe check: The 99.99% acoustic energy reflection figure is standard impedance physics, NOT archaeological proof of intent. Airborne acoustic waves alone cannot overcome stone mass without an additional coupling mechanism (seismic strain or a closed Helmholtz geometry).",
+  "content_file": "draft-megalithic_engineering_acoustics-2026-09-22-100018.html",
+  "content_hash": "7ed5655ad9b2",
+  "claim_layers": [
+    {
+      "layer_type": "inferential_bridge",
+      "text": "<div style=\"border:2px solid #b45309;background:#fffbeb;padding:0.75rem 1rem;margin-bottom:1rem;font-weight:600;\">AI-GENERATED DRAFT — PENDING HUMAN FACT-CHECK. Not for publication without review.</div>\n<article>\n<header>\n<h1>Project Parallax research draft: megalithic acoustics, granite impedance, and structural resonance</h1>\n<p>This document is an internal research draft. It uses only the supplied dataset. Numerical values below are not independent field measurements of megaliths, and they are not treated as archaeological fact.</p>\n</header>\n<section>\n<h2>Reported acoustic-transmission context</h2>\n<p>The dataset indicates that an arXiv-linked source was found. The supplied excerpt concerns extraordinary acoustic transmission in a single slit by boundary impedance engineering. Extraordinary acoustic transmission is commonly associated with periodic or multi-aperture structures. The study reports that a single subwavelength slit can support strongly enhanced transmission when its boundary response is described by an effective impedance, and that a reduced analytical model is used. The excerpt is truncated after that clause; this draft does not complete or invent the remainder of that paper.</p>\n</section>\n<section>\n<h2>Illustrative granite-impedance framing</h2>\n<p>The quantitative rows in the dataset are labeled <code>illustrative_model</code>, not literature-sourced megalith data. The model note states that the figures follow the standard acoustic impedance mismatch equation <code>(Z1-Z2)^2/(Z1+Z2)^2</code>, and that a fabricated piezoelectric charge calculation was identified as unsubstantiated and removed. Under that model, a frequency of 115.0 Hz is associated with an acoustic pressure of 28.98879093718812 Pa, an energy reflection of 99.98755114530057 percent, and a boundary status of HIGH_REFLECTION_BARRIER.</p>\n<p>Those values are consistent with a large impedance contrast in ordinary airborne-to-solid mismatch physics. They are not presented here as evidence that granite architecture was intended as an acoustic device, nor as a measurement of any specific monument.</p>\n</section>\n<section>\n<h2>Limits on megalithic interpretation</h2>\n<p>Questions about structural resonance in stone remain open in this draft. The skeptic critique supplied with the dataset states that the high acoustic energy reflection figure is standard impedance physics, not archaeological proof of intent, and that airborne acoustic waves alone cannot overcome stone mass without an additional coupling mechanism such as seismic strain or a closed Helmholtz geometry. This draft treats that caution as binding on interpretation.</p>\n</section>\n<table>\n<caption>Raw input metrics, data type, and skeptic critique (dataset only; no added numbers)</caption>\n<thead>\n<tr>\n<th scope=\"col\">Field</th>\n<th scope=\"col\">Raw value</th>\n<th scope=\"col\">Data type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>arxiv_source_found</td>\n<td>True</td>\n<td>literature-sourced (source flag only)</td>\n</tr>\n<tr>\n<td>frequency_hz</td>\n<td>115.0</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>acoustic_pressure_pa</td>\n<td>28.98879093718812</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>energy_reflection_pct</td>\n<td>99.98755114530057</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>boundary_status</td>\n<td>HIGH_REFLECTION_BARRIER</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>model_note</td>\n<td>Standard acoustic impedance mismatch equation (Z1-Z2)^2/(Z1+Z2)^2. Does NOT include a fabricated piezoelectric charge calculation — it was identified as unsubstantiated and removed.</td>\n<td>illustrative_model</td>\n</tr>\n<tr>\n<td>skeptic_critique</td>\n<td>Failsafe check: The 99.99% acoustic energy reflection figure is standard impedance physics, NOT archaeological proof of intent. Airborne acoustic waves alone cannot overcome stone mass without an additional coupling mechanism (seismic strain or a closed Helmholtz geometry).</td>\n<td>commentary supplied with dataset (not a measurement)</td>\n</tr>\n</tbody>\n</table>\n</article>",
+      "stance": "literature_consistent",
+      "confidence": null,
+      "risk_level": "MEDIUM",
+      "bridge_verified": false,
+      "arxiv_source_found": true,
+      "evidence_level": "literature_context_illustrative_model",
+      "conflict_detected": false,
+      "counts_toward_topic": true,
+      "is_legacy_synthesized": false
+    }
+  ],
+  "content_flags": [
+    "unsourced_precise_decimal:28.98879093718812",
+    "unsourced_precise_decimal:99.98755114530057",
+    "unsourced_precise_decimal:28.98879093718812",
+    "unsourced_precise_decimal:99.98755114530057",
+    "unsourced_precise_decimal:99.99"
+  ],
+  "human_reviewed": true,
+  "review_status": "approved",
+  "reviewer": "Reinis",
+  "review_notes": "Approved. Clear illustrative_model labeling throughout; fabricated piezoelectric charge calculation was correctly identified and removed at source (per fix #204). No unhedged \"proof/proven\" claims — skeptic critique explicitly states energy reflection figure is \"NOT archaeological proof of intent.\" arXiv source (single-slit acoustic impedance transmission) is topically relevant; draft explicitly discloses excerpt truncation rather than fabricating continuation — good anti-hallucination practice. Known non-blocking duplicate flags (28.98, 99.98) tracked under backlog #61, not a content issue.",
+  "credibility_score_C_i": 1.95,
+  "credibility_scored_at": "2026-09-22T09:17:29.397707Z",
+  "reviewed_at": "2026-09-22T08:58:25.183802+00:00",
+  "promoted": true,
+  "promoted_at": "2026-09-22T09:06:45.198440+00:00",
+  "risk_level": "MEDIUM"
+}
