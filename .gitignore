@@ -8,3 +8,9 @@ patch_*.py
 *.bak_round*
 index.html.bak*
 _archive/*.zip
+
+# Shell artifact guards
+'
+python
+scripts/python
+New Teksta dokuments*.txt
