@@ -1,7 +1,0 @@
-﻿57:                     <a href="#isomorphism-map" class="hover:text-amber-400 transition" data-i18n="nav-network">Karte</a>
-58:                     <a href="#globe-section" class="hover:text-amber-400 transition" data-i18n="nav-matrix">3D Matrica</a>
-59:                     <a href="#contribute" class="text-amber-400 border border-amber-400/40 px-3 py-1.5 rounded-lg hover:bg-amber-400/10 transition" data-i18n="nav-contribute">Iesniegt</a>
-81:             <a href="#isomorphism-map" class="block hover:text-amber-400 transition" data-i18n="nav-network">Neironu/Visuma Karte</a>
-82:             <a href="#globe-section" class="block hover:text-amber-400 transition" data-i18n="nav-matrix">3D Matrica</a>
-83:             <a href="#contribute" class="block text-amber-400 pt-2 border-t border-slate-800 transition" data-i18n="nav-contribute">Iesniegt Datus</a>
-149:                     <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="p3-desc">

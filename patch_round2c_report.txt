@@ -1,4 +1,0 @@
-b1-body LV (x2): OK (replaced 2)
-bridgeData.b1.desc1 LV: OK (replaced 1)
-bridgeData.b1.desc2 LV: OK (replaced 1)
-consciousnessData.metaphysics LV: MISMATCH (found 0, expected 1) - SKIPPED

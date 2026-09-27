@@ -14,3 +14,23 @@ _archive/*.zip
 python
 scripts/python
 New Teksta dokuments*.txt
+
+# --- Repo hygiene: block future clutter ---
+*.bak.*
+*.bak.*.*
+dump_*.txt
+dump_*.py
+*_report.txt
+round*_report.txt
+round*_dump.txt
+round*_check.txt
+round*_scan.txt
+round*_utf8.txt
+patch_round*.txt
+patch_dry_run_report.txt
+index_backup_before_*.html
+diag_*.ps1
+setup_*.ps1
+test_*_sanity.py
+test_*_functional.py
+dry_run_*.py
