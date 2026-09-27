@@ -33,7 +33,7 @@
   "reviewer": "Reinis",
   "review_notes": "Approved. quantitative_similarity_score=None correctly withheld; boundary_status enforces human-sourced citation requirement. Flag unsourced_precise_decimal:0.05 is false positive (cited z<0.05 redshift threshold from arXiv source, not fabricated similarity metric). Language mixing in meta-only fields (model_note/skeptic_critique) noted as known issue, does not affect public-facing content_hash-verified HTML.",
   "credibility_score_C_i": 1.95,
-  "credibility_scored_at": "2026-09-26T20:52:01.988620Z",
+  "credibility_scored_at": "2026-09-26T22:29:24.623206Z",
   "reviewed_at": "2026-09-21T09:11:38.867417+00:00",
   "promoted": true,
   "promoted_at": "2026-09-21T09:18:29.913804+00:00",

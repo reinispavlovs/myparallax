@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-26T20:52:02.003214+00:00",
+  "generated_at": "2026-09-26T22:29:24.634464+00:00",
   "schema_version": "1.1",
   "credibility_engine": "claim_layers_utils",
-  "total_drafts_scanned": 10,
+  "total_drafts_scanned": 12,
   "flagged_for_review": [
     {
       "draft": "draft-consciousness_independence_nde-2026-09-22-113022.meta.json",
@@ -181,6 +181,29 @@
       "auto_merge_eligible": false
     },
     {
+      "draft_file": "draft-megalithic_engineering_acoustics-2026-09-27-004343.html",
+      "meta_file": "draft-megalithic_engineering_acoustics-2026-09-27-004343.meta.json",
+      "topic_id": "megalithic_engineering_acoustics",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "pending",
+      "content_hash_expected": "61da3d56ff82",
+      "content_hash_actual": "61da3d56ff82",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [
+        "unsourced_precise_decimal:28.98879093718812",
+        "unsourced_precise_decimal:99.98755114530057",
+        "unsourced_precise_decimal:99.99"
+      ],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
       "draft_file": "draft-neural_cosmic_isomorphism-2026-09-20-220306.html",
       "meta_file": "draft-neural_cosmic_isomorphism-2026-09-20-220306.meta.json",
       "topic_id": "neural_cosmic_isomorphism",
@@ -213,6 +236,25 @@
       "review_status": "approved",
       "content_hash_expected": "797ac09c82cf",
       "content_hash_actual": "797ac09c82cf",
+      "content_hash_verified": true,
+      "conflict_flag": false,
+      "recomputed_content_flags": [],
+      "credibility_score_C_i": 1.95,
+      "current_topic_weight": 1.325,
+      "auto_merge_eligible": false
+    },
+    {
+      "draft_file": "draft-neural_cosmic_isomorphism-2026-09-27-002229.html",
+      "meta_file": "draft-neural_cosmic_isomorphism-2026-09-27-002229.meta.json",
+      "topic_id": "neural_cosmic_isomorphism",
+      "topic_valid": true,
+      "risk_level": "MEDIUM",
+      "arxiv_source_found": true,
+      "has_native_claim_layers": true,
+      "claim_layers_count": 1,
+      "review_status": "pending",
+      "content_hash_expected": "2b5778cfe3a3",
+      "content_hash_actual": "2b5778cfe3a3",
       "content_hash_verified": true,
       "conflict_flag": false,
       "recomputed_content_flags": [],

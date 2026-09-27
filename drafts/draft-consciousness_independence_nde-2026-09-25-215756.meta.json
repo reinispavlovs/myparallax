@@ -25,10 +25,10 @@
     }
   ],
   "content_flags": [],
-  "human_reviewed": false,
-  "review_status": "pending",
-  "reviewer": null,
-  "review_notes": null,
+  "human_reviewed": true,
+  "review_status": "rejected",
+  "reviewer": "Reinis",
+  "review_notes": "",
   "corpus_analysis": {
     "corpus_size": 88,
     "classified_total": 88,
@@ -1471,5 +1471,6 @@
   },
   "credibility_score_C_i": 1.95,
   "risk_level": "MEDIUM",
-  "credibility_scored_at": "2026-09-26T20:52:01.877915Z"
+  "credibility_scored_at": "2026-09-26T22:29:24.588310Z",
+  "reviewed_at": "2026-09-26T22:32:24.605218+00:00"
 }

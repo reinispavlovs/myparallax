@@ -1,17 +1,17 @@
-export default async function handler(req, res) {
-    // Atļaujam tikai POST pieprasījumus
+﻿export default async function handler(req, res) {
+    // AtÄ¼aujam tikai POST pieprasÄ«jumus
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     const { history } = req.body;
-    const apiKey = process.env.GEMINI_API_KEY; // Paņem atslēgu no Vercel drošajiem iestatījumiem
+    const apiKey = process.env.GEMINI_API_KEY; // PaÅ†em atslÄ“gu no Vercel droÅ¡ajiem iestatÄ«jumiem
 
     if (!apiKey) {
         return res.status(500).json({ error: 'GEMINI_API_KEY is not configured on Vercel' });
     }
 
-    const systemInstruction = "You are the Project Parallax Core Intelligence — an analytical research assistant based on the framework 'More Real Than the Visible' by Reinis Pavlovs, embodying Alan Watts' wisdom.";
+    const systemInstruction = "You are the Project Parallax Core Intelligence - an analytical research assistant based on the framework 'More Real Than the Visible' by Reinis Pavlovs, embodying Alan Watts' wisdom.";
 
     try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
@@ -38,3 +38,4 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Failed to communicate with Core Intelligence' });
     }
 }
+

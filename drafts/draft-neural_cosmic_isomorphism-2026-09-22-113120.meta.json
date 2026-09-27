@@ -30,7 +30,7 @@
   "reviewer": "Reinis",
   "review_notes": "Approved. Strongest hedging in this batch: quantitative_similarity_score explicitly None/absent in three separate locations. Fully English (confirms patch #214 fix). Skeptic critique crisply separates topological resemblance from scientific isomorphism, requiring a specific citable study (e.g., Vazza & Feletti) before any quantitative claim. arXiv source (Cosmic Web survey/filament structure) is topically relevant to the cosmic_web_filament_topology domain; draft correctly discloses that the source does not itself compare neural networks, rather than fabricating that comparison. boundary_status=REQUIRES_HUMAN_SOURCED_CITATION correctly blocks auto-merge pending future sourced citation work.",
   "credibility_score_C_i": 1.95,
-  "credibility_scored_at": "2026-09-26T20:52:02.002124Z",
+  "credibility_scored_at": "2026-09-26T22:29:24.626102Z",
   "reviewed_at": "2026-09-22T08:59:48.086910+00:00",
   "promoted": true,
   "promoted_at": "2026-09-22T09:06:45.206218+00:00",
