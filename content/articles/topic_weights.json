@@ -22,7 +22,7 @@
       "partial_count": 2,
       "missing_count": 3,
       "flagged_conflict_count": 0,
-      "last_synced_at": "2026-09-23T12:38:55.523131+00:00"
+      "last_synced_at": "2026-09-30T22:27:37.326418+00:00"
     },
     "cyclical_cataclysms_precession": {
       "epistemic_class": "C",
@@ -34,7 +34,7 @@
       "partial_count": 3,
       "missing_count": 2,
       "flagged_conflict_count": 1,
-      "last_synced_at": "2026-09-23T12:38:55.523179+00:00"
+      "last_synced_at": "2026-09-30T22:27:37.326468+00:00"
     },
     "consciousness_independence_nde": {
       "epistemic_class": "B",
@@ -46,7 +46,7 @@
       "partial_count": 1,
       "missing_count": 2,
       "flagged_conflict_count": 0,
-      "last_synced_at": "2026-09-23T12:38:55.523196+00:00"
+      "last_synced_at": "2026-09-30T22:27:37.326484+00:00"
     },
     "neural_cosmic_isomorphism": {
       "epistemic_class": "B",
@@ -58,7 +58,7 @@
       "partial_count": 1,
       "missing_count": 3,
       "flagged_conflict_count": 0,
-      "last_synced_at": "2026-09-23T12:38:55.523209+00:00"
+      "last_synced_at": "2026-09-30T22:27:37.326496+00:00"
     }
   }
 }
