@@ -1,4 +1,4 @@
-﻿const MODELS = ['gemini-flash-latest', 'gemini-3.8-flash'];
+﻿const MODELS = ['gemini-1.5-flash', 'gemini-1.5-pro'];
 const MAX_RETRIES_PER_MODEL = 2;
 const BASE_DELAY_MS = 1500;
 
