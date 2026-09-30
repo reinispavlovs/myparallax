@@ -34,3 +34,5 @@ setup_*.ps1
 test_*_sanity.py
 test_*_functional.py
 dry_run_*.py
+.vercel
+.env*
