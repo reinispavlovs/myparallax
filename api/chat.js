@@ -11,74 +11,81 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { history } = req.body;
+  try {
+    const { history } = req.body;
 
-  if (!history || !Array.isArray(history)) {
-    return res.status(400).json({ error: "Missing or invalid history array in request body." });
-  }
+    if (!history || !Array.isArray(history)) {
+      return res.status(400).json({ error: "Missing or invalid history array in request body." });
+    }
 
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: "Server misconfiguration: missing API key." });
-  }
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.error("[FATAL] GEMINI_API_KEY is missing in environment variables.");
+      return res.status(500).json({ error: "Server misconfiguration: missing API key." });
+    }
 
-  let lastError = null;
+    let lastError = null;
 
-  for (const model of MODELS) {
-    for (let attempt = 1; attempt <= MAX_RETRIES_PER_MODEL; attempt++) {
-      try {
-        const url = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + apiKey;
+    for (const model of MODELS) {
+      for (let attempt = 1; attempt <= MAX_RETRIES_PER_MODEL; attempt++) {
+        try {
+          const url = "https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent?key=" + apiKey;
 
-        const payload = {
-          contents: history,
-          systemInstruction: {
-            parts: [{ text: SYSTEM_INSTRUCTION }]
+          const payload = {
+            contents: history,
+            systemInstruction: {
+              parts: [{ text: SYSTEM_INSTRUCTION }]
+            }
+          };
+
+          const response = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            console.log("[SUCCESS] Model: " + model + ", Attempt: " + attempt);
+            return res.status(200).json(data);
           }
-        };
 
-        const response = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+          if (response.status === 503 || response.status === 429) {
+            console.warn("[RETRY] Model: " + model + ", Attempt: " + attempt + "/" + MAX_RETRIES_PER_MODEL + " - Status " + response.status);
+            lastError = data.error || { message: "Service Unavailable (" + response.status + ")" };
+            if (attempt < MAX_RETRIES_PER_MODEL) {
+              await sleep(BASE_DELAY_MS * attempt);
+              continue;
+            }
+          } else if (response.status === 404) {
+            console.warn("[FALLBACK] Model: " + model + " not found (404). Trying next model.");
+            lastError = data.error || { message: "404 Not Found" };
+            break;
+          } else {
+            console.error("[ERROR] Model: " + model + ", Status: " + response.status, data.error);
+            lastError = data.error || { message: "HTTP " + response.status };
+            break;
+          }
 
-        const data = await response.json();
-
-        if (response.ok) {
-          console.log("[SUCCESS] Model: " + model + ", Attempt: " + attempt);
-          return res.status(200).json(data);
-        }
-
-        if ((response.status === 503 || response.status === 429)) {
-          console.warn("[RETRY] Model: " + model + ", Attempt: " + attempt + "/" + MAX_RETRIES_PER_MODEL + " - 503");
-          lastError = data.error || { message: "503 Service Unavailable" };
+        } catch (err) {
+          console.error("[EXCEPTION] Model: " + model + ", Attempt: " + attempt, err.message);
+          lastError = { message: err.message };
           if (attempt < MAX_RETRIES_PER_MODEL) {
             await sleep(BASE_DELAY_MS * attempt);
-            continue;
           }
-        } else if (response.status === 404) {
-          console.warn("[FALLBACK] Model: " + model + " not found (404). Trying next model.");
-          lastError = data.error || { message: "404 Not Found" };
-          break;
-        } else {
-          console.error("[ERROR] Model: " + model + ", Status: " + response.status, data.error);
-          lastError = data.error || { message: "HTTP " + response.status };
-          break;
-        }
-
-      } catch (err) {
-        console.error("[EXCEPTION] Model: " + model + ", Attempt: " + attempt, err.message);
-        lastError = { message: err.message };
-        if (attempt < MAX_RETRIES_PER_MODEL) {
-          await sleep(BASE_DELAY_MS * attempt);
         }
       }
     }
-  }
 
-  console.error("[FATAL] All models and retries exhausted.", lastError);
-  return res.status(502).json({
-    error: "All Gemini models failed or are unavailable.",
-    details: lastError
-  });
+    console.error("[FATAL] All models and retries exhausted.", lastError);
+    return res.status(502).json({
+      error: "All Gemini models failed or are unavailable.",
+      details: lastError
+    });
+
+  } catch (outerErr) {
+    console.error("[CRITICAL EXCEPTION in handler]:", outerErr);
+    return res.status(500).json({ error: "Internal Server Error: " + outerErr.message });
+  }
 };
