@@ -7,10 +7,10 @@
     },
     "checklist_schema_version": "1.2"
   },
-  "consciousness_independence_nde": 1.4062,
-  "cyclical_cataclysms_precession": 1.325,
-  "megalithic_engineering_acoustics": 1.4875,
-  "neural_cosmic_isomorphism": 1.4875,
+  "consciousness_independence_nde": 1.4874,
+  "cyclical_cataclysms_precession": 1.4062,
+  "megalithic_engineering_acoustics": 1.5688,
+  "neural_cosmic_isomorphism": 1.5688,
   "topics": {
     "megalithic_engineering_acoustics": {
       "epistemic_class": "B",
@@ -18,11 +18,11 @@
       "percent_mapped": 33.3,
       "capped_by_conflict": false,
       "total_checklist_items": 6,
-      "satisfied_count": 1,
-      "partial_count": 2,
-      "missing_count": 3,
+      "satisfied_count": 0,
+      "partial_count": 4,
+      "missing_count": 2,
       "flagged_conflict_count": 0,
-      "last_synced_at": "2026-09-30T22:27:37.326418+00:00"
+      "last_synced_at": "2026-10-08T08:59:39.767570+00:00"
     },
     "cyclical_cataclysms_precession": {
       "epistemic_class": "C",
@@ -34,7 +34,7 @@
       "partial_count": 3,
       "missing_count": 2,
       "flagged_conflict_count": 1,
-      "last_synced_at": "2026-09-30T22:27:37.326468+00:00"
+      "last_synced_at": "2026-10-08T08:59:39.767612+00:00"
     },
     "consciousness_independence_nde": {
       "epistemic_class": "B",
@@ -46,19 +46,19 @@
       "partial_count": 1,
       "missing_count": 2,
       "flagged_conflict_count": 0,
-      "last_synced_at": "2026-09-30T22:27:37.326484+00:00"
+      "last_synced_at": "2026-10-08T08:59:39.767643+00:00"
     },
     "neural_cosmic_isomorphism": {
       "epistemic_class": "B",
       "potential_reclass_target": null,
-      "percent_mapped": 41.7,
+      "percent_mapped": 33.3,
       "capped_by_conflict": false,
       "total_checklist_items": 6,
-      "satisfied_count": 2,
-      "partial_count": 1,
+      "satisfied_count": 1,
+      "partial_count": 2,
       "missing_count": 3,
       "flagged_conflict_count": 0,
-      "last_synced_at": "2026-09-30T22:27:37.326496+00:00"
+      "last_synced_at": "2026-10-08T08:59:39.767652+00:00"
     }
   }
 }

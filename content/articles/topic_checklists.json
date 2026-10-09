@@ -18,8 +18,9 @@
       "items": [
         {
           "id": "in_situ_measurement",
-          "status": "satisfied",
-          "evidence": "Verified 110-121 Hz standing wave acoustic resonance measured on-site at Giza King's Chamber, Malta Hypogeum, and Barabar caves."
+          "status": "partial",
+          "evidence": "Reported in field measurements: 110-121 Hz standing-wave resonance at Giza King's Chamber, Malta Hypogeum and Barabar caves. Resonance itself is ordinary measurable physics; intentional design is not established in peer-reviewed literature, and no single peer-reviewed source confirming all three sites was identified.",
+          "note": "Downgraded satisfied->partial on 2026-10-08 (reviewer): measurement reported, interpretation (deliberate design) unresolved."
         },
         {
           "id": "causal_mechanism",
@@ -40,8 +41,9 @@
         },
         {
           "id": "peer_reviewed_publication",
-          "status": "missing",
-          "evidence": "Current arXiv source covers general acoustic impedance theory, not site-specific peer-reviewed publication of the resonance measurements."
+          "status": "partial",
+          "evidence": "Peer-reviewed acoustics-of-ancient-sites literature exists (Devereux & Jahn, Antiquity - reportedly includes Malta Hypogeum; Cook, Pajot & Leuchter 2008, Time and Mind - EEG pilot, N=30, 110 Hz). No peer-reviewed source confirming 110-121 Hz at Giza King's Chamber and Barabar caves was identified.",
+          "note": "Upgraded missing->partial on 2026-10-08 (reviewer). Antiquity paper not opened by assistant: verify citation and which sites it covers before relying on it."
         },
         {
           "id": "raw_data_availability",
@@ -129,8 +131,9 @@
       "items": [
         {
           "id": "in_situ_measurement",
-          "status": "satisfied",
-          "evidence": "Vazza & Feletti 2020 quantitative structural comparison of cosmic web and neuronal network topology."
+          "status": "partial",
+          "evidence": "Vazza & Feletti 2020 (Frontiers in Physics) is a comparison of two different data sets (cosmic-web density vs. histological brain slices, based on spatial proximity rather than neural wiring, small sample), not a direct measurement within a single system.",
+          "note": "Downgraded satisfied->partial on 2026-10-08 (reviewer): comparison across data sets, not an in situ measurement in one system."
         },
         {
           "id": "causal_mechanism",
