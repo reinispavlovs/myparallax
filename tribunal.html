@@ -124,7 +124,7 @@ const T = {
     'no-corpus-yet':'Korpusa kopsavilkums vēl nav publicēts (parādīsies pēc nākamās apstiprinātās publikācijas).',
     'analysed':'analizēti','retrieved':'atrasti','excluded':'izslēgti kā neatbilstoši tēmai','sources':'avoti',
     'capped':'Segums ierobežots: ir konflikts starp apgalvojumu un pārbaudi.',
-    'article':'Lasīt pilno rakstu','updated':'Raksts atjaunots','synced':'Kritēriji sinhronizēti','stale':'Dati var būt novecojuši',
+    'article':'Lasīt pilno rakstu','archive':'Visas versijas (arhīvs)','updated':'Raksts atjaunots','synced':'Kritēriji sinhronizēti','stale':'Dati var būt novecojuši',
     'class':'Epistēmiskā klase','reclass':'Potenciāla paaugstināšana',
     'k-in_situ_measurement':'Tiešs mērījums','k-causal_mechanism':'Cēloņsakarības mehānisms','k-statistical_significance':'Statistiskā nozīmība','k-independent_replication':'Neatkarīga atkārtošana','k-peer_reviewed_publication':'Recenzēta publikācija','k-raw_data_availability':'Neapstrādātu datu pieejamība',
     's-satisfied':'izpildīts','s-partial':'daļēji','s-missing':'trūkst','s-flagged_conflict':'konflikts',
@@ -182,7 +182,7 @@ const T = {
     'no-corpus-yet':'The corpus summary has not been published yet (it will appear with the next approved publication).',
     'analysed':'analysed','retrieved':'retrieved','excluded':'excluded as off-topic','sources':'sources',
     'capped':'Coverage capped: there is an unresolved conflict between a claim and its test.',
-    'article':'Read the full article','updated':'Article updated','synced':'Criteria synced','stale':'Data may be out of date',
+    'article':'Read the full article','archive':'All versions (archive)','updated':'Article updated','synced':'Criteria synced','stale':'Data may be out of date',
     'class':'Epistemic class','reclass':'Potential upgrade',
     'k-in_situ_measurement':'Direct measurement','k-causal_mechanism':'Causal mechanism','k-statistical_significance':'Statistical significance','k-independent_replication':'Independent replication','k-peer_reviewed_publication':'Peer-reviewed publication','k-raw_data_availability':'Raw data availability',
     's-satisfied':'satisfied','s-partial':'partial','s-missing':'missing','s-flagged_conflict':'conflict',
@@ -296,7 +296,7 @@ function topicCard(id) {
   const upd = ix && (ix.promoted_at || ix.generated_at);
   const age = upd ? daysSince(upd) : null;
   const stale = age !== null && age > STALE_DAYS;
-  const link = ix ? '<a class="text-amber-400 hover:text-amber-300 text-xs underline" href="content/articles/'+encodeURIComponent(ix.article_file)+'">'+esc(t('article'))+' &rarr;</a>' : '';
+  const link = ix ? '<a class="text-amber-400 hover:text-amber-300 text-xs underline" href="content/articles/'+encodeURIComponent(ix.article_file)+'">'+esc(t('article'))+' &rarr;</a><br><a class="text-slate-400 hover:text-amber-300 text-xs underline" href="archive.html#'+id+'">'+esc(t('archive'))+' &rarr;</a>' : '';
   const meta = []
     .concat(cls ? [esc(t('class'))+': <span class="font-mono text-slate-300">'+esc(cls)+'</span>'+(w.potential_reclass_target?' → '+esc(w.potential_reclass_target)+'?':'')] : [])
     .concat(upd ? [esc(t('updated'))+': <span class="font-mono text-slate-300">'+fmtDate(upd)+'</span>'] : [])

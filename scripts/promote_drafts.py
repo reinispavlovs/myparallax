@@ -293,6 +293,14 @@ def promote_one(meta_path, meta, html_path, index_data, weights_data,
         backup_path = HISTORY_DIR / f"{topic_id}-{timestamp}.html"
         shutil.copy2(dest_path, backup_path)
         print(f"  backed up old article -> {backup_path.relative_to(REPO_ROOT)}")
+        # Archive sidecar: keep the metadata of the version being replaced next to its HTML,
+        # so scripts/build_archive.py can show its score, corpus counts and publication date.
+        if existing_entry:
+            try:
+                backup_path.with_suffix(".meta.json").write_text(
+                    json.dumps(existing_entry, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            except OSError as e:
+                print(f"  [WARN] could not write archive sidecar: {e}")
 
     # 2. Copy (not move) the draft HTML into content/articles/
     shutil.copy2(html_path, dest_path)
@@ -384,6 +392,13 @@ def run_promotion(topic_filter=None, force=False, dry_run=False):
         save_json(WEIGHTS_PATH, weights_data)
         print(f"\n[OK] Wrote {INDEX_PATH.relative_to(REPO_ROOT)}")
         print(f"[OK] Wrote {WEIGHTS_PATH.relative_to(REPO_ROOT)}")
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            import build_archive
+            res = build_archive.build()
+            print(f"[OK] Rebuilt content/articles/archive.json ({len(res['versions'])} versions)")
+        except Exception as e:  # the archive must never block a promotion
+            print(f"[WARN] archive.json was not rebuilt: {e}  (run: python scripts/build_archive.py)")
     else:
         print("\n[DRY RUN] No files were written (index.json / "
               "topic_weights.json / meta.json unchanged).")
