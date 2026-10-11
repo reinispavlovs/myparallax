@@ -226,7 +226,7 @@ def verify_hash_integrity(meta, html_path):
 
 
 DRAFT_BANNER_RE = re.compile(
-    r"<div\b[^>]*>\s*AI-GENERATED DRAFT - PENDING HUMAN FACT-CHECK\.[^<]*</div>", re.I)
+    r"<div\b[^>]*>\s*(?:<strong>)?\s*AI-GENERATED DRAFT - PENDING HUMAN FACT-CHECK\.[^<]*(?:</strong>)?\s*</div>", re.I)
 
 
 def stamp_review_banner(html_path, reviewed_on):
