@@ -59,7 +59,7 @@
         {
           "id": "in_situ_measurement",
           "status": "partial",
-          "evidence": "Platinum anomaly at ~12,800 BP measured via sediment core sampling at multiple sites; orbital precession component remains theoretical only."
+          "evidence": "Physical traces (claim A): platinum anomalies at ~12,800 BP reported from sediment and ice cores at multiple sites; their cause is contested. Periodicity (claim B): no direct measurement; the orbital precession component remains a theoretical illustration."
         },
         {
           "id": "causal_mechanism",
@@ -70,12 +70,12 @@
         {
           "id": "statistical_significance",
           "status": "missing",
-          "evidence": "No statistical correlation test exists between precession cycle timing and impact event dating."
+          "evidence": "Concerns claim B (periodicity): no statistical test exists linking precession-cycle timing to the dating of catastrophic events."
         },
         {
           "id": "independent_replication",
           "status": "partial",
-          "evidence": "Platinum anomaly independently replicated at multiple global Younger Dryas boundary sites."
+          "evidence": "Platinum enrichment has been reported by different groups at several Younger Dryas boundary sites; replication of other proposed markers (e.g. nanodiamonds, spherules) is disputed. Nothing replicates a periodic pattern."
         },
         {
           "id": "peer_reviewed_publication",
