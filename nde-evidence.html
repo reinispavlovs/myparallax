@@ -335,7 +335,7 @@
 
         <section class="bg-slate-900/60 border border-amber-500/30 rounded-2xl p-6 sm:p-8 text-center space-y-3" aria-labelledby="contrib-h">
             <h3 id="contrib-h" class="text-lg font-bold text-white brand-font" data-i18n="contrib-h">Palīdzi aizpildīt plaisas</h3>
-            <p class="text-sm text-slate-300 font-light leading-relaxed max-w-2xl mx-auto" data-i18n="contrib-p">Ja esi publicējis vai veic pētījumu, kas attiecas uz kādu soli, īpaši 2.–4., nosūti atsauci (DOI) un norādi, uz kuru soli tā attiecas un vai tā atbalsta vai apstrīd. Ieguldījumi tiek pievienoti lapai ar norādi uz autoru, un katras izmaiņas tiek reģistrētas labojumu žurnālā.</p>
+            <p class="text-sm text-slate-300 font-light leading-relaxed max-w-2xl mx-auto" data-i18n="contrib-p">Ja esi publicējis vai veic pētījumu, kas attiecas uz kādu soli, īpaši 2.–4., nosūti atsauci (DOI, arXiv/OSF/Zenodo saiti vai grāmatas ISBN) un norādi, uz kuru soli tā attiecas un vai tā atbalsta vai apstrīd. Ieguldījumi tiek pievienoti lapai ar norādi uz autoru, un katras izmaiņas tiek reģistrētas labojumu žurnālā.</p>
             <button id="contrib-open" type="button" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider transition" data-i18n="contrib-open">Pievienot pētījumu</button>
             <p class="text-[11px] text-slate-500 leading-relaxed max-w-2xl mx-auto" data-i18n="contrib-policy">Iesniegumus pārskata cilvēks. Apstiprinātie pētījumi parādās zem atbilstošā soļa ar autora norādi. Tie paši par sevi nemaina nevienu procentu vai statusu; ja pētījums maina kritērija statusu, izmaiņa un pamatojums tiek reģistrēti labojumu žurnālā.</p>
         </section>
@@ -492,8 +492,9 @@
         <form id="contrib-form" class="bg-slate-900 border border-amber-500/60 rounded-2xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-4" novalidate>
             <button type="button" id="contrib-x" class="absolute top-4 right-5 text-slate-400 hover:text-white text-xl font-bold" aria-label="Close">&times;</button>
             <h3 id="f-title" class="text-xl font-bold text-white brand-font" data-i18n="f-title">Pievienot pētījumu</h3>
-            <label class="block text-xs text-slate-300"><span data-i18n="f-doi">DOI (piem., 10.1016/j.resuscitation.2014.08.012)</span>
-                <input name="doi" required maxlength="200" autocomplete="off" class="mt-1 w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100"></label>
+            <label class="block text-xs text-slate-300"><span data-i18n="f-doi">DOI vai saite (piem., 10.1016/j.resuscitation.2014.08.012)</span>
+                <input name="ref" required maxlength="300" autocomplete="off" class="mt-1 w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100"></label>
+            <p class="text-[11px] text-slate-500 leading-relaxed -mt-2" data-i18n="f-ref-hint">Pieņemam DOI, arXiv, OSF vai Zenodo saiti, vai ISBN (grāmatām). Faili netiek pieņemti: mēs saistām uz darbu, nevis to glabājam. Ja darbam vēl nav DOI, ievieto to bezmaksas arhīvā Zenodo vai OSF, kur DOI iegūsi uzreiz.</p>
             <div class="grid sm:grid-cols-2 gap-4">
                 <label class="block text-xs text-slate-300"><span data-i18n="f-step">Uz kuru soli tas attiecas?</span>
                     <select name="step" class="mt-1 w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100">
@@ -761,7 +762,8 @@
             'contrib-open': 'Pievienot pētījumu',
             'contrib-policy': 'Iesniegumus pārskata cilvēks. Apstiprinātie pētījumi parādās zem atbilstošā soļa ar autora norādi. Tie paši par sevi nemaina nevienu procentu vai statusu; ja pētījums maina kritērija statusu, izmaiņa un pamatojums tiek reģistrēti labojumu žurnālā.',
             'f-title': 'Pievienot pētījumu',
-            'f-doi': 'DOI (piem., 10.1016/j.resuscitation.2014.08.012)',
+            'f-doi': 'DOI vai saite (piem., 10.1016/j.resuscitation.2014.08.012)',
+            'f-ref-hint': 'Pieņemam DOI, arXiv, OSF vai Zenodo saiti, vai ISBN (grāmatām). Faili netiek pieņemti: mēs saistām uz darbu, nevis to glabājam. Ja darbam vēl nav DOI, ievieto to bezmaksas arhīvā Zenodo vai OSF, kur DOI iegūsi uzreiz.',
             'f-step': 'Uz kuru soli tas attiecas?',
             'f-step-1': '1. Ziņojumi pastāv',
             'f-step-2': '2. Precīza uztvere',
@@ -779,9 +781,10 @@
             'f-send': 'Nosūtīt',
             'f-cancel': 'Atcelt',
             'f-ok': 'Paldies! Iesniegums saņemts, un to pārskatīs cilvēks. Tas netiek publicēts automātiski.',
-            'f-ok-unv': ' (DOI automātiski pārbaudīt neizdevās.)',
+            'f-ok-unv': ' (Atsauci automātiski pārbaudīt neizdevās; to pārbaudīs recenzents.)',
             'f-err-bad_doi': 'DOI neizskatās derīgs.',
-            'f-err-doi_not_found': 'Šis DOI Crossref netika atrasts.',
+            'f-err-bad_ref': 'Atsauce neizskatās derīga. Izmanto DOI, arXiv/OSF/Zenodo saiti (https) vai ISBN.',
+            'f-err-doi_not_found': 'Šis DOI netika atrasts ne Crossref, ne DataCite.',
             'f-err-note_too_short': 'Lūdzu uzraksti vismaz 20 rakstzīmes.',
             'f-err-consent_required': 'Lūdzu atzīmē piekrišanu.',
             'f-err-rate_limited': 'Pārāk daudz iesniegumu. Mēģini vēlāk.',
@@ -905,7 +908,7 @@
             'r4-p': 'This is the survival hypothesis. It is a legitimate question and the reason this page exists, but it is a hypothesis: the available data do not test it directly. Reports of meeting the deceased and of "the boundary" are interpretations of experience, not observations of death.',
             'r4-mv': 'Evidence that does not depend on someone surviving to report, for example verified information obtained under conditions that rule out ordinary sources, replicated by independent teams.',
             'contrib-h': 'Help close the gaps',
-            'contrib-p': 'If you have published or are running research that bears on any step, especially steps 2 to 4, send the reference (DOI) and say which step it informs and whether it supports or challenges it. Contributions are added to the page with attribution, and every change is recorded in the corrections log.',
+            'contrib-p': 'If you have published or are running research that bears on any step, especially steps 2 to 4, send the reference (a DOI, an arXiv/OSF/Zenodo link, or the ISBN of a book) and say which step it informs and whether it supports or challenges it. Contributions are added to the page with attribution, and every change is recorded in the corrections log.',
             'contrib-link': 'Send a study',
             'side-h': 'Side line: perception at a distance',
             'side-p': 'Remote-viewing claims are a different question from survival after death: they concern living people perceiving distant targets. They are shown separately here with their evidence status: contested, not established.',
@@ -913,7 +916,8 @@
             'contrib-open': 'Add a study',
             'contrib-policy': 'Submissions are reviewed by a person. Accepted studies appear under the relevant step with attribution. They do not change any percentage or status by themselves; if a study changes a criterion, the change and its reason are recorded in the corrections log.',
             'f-title': 'Add a study',
-            'f-doi': 'DOI (e.g. 10.1016/j.resuscitation.2014.08.012)',
+            'f-doi': 'DOI or link (e.g. 10.1016/j.resuscitation.2014.08.012)',
+            'f-ref-hint': 'We accept a DOI, an arXiv, OSF or Zenodo link, or an ISBN (for books). Files are not accepted: we link to the work, we do not host it. If your work has no DOI yet, deposit it for free on Zenodo or OSF to get one right away.',
             'f-step': 'Which step does it inform?',
             'f-step-1': '1. Reports exist',
             'f-step-2': '2. Accurate perception',
@@ -931,9 +935,10 @@
             'f-send': 'Send',
             'f-cancel': 'Cancel',
             'f-ok': 'Thank you. Your submission was received and will be reviewed by a person. It is not published automatically.',
-            'f-ok-unv': ' (The DOI could not be checked automatically.)',
+            'f-ok-unv': ' (The reference could not be checked automatically; the reviewer will check it.)',
             'f-err-bad_doi': 'The DOI does not look valid.',
-            'f-err-doi_not_found': 'This DOI was not found in Crossref.',
+            'f-err-bad_ref': 'The reference does not look valid. Use a DOI, an arXiv/OSF/Zenodo link (https) or an ISBN.',
+            'f-err-doi_not_found': 'This DOI was not found in Crossref or DataCite.',
             'f-err-note_too_short': 'Please write at least 20 characters.',
             'f-err-consent_required': 'Please tick the consent box.',
             'f-err-rate_limited': 'Too many submissions. Please try again later.',
@@ -973,7 +978,7 @@
       const modal = $('contrib-modal'), form = $('contrib-form'), msg = $('contrib-msg');
       let openedAt = 0, entries = null;
 
-      function openModal() { openedAt = Date.now(); msg.textContent = ''; msg.className = 'text-xs'; modal.classList.remove('hidden'); modal.classList.add('flex'); form.doi.focus(); }
+      function openModal() { openedAt = Date.now(); msg.textContent = ''; msg.className = 'text-xs'; modal.classList.remove('hidden'); modal.classList.add('flex'); form.ref.focus(); }
       function closeModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); }
       $('contrib-open').addEventListener('click', openModal);
       $('contrib-x').addEventListener('click', closeModal);
@@ -984,7 +989,7 @@
       form.addEventListener('submit', async e => {
         e.preventDefault();
         const f = new FormData(form);
-        const body = { topic: TOPIC, doi: f.get('doi'), step: f.get('step'), stance: f.get('stance'), note: f.get('note'), name: f.get('name'), email: f.get('email'), website: f.get('website'), consent: form.consent.checked, elapsed: (Date.now() - openedAt) / 1000 };
+        const body = { topic: TOPIC, ref: f.get('ref'), step: f.get('step'), stance: f.get('stance'), note: f.get('note'), name: f.get('name'), email: f.get('email'), website: f.get('website'), consent: form.consent.checked, elapsed: (Date.now() - openedAt) / 1000 };
         const btn = $('contrib-send'); btn.disabled = true;
         msg.className = 'text-xs text-slate-400'; msg.textContent = '…';
         try {
@@ -1004,6 +1009,10 @@
         } finally { btn.disabled = false; }
       });
 
+      function refUrl(x) {
+        const u = x.url || (x.doi ? 'https://doi.org/' + x.doi : '');
+        return /^https:\/\//i.test(u) ? encodeURI(u) : '#';
+      }
       function renderContribs() {
         document.querySelectorAll('.contribs').forEach(box => {
           const list = (entries || []).filter(x => x.topic === box.dataset.topic && String(x.step) === box.dataset.step && x.status === 'accepted');
@@ -1013,7 +1022,7 @@
             const ref = [x.authors, x.year, x.journal].filter(Boolean).join(' · ');
             return '<div class="p-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1">' +
               '<div class="flex flex-wrap items-center gap-2"><span class="px-2 py-0.5 rounded-full border text-[10px] uppercase ' + col + '">' + esc(tr('stance-' + x.stance)) + '</span>' +
-              '<a class="text-amber-400 hover:text-amber-300 underline" href="https://doi.org/' + encodeURI(x.doi) + '" target="_blank" rel="noopener noreferrer">' + esc(x.title || x.doi) + '</a></div>' +
+              '<a class="text-amber-400 hover:text-amber-300 underline" href="' + esc(refUrl(x)) + '" target="_blank" rel="noopener noreferrer">' + esc(x.title || x.ref || x.doi) + '</a></div>' +
               (ref ? '<div class="text-slate-500">' + esc(ref) + '</div>' : '') +
               '<div class="font-light">' + esc(x.note) + '</div>' +
               (x.contributor ? '<div class="text-slate-500">' + esc(tr('contribs-by')) + ': ' + esc(x.contributor) + ' · ' + esc(x.date || '') + '</div>' : '') +
