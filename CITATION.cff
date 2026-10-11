@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite the archived snapshot below."
+title: "Project Parallax: evidence-status snapshot"
+version: 1.0.0
+date-released: 2026-10-11
+doi: 10.5281/zenodo.23301538
+license: CC-BY-4.0
+url: "https://www.myparallax.org"
+authors:
+  - family-names: Pavlovs
+    given-names: Reinis
+    orcid: "https://orcid.org/0009-0004-3972-8872"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23301539
+    description: "Version 1.0.0"
+  - type: doi
+    value: 10.5281/zenodo.23301538
+    description: "All versions (concept DOI)"
+abstract: >-
+  Open, correctable evidence-status maps for topics at the border of ancient knowledge,
+  cosmology and consciousness, scored by checklist coverage (not probability), with a
+  public corrections log and human review of AI-assisted summaries.
