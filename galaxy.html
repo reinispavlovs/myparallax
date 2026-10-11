@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Project Parallax — Galactic Positioning</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --gold:#d4af37; --gold-dim:#8a7228; --cyan:#4fd4c9; --cyan-dim:#2c7770;
+    --ink:#050708; --panel:rgba(9,13,17,.72); --line:rgba(212,175,55,.28);
+    --text:#c9d2da; --text-dim:#6f7a86; --red:#e0603f;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:var(--ink);overflow:hidden;touch-action:none;
+    font-family:'Inter',sans-serif;color:var(--text);}
+  #scene{position:fixed;inset:0;display:block;touch-action:none;}
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .hidden{display:none !important;}
+  .fade{opacity:0;transition:opacity .6s ease;}
+  .fade.in{opacity:1;}
+
+  #gridlines{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.35;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(79,212,201,.06) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(90deg, rgba(79,212,201,.06) 0 1px, transparent 1px 64px);}
+  #scanlines{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.5;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 3px);
+    mix-blend-mode:multiply;}
+  #vignette{position:fixed;inset:0;pointer-events:none;z-index:3;
+    box-shadow:inset 0 0 18vw 4vw rgba(0,0,0,.75);}
+  #flash{position:fixed;inset:0;pointer-events:none;z-index:20;background:#fff4d8;opacity:0;}
+
+  .bracket{position:fixed;width:38px;height:38px;border-color:var(--gold);
+    opacity:.6;z-index:4;pointer-events:none;}
+  .bracket.tl{top:18px;left:18px;border-top:2px solid;border-left:2px solid;}
+  .bracket.tr{top:18px;right:18px;border-top:2px solid;border-right:2px solid;}
+  .bracket.bl{bottom:18px;left:18px;border-bottom:2px solid;border-left:2px solid;}
+  .bracket.br{bottom:18px;right:18px;border-bottom:2px solid;border-right:2px solid;}
+
+  #topbar{position:fixed;top:22px;left:64px;right:64px;z-index:5;
+    display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;}
+  #wordmark{font-family:'Cinzel',serif;font-weight:700;font-size:15px;
+    letter-spacing:.14em;color:var(--gold);}
+  #wordmark span{display:block;font-family:'JetBrains Mono',monospace;
+    font-size:10px;letter-spacing:.08em;color:var(--cyan);font-weight:400;margin-top:4px;}
+  #coords{font-size:11px;letter-spacing:.05em;color:var(--text-dim);text-align:right;line-height:1.6;}
+  #coords b{color:var(--cyan);font-weight:500;}
+
+  #quote{position:fixed;left:64px;bottom:118px;max-width:420px;z-index:5;
+    font-size:13px;line-height:1.65;color:var(--text-dim);pointer-events:none;}
+  #quote em{color:var(--gold);font-style:normal;}
+
+  #stagebtn{position:fixed;left:50%;bottom:64px;transform:translateX(-50%);z-index:6;}
+  #zoomBtn{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;
+    color:var(--gold);background:var(--panel);border:1px solid var(--line);
+    padding:13px 28px;cursor:pointer;backdrop-filter:blur(3px);
+    transition:border-color .25s, color .25s;}
+  #zoomBtn:hover{border-color:var(--gold);color:#f4e3a1;}
+  #zoomBtn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+
+  #tooltip{position:fixed;z-index:8;max-width:230px;padding:10px 13px;
+    background:var(--panel);border:1px solid var(--line);font-size:11.5px;
+    line-height:1.5;pointer-events:none;}
+  #tooltip b{display:block;color:var(--gold);font-size:11px;letter-spacing:.04em;
+    margin-bottom:3px;font-family:'JetBrains Mono',monospace;}
+
+  #earthHud{position:fixed;inset:0;z-index:5;pointer-events:none;}
+  #earthHud .panel{position:fixed;pointer-events:auto;background:var(--panel);
+    border:1px solid var(--line);backdrop-filter:blur(3px);}
+  #dataPanel{top:22px;right:64px;padding:16px 20px;min-width:216px;}
+  #dataPanel .row{display:flex;justify-content:space-between;gap:18px;
+    font-size:11px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+  #dataPanel .row:last-child{border-bottom:none;}
+  #dataPanel .row span:first-child{color:var(--text-dim);letter-spacing:.03em;}
+  #dataPanel .row span:last-child{color:var(--cyan);font-family:'JetBrains Mono',monospace;}
+
+  #eraLabel{top:22px;left:64px;padding:14px 20px;}
+  #eraLabel .name{font-family:'Cinzel',serif;font-size:18px;color:var(--gold);letter-spacing:.02em;}
+  #eraLabel .year{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim);margin-top:3px;}
+
+  #returnBtn{position:fixed;top:98px;left:64px;z-index:6;pointer-events:auto;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em;
+    color:var(--cyan);background:var(--panel);border:1px solid var(--line);
+    padding:9px 16px;cursor:pointer;backdrop-filter:blur(3px);
+    transition:border-color .25s,color .25s;}
+  #returnBtn:hover{border-color:var(--cyan);color:#8ffff0;}
+  #returnBtn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+
+  #focusBtn{position:fixed;top:134px;left:64px;z-index:6;pointer-events:auto;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.05em;
+    color:#ff9a5c;background:var(--panel);border:1px solid rgba(224,96,63,.4);
+    padding:9px 16px;cursor:pointer;backdrop-filter:blur(3px);
+    transition:border-color .25s,color .25s;}
+  #focusBtn:hover{border-color:#ff9a5c;color:#ffc199;}
+  #focusBtn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+  #focusBtn.hidden{display:none !important;}
+
+  #timelinePanel{left:50%;bottom:40px;transform:translateX(-50%);
+    width:min(720px,90vw);padding:18px 26px 16px;}
+  #timelinePanel .chapters{font-size:9px;letter-spacing:.05em;color:var(--text-dim);
+    margin-bottom:9px;font-family:'JetBrains Mono',monospace;text-align:center;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 10px;}
+  #slider{width:100%;-webkit-appearance:none;appearance:none;height:2px;
+    background:linear-gradient(90deg,var(--gold-dim),var(--red),var(--cyan-dim),var(--gold-dim));
+    outline:none;cursor:pointer;touch-action:pan-x;}
+  #slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;
+    border-radius:50%;background:var(--gold);border:2px solid var(--ink);
+    box-shadow:0 0 6px rgba(212,175,55,.7);}
+  #slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:var(--gold);border:2px solid var(--ink);}
+  #footnote{margin-top:11px;font-size:9.5px;color:var(--text-dim);letter-spacing:.02em;}
+
+  #gridToggle{bottom:22px;right:64px;padding:11px 15px;font-size:10.5px;
+    letter-spacing:.04em;color:var(--text-dim);cursor:pointer;user-select:none;}
+  #gridToggle b{color:var(--cyan);}
+  #gridToggle.on{color:var(--gold);}
+  #gridToggle small{display:block;color:var(--text-dim);font-size:8.5px;margin-top:2px;}
+
+  #hint{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;
+    font-size:10px;letter-spacing:.05em;color:var(--text-dim);pointer-events:none;
+    opacity:0;transition:opacity .5s ease;text-align:center;font-family:'JetBrains Mono',monospace;}
+  #hint.show{opacity:.75;}
+
+  @media (max-width:720px){
+    #topbar{left:20px;right:20px;}
+    #coords{display:none;}
+    #quote{left:20px;right:20px;max-width:none;bottom:158px;}
+    #dataPanel{right:20px;left:20px;top:auto;bottom:206px;min-width:0;}
+    #eraLabel{left:20px;top:20px;}
+    #returnBtn{left:20px;top:88px;}
+    #focusBtn{left:20px;top:124px;}
+    #timelinePanel{bottom:34px;width:92vw;padding:14px 18px 12px;}
+    #timelinePanel .chapters{display:none;}
+    .bracket{width:24px;height:24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    #flash{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="scene"></canvas>
+<div id="gridlines"></div>
+<div id="scanlines"></div>
+<div id="vignette"></div>
+<div id="flash"></div>
+<div class="bracket tl"></div><div class="bracket tr"></div>
+<div class="bracket bl"></div><div class="bracket br"></div>
+<div id="hint" class="mono">drag to rotate · pinch or scroll to zoom</div>
+
+<div id="topbar">
+  <div id="wordmark"><a href="index.html" style="color:inherit;text-decoration:none">PROJECT PARALLAX</a><span>GALACTIC POSITIONING SYSTEM</span></div>
+  <div id="coords" class="mono">
+    SOL–EARTH VECTOR <b id="vecReadout">ACTIVE</b><br>
+    GALACTIC YEAR PHASE <b id="phaseReadout">0.0%</b>
+  </div>
+</div>
+
+<div id="quote" class="mono fade in">
+  Because we complete a full galactic circle every <em>250 million years</em>, in our brief epoch
+  we are always traversing uncharted cosmic coordinates — never where we have been before,
+  and never knowing what lies ahead.
+</div>
+
+<div id="stagebtn"><button id="zoomBtn">Zoom to Earth</button></div>
+<div id="tooltip" class="hidden mono"></div>
+
+<div id="earthHud" class="hidden">
+  <div class="panel fade" id="eraLabel">
+    <div class="name" id="eraName">—</div>
+    <div class="year mono" id="eraYear">—</div>
+  </div>
+  <button id="returnBtn" class="fade">← Return to Galactic View</button>
+  <button id="focusBtn" class="fade hidden">◎ Focus: Impact Site</button>
+  <div class="panel fade" id="dataPanel">
+    <div class="row"><span>ICE COVERAGE (N. HEMI)</span><span id="dIce">—</span></div>
+    <div class="row"><span>SEA LEVEL Δ</span><span id="dSea">—</span></div>
+    <div class="row"><span>SAHARA VEGETATION IDX</span><span id="dSahara">—</span></div>
+    <div class="row"><span>EXPOSED LAND BRIDGES</span><span id="dBridge">—</span></div>
+    <div class="row"><span>GEOMAGNETIC FIELD</span><span id="dField">—</span></div>
+  </div>
+  <div class="panel fade" id="timelinePanel">
+    <div class="chapters">
+      <span>DINOSAURS</span><span>IMPACT</span><span>DRIFT</span><span>POLE REVERSAL</span>
+      <span>ICE AGE</span><span>FLOODS</span><span>SAHARA</span><span>MODERN</span>
+    </div>
+    <input id="slider" type="range" min="0" max="100" value="100" step="0.2"
+           aria-label="Geo-temporal timeline">
+    <div id="footnote">Continental positions before the modern era are an illustrative reconstruction
+      (rigid drift of real satellite imagery, not surveyed plate data). Cloud cover is today's, shown
+      unchanged across all eras for visual continuity. Ice extent, sea level and vegetation are a
+      stylized model, not measured data.</div>
+  </div>
+  <div class="panel fade" id="gridToggle" role="button" tabindex="0">
+    <b id="gridState">TELLURIC GRID: OFF</b>
+    <small>symbolic overlay, not a measured field</small>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+if (typeof THREE === 'undefined') {
+  document.body.innerHTML =
+    '<div style="color:#e0603f;font-family:monospace;padding:60px;' +
+    'font-size:14px;line-height:1.9;max-width:600px;">' +
+    '⚠ ERROR: THREE.js library failed to load.<br><br>' +
+    'Pārbaudiet interneta pieslēgumu vai atveriet konsoli (F12) sīkākai diagnostikai.<br>' +
+    'CDN: cdn.jsdelivr.net</div>';
+  return;
+}
+
+function clamp(v,a,b){ return Math.max(a, Math.min(b,v)); }
+function lerp(a,b,t){ return a+(b-a)*t; }
+function easeInOutCubic(x){ return x<0.5 ? 4*x*x*x : 1-Math.pow(-2*x+2,3)/2; }
+function zoomBounds(){ return (stage==='earth' && focusMode) ? [0.82, 1.9] : [0.4, 2.4]; }
+
+/* ---------------- renderer / scene / camera ---------------- */
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth, innerHeight);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x030405);
+scene.fog = new THREE.FogExp2(0x030405, 0.0016);
+
+const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.05, 3000);
+const GALAXY_CAM = new THREE.Vector3(0, 118, 244);
+const EARTH_OFFSET = new THREE.Vector3(0, 0.35, 3.1);
+camera.position.copy(GALAXY_CAM);
+camera.lookAt(0,0,0);
+
+const world = new THREE.Group();
+scene.add(world);
+
+addEventListener('resize', ()=>{
+  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+/* ---------------- pointer / touch: drag-rotate + pinch/wheel zoom ---------------- */
+let stage = 'galaxy';
+let dragging=false, pinching=false, lastX=0, lastY=0;
+let yaw=0, pitch=-0.18, autoSpin=0.00035;         // galaxy world rotation
+let eYaw=0, ePitch=-0.05, autoSpinEarth=0.0009;   // earth group self-rotation
+let camDistScale=1, pinchStartDist=0, pinchStartScale=1;
+const pointers = new Map();
+canvas.style.cursor='grab';
+
+function pdist(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
+
+function onPointerDown(e){
+  if(canvas.setPointerCapture){ try{ canvas.setPointerCapture(e.pointerId); }catch(_){} }
+  pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+  document.getElementById('hint').classList.remove('show');
+  if(pointers.size===1){
+    dragging=true; pinching=false; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='grabbing';
+  } else if(pointers.size===2){
+    dragging=false; pinching=true;
+    const pts=[...pointers.values()];
+    pinchStartDist = pdist(pts[0],pts[1]);
+    pinchStartScale = camDistScale;
+  }
+}
+function onPointerMove(e){
+  checkMilestoneHover(e.clientX, e.clientY);
+  if(!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+  if(pinching && pointers.size>=2){
+    const pts=[...pointers.values()];
+    const d = Math.max(1, pdist(pts[0],pts[1]));
+    const [zMin,zMax] = zoomBounds();
+    camDistScale = clamp(pinchStartScale * (pinchStartDist/d), zMin, zMax);
+  } else if(dragging && pointers.size===1 && stage!=='transitioning'){
+    const dx=e.clientX-lastX, dy=e.clientY-lastY;
+    if(stage==='galaxy'){ yaw += dx*0.0032; pitch = clamp(pitch+dy*0.0022, -0.7, 0.65); }
+    else { eYaw += dx*0.0034; ePitch = clamp(ePitch+dy*0.0026, -0.6, 0.6); }
+    lastX=e.clientX; lastY=e.clientY;
+  }
+}
+function onPointerUp(e){
+  pointers.delete(e.pointerId);
+  if(pointers.size===0){ dragging=false; pinching=false; canvas.style.cursor='grab'; }
+  else if(pointers.size===1){
+    pinching=false; dragging=true;
+    const [p]=[...pointers.values()]; lastX=p.x; lastY=p.y;
+  }
+}
+canvas.addEventListener('pointerdown', onPointerDown);
+addEventListener('pointermove', onPointerMove);
+addEventListener('pointerup', onPointerUp);
+addEventListener('pointercancel', onPointerUp);
+canvas.addEventListener('wheel', e=>{
+  e.preventDefault();
+  const [zMin,zMax] = zoomBounds();
+  camDistScale = clamp(camDistScale * (1 + e.deltaY*0.0012), zMin, zMax);
+}, {passive:false});
+canvas.addEventListener('dblclick', ()=>{ camDistScale=1; });
+setTimeout(()=>document.getElementById('hint').classList.add('show'), 900);
+setTimeout(()=>document.getElementById('hint').classList.remove('show'), 6000);
+
+/* =====================================================================
+   GALAXY LAYER
+===================================================================== */
+const galaxyGroup = new THREE.Group();
+world.add(galaxyGroup);
+
+function buildGalaxy(){
+  const N = 9000, arms = 4, R = 95;
+  const pos = new Float32Array(N*3), col = new Float32Array(N*3);
+  const core = new THREE.Color(0xfff3d6), mid = new THREE.Color(0xd4af37), edge = new THREE.Color(0x2c5f77);
+  for(let i=0;i<N;i++){
+    const arm = i % arms;
+    const t = Math.pow(Math.random(), 0.62);
+    const dist = t * R;
+    const spin = dist * 0.11;
+    const angle = spin + arm*(Math.PI*2/arms) + (Math.random()-0.5)*0.55;
+    const spread = (1 - t*0.55) * 3.4;
+    const x = Math.cos(angle)*dist + (Math.random()-0.5)*spread*2;
+    const z = Math.sin(angle)*dist + (Math.random()-0.5)*spread*2;
+    const y = (Math.random()-0.5) * (1-t*0.8) * 3.0;
+    pos.set([x,y,z], i*3);
+    const c = dist < R*0.18 ? core.clone().lerp(mid, dist/(R*0.18)) : mid.clone().lerp(edge, (dist-R*0.18)/(R*0.82));
+    col.set([c.r,c.g,c.b], i*3);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col,3));
+  const mat = new THREE.PointsMaterial({size:0.62, vertexColors:true, transparent:true, opacity:0.92, depthWrite:false});
+  galaxyGroup.add(new THREE.Points(geo, mat));
+
+  const coreGlow = new THREE.Mesh(
+    new THREE.SphereGeometry(6,32,32),
+    new THREE.MeshBasicMaterial({color:0xfff0c4, transparent:true, opacity:0.35, depthWrite:false})
+  );
+  galaxyGroup.add(coreGlow);
+}
+buildGalaxy();
+
+const ORBIT_RX = 62, ORBIT_RY = 62, ORBIT_TILT = 0.12;
+const orbitCurve = new THREE.EllipseCurve(0,0, ORBIT_RX, ORBIT_RY, 0, Math.PI*2, false, 0);
+const orbitPts3d = orbitCurve.getPoints(180).map(p=>new THREE.Vector3(p.x,0,p.y));
+const orbitGeo = new THREE.BufferGeometry().setFromPoints(orbitPts3d);
+const orbitLine = new THREE.Line(orbitGeo, new THREE.LineBasicMaterial({color:0x4fd4c9, transparent:true, opacity:0.45}));
+orbitLine.rotation.x = ORBIT_TILT;
+galaxyGroup.add(orbitLine);
+
+function orbitPoint(angle){
+  const v = new THREE.Vector3(Math.cos(angle)*ORBIT_RX, 0, Math.sin(angle)*ORBIT_RY);
+  v.applyAxisAngle(new THREE.Vector3(1,0,0), ORBIT_TILT);
+  return v;
+}
+
+const NOW_ANGLE = Math.PI*0.15;
+const GALACTIC_YEAR_MY = 250;
+
+const sunPos = orbitPoint(NOW_ANGLE);
+const sunMesh = new THREE.Mesh(new THREE.SphereGeometry(1.1,20,20), new THREE.MeshBasicMaterial({color:0xfff3d6}));
+sunMesh.position.copy(sunPos);
+galaxyGroup.add(sunMesh);
+function radialGlowTexture(){
+  const c = document.createElement('canvas'); c.width=c.height=128;
+  const g = c.getContext('2d');
+  const rg = g.createRadialGradient(64,64,0,64,64,64);
+  rg.addColorStop(0,'rgba(255,243,214,0.9)');
+  rg.addColorStop(0.4,'rgba(255,243,214,0.35)');
+  rg.addColorStop(1,'rgba(255,243,214,0)');
+  g.fillStyle=rg; g.fillRect(0,0,128,128);
+  return new THREE.CanvasTexture(c);
+}
+const sunGlow = new THREE.Sprite(new THREE.SpriteMaterial({
+  map:radialGlowTexture(), transparent:true, opacity:0.85,
+  blending:THREE.AdditiveBlending, depthWrite:false
+}));
+sunGlow.scale.set(7,7,1); sunGlow.position.copy(sunPos);
+galaxyGroup.add(sunGlow);
+
+const MILESTONES = [
+  {name:'You Are Here', mya:0, desc:'Present galactic position of the Solar System.'},
+  {name:'K–Pg Extinction', mya:66, desc:'Non-avian dinosaurs vanish. Chicxulub impact horizon.'},
+  {name:'Cambrian Explosion (phase-equivalent)', mya:41, desc:'Rapid diversification of complex animal life (~541 Mya; shown at its position within the current 250 My cycle).'},
+  {name:'Formation of the Solar System (phase-equivalent)', mya:40, desc:'~4.6 Bya; plotted at its equivalent phase within one 250 My galactic orbit.'},
+  {name:'Snowball Earth episodes (phase-equivalent)', mya:220, desc:'Global glaciations (~720 Mya onset), phase-mapped onto the current orbit for scale.'}
+];
+const milestoneMeshes = [];
+const msGeo = new THREE.SphereGeometry(0.85,14,14);
+MILESTONES.forEach(m=>{
+  const angle = NOW_ANGLE - (m.mya % GALACTIC_YEAR_MY)/GALACTIC_YEAR_MY * Math.PI*2;
+  const p = orbitPoint(angle);
+  const mat = new THREE.MeshBasicMaterial({color: m.mya===0 ? 0xfff3d6 : 0xd4af37});
+  const mesh = new THREE.Mesh(msGeo, mat);
+  mesh.position.copy(p);
+  mesh.userData = m;
+  galaxyGroup.add(mesh);
+  milestoneMeshes.push(mesh);
+});
+
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+const tooltip = document.getElementById('tooltip');
+function checkMilestoneHover(x,y){
+  if(stage!=='galaxy'){ tooltip.classList.add('hidden'); return; }
+  ndc.x=(x/innerWidth)*2-1; ndc.y=-(y/innerHeight)*2+1;
+  ray.setFromCamera(ndc, camera);
+  const hit = ray.intersectObjects(milestoneMeshes)[0];
+  if(hit){
+    const d = hit.object.userData;
+    tooltip.innerHTML = '<b>'+d.name+'</b>'+d.desc;
+    tooltip.style.left = Math.min(x+16, innerWidth-250)+'px';
+    tooltip.style.top  = Math.min(y+16, innerHeight-90)+'px';
+    tooltip.classList.remove('hidden');
+    canvas.style.cursor='pointer';
+  } else {
+    tooltip.classList.add('hidden');
+    canvas.style.cursor = dragging ? 'grabbing' : 'grab';
+  }
+}
+
+/* =====================================================================
+   EARTH LAYER — anchored exactly at the sun/orbit point, so the zoom
+   transition is one continuous dolly toward a single fixed target.
+===================================================================== */
+const earthGroup = new THREE.Group();
+earthGroup.position.copy(sunPos);
+earthGroup.visible = false;
+world.add(earthGroup);
+
+const EARTH_TEX_BASE = 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r128/examples/textures/planets/';
+let baseImgLoaded = false;
+const baseImg = new Image();
+baseImg.crossOrigin = 'anonymous';
+baseImg.onload = ()=>{ baseImgLoaded = true; applyTimeline(parseFloat(document.getElementById('slider').value)); };
+baseImg.onerror = ()=>{ console.warn('[Parallax] Earth photo texture failed — modern era falls back to the illustrative map.'); };
+baseImg.src = EARTH_TEX_BASE + 'earth_atmos_2048.jpg';
+
+const EARTH_CANVAS = document.createElement('canvas');
+EARTH_CANVAS.width = 2048; EARTH_CANVAS.height = 1024;
+const ectx = EARTH_CANVAS.getContext('2d');
+const earthTexture = new THREE.CanvasTexture(EARTH_CANVAS);
+earthTexture.anisotropy = 4;
+// Mipmapping on a noisy procedural texture averages scattered detail (clouds, relief
+// grain) down into a flat haze once the sphere is more than a screen or two wide —
+// exactly the "washed out, textureless" look reported. A plain linear filter keeps every
+// redraw sharp at the distances this globe is actually viewed from.
+earthTexture.minFilter = THREE.LinearFilter;
+earthTexture.generateMipmaps = false;
+
+// base (modern) continent silhouettes — illustrative, not surveyed coastlines
+// Illustrative coastlines with more recognizable landmarks (peninsulas, capes) than a
+// bare 5-11 point outline. Still a stylized approximation, not surveyed data — there is
+// no real photograph of Cretaceous Earth, so this is always an illustration by nature.
+const CONT_MODERN = [
+  [[-9,71],[10,68],[30,70],[60,72],[100,73],[140,73],[160,60],[155,50],[142,44],[122,31],
+   [110,20],[100,13],[80,8],[73,20],[60,25],[50,15],[43,12],[35,15],[35,30],[27,36],
+   [15,38],[-9,38],[-9,44],[-5,50],[5,60],[-9,71]],
+  [[35,32],[43,12],[40,-2],[35,-20],[26,-34],[16,-30],[12,-18],[9,0],[-6,10],[-17,15],
+   [-9,25],[-6,35],[10,37],[35,32]],
+  [[-165,68],[-141,60],[-130,52],[-125,49],[-117,32],[-112,24],[-97,18],[-88,21],[-81,25],
+   [-75,35],[-66,44],[-55,50],[-65,60],[-80,65],[-95,68],[-130,70],[-165,68]],
+  [[-77,8],[-80,-5],[-75,-18],[-70,-30],[-68,-45],[-68,-55],[-58,-40],[-48,-25],[-40,-15],
+   [-35,-8],[-50,2],[-60,8],[-77,8]],
+  [[113,-22],[122,-18],[136,-12],[145,-15],[153,-28],[150,-37],[140,-38],[131,-32],
+   [115,-34],[113,-22]]
+];
+// small satellite landmasses — modern position only (no drift animation, low impact on the
+// stylized "breakup" story, kept simple)
+const CONT_STATIC = [
+  [[-45,60],[-52,68],[-60,76],[-40,82],[-20,76],[-25,68],[-45,60]],           // Greenland
+  [[43,-12],[50,-16],[47,-25],[44,-22],[43,-12]],                             // Madagascar
+  [[-180,-72],[-90,-76],[0,-78],[90,-76],[180,-72],[180,-90],[-180,-90],[-180,-72]] // Antarctica
+];
+// rigid drift transform per continent, applied at full strength in the Cretaceous
+// (rotation about each continent's own centroid + translation) — a stylized
+// approximation of breakup/drift, not a plate-tectonic reconstruction.
+const DRIFT = [
+  {rot:-4, dLon:-5,  dLat:-9},  // "Laurasia" fragment
+  {rot:7,  dLon:-13, dLat:5},   // Africa, closer to South America (narrow Atlantic)
+  {rot:-9, dLon:10,  dLat:-6},  // North America, closer to Eurasia
+  {rot:-6, dLon:16,  dLat:8},   // South America, closer to Africa
+  {rot:14, dLon:-20, dLat:-22}  // Australia, still against Antarctica/Gondwana
+];
+function centroid(pts){ let x=0,y=0; pts.forEach(p=>{x+=p[0];y+=p[1];}); return [x/pts.length, y/pts.length]; }
+// `center` optionally overrides the rotation pivot — used so a continent's rivers rotate
+// around THAT CONTINENT's centroid rather than their own (much smaller) bounding set,
+// keeping them visually glued to the land as it drifts instead of sliding off it.
+function driftedPoly(pts, tr, amt, center){
+  if(amt<=0.003) return pts;
+  const [cx,cy]=center || centroid(pts);
+  const rad=tr.rot*amt*Math.PI/180, cos=Math.cos(rad), sin=Math.sin(rad);
+  return pts.map(([lon,lat])=>{
+    const dx=lon-cx, dy=lat-cy;
+    return [cx+(dx*cos-dy*sin)+tr.dLon*amt, cy+(dx*sin+dy*cos)+tr.dLat*amt];
+  });
+}
+const CONT_CENTROIDS = CONT_MODERN.map(centroid);
+// Chaikin corner-cutting: softens the crude, low-vertex-count polygons into
+// coastline-like curves instead of sharp geometric triangles.
+function smoothPoly(pts, iterations){
+  let p = pts.slice(0, -1);
+  for(let it=0; it<iterations; it++){
+    const next=[];
+    for(let i=0;i<p.length;i++){
+      const a=p[i], b=p[(i+1)%p.length];
+      next.push([a[0]*0.82+b[0]*0.18, a[1]*0.82+b[1]*0.18]);
+      next.push([a[0]*0.18+b[0]*0.82, a[1]*0.18+b[1]*0.82]);
+    }
+    p = next;
+  }
+  p.push(p[0]);
+  return p;
+}
+function llToXY(lon,lat){ return [ (lon+180)/360*EARTH_CANVAS.width, (90-lat)/180*EARTH_CANVAS.height ]; }
+function poly(ctx, pts){ ctx.beginPath(); pts.forEach((p,i)=>{const [x,y]=llToXY(p[0],p[1]); i?ctx.lineTo(x,y):ctx.moveTo(x,y);}); ctx.closePath(); }
+function clipToPolys(ctx, polysArrays){
+  ctx.beginPath();
+  polysArrays.forEach(pts=>{ pts.forEach((pt,i)=>{ const [x,y]=llToXY(pt[0],pt[1]); i?ctx.lineTo(x,y):ctx.moveTo(x,y); }); ctx.closePath(); });
+  ctx.clip();
+}
+
+const CHICXULUB = [-87, 21];
+function latLonToVector3(lat, lon, radius){
+  const phi = (90-lat)*(Math.PI/180), theta = (lon+180)*(Math.PI/180);
+  return new THREE.Vector3(
+    -radius*Math.sin(phi)*Math.cos(theta),
+     radius*Math.cos(phi),
+     radius*Math.sin(phi)*Math.sin(theta)
+  );
+}
+const IMPACT_DIR = latLonToVector3(CHICXULUB[1], CHICXULUB[0], 1).normalize();
+
+// Seeded PRNG (mulberry32) for every "random" texture below (relief, biome, ice, clouds,
+// ejecta rays) — otherwise Math.random() reshuffles the whole look of the ancient globe
+// on every single page reload, which makes it impossible to tell a real change from
+// ordinary refresh noise when comparing screenshots. A fixed seed means the same
+// continent gets the same mountains/biome patches/cloud pattern every time; reload
+// variety was never the point here.
+function mulberry32(seed){
+  return function(){
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rand = mulberry32(1337);
+
+const EJECTA_RAYS = Array.from({length:28}, ()=>({
+  ang: rand()*Math.PI*2, len: 0.18+rand()*0.55, w: 1+rand()*2.2
+}));
+
+// Procedural texture patches, generated once (no external images = no licensing concerns,
+// and it's cheap to re-composite via drawImage every redraw instead of per-pixel work).
+function blobTexture(w,h,count,drawOne){
+  const c=document.createElement('canvas'); c.width=w; c.height=h;
+  const g=c.getContext('2d');
+  for(let i=0;i<count;i++) drawOne(g,w,h,i);
+  return c;
+}
+const ICE_NOISE = blobTexture(512,256,110,(g,w,h)=>{
+  const x=rand()*w, y=rand()*h, len=18+rand()*80, thick=2+rand()*4, ang=rand()*Math.PI;
+  const col = rand()<0.5 ? '150,185,210' : '255,255,255', a=(0.05+rand()*0.13).toFixed(3);
+  g.save(); g.translate(x,y); g.rotate(ang);
+  g.fillStyle=`rgba(${col},${a})`; g.beginPath(); g.ellipse(0,0,len/2,thick/2,0,0,Math.PI*2); g.fill();
+  g.restore();
+});
+
+function drawEarth(p){
+  const W = EARTH_CANVAS.width, H = EARTH_CANVAS.height;
+  ectx.globalAlpha = 1; ectx.globalCompositeOperation = 'source-over';
+  ectx.fillStyle = '#07161c';
+  ectx.fillRect(0,0,W,H);
+
+  // Every era is built from the SAME real NASA photo — oceans, coastlines, mountains,
+  // deserts, forests, cloud cover, all of it. Nothing is swapped for a flat illustrated
+  // substitute part-way through the timeline. What moves is the continents themselves:
+  // each one is cut out of the photo and placed at its drifted position with a rigid
+  // rotate+translate (the same transform that already moves its outline), so "ancient
+  // Earth" is literally today's continents reshuffled, not a different rendering system
+  // fading in. The photo itself is static/illustrative at any era other than today, same
+  // as the outlines always have been — but it is always a REAL photo, never a flat tint.
+  const landAlpha = 1 - p.photo;
+  const landPolys = [];
+  CONT_MODERN.forEach((c,i)=> landPolys.push(smoothPoly(driftedPoly(c, DRIFT[i], p.ancient), 2)));
+  CONT_STATIC.forEach(c=> landPolys.push(smoothPoly(c,1)));
+
+  if(baseImgLoaded){
+    ectx.globalAlpha = 1;
+    ectx.drawImage(baseImg, 0,0, W,H);
+
+    if(landAlpha>0.02){
+      // Erase each continent from its MODERN footprint (painted over with the dark ocean
+      // tone) before redrawing it at its drifted position — otherwise you'd see both the
+      // real continent sitting where it is today AND the drifted copy at once.
+      ectx.save();
+      ectx.globalAlpha = landAlpha;
+      ectx.fillStyle = '#0a1a22';
+      CONT_MODERN.forEach(c=>{ poly(ectx, smoothPoly(c,2)); ectx.fill(); });
+      ectx.restore();
+
+      // Pixel-space equivalent of each continent's lon/lat drift transform (derived from
+      // llToXY being a simple affine map — rotation direction flips because the canvas
+      // Y axis runs opposite to latitude).
+      CONT_MODERN.forEach((c,i)=>{
+        const amt = p.ancient;
+        if(amt<=0.003 && p.photo>0.5) return; // already sitting at its real position
+        const tr = DRIFT[i];
+        const [cx,cy] = CONT_CENTROIDS[i];
+        const [pcx,pcy] = llToXY(cx,cy);
+        const theta = tr.rot*amt*Math.PI/180;
+        const dPx = tr.dLon*amt*(W/360), dPy = -tr.dLat*amt*(H/180);
+        ectx.save();
+        clipToPolys(ectx, [smoothPoly(driftedPoly(c, tr, amt), 2)]);
+        ectx.globalAlpha = landAlpha;
+        ectx.translate(pcx+dPx, pcy+dPy);
+        ectx.rotate(-theta);
+        ectx.translate(-pcx, -pcy);
+        ectx.drawImage(baseImg, 0,0, W,H);
+        ectx.restore();
+      });
+    }
+
+    // Era colour mood — a light re-tint of the real photo (hue/saturation only, via
+    // 'color' blend, so the photo's own relief and shading keep showing through) rather
+    // than a replacement colour. Warm/arid for the Cretaceous, ash-grey after the impact,
+    // pale for heavy ice. Modern (landAlpha→0) fades this out entirely.
+    if(landAlpha>0.03){
+      let tr=120, tg=150, tb=110;
+      tr=lerp(tr,172,p.warm*0.6); tg=lerp(tg,148,p.warm*0.6); tb=lerp(tb,96,p.warm*0.6);
+      tr=lerp(tr,110,p.impact*0.7); tg=lerp(tg,104,p.impact*0.7); tb=lerp(tb,96,p.impact*0.7);
+      tintFeathered(landPolys, `${Math.round(tr)},${Math.round(tg)},${Math.round(tb)}`, 0.5*landAlpha, 22);
+    }
+
+    // Ice-sheet whitening, latitude-bound: real glacial maxima buried high-latitude land
+    // under kilometres of ice, but left the tropics and most mid-latitudes merely colder
+    // and drier, not glaciated. So instead of whitening all land uniformly, this intersects
+    // the land mask with the SAME polar band used for the snow/sea-ice gradient further
+    // below — land inside that band goes almost as white as the poles themselves; land
+    // outside it keeps its ordinary (warm/ash-adjusted) colour.
+    const iceAmt = clamp((80-p.ice)/40, 0, 1);
+    if(iceAmt>0.03 && landAlpha>0.03 && landPolys.length){
+      const iceYpx = (90 - p.ice)/180 * H;
+      const capMask = landFeatherMask(landPolys, 22);
+      const cmg = capMask.getContext('2d');
+      cmg.globalCompositeOperation = 'destination-in';
+      cmg.drawImage(iceCapMask(iceYpx, H*0.16), 0, 0);
+      applyMaskedTint(capMask, '238,244,249', lerp(0.3, 0.92, iceAmt) * landAlpha);
+    }
+  }
+
+  // Sahara greening / land bridges: re-tint with 'color' + a soft radial falloff instead
+  // of a flat, hard-edged polygon fill — a flat fill was painting a crisp solid shape
+  // directly over the relief/biome/rivers underneath it, which is exactly the "normal
+  // texture suddenly cuts to a flat geometric patch" seam that got flagged. Re-tinting
+  // keeps the terrain's own shading and grain visible underneath the colour change, and
+  // the radial fade means the region blends into its surroundings instead of ending in a
+  // straight edge.
+  // Feathered region tint: like softTint, but for an already-known set of polygons (land
+  // outlines) rather than one hand-drawn shape — re-tints hue/saturation only (via 'color'
+  // blend, so the real photo's relief keeps showing through) and fades smoothly across the
+  // polygon boundary instead of snapping to zero at it. A hard clip there reads as a second,
+  // geometric coastline fighting the real one underneath (the exact "overlapping borders"
+  // artifact flagged on Ice Age / Floods); the blur-via-shadow trick below gives a soft,
+  // irregular falloff with no extra canvas passes or per-pixel work.
+  function landFeatherMask(polysArr, blurPx){
+    const mask = document.createElement('canvas'); mask.width=W; mask.height=H;
+    const mg = mask.getContext('2d');
+    mg.filter = `blur(${blurPx}px)`;
+    mg.fillStyle = 'rgba(255,255,255,1)';
+    polysArr.forEach(pts=>{ poly(mg, pts); mg.fill(); });
+    return mask;
+  }
+  // A thick, blurred STROKE of the coastline — rather than a filled shape — reads as a band
+  // straddling the land/sea boundary (half inside, half outside), which is exactly the
+  // "low-lying coastal land got drowned" zone meltwater pulses actually affected, not the
+  // whole continental interior or the open ocean.
+  function coastalBandMask(polysArr, bandWidthPx, blurPx){
+    const mask = document.createElement('canvas'); mask.width=W; mask.height=H;
+    const mg = mask.getContext('2d');
+    mg.filter = `blur(${blurPx}px)`;
+    mg.strokeStyle = 'rgba(255,255,255,1)';
+    mg.lineWidth = bandWidthPx;
+    polysArr.forEach(pts=>{ poly(mg, pts); mg.stroke(); });
+    return mask;
+  }
+  // Soft polar-band gradient (mirrors the snow/sea-ice band painted over the whole globe
+  // further below) — used to keep land-ice whitening confined to the same high latitudes,
+  // instead of spreading it across land at every latitude.
+  function iceCapMask(iceYpx, falloffPx){
+    const mask = document.createElement('canvas'); mask.width=W; mask.height=H;
+    const mg = mask.getContext('2d');
+    const extTop = Math.min(H, iceYpx+falloffPx);
+    if(extTop>0){
+      const top = mg.createLinearGradient(0,0,0,extTop);
+      const stop = clamp(iceYpx/extTop, 0, 1);
+      top.addColorStop(0,'rgba(255,255,255,1)');
+      top.addColorStop(stop,'rgba(255,255,255,0.9)');
+      top.addColorStop(1,'rgba(255,255,255,0)');
+      mg.fillStyle = top; mg.fillRect(0,0,W,extTop);
+    }
+    const extBottom = Math.min(H, iceYpx+falloffPx);
+    if(extBottom>0){
+      const bot = mg.createLinearGradient(0,H,0,H-extBottom);
+      const stop = clamp(iceYpx/extBottom, 0, 1);
+      bot.addColorStop(0,'rgba(255,255,255,1)');
+      bot.addColorStop(stop,'rgba(255,255,255,0.9)');
+      bot.addColorStop(1,'rgba(255,255,255,0)');
+      mg.fillStyle = bot; mg.fillRect(0,H-extBottom,W,extBottom);
+    }
+    return mask;
+  }
+  function applyMaskedTint(maskCanvas, rgbStr, alpha){
+    if(alpha<=0.01) return;
+    const layer = document.createElement('canvas'); layer.width=W; layer.height=H;
+    const lg = layer.getContext('2d');
+    lg.fillStyle = `rgb(${rgbStr})`;
+    lg.fillRect(0,0,W,H);
+    lg.globalCompositeOperation = 'destination-in';
+    lg.drawImage(maskCanvas,0,0);
+    ectx.save();
+    ectx.globalAlpha = alpha;
+    ectx.globalCompositeOperation = 'color';
+    ectx.drawImage(layer,0,0);
+    ectx.restore();
+  }
+  function applyMaskedWash(maskCanvas, rgbaStr, compositeOp){
+    const layer = document.createElement('canvas'); layer.width=W; layer.height=H;
+    const lg = layer.getContext('2d');
+    lg.fillStyle = rgbaStr;
+    lg.fillRect(0,0,W,H);
+    lg.globalCompositeOperation = 'destination-in';
+    lg.drawImage(maskCanvas,0,0);
+    ectx.save();
+    ectx.globalCompositeOperation = compositeOp;
+    ectx.drawImage(layer,0,0);
+    ectx.restore();
+  }
+  function tintFeathered(polysArr, rgbStr, alpha, blurPx){
+    if(alpha<=0.01 || !polysArr.length) return;
+    applyMaskedTint(landFeatherMask(polysArr, blurPx), rgbStr, alpha);
+  }
+  function softTint(points, rgb, amt, maxAlpha){
+    if(amt<=0.02) return;
+    const sm = smoothPoly(points, 2);
+    const cx = sm.reduce((s,p)=>s+p[0],0)/sm.length, cy = sm.reduce((s,p)=>s+p[1],0)/sm.length;
+    let maxD=0; sm.forEach(p=>{ const d=Math.hypot(p[0]-cx,p[1]-cy); if(d>maxD) maxD=d; });
+    const [px,py]=llToXY(cx,cy), [ex,ey]=llToXY(cx+maxD,cy);
+    const rad = Math.max(8, Math.hypot(ex-px,ey-py));
+    ectx.save();
+    clipToPolys(ectx, [sm]);
+    if(landPolys.length) clipToPolys(ectx, landPolys);
+    const rg = ectx.createRadialGradient(px,py,0,px,py,rad*1.15);
+    const a = (amt*maxAlpha*landAlpha).toFixed(3);
+    rg.addColorStop(0, `rgba(${rgb},${a})`); rg.addColorStop(0.7, `rgba(${rgb},${a})`); rg.addColorStop(1, `rgba(${rgb},0)`);
+    ectx.globalCompositeOperation = 'color';
+    ectx.fillStyle = rg;
+    ectx.fillRect(0,0,W,H);
+    ectx.restore();
+  }
+  softTint([[-10,30],[30,32],[35,15],[10,5],[-12,15],[-10,30]], '80,165,90', p.sahara, 0.85);
+  softTint([[-170,66],[-168,72],[-178,70],[-170,66]], '205,190,145', p.bridge, 0.8);
+  softTint([[0,54],[6,56],[3,52],[0,54]], '205,190,145', p.bridge, 0.8);
+
+  // Meltwater / megaflood: real sea-level rise drowned low-lying coastal land and exposed
+  // shelves — it never put the continental interior or the open ocean "underwater" at once,
+  // so the wash is confined to a soft band straddling every coastline rather than painted
+  // over the whole globe. The band widens with p.flood (more meltwater, more coastline
+  // swallowed), which also keeps it from reading as a hard second border against the real
+  // coastline underneath — same fix as the latitude-bound ice cap above, applied to a band
+  // instead of a polar gradient.
+  if(p.flood>0.02 && landPolys.length){
+    const pulse = 0.5 + 0.5*Math.sin(performance.now()*0.0022);
+    const bandWidth = lerp(18, 58, p.flood);
+    const band = coastalBandMask(landPolys, bandWidth, 14);
+    applyMaskedWash(band, `rgba(16,56,86,${(p.flood*0.78 + pulse*0.08*p.flood).toFixed(3)})`, 'source-over');
+    applyMaskedTint(band, '72,152,192', 0.55*p.flood);
+  }
+
+  const iceY = (90 - p.ice)/180 * H;
+  let g1 = ectx.createLinearGradient(0,0,0,iceY);
+  g1.addColorStop(0,'rgba(240,246,250,0.95)'); g1.addColorStop(1,'rgba(240,246,250,0.02)');
+  ectx.fillStyle=g1; ectx.fillRect(0,0,W,iceY);
+  let g2 = ectx.createLinearGradient(0,H-iceY,0,H);
+  g2.addColorStop(0,'rgba(240,246,250,0.02)'); g2.addColorStop(1,'rgba(240,246,250,0.92)');
+  ectx.fillStyle=g2; ectx.fillRect(0,H-iceY,W,iceY);
+  if(iceY>4){
+    ectx.save(); ectx.beginPath(); ectx.rect(0,0,W,iceY); ectx.rect(0,H-iceY,W,iceY); ectx.clip();
+    ectx.globalAlpha=0.55; ectx.globalCompositeOperation='overlay';
+    ectx.drawImage(ICE_NOISE,0,0,W,H);
+    ectx.restore();
+  }
+
+  // impact sequence: global dust wash, radiating ejecta rays, expanding shockwave,
+  // and a crater scar that keeps fading for a while after the strike itself
+  if(p.impact>0.02){
+    ectx.fillStyle = `rgba(90,78,66,${(p.impact*0.36).toFixed(3)})`;
+    ectx.fillRect(0,0,W,H);
+    const [ix,iy] = llToXY(CHICXULUB[0], CHICXULUB[1]);
+
+    if(p.impact>0.3){
+      ectx.save();
+      EJECTA_RAYS.forEach(r=>{
+        const L = r.len * Math.min(W,H*2) * p.impact;
+        ectx.strokeStyle = `rgba(255,150,75,${(p.impact*0.62).toFixed(3)})`;
+        ectx.lineWidth = r.w;
+        ectx.beginPath(); ectx.moveTo(ix,iy);
+        ectx.lineTo(ix+Math.cos(r.ang)*L, iy+Math.sin(r.ang)*L);
+        ectx.stroke();
+      });
+      ectx.restore();
+      const ringT = (performance.now()%1600)/1600;
+      ectx.strokeStyle = `rgba(255,190,120,${((1-ringT)*0.5*p.impact).toFixed(3)})`;
+      ectx.lineWidth = 2.5;
+      ectx.beginPath(); ectx.arc(ix,iy, 40+ringT*230, 0, Math.PI*2); ectx.stroke();
+    }
+
+    const rad = 44 + 130*Math.min(1,p.impact);
+    const rg = ectx.createRadialGradient(ix,iy,0, ix,iy, rad);
+    rg.addColorStop(0, `rgba(255,150,60,${0.9*p.impact})`);
+    rg.addColorStop(0.45, `rgba(255,80,40,${0.5*p.impact})`);
+    rg.addColorStop(1, 'rgba(255,80,40,0)');
+    ectx.fillStyle = rg;
+    ectx.beginPath(); ectx.arc(ix,iy,rad,0,Math.PI*2); ectx.fill();
+
+    // persisting crater scar — still visible, faintly, into the Post-Impact Drift chapter
+    const scarA = clamp(p.impact*2.2, 0, 0.7);
+    ectx.strokeStyle = `rgba(40,30,25,${scarA.toFixed(3)})`;
+    ectx.lineWidth = 5;
+    ectx.beginPath(); ectx.arc(ix,iy,64,0,Math.PI*2); ectx.stroke();
+    ectx.fillStyle = `rgba(35,25,20,${(scarA*0.7).toFixed(3)})`;
+    ectx.beginPath(); ectx.arc(ix,iy,52,0,Math.PI*2); ectx.fill();
+  }
+
+  // No separate painted-on cloud layer any more: the real photo drawn above already
+  // carries real cloud cover everywhere, every era, identical to how it looks today —
+  // the synthetic blob clouds this used to add on top were exactly the "clumsy smeared
+  // fog dots" that didn't match. The 3D cloudMesh (below, in setPhotoDetail) layers real
+  // rotating cloud texture on top at a constant level for every era too.
+
+  ectx.strokeStyle = 'rgba(79,212,201,0.12)'; ectx.lineWidth = 1;
+  for(let x=0;x<=W;x+=W/12){ ectx.beginPath(); ectx.moveTo(x,0); ectx.lineTo(x,H); ectx.stroke(); }
+  for(let y=0;y<=H;y+=H/6){ ectx.beginPath(); ectx.moveTo(0,y); ectx.lineTo(W,y); ectx.stroke(); }
+
+  if(p.gridOn){
+    const nodes=[[31,30],[-3,53],[45,30],[-71,-13],[35,-3],[139,36]];
+    ectx.strokeStyle='rgba(212,175,55,0.55)'; ectx.lineWidth=1.5;
+    for(let i=0;i<nodes.length;i++){
+      const a=llToXY(nodes[i][0],nodes[i][1]);
+      const b=llToXY(nodes[(i+2)%nodes.length][0],nodes[(i+2)%nodes.length][1]);
+      ectx.beginPath(); ectx.moveTo(a[0],a[1]); ectx.lineTo(b[0],b[1]); ectx.stroke();
+    }
+    nodes.forEach(n=>{
+      const [x,y]=llToXY(n[0],n[1]);
+      ectx.fillStyle='rgba(212,175,55,0.9)';
+      ectx.beginPath(); ectx.arc(x,y,5,0,Math.PI*2); ectx.fill();
+    });
+  }
+  earthTexture.needsUpdate = true;
+}
+drawEarth({ancient:0, ice:78, sea:0, warm:0, impact:0, sahara:0, bridge:0, flood:0, photo:1, gridOn:false});
+
+const earthMesh = new THREE.Mesh(
+  new THREE.SphereGeometry(1,96,96),
+  new THREE.MeshPhongMaterial({map:earthTexture, shininess:22, specular:0x151515, transparent:true})
+);
+earthGroup.add(earthMesh);
+
+const texLoader = new THREE.TextureLoader();
+let normTex=null, specTex=null;
+texLoader.load(EARTH_TEX_BASE+'earth_normal_2048.jpg', tex=>{ normTex=tex; }, undefined, ()=>{});
+texLoader.load(EARTH_TEX_BASE+'earth_specular_2048.jpg', tex=>{ specTex=tex; }, undefined, ()=>{});
+
+let cloudMesh = null;
+texLoader.load(EARTH_TEX_BASE+'earth_clouds_1024.png', tex=>{
+  cloudMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(1.012,64,64),
+    new THREE.MeshLambertMaterial({map:tex, transparent:true, opacity:0, depthWrite:false})
+  );
+  earthGroup.add(cloudMesh);
+}, undefined, ()=>{});
+
+// real photographic detail (clouds, ocean glare, relief shading) only applies once the
+// timeline is close enough to the present that the real photo base is itself showing —
+// otherwise a "wet, photographic" ocean was clashing with the stylized ancient continents.
+function setPhotoDetail(photoAmt){
+  const on = photoAmt>0.4;
+  if(on && earthMesh.material.normalMap!==normTex){ earthMesh.material.normalMap=normTex; earthMesh.material.specularMap=specTex; earthMesh.material.needsUpdate=true; }
+  if(!on && earthMesh.material.normalMap){ earthMesh.material.normalMap=null; earthMesh.material.specularMap=null; earthMesh.material.needsUpdate=true; }
+  // The real 3D cloud layer (actual photographed cloud cover, not a painted stand-in)
+  // now stays at the same strength in every era instead of fading in only near the
+  // present — "the same clouds as Modern, always," same as the land underneath it.
+  if(cloudMesh) cloudMesh.material.opacity = 0.55;
+  // The flat `specular` colour on a Phong material applies everywhere there's no
+  // specularMap to mask it down — and with none active in the procedural eras, it was
+  // adding a uniform warm-white sheen across the whole lit hemisphere, tinting every
+  // biome colour toward flat gold and flattening all the relief/colour contrast
+  // underneath it (confirmed by zeroing it: the green/relief/rivers were there all
+  // along). Only let it contribute once the real specular MAP (modern ocean glint) is
+  // actually active to mask it to the ocean; keep it dark over the painted procedural
+  // land so that texture's own colour and shading can actually be seen.
+  const specAmt = clamp((photoAmt-0.35)/0.35, 0, 1);
+  earthMesh.material.specular.setRGB(0.082*specAmt, 0.082*specAmt, 0.082*specAmt);
+}
+
+const atmo = new THREE.Mesh(
+  new THREE.SphereGeometry(1.035,48,48),
+  new THREE.MeshBasicMaterial({color:0x4fd4c9, transparent:true, opacity:0.14, side:THREE.BackSide})
+);
+earthGroup.add(atmo);
+const ATMO_CYAN=new THREE.Color(0x4fd4c9), ATMO_AMBER=new THREE.Color(0xd9a24a),
+      ATMO_ASH=new THREE.Color(0x5a4f46), ATMO_ICE=new THREE.Color(0xdfeff5),
+      ATMO_FLOOD=new THREE.Color(0x2f6fd1);
+
+// impact-site marker (Chicxulub) — only visible during the impact chapter, and the
+// "Focus" button below can lock the camera onto it even while the globe keeps spinning.
+const impactMarker = new THREE.Sprite(new THREE.SpriteMaterial({
+  map: radialGlowTexture(), color:0xff7a3d, transparent:true, opacity:0,
+  blending:THREE.AdditiveBlending, depthWrite:false
+}));
+impactMarker.position.copy(IMPACT_DIR).multiplyScalar(1.03);
+impactMarker.scale.set(0.4,0.4,1);
+earthGroup.add(impactMarker);
+let focusMode=false;
+const FOCUS_DIST=1.32;
+const focusBtn=document.getElementById('focusBtn');
+focusBtn.addEventListener('click', ()=>{
+  focusMode=!focusMode;
+  focusBtn.textContent = focusMode ? '◎ Exit Focus View' : '◎ Focus: Impact Site';
+  if(focusMode) camDistScale=1;
+});
+
+// geomagnetic field lines — hidden except during the "Pole Reversal" chapter
+const fieldGroup = new THREE.Group();
+earthGroup.add(fieldGroup);
+const fieldMats = [];
+for(let i=0;i<8;i++){
+  const lon = i/8*Math.PI*2;
+  const curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(0,1.02,0),
+    new THREE.Vector3(Math.cos(lon)*1.42, 0, Math.sin(lon)*1.42),
+    new THREE.Vector3(0,-1.02,0)
+  ]);
+  const geo = new THREE.BufferGeometry().setFromPoints(curve.getPoints(24));
+  const mat = new THREE.LineBasicMaterial({color:0x4fd4c9, transparent:true, opacity:0});
+  fieldGroup.add(new THREE.Line(geo, mat));
+  fieldMats.push(mat);
+}
+let reversalAmt = 0;
+
+const sunLight = new THREE.DirectionalLight(0xfff3d6, 1.15);
+sunLight.position.set(4,2,3);
+scene.add(sunLight);
+scene.add(new THREE.AmbientLight(0x223040, 1.1));
+
+/* =====================================================================
+   TIMELINE — 8 chapters spanning the Age of Dinosaurs to the present,
+   each with its own continental drift, ice, sea, and cataclysm overlays.
+===================================================================== */
+const ANCHORS = [
+  {v:0,   label:'Age of Dinosaurs',           year:'~68,000,000 BP',            ancient:1,    ice:89, sea:170, warm:1.0,  impact:0,    sahara:0,    bridge:0,   flood:0, photo:0},
+  {v:12,  label:'Chicxulub Impact',           year:'~66,000,000 BP',            ancient:1,    ice:87, sea:150, warm:0.4,  impact:1,    sahara:0,    bridge:0,   flood:0, photo:0},
+  {v:26,  label:'Post-Impact Drift',          year:'~40,000,000 BP',            ancient:0.45, ice:82, sea:60,  warm:0.5,  impact:0.22, sahara:0,    bridge:0,   flood:0, photo:0},
+  {v:40,  label:'Geomagnetic Reversal Epoch', year:'recurring · illustrative',  ancient:0,    ice:78, sea:0,   warm:0.15, impact:0,    sahara:0,    bridge:0,   flood:0, photo:0, reversal:1},
+  {v:55,  label:'Last Glacial Maximum',       year:'~20,000 BP',                ancient:0,    ice:38, sea:-125,warm:0,    impact:0,    sahara:0,    bridge:1,   flood:0, photo:0},
+  {v:70,  label:'Meltwater Pulse / Floods',   year:'~14,000–8,000 BP',          ancient:0,    ice:60, sea:-35, warm:0,    impact:0,    sahara:0,    bridge:0.2, flood:1, photo:0},
+  {v:85,  label:'Green Sahara',               year:'~6,000 BP',                 ancient:0,    ice:76, sea:-5,  warm:0.05, impact:0,    sahara:0.85, bridge:0,   flood:0, photo:0.15},
+  {v:100, label:'Modern Earth',               year:'2026 CE',                   ancient:0,    ice:78, sea:0,   warm:0,    impact:0,    sahara:0,    bridge:0,   flood:0, photo:1}
+];
+const FIELDS = ['ancient','ice','sea','warm','impact','sahara','bridge','flood','photo','reversal'];
+
+function interpAnchors(v){
+  v = clamp(v,0,100);
+  for(let i=0;i<ANCHORS.length-1;i++){
+    const A=ANCHORS[i], B=ANCHORS[i+1];
+    if(v>=A.v && v<=B.v){
+      const t = (v-A.v)/((B.v-A.v)||1);
+      const out={};
+      FIELDS.forEach(k=> out[k] = lerp(A[k]||0, B[k]||0, t));
+      const near = t<0.5 ? A : B;
+      out.label = near.label; out.year = near.year; out.t = v/100;
+      return out;
+    }
+  }
+  const last = ANCHORS[ANCHORS.length-1];
+  const out={}; FIELDS.forEach(k=> out[k]=last[k]||0);
+  out.label=last.label; out.year=last.year; out.t=1;
+  return out;
+}
+
+let gridOn = false;
+function applyTimeline(v){
+  const p = interpAnchors(v);
+  drawEarth({...p, gridOn: gridOn && p.t>0.92});
+  setPhotoDetail(p.photo);
+
+  sunLight.intensity = lerp(1.15, 0.4, p.impact);
+  const iceAmt = clamp((80-p.ice)/40, 0, 1);
+  const col = ATMO_CYAN.clone().lerp(ATMO_AMBER, p.warm*0.6).lerp(ATMO_ASH, p.impact*0.75)
+                        .lerp(ATMO_ICE, iceAmt*0.45).lerp(ATMO_FLOOD, p.flood*0.55);
+  atmo.material.color.copy(col);
+  atmo.material.opacity = 0.14 + p.flood*0.10 + p.impact*0.08 + iceAmt*0.05;
+  reversalAmt = p.reversal || 0;
+
+  impactMarker.material.opacity = clamp(p.impact, 0, 1) * 0.9;
+  focusBtn.classList.toggle('hidden', p.impact<0.15);
+  if(p.impact<0.15 && focusMode){ focusMode=false; focusBtn.textContent='◎ Focus: Impact Site'; }
+
+  document.getElementById('eraName').textContent = p.label;
+  document.getElementById('eraYear').textContent = p.year;
+  const icePct = clamp((90-p.ice)*2.3, 0, 65);
+  document.getElementById('dIce').textContent = icePct.toFixed(0)+'%';
+  document.getElementById('dSea').textContent = (p.sea>0?'+':'')+p.sea.toFixed(0)+' m';
+  document.getElementById('dSahara').textContent = Math.round(p.sahara*100)+' / 100';
+  document.getElementById('dBridge').textContent = p.bridge>0.5 ? 'ACTIVE' : (p.bridge>0.05 ? 'RECEDING' : 'SUBMERGED');
+  document.getElementById('dField').textContent = p.reversal>0.15 ? 'INVERTING' : 'STABLE';
+}
+document.getElementById('slider').addEventListener('input', e=>applyTimeline(parseFloat(e.target.value)));
+setInterval(()=>{ if(stage==='earth') applyTimeline(parseFloat(document.getElementById('slider').value)); }, 160);
+
+const gridToggle = document.getElementById('gridToggle');
+function setGrid(on){
+  gridOn = on;
+  gridToggle.classList.toggle('on', on);
+  document.getElementById('gridState').textContent = 'TELLURIC GRID: ' + (on?'ON':'OFF');
+  applyTimeline(parseFloat(document.getElementById('slider').value));
+}
+gridToggle.addEventListener('click', ()=>setGrid(!gridOn));
+gridToggle.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); setGrid(!gridOn);} });
+
+/* =====================================================================
+   STAGE TRANSITIONS — one continuous dolly toward a single fixed point
+   (the sun/orbit position, which is exactly where the Earth group sits),
+   crossfading galaxy → earth instead of a hard cut.
+===================================================================== */
+const flash = document.getElementById('flash');
+const zoomBtn = document.getElementById('zoomBtn');
+const returnBtn = document.getElementById('returnBtn');
+const earthHud = document.getElementById('earthHud');
+const stagebtn = document.getElementById('stagebtn');
+const quoteEl = document.getElementById('quote');
+const EARTH_TARGET = new THREE.Vector3();
+
+function animateCamera(fromPos, toPos, fromLook, toLook, duration, onDone){
+  const start = performance.now();
+  function step(now){
+    const p = Math.min(1, (now-start)/duration);
+    const e = easeInOutCubic(p);
+    camera.position.lerpVectors(fromPos, toPos, e);
+    camera.lookAt(fromLook.clone().lerp(toLook, e));
+    if(p<1) requestAnimationFrame(step); else onDone && onDone();
+  }
+  requestAnimationFrame(step);
+}
+function animateValue(from,to,duration,onUpdate,onDone){
+  const start = performance.now();
+  function step(now){
+    const p = Math.min(1,(now-start)/duration);
+    onUpdate(from+(to-from)*easeInOutCubic(p));
+    if(p<1) requestAnimationFrame(step); else onDone && onDone();
+  }
+  requestAnimationFrame(step);
+}
+function setGroupVisibility(group, factor){
+  group.traverse(o=>{
+    const m = o.material;
+    if(m){
+      if(m._baseOpacity===undefined){ m.transparent=true; m._baseOpacity=m.opacity; }
+      m.opacity = m._baseOpacity * factor;
+    }
+  });
+}
+function fadeGroup(group, toFactor, duration, onDone){
+  animateValue(toFactor===0?1:0, toFactor, duration, v=>setGroupVisibility(group,v), onDone);
+}
+
+zoomBtn.addEventListener('click', ()=>{
+  if(stage!=='galaxy') return;
+  stage = 'transitioning';
+  zoomBtn.style.pointerEvents = 'none';
+  quoteEl.classList.remove('in');
+
+  world.updateMatrixWorld(true);
+  EARTH_TARGET.copy(earthGroup.position).applyMatrix4(world.matrixWorld);
+  const origin = new THREE.Vector3(0,0,0);
+  const wide = EARTH_TARGET.clone().add(new THREE.Vector3(0,3.2,7.5));
+  const close = EARTH_TARGET.clone().add(EARTH_OFFSET);
+
+  animateCamera(camera.position.clone(), wide, origin, EARTH_TARGET, 1200, ()=>{
+    earthGroup.visible = true;
+    setGroupVisibility(earthGroup, 0);
+    fadeGroup(galaxyGroup, 0, 1500);
+    fadeGroup(earthGroup, 1, 1500);
+    flash.style.transition = 'opacity .85s ease';
+    flash.style.opacity = '0.22';
+    setTimeout(()=>{ flash.style.opacity = '0'; }, 700);
+
+    animateCamera(wide, close, EARTH_TARGET, EARTH_TARGET, 1500, ()=>{
+      galaxyGroup.visible = false;
+      stage = 'earth'; camDistScale = 1; eYaw = 0; ePitch = -0.05;
+      stagebtn.classList.add('hidden');
+      earthHud.classList.remove('hidden');
+      requestAnimationFrame(()=> document.querySelectorAll('#earthHud .panel, #returnBtn, #focusBtn').forEach(p=>p.classList.add('in')));
+      quoteEl.innerHTML = 'Every era on this globe was, to those who lived it, simply <em>the present</em>. ' +
+        'Impact winters, inverted poles, ice sheets and floods are all the same planet, seen through different coordinates in time.';
+      quoteEl.classList.add('in');
+      applyTimeline(parseFloat(document.getElementById('slider').value));
+    });
+  });
+});
+
+function returnToGalaxy(){
+  if(stage!=='earth') return;
+  stage = 'transitioning';
+  focusMode = false; focusBtn.textContent = '◎ Focus: Impact Site';
+  returnBtn.style.pointerEvents = 'none';
+  document.querySelectorAll('#earthHud .panel, #returnBtn, #focusBtn').forEach(el=>el.classList.remove('in'));
+  quoteEl.classList.remove('in');
+
+  const origin = new THREE.Vector3(0,0,0);
+  const wide = EARTH_TARGET.clone().add(new THREE.Vector3(0,3.2,7.5));
+
+  fadeGroup(earthGroup, 0, 1400);
+  galaxyGroup.visible = true;
+  setGroupVisibility(galaxyGroup, 0);
+  fadeGroup(galaxyGroup, 1, 1400);
+  flash.style.transition = 'opacity .85s ease';
+  flash.style.opacity = '0.22';
+  setTimeout(()=>{ flash.style.opacity='0'; }, 700);
+
+  animateCamera(camera.position.clone(), wide, EARTH_TARGET, EARTH_TARGET, 1300, ()=>{
+    animateCamera(wide, GALAXY_CAM.clone(), EARTH_TARGET, origin, 1300, ()=>{
+      earthGroup.visible = false;
+      stage = 'galaxy'; camDistScale = 1;
+      earthHud.classList.add('hidden');
+      stagebtn.classList.remove('hidden');
+      zoomBtn.style.pointerEvents = '';
+      returnBtn.style.pointerEvents = 'auto';
+      quoteEl.innerHTML = 'Because we complete a full galactic circle every <em>250 million years</em>, ' +
+        'in our brief epoch we are always traversing uncharted cosmic coordinates — never where we have been before, ' +
+        'and never knowing what lies ahead.';
+      quoteEl.classList.add('in');
+    });
+  });
+}
+returnBtn.addEventListener('click', returnToGalaxy);
+
+/* =====================================================================
+   RENDER LOOP
+===================================================================== */
+function updateHudReadouts(){
+  document.getElementById('phaseReadout').textContent = (Math.abs(yaw)%(Math.PI*2)/(Math.PI*2)*100).toFixed(1)+'%';
+  document.getElementById('vecReadout').textContent = stage==='earth' ? 'GEO-TEMPORAL' : 'GALACTIC ORBIT';
+}
+
+function tick(){
+  requestAnimationFrame(tick);
+
+  if(stage==='galaxy'){
+    if(!dragging && !pinching) yaw += autoSpin;
+    world.rotation.set(pitch*0.4, yaw, 0);
+    camera.position.copy(GALAXY_CAM).multiplyScalar(camDistScale);
+    camera.lookAt(0,0,0);
+  } else if(stage==='earth'){
+    if(!dragging && !pinching) eYaw += autoSpinEarth;
+    earthGroup.rotation.set(ePitch*0.5, eYaw, 0);
+    if(cloudMesh) cloudMesh.rotation.y += 0.0004;
+    if(focusMode){
+      const worldDir = IMPACT_DIR.clone().applyEuler(earthGroup.rotation).normalize();
+      camera.position.copy(EARTH_TARGET).add(worldDir.multiplyScalar(FOCUS_DIST*camDistScale));
+    } else {
+      camera.position.copy(EARTH_TARGET).add(EARTH_OFFSET.clone().multiplyScalar(camDistScale));
+    }
+    camera.lookAt(EARTH_TARGET);
+
+    if(reversalAmt>0.01){
+      const phase = (Math.sin(performance.now()*0.0006)+1)/2;
+      const col = new THREE.Color(0x4fd4c9).lerp(new THREE.Color(0xd4af37), phase);
+      fieldMats.forEach(m=>{ m.opacity = reversalAmt*0.8; m.color.copy(col); });
+    } else {
+      fieldMats.forEach(m=> m.opacity = 0);
+    }
+  }
+
+  updateHudReadouts();
+  renderer.render(scene, camera);
+}
+tick();
+
+})();
+</script>
+</body>
+</html>
