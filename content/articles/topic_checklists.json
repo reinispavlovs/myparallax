@@ -26,7 +26,7 @@
           "id": "causal_mechanism",
           "status": "partial",
           "evidence": "Frontend UI (megaliths-cosmology.html modal) claims piezoelectric quartz mechanics are 'already verified and confirmed'. Backend main.py (fix #204) removed a fabricated/unsourced piezoelectric calculation as a false positive.",
-          "action_required": "Reconcile frontend copy with backend epistemic status before any Class A consideration.",
+          "action_required": "Frontend copy reconciled on 2026-10-11 (page audited; speculative claims labelled Contested). Still required before any Class A consideration: a testable, peer-reviewed causal mechanism.",
           "note": "Downgraded from flagged_conflict on 2026-09-23. Frontend (megaliths-cosmology.html) piezoelectric/psychoacoustic claims relabeled as speculative/unverified hypothesis (patch_fix_piezoelectric_hedging.py). No peer-reviewed causal mechanism established; illustrative acoustic resonance model remains hypothesis-only."
         },
         {
