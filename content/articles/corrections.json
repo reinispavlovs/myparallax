@@ -1,25 +1,52 @@
 {
   "entries": [
-    {"date": "2026-10-11", "topic": "cyclical_cataclysms_precession",
-     "en": "Checklist wording split into claim A (physical traces: reported, cause contested) and claim B (periodicity: untested). The wording on replication was narrowed from 'independently replicated' to 'reported by different groups; replication of other markers disputed'. Statuses and the 25.0% coverage are unchanged.",
-     "lv": "Kritēriju formulējumi sadalīti apgalvojumos A (fiziskās pēdas: ziņotas, cēlonis strīdīgs) un B (periodiskums: nepārbaudīts). Atkārtošanas formulējums sašaurināts no 'neatkarīgi atkārtots' uz 'ziņots no dažādām grupām; citu marķieru atkārtošana ir strīdīga'. Statusi un 25,0% segums nemainās."},
-    {"date": "2026-10-11", "topic": "all",
-     "en": "Published articles previously carried the banner 'AI-generated draft – pending human fact-check'. It was replaced by a notice that the summary is AI-assisted and human-reviewed, with the review date.",
-     "lv": "Publicētajiem rakstiem bija plāksne 'AI ģenerēts melnraksts – gaida cilvēka faktu pārbaudi'. Tā aizstāta ar paziņojumu, ka kopsavilkums ir AI sagatavots un cilvēka pārskatīts, norādot datumu."},
-    {"date": "2026-10-11", "topic": "megalithic_engineering_acoustics",
-     "en": "Fixed a script error on the megaliths page that disabled the language toggle and the interactive globe.",
-     "lv": "Labota skripta kļūda megalītu lapā, kas atslēdza valodas pārslēgšanu un interaktīvo globusu."},
-    {"date": "2026-10-09", "topic": "all",
-     "en": "Home-page coverage percentages were hard-coded (60 / 75 / 50 / 40%) and did not match the data (33.3 / 25.0 / 58.3 / 33.3%). They are now loaded from the published data.",
-     "lv": "Sākumlapas seguma procenti bija iekalti (60 / 75 / 50 / 40%) un neatbilda datiem (33,3 / 25,0 / 58,3 / 33,3%). Tagad tie tiek ielādēti no publicētajiem datiem."},
-    {"date": "2026-10-09", "topic": "consciousness_independence_nde",
-     "en": "The literature corpus was rebuilt from PubMed, Europe PMC and OpenAlex (previously PubMed only) with de-duplication and a relevance filter.",
-     "lv": "Literatūras korpuss pārbūvēts no PubMed, Europe PMC un OpenAlex (iepriekš tikai PubMed) ar dublikātu izslēgšanu un atbilstības filtru."},
-    {"date": "2026-10-08", "topic": "megalithic_engineering_acoustics",
-     "en": "'Direct measurement' and 'Peer-reviewed publication' downgraded from satisfied to partial: resonance is reported in field measurements, but intentional design is not established in peer-reviewed literature, and no single peer-reviewed source covers all three named sites.",
-     "lv": "'Tiešs mērījums' un 'Recenzēta publikācija' pazemināti no izpildīts uz daļēji: rezonanse ziņota lauka mērījumos, taču mērķtiecīgs dizains recenzētā literatūrā nav pierādīts, un neviens recenzēts avots neaptver visus trīs minētos objektus."},
-    {"date": "2026-10-08", "topic": "neural_cosmic_isomorphism",
-     "en": "'Direct measurement' downgraded to partial (a comparison of datasets, not a measurement within one system). The description of Vazza & Feletti (2020) was corrected: the brain analysis is based on spatial proximity and a small histological sample, and the authors note the agreement may be coincidental.",
-     "lv": "'Tiešs mērījums' pazemināts uz daļēji (datu kopu salīdzinājums, nevis mērījums vienā sistēmā). Labots Vazza & Feletti (2020) apraksts: smadzeņu analīze balstīta uz telpisko tuvumu un nelielu histoloģisku paraugu, un autori norāda, ka sakritība var būt nejauša."}
+    {
+      "date": "2026-10-11",
+      "topic": "consciousness_independence_nde",
+      "en": "NDE overview page rewritten. 'Evidence' labels became 'Reported / Skeptic's explanation / What would test it'. The AWARE II figure was corrected: about 40% referred to 11 of 28 interviewed survivors (about 21% of all 53 survivors), not to all survivors. The 'classified dossier' is now labelled as a speculative model, and the declassified-documents section now states that the 1995 CIA-commissioned review found no operational value in remote viewing. Bibliography corrected (Greyson NDE Scale is 1983) and extended.",
+      "lv": "Pārrakstīta NDE pārskata lapa. Iezīmes 'Pierādījums' nomainītas uz 'Ziņots / Skeptiķa skaidrojums / Kas to pārbaudītu'. Labots AWARE II skaitlis: apmēram 40% attiecās uz 11 no 28 intervētajiem (apmēram 21% no visiem 53 izdzīvojušajiem), nevis uz visiem izdzīvojušajiem. 'Klasificētais dosjē' tagad marķēts kā spekulatīvs modelis, un deklasificēto dokumentu sadaļā norādīts, ka 1995. gada CIA pasūtītais pārskats neatrada operatīvu vērtību tālskatīšanai. Labota (Greysona NDE skala ir 1983) un papildināta bibliogrāfija."
+    },
+    {
+      "date": "2026-10-11",
+      "topic": "cyclical_cataclysms_precession",
+      "en": "Checklist wording split into claim A (physical traces: reported, cause contested) and claim B (periodicity: untested). The wording on replication was narrowed from 'independently replicated' to 'reported by different groups; replication of other markers disputed'. Statuses and the 25.0% coverage are unchanged.",
+      "lv": "Kritēriju formulējumi sadalīti apgalvojumos A (fiziskās pēdas: ziņotas, cēlonis strīdīgs) un B (periodiskums: nepārbaudīts). Atkārtošanas formulējums sašaurināts no 'neatkarīgi atkārtots' uz 'ziņots no dažādām grupām; citu marķieru atkārtošana ir strīdīga'. Statusi un 25,0% segums nemainās."
+    },
+    {
+      "date": "2026-10-11",
+      "topic": "all",
+      "en": "Published articles previously carried the banner 'AI-generated draft – pending human fact-check'. It was replaced by a notice that the summary is AI-assisted and human-reviewed, with the review date.",
+      "lv": "Publicētajiem rakstiem bija plāksne 'AI ģenerēts melnraksts – gaida cilvēka faktu pārbaudi'. Tā aizstāta ar paziņojumu, ka kopsavilkums ir AI sagatavots un cilvēka pārskatīts, norādot datumu."
+    },
+    {
+      "date": "2026-10-11",
+      "topic": "megalithic_engineering_acoustics",
+      "en": "Fixed a script error on the megaliths page that disabled the language toggle and the interactive globe.",
+      "lv": "Labota skripta kļūda megalītu lapā, kas atslēdza valodas pārslēgšanu un interaktīvo globusu."
+    },
+    {
+      "date": "2026-10-09",
+      "topic": "all",
+      "en": "Home-page coverage percentages were hard-coded (60 / 75 / 50 / 40%) and did not match the data (33.3 / 25.0 / 58.3 / 33.3%). They are now loaded from the published data.",
+      "lv": "Sākumlapas seguma procenti bija iekalti (60 / 75 / 50 / 40%) un neatbilda datiem (33,3 / 25,0 / 58,3 / 33,3%). Tagad tie tiek ielādēti no publicētajiem datiem."
+    },
+    {
+      "date": "2026-10-09",
+      "topic": "consciousness_independence_nde",
+      "en": "The literature corpus was rebuilt from PubMed, Europe PMC and OpenAlex (previously PubMed only) with de-duplication and a relevance filter.",
+      "lv": "Literatūras korpuss pārbūvēts no PubMed, Europe PMC un OpenAlex (iepriekš tikai PubMed) ar dublikātu izslēgšanu un atbilstības filtru."
+    },
+    {
+      "date": "2026-10-08",
+      "topic": "megalithic_engineering_acoustics",
+      "en": "'Direct measurement' and 'Peer-reviewed publication' downgraded from satisfied to partial: resonance is reported in field measurements, but intentional design is not established in peer-reviewed literature, and no single peer-reviewed source covers all three named sites.",
+      "lv": "'Tiešs mērījums' un 'Recenzēta publikācija' pazemināti no izpildīts uz daļēji: rezonanse ziņota lauka mērījumos, taču mērķtiecīgs dizains recenzētā literatūrā nav pierādīts, un neviens recenzēts avots neaptver visus trīs minētos objektus."
+    },
+    {
+      "date": "2026-10-08",
+      "topic": "neural_cosmic_isomorphism",
+      "en": "'Direct measurement' downgraded to partial (a comparison of datasets, not a measurement within one system). The description of Vazza & Feletti (2020) was corrected: the brain analysis is based on spatial proximity and a small histological sample, and the authors note the agreement may be coincidental.",
+      "lv": "'Tiešs mērījums' pazemināts uz daļēji (datu kopu salīdzinājums, nevis mērījums vienā sistēmā). Labots Vazza & Feletti (2020) apraksts: smadzeņu analīze balstīta uz telpisko tuvumu un nelielu histoloģisku paraugu, un autori norāda, ka sakritība var būt nejauša."
+    }
   ]
 }
