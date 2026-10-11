@@ -128,6 +128,40 @@ def ensure_index_shape(index_data):
     return index_data
 
 
+# Topics whose corpus is classified with the veridical/neuro/observational/null/inconclusive
+# categories. For any other topic those categories are meaningless (e.g. a cosmology corpus is
+# trivially 100% "inconclusive"), so no corpus summary is published for it.
+CORPUS_CATEGORY_TOPICS = {"consciousness_independence_nde"}
+_CORPUS_CATS = ("supports_veridical", "observational_signal", "neuro_mechanism",
+                "null_result", "inconclusive")
+
+
+def build_evidence_summary(meta):
+    """Compact, frontend-readable summary of the literature corpus behind a draft.
+
+    Returns None when the draft has no classified corpus or the topic does not use the
+    NDE category set. The frontend (tribunal.html) renders whatever is stored here.
+    """
+    if meta.get("topic_id") not in CORPUS_CATEGORY_TOPICS:
+        return None
+    ca = meta.get("corpus_analysis") or {}
+    tally = ca.get("raw_tally")
+    if not isinstance(tally, dict) or not tally:
+        return None
+    counts = {k: int(tally.get(k, 0) or 0) for k in _CORPUS_CATS}
+    return {
+        "kind": "literature_corpus",
+        "analysed": ca.get("classified_total") or sum(counts.values()),
+        "retrieved": ca.get("retrieved_total"),
+        "excluded": ca.get("excluded_count"),
+        "relevance_enforced": ca.get("relevance_enforced"),
+        "sources": ca.get("source_counts") or {},
+        "counts": counts,
+        "source_draft": meta.get("content_file"),
+        "generated_at": meta.get("generated_at"),
+    }
+
+
 def bump_weight(existing_weight, credibility_score, risk_level):
     """
     TEMPORARY placeholder weighting bump.
@@ -254,6 +288,9 @@ def promote_one(meta_path, meta, html_path, index_data, weights_data,
         "source_draft": meta.get("content_file"),
         "reviewer": meta.get("reviewer"),
     }
+    evidence_summary = build_evidence_summary(meta)
+    if evidence_summary:
+        topics[topic_id]["evidence_summary"] = evidence_summary
     index_data["topics"] = topics
 
     # 4. Update topic_weights.json (placeholder logic, see bump_weight())

@@ -13,7 +13,7 @@ import numpy as np
 
 from scripts.shared.claim_layers_utils import validate_content_flags
 from scripts.fetch_topic_corpus import build_corpus
-from scripts.analyze_corpus_consensus import aggregate_corpus
+from scripts.analyze_corpus_consensus import aggregate_corpus, ClassificationError
 
 # Iel??d?? vides main??gos no .env faila
 load_dotenv(override=True)
@@ -230,7 +230,7 @@ def fetch_real_arxiv_summary(query: str) -> dict:
     }
 
 
-def call_llm_classify_batch(texts):
+def _classify_batch_remote(texts):
     url = "https://api.x.ai/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
@@ -239,11 +239,21 @@ def call_llm_classify_batch(texts):
     numbered = chr(10).join(str(i+1) + ". " + t for i, t in enumerate(texts))
     prompt = (
         "Classify each numbered abstract below into EXACTLY one category: "
-        "supports_veridical, null_result, neuro_mechanism, inconclusive." + chr(10) +
-        "supports_veridical = evidence supporting veridical or anomalous perception." + chr(10) +
-        "null_result = study found no effect or no support." + chr(10) +
-        "neuro_mechanism = explains via known neuro or physiological mechanism." + chr(10) +
-        "inconclusive = ambiguous, unrelated, or insufficient info." + chr(10) + chr(10) +
+        "supports_veridical, null_result, neuro_mechanism, observational_signal, inconclusive." + chr(10) +
+        "All categories are about HUMAN near-death, out-of-body, terminal-lucidity and end-of-life experiences "
+        "and consciousness around clinical death. A paper that is not about that subject is inconclusive, "
+        "whatever methods it uses." + chr(10) +
+        "supports_veridical = evidence supporting veridical or anomalous perception during such states." + chr(10) +
+        "null_result = study of such states found no effect or no support." + chr(10) +
+        "neuro_mechanism = proposes, tests or reviews a neural or physiological mechanism that explains such experiences "
+        "(e.g. REM intrusion, hypoxia, neurotransmitters, dying-brain activity). General EEG, anesthesia, coma-care, "
+        "animal or veterinary studies and generic clinical neurology are NOT neuro_mechanism: label them inconclusive." + chr(10) +
+        "observational_signal = recurring reports, recurring patterns, or consistent observations of such experiences "
+        "(e.g. terminal lucidity cases, end-of-life experience surveys, content analyses of NDE accounts, or of "
+        "DMT/psychedelic experiences that are explicitly compared with NDEs) "
+        "that do not establish proof or mechanism but represent analyzable evidence. Resuscitation or cardiac-arrest "
+        "epidemiology, outcome prediction and prognosis are NOT observational_signal: label them inconclusive." + chr(10) +
+        "inconclusive = ambiguous, unrelated, off-subject, or insufficient info." + chr(10) + chr(10) +
         "Abstracts:" + chr(10) + numbered + chr(10) + chr(10) +
         "Return ONLY a JSON array of exactly " + str(len(texts)) + " strings, one label per abstract, in order. "
         "No markdown, no explanation."
@@ -256,18 +266,105 @@ def call_llm_classify_batch(texts):
         ],
         "temperature": 0.0,
     }
+    # Retry only transient failures (timeout / connection / 429 / 5xx) with exponential backoff.
+    # Permanent errors (403 credits, 401, 400) fail immediately. After the last attempt we still
+    # raise ClassificationError, so no draft is written with fake "inconclusive" labels.
+    max_attempts = 4
+    last_err = None
+    for attempt in range(1, max_attempts + 1):
+        try:
+            r = requests.post(url, headers=headers, json=payload, timeout=(10, 120))
+            r.raise_for_status()
+            raw = r.json()["choices"][0]["message"]["content"].strip()
+            raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.MULTILINE).strip()
+            labels = json.loads(raw)
+            if not isinstance(labels, list):
+                raise ValueError("not a list")
+            return labels
+        except Exception as e:
+            last_err = e
+            resp = getattr(e, "response", None)
+            status = getattr(resp, "status_code", None)
+            transient = (
+                isinstance(e, (requests.exceptions.Timeout, requests.exceptions.ConnectionError))
+                or status == 429
+                or (status is not None and status >= 500)
+                or isinstance(e, (ValueError, KeyError, IndexError))  # malformed/non-JSON reply: ask again
+            )
+            if not transient or attempt == max_attempts:
+                break
+            delay = min(60, 2 ** attempt * 2)  # 4s, 8s, 16s
+            ra = resp.headers.get("Retry-After") if resp is not None else None
+            if ra and str(ra).isdigit():
+                delay = min(120, max(delay, int(ra)))
+            print("    [classify] attempt " + str(attempt) + "/" + str(max_attempts) + " failed ("
+                  + (str(status) if status else type(e).__name__) + "), retry in " + str(delay) + "s")
+            time.sleep(delay)
+
+    # Never return "inconclusive" labels on failure: that would silently publish an empty tally.
+    # Raising lets process_topic abort -> main() logs the topic as failed, no draft is written.
+    resp = getattr(last_err, "response", None)
+    detail = (" | " + resp.text[:300]) if resp is not None and getattr(resp, "text", None) else ""
+    raise ClassificationError("classify_batch LLM call failed after retries: " + str(last_err) + detail) from last_err
+
+
+CLASSIFY_CACHE_PATH = BASE_DIR / "data" / "classification_cache.json"
+_VALID_CLASSIFY_LABELS = ("supports_veridical", "null_result", "neuro_mechanism", "observational_signal", "inconclusive")
+
+
+def _classify_version():
+    # Cache key includes a hash of the classifier function (prompt + model + settings): any change
+    # to the prompt invalidates old labels automatically, so stale labels are never reused.
     try:
-        r = requests.post(url, headers=headers, json=payload, timeout=60)
-        r.raise_for_status()
-        raw = r.json()["choices"][0]["message"]["content"].strip()
-        raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.MULTILINE).strip()
-        labels = json.loads(raw)
-        if not isinstance(labels, list):
-            raise ValueError("not a list")
-        return labels
+        import inspect
+        src = inspect.getsource(_classify_batch_remote).replace(chr(13), "")
+        return hashlib.sha1(src.encode("utf-8")).hexdigest()[:10]
+    except Exception:
+        return "nosrc"
+
+
+def _load_classify_cache():
+    try:
+        data = json.loads(CLASSIFY_CACHE_PATH.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def _save_classify_cache(cache):
+    try:
+        CLASSIFY_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        tmp = CLASSIFY_CACHE_PATH.with_suffix(".tmp")
+        tmp.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+        os.replace(str(tmp), str(CLASSIFY_CACHE_PATH))
     except Exception as e:
-        print("[WARN] classify_batch LLM call failed: " + str(e))
-        return ["inconclusive"] * len(texts)
+        print("    [classify] WARN: could not write cache: " + str(e))
+
+
+def call_llm_classify_batch(texts):
+    """Cached wrapper: only texts without a cached label go to the LLM. Only valid labels from a
+    successful call are cached, so a failed batch is never stored; ClassificationError still
+    propagates (no draft). A re-run after a crash therefore pays only for unfinished batches."""
+    ver = _classify_version()
+    cache = _load_classify_cache()
+    keys = [ver + ":" + hashlib.sha256(t.encode("utf-8")).hexdigest() for t in texts]
+    todo = [i for i, k in enumerate(keys) if cache.get(k) not in _VALID_CLASSIFY_LABELS]
+    if todo:
+        fresh = _classify_batch_remote([texts[i] for i in todo])
+        if not isinstance(fresh, list) or len(fresh) != len(todo):
+            raise ClassificationError("classify_batch returned " + (str(len(fresh)) if isinstance(fresh, list) else type(fresh).__name__)
+                                      + " labels for " + str(len(todo)) + " texts")
+        for i, lab in zip(todo, fresh):
+            lab = lab.strip().lower() if isinstance(lab, str) else None
+            if lab in _VALID_CLASSIFY_LABELS:
+                cache[keys[i]] = lab
+        _save_classify_cache(cache)
+    else:
+        fresh = []
+    print("    [classify] cache hits " + str(len(texts) - len(todo)) + "/" + str(len(texts)))
+    fresh_by_idx = dict(zip(todo, fresh))
+    # uncached-and-invalid labels are returned as-is so aggregate_corpus handles them as before
+    return [cache.get(keys[i]) if keys[i] in cache and i not in fresh_by_idx else fresh_by_idx.get(i) for i in range(len(texts))]
 
 
 def agent_1_corpus_analysis(topic):
@@ -279,14 +376,14 @@ def agent_1_corpus_analysis(topic):
     backward compatibility with claim_layers_utils.py / digest_generator.py
     scoring logic ??? it now semantically means "at least one external
     source was found across the corpus", not literally "found on arXiv"."""
-    print(f"[*] [A??ents 1 - CORPUS] Veido daudzavotu korpusu priek??: {topic['name']}...")
+    print(f"[*] [Aģents 1 - CORPUS] Veido daudzavotu korpusu priekš: {topic['name']}...")
 
     variants_path = BASE_DIR / topic["query_variants_file"]
     try:
         variants_data = json.loads(variants_path.read_text(encoding="utf-8"))
         query_variants = variants_data.get("query_variants", [])
     except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"[WARN] Neizdev??s iel??d??t query variants no {variants_path}: {e}")
+        print(f"[WARN] Neizdevās ielādēt query variants no {variants_path}: {e}")
         query_variants = []
 
     empty_result_template = {
@@ -319,16 +416,31 @@ def agent_1_corpus_analysis(topic):
         'pct_supports_veridical': raw_consensus.get('percentages', {}).get('supports_veridical', 0),
         'pct_null_result': raw_consensus.get('percentages', {}).get('null_result', 0),
         'pct_neuro_mechanism': raw_consensus.get('percentages', {}).get('neuro_mechanism', 0),
+        'pct_observational_signal': raw_consensus.get('percentages', {}).get('observational_signal', 0),
+        'retrieved_total': raw_consensus.get('retrieved_total', 0),
+        'excluded_count': raw_consensus.get('excluded_count', 0),
+        'relevance_enforced': raw_consensus.get('relevance_enforced', False),
+        'excluded': raw_consensus.get('excluded', []),
         'pct_inconclusive': raw_consensus.get('percentages', {}).get('inconclusive', 0),
         'citation_list': raw_consensus.get('citation_list', []),
         'counts': raw_consensus.get('counts', {}),
     }
 
+    _src = {}
+    for _c in consensus['citation_list']:
+        _k = _c.get('source') or 'unknown'
+        _src[_k] = _src.get(_k, 0) + 1
+    consensus['source_counts'] = _src
+    _src_txt = ', '.join(f"{k}: {v}" for k, v in sorted(_src.items())) or 'none'
     consensus["arxiv_context"] = (
-        f"Corpus meta-analysis across {consensus['corpus_size']} deduplicated sources "
-        f"(Semantic Scholar + PubMed): {consensus['pct_supports_veridical']}% supports_veridical, "
+        f"Corpus meta-analysis: {consensus['retrieved_total']} deduplicated sources retrieved, "
+        f"{consensus['excluded_count']} excluded as off-topic by the relevance gate "
+        f"(enforced: {consensus['relevance_enforced']}), {consensus['corpus_size']} analysed "
+        f"(analysed sources by database: {_src_txt}): "
+        f"{consensus['pct_supports_veridical']}% supports_veridical, "
         f"{consensus['pct_null_result']}% null_result, "
         f"{consensus['pct_neuro_mechanism']}% neuro_mechanism, "
+        f"{consensus['pct_observational_signal']}% observational_signal, "
         f"{consensus['pct_inconclusive']}% inconclusive."
     )
     consensus["arxiv_source_found"] = consensus["corpus_size"] > 0
@@ -348,16 +460,16 @@ def agent_1_corpus_analysis(topic):
 
 
 def agent_1_multi_source_simulation(topic):
-    """1. A??ents: Apvieno re??lus arXiv datus ar VIENK??R??OTU ILUSTRAT??VU modeli.
-    SVAR??GI: ??ie skait??i NAV m??r??jumi ??? tie ir vienk??r??ots matem??tiskais modelis
-    un j??atz??m?? k?? t??di metadatos ('data_type': 'illustrative_model')."""
+    """1. Aģents: Apvieno reālus arXiv datus ar VIENKĀRŠOTU ILUSTRATĪVU modeli.
+    SVARĪGI: Šie skaitļi NAV mērījumi ??? tie ir vienkāršots matemātiskais modelis
+    un jāatzīmē kā tādi metadatos ('data_type': 'illustrative_model')."""
 
     # NEW: corpus-based topics take a completely different data path ???
     # multi-source statistical aggregate instead of a single arXiv hit.
     if topic.get("corpus_based"):
         return agent_1_corpus_analysis(topic)
 
-    print(f"[*] [A??ents 1] Ieg??st datus no arXiv priek??: {topic['name']}...")
+    print(f"[*] [Aģents 1] Iegūst datus no arXiv priekš: {topic['name']}...")
     arxiv_result = fetch_real_arxiv_summary(topic["arxiv_query"])
 
     base = {
@@ -375,8 +487,8 @@ def agent_1_multi_source_simulation(topic):
 
         base.update({
             "frequency_hz": freq,
-            "acoustic_pressure_pa": delta_p,
-            "energy_reflection_pct": float(reflection_coeff * 100),
+            "acoustic_pressure_pa": round(delta_p, 2),
+            "energy_reflection_pct": round(float(reflection_coeff * 100), 2),
             "boundary_status": "HIGH_REFLECTION_BARRIER",
             "model_note": "Standard acoustic impedance mismatch equation (Z1-Z2)^2/(Z1+Z2)^2. "
                           "Does NOT include a fabricated piezoelectric charge calculation ??? it was "
@@ -390,7 +502,7 @@ def agent_1_multi_source_simulation(topic):
         base.update({
             "cycle_years": 25920,
             "younger_dryas_marker_bp": 12800,
-            "orbital_flux_peak_illustrative": flux_peak,
+            "orbital_flux_peak_illustrative": round(flux_peak, 2),
             "boundary_status": "CYCLE_SYNCHRONIZED",
             "model_note": "Sinusoidal model for ILLUSTRATION ONLY ??? not a geological measurement.",
         })
@@ -404,7 +516,7 @@ def agent_1_multi_source_simulation(topic):
         base.update({
             "isoelectric_eeg_duration_sec_literature_range": "10-30",
             "auditory_evoked_potential_status": "TYPICALLY_ABSENT_PER_LITERATURE",
-            "perceptual_recall_score": None,  # TODO(human): pievienot konkr??tu p??t??juma v??rt??bu ar atsauci
+            "perceptual_recall_score": None,  # TODO(human): pievienot konkrētu pētījuma vērtību ar atsauci
             "boundary_status": "REQUIRES_HUMAN_SOURCED_CITATION",
             "model_note": "A previous version hardcoded a number (0.84) here without a citation. "
                           "It has been removed. A human must add a specific "
@@ -417,7 +529,7 @@ def agent_1_multi_source_simulation(topic):
         # corpus_based=True is set for this topic in TOPICS.
         base.update({
             "comparison_domains": ["neuronal_network_topology", "cosmic_web_filament_topology"],
-            "quantitative_similarity_score": None,  # TODO(human): pievienot konkr??tu p??t??juma v??rt??bu ar atsauci
+            "quantitative_similarity_score": None,  # TODO(human): pievienot konkrētu pētījuma vērtību ar atsauci
             "boundary_status": "REQUIRES_HUMAN_SOURCED_CITATION",
             "model_note": "Structural-similarity claims (e.g., Vazza & Feletti-type comparisons) "
                           "require a specific, citable study with methodology ??? without it, no "
@@ -427,8 +539,8 @@ def agent_1_multi_source_simulation(topic):
 
 
 def agent_2_skeptic_evaluator(sim_data, topic):
-    """2. A??ents (Skepti??is): Iez??m?? stingras materi??l??s un metodolo??isk??s robe??as."""
-    print("[*] [A??ents 2] Veic skeptisko recenziju...")
+    """2. Aģents (Skeptiķis): Iezīmē stingras materiālās un metodoloģiskās robežas."""
+    print("[*] [Aģents 2] Veic skeptisko recenziju...")
 
     if topic["id"] == "megalithic_engineering_acoustics":
         critique = (
@@ -439,7 +551,7 @@ def agent_2_skeptic_evaluator(sim_data, topic):
         )
     elif topic["id"] == "cyclical_cataclysms_precession":
         critique = (
-            "Cautionary check: The mathematical cyclical model is ILLUSTRATIVE, not a proven correlation mechanism. "
+            "Cautionary check: The mathematical cyclical model is ILLUSTRATIVE, not an established correlation mechanism. "
             "The sediment platinum peak (~12,800 BP) indicates an external impact event, which is a SEPARATE issue "
             "from the orbital mechanics cycle ??? the two must NOT be conflated into a single conclusion."
         )
@@ -452,7 +564,13 @@ def agent_2_skeptic_evaluator(sim_data, topic):
                 "consistent pattern of reported near-death perceptions does NOT by itself distinguish between "
                 "competing explanations (non-local consciousness vs. common neurological substrates such as "
                 "hypoxia, temporal lobe activation, or REM intrusion). Percentages should be read as a rough "
-                "corpus-level signal, not a peer-reviewed effect size."
+                "corpus-level signal, not a peer-reviewed effect size. "
+	"Independent recurring reports constitute an observational dataset. "
+	"Absence of consensus is not evidence of absence. "
+	"Testimony is not proof. "
+	"Testimony is not zero evidence. "
+	"Competing explanations remain unresolved. "
+	"The role of Project Parallax is evidence evaluation rather than dismissal."
             )
         else:
             critique = (
@@ -481,9 +599,11 @@ def agent_2_skeptic_evaluator(sim_data, topic):
 
 
 def agent_3_author_generator(topic, verified_data):
-    """3. A??ents (Autors): ??ener?? HTML DRAFTU (ne gal??go publik??ciju).
-    Ietver retry lo??iku ar exponential backoff xAI (grok-4.6) timeout/t??kla k????du gad??jum??."""
-    print("[*] [A??ents 3] ??ener?? semantisko HTML draftu ar xAI (grok-4.6)...")
+    """3. Aģents (Autors): Ģenerē HTML DRAFTU (ne galīgo publikāciju).
+    Ietver retry loģiku ar exponential backoff xAI (grok-4.6) timeout/tīkla kļūdu gadījumā."""
+    print("[*] [Aģents 3] Ģenerē semantisko HTML draftu ar xAI (grok-4.6)...")
+    # the excluded-sources list is stored in metadata only; the prompt gets counts, not 60+ titles
+    _prompt_data = {k: v for k, v in verified_data.items() if k != "excluded"}
     url = "https://api.x.ai/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
@@ -492,7 +612,14 @@ def agent_3_author_generator(topic, verified_data):
 
     prompt = (
         f"You are drafting a RESEARCH DRAFT (not a final publication) for Project Parallax on: {topic['name']}. "
-        f"Use ONLY this dataset ??? do not invent additional numbers: {verified_data}. "
+        f"Use ONLY this dataset ??? do not invent additional numbers: {_prompt_data}. "
+	"Project Parallax acts as an evidence tribunal, not an academic gatekeeper. "
+	"Evaluate evidence categories independently. "
+	"Absence of academic consensus is not evidence of falsehood. "
+	"Presence of testimony is not evidence of truth. "
+	"Large numbers of independent reports are themselves data and should be analysed statistically. "
+	"Do not collapse non-mainstream evidence into inconclusive solely because mainstream consensus is absent. "
+	"Clearly distinguish between established, supported, suggestive, unresolved, and unsubstantiated claims. "
         "0. Write your ENTIRE response in English only, regardless of the language of any "
         "notes, critiques, or source text provided above. Translate any non-English fragments "
         "into English before including them in your output. "
@@ -507,13 +634,20 @@ def agent_3_author_generator(topic, verified_data):
         "year, classification, and access_status.\n"
         "4. Add a visible disclaimer <div> at the top stating: "
         "'AI-GENERATED DRAFT - PENDING HUMAN FACT-CHECK. Not for publication without review.'\n"
+        "5. WORDING: never write the words 'proves', 'proven', 'definitively', 'undeniably', 'certainly', "
+        "'always', 'never', 'impossible' or 'confirmed fact' - not even negated (do not write 'not proven'; "
+        "write 'not established' or 'not demonstrated' instead).\n"
+        "6. NUMBERS: use only numbers that appear in the dataset. Any number with two or more decimal places "
+        "must be copied exactly as given and followed immediately by the literal tag [source:illustrative_model] "
+        "(or [source:corpus_aggregate] for corpus statistics). Do not compute, round differently, or invent "
+        "other decimal figures; for imprecise statements use words ('about a quarter') or whole numbers.\n"
         "OUTPUT ONLY clean, semantic HTML fragments without markdown code blocks or extra text."
     )
 
     payload = {
         "model": "grok-4.6",
         "messages": [
-            {"role": "system", "content": "You output only valid HTML fragments. You never state unverified claims as fact."},
+            {"role": "system", "content": "You output only valid HTML fragments. You do not state unverified claims as fact."},
             {"role": "user", "content": prompt},
         ],
         "temperature": 0.3,
@@ -525,53 +659,53 @@ def agent_3_author_generator(topic, verified_data):
     for attempt in range(1, max_retries + 1):
         response = None
         try:
-            response = requests.post(url, headers=headers, json=payload, timeout=180)
+            response = requests.post(url, headers=headers, json=payload, timeout=(10, 420))  # long tables for 80-100 citations need >180s
 
             if response.status_code != 200:
-                raise Exception(f"xAI API k????da [{response.status_code}]: {response.text}")
+                raise Exception(f"xAI API kļūda [{response.status_code}]: {response.text}")
 
             return response.json()["choices"][0]["message"]["content"]
 
         except requests.exceptions.ReadTimeout:
-            print(f"[WARN] [A??ents 3] xAI API timeout (m????in??jums {attempt}/{max_retries}) t??mai: {topic['name']}")
+            print(f"[WARN] [Aģents 3] xAI API timeout (mēģinājums {attempt}/{max_retries}) tēmai: {topic['name']}")
 
         except requests.exceptions.RequestException as e:
-            print(f"[WARN] [A??ents 3] T??kla k????da (m????in??jums {attempt}/{max_retries}): {e}")
+            print(f"[WARN] [Aģents 3] Tīkla kļūda (mēģinājums {attempt}/{max_retries}): {e}")
 
         except Exception as e:
-            # Ja t?? ir klienta k????da (4xx), neatk??rtojam bezj??dz??gi
-            if response is not None and 400 <= response.status_code < 500:
-                print(f"[ERROR] [A??ents 3] Klienta k????da ({response.status_code}), p??rtraucu retry: {e}")
+            # Ja tā ir klienta kļūda (4xx), neatkārtojam bezjēdzīgi
+            if response is not None and 400 <= response.status_code < 500 and response.status_code != 429:  # 429 = rate limit: retry
+                print(f"[ERROR] [Aģents 3] Klienta k????da ({response.status_code}), p??rtraucu retry: {e}")
                 raise
             print(f"[WARN] [A??ents 3] K????da (m????in??jums {attempt}/{max_retries}): {e}")
 
         if attempt < max_retries:
             delay = base_delay * attempt  # 10s, 20s, 30s
-            print(f"[*] [A??ents 3] Atk??rtoju p??c {delay}s...")
+            print(f"[*] [Aģents 3] Atkārtoju pēc {delay}s...")
             time.sleep(delay)
         else:
-            print(f"[ERROR] [A??ents 3] Visi {max_retries} m????in??jumi neizdev??s t??mai: {topic['name']}")
+            print(f"[ERROR] [Aģents 3] Visi {max_retries} mēģinājumi neizdevās tēmai: {topic['name']}")
             raise Exception(f"Agent 3 failed after {max_retries} attempts for topic '{topic['name']}'")
 
 
 def build_claim_layer(verified_data: dict, html_content: str, topic: dict) -> list[dict]:
-    """Konstru?? claim_layers mas??vu ??IM draftam.
+    """Konstru?? claim_layers masīvu ŠIM draftam.
 
-    PIEZ??ME: Agent 1/2 pa??laik ra??o VIENU apgalvojumu/modeli per topic,
-    t??p??c ???? funkcija atgrie?? viena-elementa sarakstu. Kad Agent 1 s??ks
-    ra??ot vair??kus atsevi????i verific??jamus apgalvojumus, ???? funkcija
-    j??papla??ina, lai atgrieztu vair??kus layers (skat. action item #10).
+    PIEZ??ME: Agent 1/2 pašlaik ražo VIENU apgalvojumu/modeli per topic,
+    tāpēc ???? funkcija atgriež viena-elementa sarakstu. Kad Agent 1 sāks
+    ražot vairākus atsevišķi verific??jamus apgalvojumus, ???? funkcija
+    jāpaplašina, lai atgrieztu vairākus layers (skat. action item #10).
 
-    Risk_level tiek noteikts NO RE??LIEM datiem (arxiv_source_found,
+    Risk_level tiek noteikts NO REĀLIEM datiem (arxiv_source_found,
     data_type) ??? NE no legacy fallback ar piespiedu MEDIUM."""
 
     arxiv_found = verified_data.get("arxiv_source_found", False)
 
-    # Risks: bez avota -> HIGH (nesubstant??ts inferential bridge).
+    # Risks: bez avota -> HIGH (nesubstantēts inferential bridge).
     # Ar avotu, bet illustrative_model vai meta_analysis_illustrative
     # (ne measured_data) -> MEDIUM.
-    # measured_data + arxiv_found ??obr??d main.py nekad nenotiek, t??p??c
-    # LOW pa??reiz nav sasniedzams ar ??o pipeline versiju.
+    # measured_data + arxiv_found šobrīd main.py nekad nenotiek, tāpēc
+    # LOW pašreiz nav sasniedzams ar šo pipeline versiju.
     if not arxiv_found:
         risk_level = "HIGH"
         evidence_level = None
@@ -589,13 +723,13 @@ def build_claim_layer(verified_data: dict, html_content: str, topic: dict) -> li
         "layer_type": "inferential_bridge",
         "text": html_content,
         "stance": "literature_consistent" if arxiv_found else "unresolved",
-        "confidence": None,  # TODO(human): form??la varb??t??ba, ja pieejama
+        "confidence": None,  # TODO(human): formāla varbūtība, ja pieejama
         "risk_level": risk_level,
-        "bridge_verified": False,  # inferential_bridge NEKAD nav auto-verific??ts (blok?? auto-merge)
+        "bridge_verified": False,  # inferential_bridge NEKAD nav auto-verificēts (blokā auto-merge)
         "arxiv_source_found": arxiv_found,
         "evidence_level": evidence_level,
         "conflict_detected": False,  # cross-draft konfliktus nosaka digest_generator.py, ne ??eit
-        "counts_toward_topic": arxiv_found,  # bez avota nedr??kst sv??rt Bayesian summu
+        "counts_toward_topic": arxiv_found,  # bez avota nedrīkst svērt Bayesian summu
         "is_legacy_synthesized": False,
     }
 
@@ -603,7 +737,7 @@ def build_claim_layer(verified_data: dict, html_content: str, topic: dict) -> li
 
 
 def log_failed_topic(topic, error_message):
-    """Pieraksta neizdevu??os t??mu failed_topics.json fail??, lai v??l??k var??tu re-run."""
+    """Pieraksta neizdevušos tēmu failed_topics.json fail??, lai vēlāk varētu re-run."""
     failed_entry = {
         "topic_id": topic.get("id", "unknown"),
         "topic_name": topic.get("name", "unknown"),
@@ -624,24 +758,24 @@ def log_failed_topic(topic, error_message):
         json.dumps(existing, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
-    print(f"[LOGGED] T??ma '{topic.get('name')}' pievienota {FAILED_LOG_PATH.name}")
+    print(f"[LOGGED] Tēma '{topic.get('name')}' pievienota {FAILED_LOG_PATH.name}")
 
 
 def process_topic(topic):
-    """Apstr??d?? VIENU t??mu caur visiem 3 a??entiem un saglab?? draftu.
+    """Apstrīd?? VIENU tēmu caur visiem 3 aģentiem un saglabā draftu.
     Izmet exception, ja k??ds solis neizdodas ??? to no??er aug????jais loop."""
 
-    # 1. A??ents 1: Datu ieguve un ilustrat??vais modelis
+    # 1. Aģents 1: Datu ieguve un ilustratīvais modelis
     sim_results = agent_1_multi_source_simulation(topic)
 
-    # 2. A??ents 2: Skepti??a recenzija
+    # 2. Aģents 2: Skeptiķa recenzija
     verified_data = agent_2_skeptic_evaluator(sim_results, topic)
 
-    # 3. A??ents 3: HTML draft ??ener????ana
+    # 3. Aģents 3: HTML draft ģenerēšana
     html_content = agent_3_author_generator(topic, verified_data)
 
-    # 4. Saglab?? DRAFTU ??? NEVIS gatavu publik??ciju
-    # Mape "drafts/" NEDR??KST b??t sait??ta no publisk??s vietnes navig??cijas / index.html
+    # 4. Saglabā DRAFTU ??? NEVIS gatavu publikāciju
+    # Mape "drafts/" NEDRĪKST būt saitīta no publiskās vietnes navigācijas / index.html
     DRAFTS_DIR.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H%M%S")
@@ -654,11 +788,11 @@ def process_topic(topic):
     with open(html_path, "w", encoding="utf-8", newline="") as f:
         f.write(html_content)
 
-    # 5. Konstru??jam claim_layers NO RE??LIEM datiem (nov??r?? legacy fallback)
+    # 5. Konstruējam claim_layers NO REĀLIEM datiem (novērš legacy fallback)
     claim_layers = build_claim_layer(verified_data, html_content, topic)
 
-    # 6. Valid??jam saturu PIRMS saglab????anas ??? forbidden termini, nesourc??ti
-    # decim????i utt. j??redz review_cli.py operatoram, ne tikai digest_generator.py
+    # 6. Validējam saturu PIRMS saglabāšanas ??? forbidden termini, nesourc??ti
+    # decimāļi utt. jāredz review_cli.py operatoram, ne tikai digest_generator.py
     content_flags = []
     for layer in claim_layers:
         content_flags.extend(validate_content_flags(layer))
@@ -694,7 +828,14 @@ def process_topic(topic):
             "pct_supports_veridical": verified_data.get("pct_supports_veridical"),
             "pct_null_result": verified_data.get("pct_null_result"),
             "pct_neuro_mechanism": verified_data.get("pct_neuro_mechanism"),
+            "pct_observational_signal": verified_data.get("pct_observational_signal"),
             "pct_inconclusive": verified_data.get("pct_inconclusive"),
+            "retrieved_total": verified_data.get("retrieved_total"),
+            "excluded_count": verified_data.get("excluded_count"),
+            "relevance_enforced": verified_data.get("relevance_enforced"),
+            "boundary_status": verified_data.get("boundary_status"),
+            "source_counts": verified_data.get("source_counts"),
+            "excluded": verified_data.get("excluded"),
             "raw_tally": verified_data.get("raw_tally"),
             "citation_list": verified_data.get("citation_list"),
         }
@@ -702,44 +843,44 @@ def process_topic(topic):
     with open(meta_path, "w", encoding="utf-8", newline="") as f:
         json.dump(metadata, f, indent=2, ensure_ascii=False)
 
-    print(f"[*] DRAFTS saglab??ti (NAV public??ti): {html_path}")
+    print(f"[*] DRAFTS saglabāti (NAV publicēti): {html_path}")
     print(f"[*] Metadati: {meta_path}")
     if content_flags:
-        print(f"[WARN] Content flags konstat??ti: {content_flags}")
+        print(f"[WARN] Content flags konstatēti: {content_flags}")
 
     return html_path, meta_path
 
 
 def main():
-    print(f"[*] S??kam apstr??di: {len(TOPICS)} t??mas rind??.\n")
+    print(f"[*] Sākam apstrādi: {len(TOPICS)} tēmas rindā.\n")
 
     successful = 0
     failed = 0
 
     for topic in TOPICS:
         print(f"{'=' * 60}")
-        print(f"[*] Apstr??d??ju t??mu: {topic['name']}")
+        print(f"[*] Apstrādāju tēmu: {topic['name']}")
         print(f"{'=' * 60}")
 
         try:
             process_topic(topic)
             successful += 1
-            print(f"[OK] T??ma '{topic['name']}' pabeigta veiksm??gi.\n")
+            print(f"[OK] Tēma '{topic['name']}' pabeigta veiksmīgi.\n")
 
         except Exception as e:
             failed += 1
-            print(f"[ERROR] T??ma '{topic['name']}' neizdev??s: {e}\n")
+            print(f"[ERROR] Tēma '{topic['name']}' neizdevās: {e}\n")
             log_failed_topic(topic, e)
-            continue  # KRITISKI: p??riet uz n??kamo t??mu, process NEAPST??JAS
+            continue  # KRITISKI: pāriet uz nākamo tēmu, process NEAPSTĀJAS
 
     print(f"{'=' * 60}")
-    print(f"[SUMMARY] Pabeigts: {successful} veiksm??gi, {failed} neizdev??s no {len(TOPICS)} kop??.")
+    print(f"[SUMMARY] Pabeigts: {successful} veiksmīgi, {failed} neizdevās no {len(TOPICS)} kopā.")
     print(f"{'=' * 60}")
 
     if failed > 0:
-        print(f"[INFO] Skat??t {FAILED_LOG_PATH} pilnam neizdevu??os t??mu sarakstam.")
+        print(f"[INFO] Skatīt {FAILED_LOG_PATH} pilnam neizdevušos tēmu sarakstam.")
 
-    print("[*] N??kamais solis: cilv??ka p??rbaude ar review_cli.py, tad p??rvieto??ana uz posts/.")
+    print("[*] Nākamais solis: cilvēka pārbaude ar review_cli.py, tad pārvietošana uz posts/.")
 
 
 if __name__ == "__main__":

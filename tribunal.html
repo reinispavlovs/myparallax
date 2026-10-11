@@ -1,117 +1,54 @@
 <!DOCTYPE html>
 <html lang="lv" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBJECTIVE ANALYSIS | Project Parallax</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background: #02030a; color: #e0e6ed; }
-        h1, h2, h3, h4, .brand-font { font-family: 'Cinzel', serif; }
-        .gold-gradient {
-            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        canvas { display: block; width: 100%; height: 100%; }
-/* 🔽 Autonomous Research Archive header + accordion */
-.ara-header{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 28px 16px 10px;
-  color: #eaf2ff;
-}
-.ara-title{
-  font-size: clamp(22px, 3vw, 34px);
-  margin: 0 0 6px;
-  letter-spacing: 0.2px;
-}
-.ara-subtitle{
-  margin: 0 0 18px;
-  color: rgba(234,242,255,.85);
-}
-
-.ara-accordion{ display: grid; gap: 12px; }
-
-.ara-item{
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 14px;
-  background: rgba(10,15,30,.35);
-  overflow: hidden;
-}
-
-.ara-btn{
-  width: 100%;
-  text-align: left;
-  background: transparent;
-  border: 0;
-  padding: 14px 16px;
-  cursor: pointer;
-  color: #eaf2ff;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: space-between;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.ara-btn:focus{
-  outline: 2px solid rgba(90,190,255,.55);
-  outline-offset: 2px;
-}
-
-.ara-arrow{
-  transition: transform .2s ease;
-  font-size: 18px;
-  opacity: .9;
-  flex: 0 0 auto;
-}
-
-.ara-item.open .ara-arrow{
-  transform: rotate(180deg);
-}
-
-.ara-panel{
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .25s ease;
-}
-
-.ara-panel-inner{
-  padding: 0 16px 14px;
-  color: rgba(234,242,255,.85);
-  line-height: 1.45;
-}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evidence Tribunal | Project Parallax</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; background: #02030a; color: #e0e6ed; }
+  h1, h2, h3, h4, .brand-font { font-family: 'Cinzel', serif; }
+  canvas { display: block; width: 100%; height: 100%; }
+  .seg { display:flex; height:12px; border-radius:9999px; overflow:hidden; background:#0f172a; }
+  .seg > div { min-width:2px; }
+  .c-sv { background:#fbbf24; } .c-ob { background:#38bdf8; } .c-nm { background:#a78bfa; }
+  .c-nr { background:#64748b; } .c-in { background:#334155; }
+  .chip { display:inline-flex; align-items:center; gap:.35rem; font-size:11px; padding:2px 8px; border-radius:9999px; border:1px solid #334155; }
+  .st-satisfied { color:#6ee7b7; border-color:#065f46; } .st-partial { color:#fcd34d; border-color:#78350f; }
+  .st-missing { color:#94a3b8; border-color:#334155; } .st-flagged_conflict { color:#fca5a5; border-color:#7f1d1d; }
+  .dot { width:.6rem; height:.6rem; border-radius:9999px; display:inline-block; }
+  .ara-item { border:1px solid rgba(255,255,255,.10); border-radius:14px; background:rgba(10,15,30,.35); overflow:hidden; }
+  .ara-btn { width:100%; text-align:left; background:transparent; border:0; padding:14px 16px; cursor:pointer; color:#eaf2ff; display:flex; align-items:center; gap:12px; justify-content:space-between; font-size:15px; font-weight:600; }
+  .ara-btn:focus-visible, .tb:focus-visible, summary:focus-visible { outline:2px solid rgba(90,190,255,.7); outline-offset:2px; }
+  .ara-arrow { transition:transform .2s ease; }
+  .ara-item.open .ara-arrow { transform:rotate(180deg); }
+  .ara-panel { max-height:0; overflow:hidden; transition:max-height .25s ease; }
+  .ara-panel-inner { padding:0 16px 14px; color:rgba(234,242,255,.85); line-height:1.5; font-size:14px; }
+  @media (prefers-reduced-motion: reduce) { .ara-panel, .ara-arrow { transition:none; } }
+</style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-    <!-- Navigation -->
-    <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-30">
-        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="index.html" class="text-amber-400 hover:text-amber-300 font-medium text-sm transition">&larr; <span data-i18n="back-home">Atpakaļ uz galveno lapu</span></a>
-            <button id="lang-toggle-btn" class="text-xs font-bold uppercase tracking-wider bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-400 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
-                <span id="lang-indicator">LV</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </button>
-        </div>
-    </header>
+<header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+    <a href="index.html" class="text-amber-400 hover:text-amber-300 font-medium text-sm transition">&larr; <span data-i18n="back-home">Atpakaļ uz galveno lapu</span></a>
+    <div class="flex text-xs font-bold uppercase tracking-wider border border-slate-700 rounded-lg overflow-hidden" role="group" aria-label="Language">
+      <button class="tb px-3 py-1.5" id="lang-LV" type="button">LV</button>
+      <button class="tb px-3 py-1.5" id="lang-EN" type="button">EN</button>
+    </div>
+  </div>
+</header>
 
-    <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-6 py-16 flex-grow space-y-16">
-        
-        <!-- Header Section -->
-        <div class="text-center max-w-3xl mx-auto">
-            <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="sub-title">Konstruktīvā Analīze & Argumentu Svari</span>
-            <h1 class="text-3xl sm:text-5xl font-bold text-white brand-font mt-2 mb-4" data-i18n="main-title">Skepticisms kā Instruments, nevis Dogma</h1>
-            <p class="text-slate-400 text-sm sm:text-base font-light leading-relaxed" data-i18n="main-desc">
-                Atvērts prāts un rūpīga argumentu svēršana. Mēs neakceptējam aklas dogmas ne tradicionālajā zinātnē, ne alternatīvajās teorijās – mēs balstāmies uz empīriskiem datiem, paralakses metodi un strukturētu lauka fiziku.
-            </p>
-        </div>
+<main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 flex-grow space-y-14">
 
-        <!-- Interactive Cosmology Simulator Widget (From HTML provided) -->
+  <div class="text-center max-w-3xl mx-auto">
+    <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="sub-title"></span>
+    <h1 class="text-3xl sm:text-5xl font-bold text-white brand-font mt-2 mb-4" data-i18n="main-title"></h1>
+    <p class="text-slate-400 text-sm sm:text-base font-light leading-relaxed" data-i18n="main-desc"></p>
+  </div>
+
+<!-- Interactive Cosmology Simulator Widget (From HTML provided) -->
         <section class="bg-slate-900/40 border border-amber-500/30 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
             <div class="grid md:grid-cols-3 gap-6 items-center">
                 <div class="md:col-span-1 space-y-4 z-10">
@@ -131,191 +68,299 @@
             </div>
         </section>
 
-        <!-- Interactive Pros & Cons Matrix Grid with Evidence Weight Bars -->
-        <section class="space-y-8">
-            
-            <!-- Topic 1: Non-Local Consciousness (NDE) -->
-            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <h3 class="text-xl font-bold text-white brand-font text-amber-400" data-i18n="t1-heading">1. Tēma: Apziņas Neatkarība no Smadzenēm (NP / NDE)</h3>
-                    <!-- Evidence Weight Indicator -->
-                    <div class="flex items-center gap-3 bg-slate-950 px-4 py-2 rounded-xl border border-slate-800 text-xs">
-                        <span class="text-slate-400" data-i18n="weight-lbl">Empīriskais Svars:75% Facts</span>
-                        <div class="w-32 h-2.5 bg-slate-900 rounded-full overflow-hidden flex">
-                            <div class="bg-red-500/70 w-[35%]"></div>
-                            <div class="bg-emerald-400 w-[65%]"></div>
-                        </div>
-                        <span class="text-emerald-400 font-mono font-bold">65% Facts</span>
-                    </div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-5 bg-slate-950/60 border border-red-950/60 rounded-xl">
-                        <h4 class="text-red-400 font-bold text-xs uppercase tracking-wider mb-2" data-i18n="cons-label">Skeptiķa Arguments (Mīnusi / Ierobežojumi)</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="t1-cons">
-                            Apziņa ir stingri bioloģisks smadzeņu produkts. Fenomeni apstāšanās laikā skaidrojami ar skābekļa trūkumu (hipoksiju), neironu sabrukuma izraisītām halucinācijām vai ķīmisku vielu (kā endogēnā DMT) izdali.
-                        </p>
-                    </div>
-                    <div class="p-5 bg-slate-950/60 border border-emerald-950/60 rounded-xl">
-                        <h4 class="text-emerald-400 font-bold text-xs uppercase tracking-wider mb-2" data-i18n="pros-label">Empīriskais Pretsvars (Plusi / Fakti)</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="t1-pros">
-                            Hipoksija parasti izraisa apjukumu un atmiņas dzēšanu, savukārt NDE gadījumos pacienti demonstrē hiper-skaidru, strukturētu loģiku. Verificēti ārpusķermeņa novērojumi reanimācijas laikā (Dr. Sam Parnia, Dr. Bruce Greyson) notiek laikā, kad smadzeņu garozas elektriskā aktivitāte ir pilnīgi izzudusi (plakana EEG līnija).
-                        </p>
-                    </div>
-                </div>
-            </div>
+        
+  <section class="space-y-6" aria-labelledby="tribunal-h">
+    <div class="space-y-2">
+      <h2 id="tribunal-h" class="text-2xl font-bold text-white brand-font" data-i18n="tribunal-h"></h2>
+      <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed max-w-3xl" data-i18n="how-to-read"></p>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-400 pt-1" aria-label="Legend">
+        <span><i class="dot c-sv"></i> <span data-i18n="cat-sv"></span></span>
+        <span><i class="dot c-ob"></i> <span data-i18n="cat-ob"></span></span>
+        <span><i class="dot c-nm"></i> <span data-i18n="cat-nm"></span></span>
+        <span><i class="dot c-nr"></i> <span data-i18n="cat-nr"></span></span>
+        <span><i class="dot c-in"></i> <span data-i18n="cat-in"></span></span>
+      </div>
+    </div>
+    <div id="topics" class="space-y-8"><p class="text-slate-500 text-sm" data-i18n="loading"></p></div>
+    <p id="data-status" class="text-[11px] text-slate-500 font-mono"></p>
+  </section>
 
-            <!-- Topic 2: Megalithic Acoustics & Technologies -->
-            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <h3 class="text-xl font-bold text-white brand-font text-amber-400" data-i18n="t2-heading">2. Tēma: Senā Megalītiskā Inženierija un Akustika</h3>
-                    <div class="flex items-center gap-3 bg-slate-950 px-4 py-2 rounded-xl border border-slate-800 text-xs">
-                        <span class="text-slate-400" data-i18n="weight-lbl">Empīriskais Svars:</span>
-                        <div class="w-32 h-2.5 bg-slate-900 rounded-full overflow-hidden flex">
-                            <div class="bg-red-500/70 w-[40%]"></div>
-                            <div class="bg-emerald-400 w-[60%]"></div>
-                        </div>
-                        <span class="text-emerald-400 font-mono font-bold">60% Facts</span>
-                    </div>
-                </div>
+  <section class="ara-header" aria-labelledby="ara-h">
+    <h2 id="ara-h" class="text-2xl font-bold text-white brand-font mb-1" data-i18n="ara-title"></h2>
+    <p class="text-sm text-slate-400 mb-4" data-i18n="ara-sub"></p>
+    <div id="ara" class="grid gap-3"></div>
+  </section>
+</main>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-5 bg-slate-950/60 border border-red-950/60 rounded-xl">
-                        <h4 class="text-red-400 font-bold text-xs uppercase tracking-wider mb-2" data-i18n="cons-label">Skeptiķa Arguments (Mīnusi / Ierobežojumi)</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="t2-cons">
-                            Lielgabarītu akmeņu pārvietošana un apstrāde tika veikta ar milzīgu fizisko darbaspēku, koka veltņiem, smiltīm un vara instrumentiem. Teorijas par akustiku vai "mīkstinātu akmeni" ir spekulatīvi mīti.
-                        </p>
-                    </div>
-                    <div class="p-5 bg-slate-950/60 border border-emerald-950/60 rounded-xl">
-                        <h4 class="text-emerald-400 font-bold text-xs uppercase tracking-wider mb-2" data-i18n="pros-label">Empīriskais Pretsvars (Plusi / Fakti)</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="t2-pros">
-                            Akustiskie mērījumi pierāda stabilu 110–121 Hz stāvviļņu rezonansi granīta kamerās (Gīza, Malta, Barabar). Poligonālo bloku mikronu savienojumi un iekšējie urbumi cietos iežos tehniski nav atkārtojami ar akmens laikmeta rīkiem.
-                        </p>
-                    </div>
-                </div>
-            </div>
+<footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500 space-y-2">
+  <p>© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.</p>
+  <p class="text-amber-400/70 font-mono text-[11px]">Reinis Pavlovs — "Reālāks par redzamo"</p>
+</footer>
 
-            <!-- Topic 3: 	 & Dark Matter Dogma -->
-            <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <h3 class="text-xl font-bold text-white brand-font text-amber-400" data-i18n="t3-heading">3. Tēma: Cikliskās Kataklizmas & Precesijas Cikli</h3>
-                    <div class="flex items-center gap-3 bg-slate-950 px-4 py-2 rounded-xl border border-slate-800 text-xs">
-                        <span class="text-slate-400" data-i18n="weight-lbl">Empīriskais Svars:</span>
-                        <div class="w-32 h-2.5 bg-slate-900 rounded-full overflow-hidden flex">
-                            <div class="bg-red-500/70 w-[25%]"></div>
-                            <div class="bg-emerald-400 w-[75%]"></div>
-                        </div>
-                        <span class="text-amber-400 font-mono font-bold">75% Facts</span>
-                    </div>
-                </div>
+<script>
+/* ---------- i18n ---------- */
+const T = {
+  LV: {
+    'back-home':'Atpakaļ uz galveno lapu',
+    'sub-title':'Konstruktīvā analīze & pierādījumu profils',
+    'main-title':'Skepticisms kā instruments, nevis dogma',
+    'main-desc':'Atvērts prāts un rūpīga argumentu svēršana. Mēs neakceptējam aklas dogmas ne tradicionālajā zinātnē, ne alternatīvajās teorijās – mēs balstāmies uz empīriskiem datiem un strukturētu pārbaudi.',
+    'sim-tag':'Neatkarīgā analīze','sim-title':'Kosmiskā deja & plūsma',
+    'sim-desc':'Kā norādīja Alans Vatss, visums nav haotisku sakritību virkne; tā ir skanoša mūzika un rotaļīga enerģijas deja. Dzīve un kosmiskā kustība nenotiek ar mums – mēs esam pats visums, kas caur kustību pieredz un apzinās sevi.',
+    'btn-vortex':'Pārslēgt skatu (Vortex / Orbīta)','btn-trails':'Notīrīt pēdas',
+    'tribunal-h':'Pierādījumu profils pa tēmām',
+    'how-to-read':'Šie skaitļi NAV varbūtība, ka apgalvojums ir patiess. Tie parāda (1) cik pārbaudes kritēriju tēmai šobrīd ir izpildīti un (2) ja pieejams, kā LLM klasificēti recenzētu publikāciju kopsavilkumi sadalās kategorijās. Dati tiek ielādēti automātiski no pēdējās apstiprinātās publikācijas.',
+    'cat-sv':'Atbalsta verificējamu novērojumu','cat-ob':'Novērojumu signāls','cat-nm':'Neirālais mehānisms','cat-nr':'Nulles rezultāts','cat-in':'Neskaidrs',
+    'loading':'Ielādē datus…',
+    'skeptic':'Skeptiķa spēcīgākais arguments','proponent':'Atbalstītāja spēcīgākais arguments',
+    'checklist':'Pārbaudes kritēriji','coverage':'Kritēriju segums','corpus':'Literatūras korpuss (abstraktu klasifikācija)',
+    'no-corpus':'Šai tēmai nav literatūras korpusa: pieejams tikai ilustratīvs modelis un kritēriju saraksts.',
+    'no-corpus-yet':'Korpusa kopsavilkums vēl nav publicēts (parādīsies pēc nākamās apstiprinātās publikācijas).',
+    'analysed':'analizēti','retrieved':'atrasti','excluded':'izslēgti kā neatbilstoši tēmai','sources':'avoti',
+    'capped':'Segums ierobežots: ir konflikts starp apgalvojumu un pārbaudi.',
+    'article':'Lasīt pilno rakstu','updated':'Raksts atjaunots','synced':'Kritēriji sinhronizēti','stale':'Dati var būt novecojuši',
+    'class':'Epistēmiskā klase','reclass':'Potenciāla paaugstināšana',
+    'k-in_situ_measurement':'Tiešs mērījums','k-causal_mechanism':'Cēloņsakarības mehānisms','k-statistical_significance':'Statistiskā nozīmība','k-independent_replication':'Neatkarīga atkārtošana','k-peer_reviewed_publication':'Recenzēta publikācija','k-raw_data_availability':'Neapstrādātu datu pieejamība',
+    's-satisfied':'izpildīts','s-partial':'daļēji','s-missing':'trūkst','s-flagged_conflict':'konflikts',
+    'caveat':'Piezīme: klasifikāciju veic valodas modelis pēc abstraktiem; tā nav sistemātiska pārskata vai efekta lieluma aizstājēja. Skaitļi ir publikācijas, nevis neatkarīgi gadījumi: atbildes, komentāri un pārskati par vienu un to pašu gadījumu tiek skaitīti atsevišķi.',
+    'ara-title':'Autonomā pētījumu arhīvs','ara-sub':'Automātiski ģenerēti un cilvēka pārskatīti pētījumu kopsavilkumi.',
+    'risk':'Riska līmenis','promoted':'Publicēts','open':'Atvērt rakstu','err':'Neizdevās ielādēt datus. Tiek rādīts tikai teksts bez rādītājiem.',
+    'topic-consciousness_independence_nde':'Apziņas neatkarība no smadzenēm (NDE)',
+    'topic-megalithic_engineering_acoustics':'Megalītiskā inženierija un akustika',
+    'topic-cyclical_cataclysms_precession':'Cikliskās kataklizmas un precesija',
+    'topic-neural_cosmic_isomorphism':'Neironu tīklu un kosmiskā tīmekļa izomorfisms',
+    "sk-m-consciousness_independence_nde":"Ziņojumi par pārdzīvojumiem sirdsdarbības apstāšanās laikā ir plaši dokumentēti. Gadījumi, kuros uztvere ir neatkarīgi verificēta, ir reti, un lielākā daļa ziņojumu ir retrospektīvi.",
+    "sk-i-consciousness_independence_nde":"Piedāvātie skaidrojumi ietver hipoksiju, REM intrūziju, temporālās daivas aktivitāti un endogēnas vai farmakoloģiskas vielas (piem., DMT); vairāki no tiem ir eksperimentāli pētīti.",
+    "sk-h-consciousness_independence_nde":"Atvērts jautājums: neviens mehānisms nav pierādīts kā pilns skaidrojums visām ziņotajām iezīmēm. Vērtējums mainītos, ja tiktu uzrādīti verificēti novērojumi, ko šie mehānismi neizskaidro.",
+    "pr-m-consciousness_independence_nde":"Nelielā skaitā ziņojumu aprakstīta strukturēta, skaidra pieredze sirdsdarbības apstāšanās laikā vai tās tuvumā, kad EEG aktivitāte parasti ir stipri nomākta (piem., AWARE pētījumi). Pieredzes laiks attiecībā pret apstāšanos parasti nav zināms.",
+    "pr-i-consciousness_independence_nde":"Šādi ziņojumi tiek interpretēti kā norāde, ka apziņa varētu nebūt pilnībā atkarīga no smadzeņu aktivitātes. Smadzeņu darbība apstāšanās laikā nav pilnībā raksturota, un pilnībā neirāli skaidrojumi nav izslēgti.",
+    "pr-h-consciousness_independence_nde":"Hipotēze (nepierādīta): apziņa var darboties neatkarīgi no smadzeņu aktivitātes. Pārbaude: kontrolēti, iepriekš reģistrēti verificējamas uztveres testi ar neatkarīgu atkārtošanu.",
+    "sk-m-megalithic_engineering_acoustics":"Granīta kamerās ziņota stāvviļņu rezonanse; tāda ir sagaidāma jebkurā cietsienu telpā ar attiecīgiem izmēriem. Eksperimentālā arheoloģija ir reproducējusi vairākas akmens transportēšanas un apstrādes metodes (kamanas, uzbērumi, vara un akmens instrumenti).",
+    "sk-i-megalithic_engineering_acoustics":"Rezonanse var būt telpas ģeometrijas blakusefekts; tās esamība pati par sevi neliecina par mērķtiecīgu projektēšanu.",
+    "sk-h-megalithic_engineering_acoustics":"Atvērts jautājums: ne visas apstrādes detaļas ir eksperimentāli atkārtotas. Tas ir atvērts jautājums, nevis pierādījums citai izcelsmei.",
+    "pr-m-megalithic_engineering_acoustics":"Lauka mērījumos ziņots par rezonansi ap 110–121 Hz vairākās granīta kamerās (Gīza, Malta, Barabar). Pati rezonanse ir parasta, izmērāma fizikāla parādība. Recenzēts avots, kas apstiprina visus trīs objektus, nav identificēts.",
+    "pr-i-megalithic_engineering_acoustics":"Interpretācija: frekvence varētu atspoguļot apzinātu akustisku projektēšanu. Tas nav noskaidrots.",
+    "pr-h-megalithic_engineering_acoustics":"Hipotēze: celtnieki apzināti izmantoja kameru akustiku. Pārbaude: sistemātisks salīdzinājums ar kamerām bez piedēvēta nolūka un publicēti mērījumu dati.",
+    "sk-m-cyclical_cataclysms_precession":"Platīna un citu marķieru anomālijas ziņotas dažās Younger Dryas robežslāņa vietās, taču dažas pētnieku grupas ziņojušas par grūtībām atkārtot daļu marķieru (piem., nanodimantus un sfērulas).",
+    "sk-i-cyclical_cataclysms_precession":"Younger Dryas sākumu un ledāju kušanu var skaidrot ar klimata procesiem; trieciena hipotēze ir strīdīga, un anomāliju interpretācija nav vienprātīga.",
+    "sk-h-cyclical_cataclysms_precession":"Atvērts jautājums: platīna anomāliju izcelsme nav izšķirta. Vērtējums mainītos, ja neatkarīgas grupas ar vienotu metodoloģiju apstiprinātu trieciena marķierus.",
+    "pr-m-cyclical_cataclysms_precession":"Platīna anomālijas ap 12 800 BP ziņotas vairākās nogulumu vietās.",
+    "pr-i-cyclical_cataclysms_precession":"Interpretācija: kosmisks trieciens vai gaisa sprādziens. Citi skaidrojumi (piem., vulkānisms, zemes izcelsmes avoti) nav pilnībā izslēgti.",
+    "pr-h-cyclical_cataclysms_precession":"Hipotēze: notikumi atkārtojas saskaņā ar precesijas ciklu. Saikne starp cikla un notikumu laiku nav statistiski pārbaudīta, un orbitālais modelis ir ilustratīvs.",
+    "sk-m-neural_cosmic_isomorphism":"Vazza & Feletti (2020, Frontiers in Physics) salīdzināja kosmiskā tīmekļa blīvuma struktūru ar smadzeņu audu histoloģiskiem griezumiem. Smadzeņu analīze balstīta uz telpisko tuvumu, nevis neironu savienojumiem, un uz nelielu paraugu.",
+    "sk-i-neural_cosmic_isomorphism":"Līdzība var būt vispārīga tīklveida struktūru īpašība. Paši autori norāda, ka cieša atbilstība var būt sakritība un ka līdzīgas konfigurācijas var rasties no atšķirīgiem fizikāliem procesiem.",
+    "sk-h-neural_cosmic_isomorphism":"Atvērts jautājums: līdzība nav pārbaudīta ar citiem marķieriem vai funkcionāliem datiem.",
+    "pr-m-neural_cosmic_isomorphism":"Autori ziņo par līdzībām struktūrā, tīkla īpašībās un aplēstajā atmiņas ietilpībā starp abām sistēmām.",
+    "pr-i-neural_cosmic_isomorphism":"Interpretācija: abas sistēmas varētu pašorganizēties pēc līdzīgiem tīklu principiem.",
+    "pr-h-neural_cosmic_isomorphism":"Hipotēze: kopīgi pašorganizācijas principi. Pārbaude: neatkarīga atkārtošana ar citiem marķieriem un savienojamības datiem; tāda vēl nav identificēta.",
+    'lbl-m':"Mērījums / novērojums",'lbl-i':"Interpretācija",'lbl-h':"Hipotēze / atvērts jautājums",
+  },
+  EN: {
+    'back-home':'Back to Main Page',
+    'sub-title':'Constructive Analysis & Evidence Profile',
+    'main-title':'Skepticism as a Tool, Not a Dogma',
+    'main-desc':'An open mind and careful weighing of arguments. We accept no blind dogmas in mainstream science or alternative theories – we rely on empirical data and structured testing.',
+    'sim-tag':'Independent Analysis','sim-title':'The Cosmic Dance & Flow',
+    'sim-desc':'As Alan Watts observed, the universe is not a chaotic accident; it is an unfolding music, a playful energy dance. Life and cosmic motion do not happen to us—we are the universe experiencing itself in motion.',
+    'btn-vortex':'Toggle View (Vortex / Orbit)','btn-trails':'Clear Trails',
+    'tribunal-h':'Evidence profile by topic',
+    'how-to-read':'These numbers are NOT the probability that a claim is true. They show (1) how many testing criteria a topic currently meets and (2) where available, how LLM-classified abstracts of peer-reviewed publications fall into categories. Data loads automatically from the latest approved publication.',
+    'cat-sv':'Supports verifiable observation','cat-ob':'Observational signal','cat-nm':'Neural mechanism','cat-nr':'Null result','cat-in':'Inconclusive',
+    'loading':'Loading data…',
+    'skeptic':"Skeptic's strongest case",'proponent':"Proponent's strongest case",
+    'checklist':'Testing criteria','coverage':'Criteria coverage','corpus':'Literature corpus (abstract classification)',
+    'no-corpus':'No literature corpus for this topic: only an illustrative model and the criteria list are available.',
+    'no-corpus-yet':'The corpus summary has not been published yet (it will appear with the next approved publication).',
+    'analysed':'analysed','retrieved':'retrieved','excluded':'excluded as off-topic','sources':'sources',
+    'capped':'Coverage capped: there is an unresolved conflict between a claim and its test.',
+    'article':'Read the full article','updated':'Article updated','synced':'Criteria synced','stale':'Data may be out of date',
+    'class':'Epistemic class','reclass':'Potential upgrade',
+    'k-in_situ_measurement':'Direct measurement','k-causal_mechanism':'Causal mechanism','k-statistical_significance':'Statistical significance','k-independent_replication':'Independent replication','k-peer_reviewed_publication':'Peer-reviewed publication','k-raw_data_availability':'Raw data availability',
+    's-satisfied':'satisfied','s-partial':'partial','s-missing':'missing','s-flagged_conflict':'conflict',
+    'caveat':'Note: classification is done by a language model from abstracts; it is not a substitute for a systematic review or an effect size. Counts are publications, not independent cases: replies, commentaries and reviews of the same case are counted separately.',
+    'ara-title':'Autonomous Research Archive','ara-sub':'Automatically generated, human-reviewed research summaries.',
+    'risk':'Risk level','promoted':'Published','open':'Open article','err':'Could not load data. Showing text without indicators.',
+    'topic-consciousness_independence_nde':'Independence of Consciousness from the Brain (NDE)',
+    'topic-megalithic_engineering_acoustics':'Ancient Megalithic Engineering and Acoustics',
+    'topic-cyclical_cataclysms_precession':'Cyclical Cataclysms & Precession Forcing',
+    'topic-neural_cosmic_isomorphism':'Structural Isomorphism Between Neural Networks and the Cosmic Web',
+    "sk-m-consciousness_independence_nde":"Reports of experiences around cardiac arrest are widely documented. Cases in which perception was independently verified are rare, and most reports are retrospective.",
+    "sk-i-consciousness_independence_nde":"Proposed explanations include hypoxia, REM intrusion, temporal-lobe activity, and endogenous or pharmacological compounds (e.g. DMT); several of these have been studied experimentally.",
+    "sk-h-consciousness_independence_nde":"Open question: no single mechanism has been shown to account for all reported features. The assessment would change if verified observations that these mechanisms do not explain were presented.",
+    "pr-m-consciousness_independence_nde":"A small number of reports describe structured, lucid experience during or near cardiac arrest, when EEG activity is typically severely suppressed (e.g. the AWARE studies). The timing of the experience relative to the arrest is usually unknown.",
+    "pr-i-consciousness_independence_nde":"Such reports are interpreted by some as a sign that consciousness may not depend entirely on brain activity. Brain activity during arrest is not fully characterised, and purely neural accounts have not been ruled out.",
+    "pr-h-consciousness_independence_nde":"Hypothesis (unproven): consciousness can operate independently of brain activity. Test: controlled, pre-registered tests of verifiable perception with independent replication.",
+    "sk-m-megalithic_engineering_acoustics":"Standing-wave resonance has been reported in granite chambers; it is expected in any hard-walled room of comparable dimensions. Experimental archaeology has reproduced several stone transport and shaping methods (sledges, ramps, copper and stone tools).",
+    "sk-i-megalithic_engineering_acoustics":"Resonance can be a by-product of room geometry; its presence alone does not indicate intentional design.",
+    "sk-h-megalithic_engineering_acoustics":"Open question: not every working detail has been reproduced experimentally. That is an open question, not evidence of a different origin.",
+    "pr-m-megalithic_engineering_acoustics":"Field measurements report resonance around 110–121 Hz in several granite chambers (Giza, Malta, Barabar). The resonance itself is ordinary, measurable physics. No peer-reviewed source confirming all three sites has been identified.",
+    "pr-i-megalithic_engineering_acoustics":"Interpretation: the frequency could reflect deliberate acoustic design. This is unresolved.",
+    "pr-h-megalithic_engineering_acoustics":"Hypothesis: the builders intentionally exploited chamber acoustics. Test: systematic comparison with chambers with no attributed purpose, and published measurement data.",
+    "sk-m-cyclical_cataclysms_precession":"Platinum and other marker anomalies have been reported at some Younger Dryas boundary sites, but some research groups report difficulty reproducing part of the markers (e.g. nanodiamonds and spherules).",
+    "sk-i-cyclical_cataclysms_precession":"The onset of the Younger Dryas and glacial melt can be explained by climate processes; the impact hypothesis is contested and the interpretation of the anomalies is not agreed.",
+    "sk-h-cyclical_cataclysms_precession":"Open question: the origin of the platinum anomalies is not settled. The assessment would change if independent groups using a common methodology confirmed impact markers.",
+    "pr-m-cyclical_cataclysms_precession":"Platinum anomalies around 12,800 BP have been reported at several sediment sites.",
+    "pr-i-cyclical_cataclysms_precession":"Interpretation: a cosmic impact or airburst. Other explanations (e.g. volcanism, terrestrial sources) have not been fully ruled out.",
+    "pr-h-cyclical_cataclysms_precession":"Hypothesis: events recur in line with the precession cycle. A link between cycle timing and event timing has not been tested statistically, and the orbital model is illustrative.",
+    "sk-m-neural_cosmic_isomorphism":"Vazza & Feletti (2020, Frontiers in Physics) compared the density structure of the cosmic web with histological slices of brain tissue. The brain analysis is based on spatial proximity rather than neural wiring, and on a small sample.",
+    "sk-i-neural_cosmic_isomorphism":"The similarity may be a generic property of network-like structures. The authors themselves note that close agreement may be coincidental and that similar configurations can arise from entirely different physical processes.",
+    "sk-h-neural_cosmic_isomorphism":"Open question: the similarity has not been tested with other markers or functional data.",
+    "pr-m-neural_cosmic_isomorphism":"The authors report similarities in structure, network properties and estimated memory capacity between the two systems.",
+    "pr-i-neural_cosmic_isomorphism":"Interpretation: both systems might self-organise under similar network principles.",
+    "pr-h-neural_cosmic_isomorphism":"Hypothesis: shared self-organisation principles. Test: independent replication with other markers and connectivity data; none has been identified yet.",
+    'lbl-m':"Measurement / observation",'lbl-i':"Interpretation",'lbl-h':"Hypothesis / open question",
+  }
+};
+const ORDER = ['consciousness_independence_nde','megalithic_engineering_acoustics','cyclical_cataclysms_precession','neural_cosmic_isomorphism'];
+const CATS = [['supports_veridical','c-sv','cat-sv'],['observational_signal','c-ob','cat-ob'],['neuro_mechanism','c-nm','cat-nm'],['null_result','c-nr','cat-nr'],['inconclusive','c-in','cat-in']];
+const ITEM_ORDER = ['in_situ_measurement','causal_mechanism','statistical_significance','independent_replication','peer_reviewed_publication','raw_data_availability'];
+const STALE_DAYS = 21;
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="p-5 bg-slate-950/60 border border-red-950/60 rounded-xl">
-                        <h4 class="text-red-400 font-bold text-xs uppercase tracking-wider mb-2" data-i18n="cons-label">Skeptiķa Arguments (Mīnusi / Ierobežojumi)</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="t3-cons">
-                            Lielā sprādziena teoriju apstiprina kosmiskais mikrobiokrilu starojums (CMB) un galaktiku sarkanā nobīde. Tumšā matērija un tumšā enerģija ir nepieciešamie matemātiskie instrumenti gravitācijas vienādojumu sakārtošanai.
-                        </p>
-                    </div>
-                    <div class="p-5 bg-slate-950/60 border border-emerald-950/60 rounded-xl">
-                        <h4 class="text-emerald-400 font-bold text-xs uppercase tracking-wider mb-2" data-i18n="pros-label">Empīriskais Pretsvars (Plusi / Fakti)</h4>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed" data-i18n="t3-pros">
-                            Modelis ir loģiski vājš, jo tam nepieciešams izgudrot 95% "neredzamas" substances (tumšo matēriju un enerģiju), lai glābtu matemātisko modeli. Alternatīvā lauka fizika un fraktālais kosmiskais izomorfisms (Vazza & Feletti) skaidro Visumu kā strukturētu, harmonisku matricu un lauku tīklu, nevis haotisku sprādzienu.
-                        </p>
-                    </div>
-                </div>
-            </div>
+let lang = 'LV';
+try { const s = localStorage.getItem('pp-lang'); if (s === 'EN' || s === 'LV') lang = s; } catch (e) {}
+const D = { index:null, weights:null, checklists:null, ok:false };
+const t = k => (T[lang][k] !== undefined ? T[lang][k] : (T.LV[k] !== undefined ? T.LV[k] : k));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate = iso => { if (!iso) return '—'; const d = new Date(iso); return isNaN(d) ? '—' : d.toISOString().slice(0,10); };
+const daysSince = iso => { const d = new Date(iso); return isNaN(d) ? null : (Date.now() - d.getTime())/864e5; };
 
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-900 py-8 text-center text-xs text-slate-500 space-y-2">
-        <p data-i18n="footer-txt">© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.</p>
-        <p class="text-amber-400/70 font-mono text-[11px]">Reinis Pavlovs — "Reālāks par redzamo"</p>
-    </footer>
-
-    <!-- Script for Language Toggle & Canvas Simulation -->
-    <script>
-    let currentLang = 'EN';
-
-    const translations = {
-        LV: {
-            'back-home': 'Atpakaļ uz galveno lapu',
-            'sub-title': 'Konstruktīvā Analīze & Argumentu Svari',
-            'main-title': 'Skepticisms kā Instruments, nevis Dogma',
-            'main-desc': 'Atvērts prāts un rūpīga argumentu svēršana. Mēs neakceptējam aklas dogmas ne tradicionālajā zinātnē, ne alternatīvajās teorijās – mēs balstāmies uz empīriskiem datiem, paralakses metodi un strukturētu lauka fiziku.',
-            'sim-tag': 'Neatkarīgā analīze',
-            'sim-title': 'Kosmiskā Deja & Plūsma',
-'sim-desc': 'Kā norādīja Alans Vats, visums nav haotisku sakritību virkne; tā ir skanoša mūzika un rotaļīga enerģijas deja. Dzīve un kosmiskā kustība nenotiek ar mums – mēs esam pats visums, kas caur kustību pieredz un apzinās sevi.',
-            'btn-vortex': 'Pārslēgt skatu (Vortex / Orbīta)',
-            'btn-trails': 'Notīrīt pēdas',
-            'weight-lbl': 'Empīriskais Svars:',
-            'cons-label': 'Skeptiķa Arguments (Mīnusi / Ierobežojumi)',
-            'pros-label': 'Empīriskais Pretsvars (Plusi / Fakti)',
-            't1-heading': '1. Tēma: Apziņas Neatkarība no Smadzenēm (NP / NDE)',
-            't1-cons': 'Apziņa ir stingri bioloģisks smadzeņu produkts. Fenomeni apstāšanās laikā skaidrojami ar skābekļa trūkumu (hipoksiju), neironu sabrukuma izraisītām halucinācijām vai ķīmisku vielu (kā endogēnā DMT) izdali.',
-            't1-pros': 'Hipoksija parasti izraisa apjukumu un atmiņas dzēšanu, savukārt NDE gadījumos pacienti demonstrē hiper-skaidru, strukturētu loģiku. Verificēti ārpusķermeņa novērojumi reanimācijas laikā (Dr. Sam Parnia, Dr. Bruce Greyson) notiek laikā, kad smadzeņu garozas elektriskā aktivitāte ir pilnīgi izzudusi (plakana EEG līnija).',
-            't2-heading': '2. Tēma: Senā Megalītiskā Inženierija un Akustika',
-            't2-cons': 'Lielgabarītu akmeņu pārvietošana un apstrāde tika veikta ar milzīgu fizisko darbaspēku, koka veltņiem, smiltīm un vara instrumentiem. Teorijas par akustiku vai "mīkstinātu akmeni" ir spekulatīvi mīti.',
-            't2-pros': 'Akustiskie mērījumi pierāda stabilu 110–121 Hz stāvviļņu rezonansi granīta kamerās (Gīza, Malta, Barabar). Poligonālo bloku mikronu savienojumi un iekšējie urbumi cietos iežos tehniski nav atkārtojami ar akmens laikmeta rīkiem.',
-            't3-heading': '3. Tēma: Cikliskās Kataklizmas & Precesijas Cikli',
-
-'t3-cons': 'Vēsturiskās kataklizmas un ledus laikmeta beigas ir reģionāli vai neatkarīgi notikumi, kas skaidrojami ar parastiem klimata cikliem un ledāju kušanu. Teorijas par regulāriem precesijas kataklizmu cikliem vai komētu triecieniem pirms 12 800 gadiem ir spekulatīvas.',
-
-'t3-pros': 'Ģeoloģiskie dati uzrāda globālu platīna un nanodimantiņu anomāliju Younger Dryas slānī (~12 800 BP), kas liecina par masīvu kosmiskā materiāla triecienu vai gaisa sprādzienu. Pilns 25 920 gadu precesijas cikls un 6 000 gadu subharmoniskie posmi saskan ar globāliem civilizācijas un Sahāras pārtuksnešošanās lūzuma punktiem.',
-            'footer-txt': '© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.'
-        },
-        EN: {
-            'back-home': 'Back to Main Page',
-            'sub-title': 'Constructive Analysis & Argument Scales',
-            'main-title': 'Skepticism as a Tool, Not a Dogma',
-            'main-desc': 'An open mind and careful weighing of arguments. We accept no blind dogmas in mainstream science or alternative theories – we rely on empirical data, the parallax method, and structured field physics.',
-            'sim-tag': 'Independent Analysis',
-            'sim-title': 'The Cosmic Dance & Flow',
-'sim-desc': 'As Alan Watts observed, the universe is not a chaotic accident; it is an unfolding music, a playful energy dance. Life and cosmic motion do not happen to us—we are the universe experiencing itself in motion.',
-            'btn-vortex': 'Toggle View (Vortex / Orbit)',
-            'btn-trails': 'Clear Trails',
-            'weight-lbl': 'Empirical Weight:',
-            'cons-label': 'Skeptic Argument (Cons / Limitations)',
-            'pros-label': 'Empirical Counterweight (Pros / Facts)',
-            't1-heading': '1. Topic: Independence of Consciousness from the Brain (NDE)',
-            't1-cons': 'Consciousness is strictly a biological brain product. Phenomena during cardiac arrest are explained by oxygen deprivation (hypoxia), hallucinations caused by neural breakdown, or chemical releases (such as endogenous DMT).',
-            't1-pros': 'Hypoxia typically causes confusion and memory loss, whereas NDE cases show hyper-lucid, structured logic. Verified out-of-body observations during resuscitation (Dr. Sam Parnia, Dr. Bruce Greyson) occur while cerebral cortex electrical activity is entirely absent (isoelectric flatline EEG).',
-            't2-heading': '2. Topic: Ancient Megalithic Engineering and Acoustics',
-            't2-cons': 'Massive stone transport and shaping were achieved using massive manual labor, wooden rollers, sand, and copper tools. Theories regarding acoustics or "softened stone" are speculative myths.',
-            't2-pros': 'Acoustic surveys prove precise 110–121 Hz standing wave resonance across global granite chambers (Giza, Malta, Barabar). Polygonal block micron-level joints and internal hard-rock core drillings remain technically unreplicable with Stone Age tools.',
-            't3-heading': '3. Topic: Cyclical Cataclysms & Precession Forcing',
-
-'t3-cons': 'Historical cataclysms and the end of the Ice Age are regional or independent events explained by standard climate cycles and glacial melting. Theories regarding regular precessional cataclysm cycles or comet impacts 12,800 years ago are speculative.',
-
-'t3-pros': 'Geological data reveals a global platinum and nanodiamond anomaly in the Younger Dryas boundary layer (~12,800 BP), pointing to a massive cosmic impact or airburst event. The full 25,920-year precessional cycle and 6,000-year sub-harmonic phases correlate with global civilizational and Saharan desertification tipping points.',
-
-            'footer-txt': '© 2026 PROJECT PARALLAX. Open-source critical inquiry and open-minded synthesis.'
-        }
-    };
-function applyLanguage(lang) {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            el.innerHTML = translations[lang][key];
-        }
-    });
+async function getJSON(url) {
+  const r = await fetch(url + '?v=' + Math.floor(Date.now()/60000), { cache: 'no-cache' });
+  if (!r.ok) throw new Error(url + ' ' + r.status);
+  return r.json();
 }
 
-applyLanguage(currentLang);
-    document.getElementById('lang-toggle-btn').addEventListener('click', () => {
-        currentLang = currentLang === 'LV' ? 'EN' : 'LV';
-        document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[currentLang][key]) {
-                el.innerHTML = translations[currentLang][key];
-            }
-        });
-    });
+function corpusBlock(es) {
+  if (!es) return '<p class="text-xs text-slate-500">' + esc(t('no-corpus')) + '</p>';
+  if (es.kind !== 'literature_corpus' || !es.counts) return '<p class="text-xs text-slate-500">' + esc(t('no-corpus-yet')) + '</p>';
+  const n = es.analysed || Object.values(es.counts).reduce((a,b)=>a+b,0);
+  const segs = CATS.map(([k,c,l]) => {
+    const v = es.counts[k] || 0; const p = n ? v/n*100 : 0;
+    return v ? '<div class="'+c+'" style="width:'+p+'%" title="'+esc(t(l))+': '+v+' ('+p.toFixed(1)+'%)"></div>' : '';
+  }).join('');
+  const rows = CATS.map(([k,c,l]) => {
+    const v = es.counts[k] || 0; const p = n ? v/n*100 : 0;
+    return '<li class="flex items-center justify-between gap-3"><span><i class="dot '+c+'"></i> '+esc(t(l))+'</span><span class="font-mono">'+v+' <span class="text-slate-500">('+p.toFixed(1)+'%)</span></span></li>';
+  }).join('');
+  const src = Object.entries(es.sources || {}).map(([k,v]) => esc(k)+' '+v).join(', ');
+  return '<div class="seg" role="img" aria-label="'+esc(t('corpus'))+'">'+segs+'</div>'
+    + '<ul class="mt-3 space-y-1 text-xs text-slate-300">'+rows+'</ul>'
+    + '<p class="mt-3 text-[11px] text-slate-500">n = '+n+' '+esc(t('analysed'))+' · '+(es.retrieved||'?')+' '+esc(t('retrieved'))+' · '+(es.excluded||0)+' '+esc(t('excluded'))+(src?' · '+esc(t('sources'))+': '+src:'')+'</p>'
+    + '<p class="mt-1 text-[11px] text-slate-500">'+esc(t('caveat'))+'</p>';
+}
 
-    // Space Vortex / Orbit Canvas Simulation Script
+function checklistBlock(w, cl) {
+  if (!w) return '';
+  const pct = typeof w.percent_mapped === 'number' ? w.percent_mapped : null;
+  const bar = pct === null ? '' : '<div class="seg"><div class="bg-emerald-400/80" style="width:'+pct+'%"></div></div>';
+  const counts = [w.satisfied_count, w.partial_count, w.missing_count, w.flagged_conflict_count];
+  const total = w.total_checklist_items;
+  let items = '';
+  if (cl && cl.items) {
+    const byId = {}; cl.items.forEach(i => byId[i.id] = i);
+    items = '<details class="mt-3"><summary class="cursor-pointer text-xs text-amber-400">'+esc(t('checklist'))+' ('+total+')</summary><ul class="mt-2 space-y-2">'
+      + ITEM_ORDER.filter(id => byId[id]).map(id => {
+          const it = byId[id];
+          return '<li class="text-xs"><span class="chip st-'+esc(it.status)+'">'+esc(t('s-'+it.status))+'</span> <span class="text-slate-200">'+esc(t('k-'+id))+'</span>'
+            + '<div class="text-slate-500 mt-0.5">'+esc(it.evidence)+'</div></li>';
+        }).join('') + '</ul></details>';
+  }
+  return '<div class="flex items-baseline justify-between"><span class="text-xs text-slate-400">'+esc(t('coverage'))+'</span><span class="font-mono font-bold text-emerald-300">'+(pct===null?'—':pct.toFixed(1)+'%')+'</span></div>'
+    + bar
+    + '<p class="mt-2 text-[11px] text-slate-500">'+counts[0]+' '+esc(t('s-satisfied'))+' · '+counts[1]+' '+esc(t('s-partial'))+' · '+counts[2]+' '+esc(t('s-missing'))+' · '+counts[3]+' '+esc(t('s-flagged_conflict'))+' / '+total+'</p>'
+    + (w.capped_by_conflict ? '<p class="mt-1 text-[11px] text-amber-400">'+esc(t('capped'))+'</p>' : '')
+    + items;
+}
+
+function argCol(titleKey, side, id) {
+  const row = (k) => '<div><div class="text-[10px] uppercase tracking-wider text-amber-400/80">'+esc(t('lbl-'+k))+'</div><p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">'+esc(t(side+'-'+k+'-'+id))+'</p></div>';
+  return '<div class="p-4 sm:p-5 bg-slate-950/60 border border-slate-800 rounded-xl space-y-3"><h4 class="text-slate-200 font-bold text-xs uppercase tracking-wider">'+esc(t(titleKey))+'</h4>'+row('m')+row('i')+row('h')+'</div>';
+}
+
+function topicCard(id) {
+  const ix = D.index && D.index.topics && D.index.topics[id];
+  const w = D.weights && D.weights.topics && D.weights.topics[id];
+  const cl = D.checklists && D.checklists.topics && D.checklists.topics[id];
+  const es = ix && ix.evidence_summary;
+  const cls = w && w.epistemic_class;
+  const upd = ix && (ix.promoted_at || ix.generated_at);
+  const age = upd ? daysSince(upd) : null;
+  const stale = age !== null && age > STALE_DAYS;
+  const link = ix ? '<a class="text-amber-400 hover:text-amber-300 text-xs underline" href="content/articles/'+encodeURIComponent(ix.article_file)+'">'+esc(t('article'))+' &rarr;</a>' : '';
+  const meta = []
+    .concat(cls ? [esc(t('class'))+': <span class="font-mono text-slate-300">'+esc(cls)+'</span>'+(w.potential_reclass_target?' → '+esc(w.potential_reclass_target)+'?':'')] : [])
+    .concat(upd ? [esc(t('updated'))+': <span class="font-mono text-slate-300">'+fmtDate(upd)+'</span>'] : [])
+    .concat(w && w.last_synced_at ? [esc(t('synced'))+': <span class="font-mono text-slate-300">'+fmtDate(w.last_synced_at)+'</span>'] : []);
+  return '<article class="bg-slate-900/40 border border-slate-800 rounded-2xl p-5 sm:p-8 space-y-6" aria-labelledby="h-'+id+'">'
+    + '<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">'
+    +   '<h3 id="h-'+id+'" class="text-lg sm:text-xl font-bold brand-font text-amber-400">'+esc(t('topic-'+id))+'</h3>'
+    +   '<div class="text-right space-y-1">'+link+(stale?'<div class="chip st-partial">'+esc(t('stale'))+'</div>':'')+'</div>'
+    + '</div>'
+    + '<div class="grid md:grid-cols-2 gap-4">'
+    +   argCol('skeptic','sk',id)
+    +   argCol('proponent','pr',id)
+    + '</div>'
+    + '<div class="grid md:grid-cols-2 gap-6">'
+    +   '<div>'+(D.ok ? checklistBlock(w, cl) : '<p class="text-xs text-slate-500">'+esc(t('err'))+'</p>')+'</div>'
+    +   '<div><h4 class="text-xs text-slate-400 mb-2">'+esc(t('corpus'))+'</h4>'+(D.ok ? corpusBlock(es) : '')+'</div>'
+    + '</div>'
+    + (meta.length ? '<p class="text-[11px] text-slate-500">'+meta.join(' · ')+'</p>' : '')
+    + '</article>';
+}
+
+function renderAra() {
+  const el = document.getElementById('ara');
+  const topics = (D.index && D.index.topics) || {};
+  const ids = ORDER.filter(id => topics[id]).concat(Object.keys(topics).filter(id => !ORDER.includes(id)));
+  el.innerHTML = ids.map((id, n) => {
+    const ix = topics[id];
+    const name = T[lang]['topic-'+id] || ix.topic_name || id;
+    return '<div class="ara-item"><button class="ara-btn" type="button" aria-expanded="false"><span>'+(n+1)+'. '+esc(name)+'</span><span class="ara-arrow" aria-hidden="true">▾</span></button>'
+      + '<div class="ara-panel" role="region"><div class="ara-panel-inner"><p class="mb-2">'+esc(t('risk'))+': '+esc(ix.risk_level||'—')+' · '+esc(t('promoted'))+': '+fmtDate(ix.promoted_at)+'</p>'
+      + '<a class="text-amber-400 hover:text-amber-300 underline" href="content/articles/'+encodeURIComponent(ix.article_file)+'">'+esc(t('open'))+' &rarr;</a></div></div></div>';
+  }).join('');
+  el.querySelectorAll('.ara-btn').forEach(btn => btn.addEventListener('click', () => {
+    const item = btn.closest('.ara-item'), panel = item.querySelector('.ara-panel');
+    const open = item.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
+  }));
+}
+
+function render() {
+  document.documentElement.lang = lang.toLowerCase();
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (T[lang][k] !== undefined) el.textContent = T[lang][k]; });
+  ['LV','EN'].forEach(l => {
+    const b = document.getElementById('lang-'+l);
+    const on = l === lang;
+    b.className = 'tb px-3 py-1.5 ' + (on ? 'bg-amber-500 text-slate-950' : 'bg-slate-900 text-amber-400 hover:bg-slate-800');
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  document.getElementById('topics').innerHTML = ORDER.map(topicCard).join('');
+  renderAra();
+}
+
+['LV','EN'].forEach(l => document.getElementById('lang-'+l).addEventListener('click', () => {
+  lang = l; try { localStorage.setItem('pp-lang', l); } catch (e) {} render();
+}));
+
+render();
+Promise.all([
+  getJSON('content/articles/index.json'),
+  getJSON('content/articles/topic_weights.json'),
+  getJSON('content/articles/topic_checklists.json')
+]).then(([ix, w, cl]) => {
+  D.index = ix; D.weights = w; D.checklists = cl; D.ok = true;
+  const st = document.getElementById('data-status');
+  st.textContent = 'data: index.json · topic_weights.json · topic_checklists.json (' + new Date().toISOString().slice(0,16).replace('T',' ') + ' UTC)';
+  render();
+}).catch(err => {
+  console.warn(err);
+  document.getElementById('data-status').textContent = t('err');
+  render();
+});
+
+// Space Vortex / Orbit Canvas Simulation Script
     const canvas = document.getElementById('spaceCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -435,70 +480,6 @@ applyLanguage(currentLang);
     }
 
     draw();
-    </script>
-<!-- 🔽 Autonomous Research Archive header + accordion -->
-<section class="ara-header">
-  <h2 class="ara-title">Autonomous Research Archive</h2>
-  <p class="ara-subtitle">
-    Dynamically generated peer-reviewed monographs and evidence syntheses.
-  </p>
-
-  <div class="ara-accordion">
-    <!-- Item 1 -->
-    <div class="ara-item">
-      <button class="ara-btn" type="button">
-        <span class="ara-btn-text">1. Topic: Independence of Consciousness from the Brain</span>
-        <span class="ara-arrow" aria-hidden="true">▾</span>
-      </button>
-      <div class="ara-panel" role="region">
-        <div class="ara-panel-inner"><p class="mb-2"><strong>Corpus Analysis Status:</strong> Credibility Score 0.975 &middot; Risk Level: MEDIUM &middot; Updated 2026-09-26</p><p><a href="content/articles/consciousness_independence_nde.html" class="text-amber-400 hover:underline font-semibold">Read Full Statistical Breakdown &rarr;</a></p></div>
-      </div>
-    </div>
-
-    <!-- Item 2 -->
-    <div class="ara-item">
-      <button class="ara-btn" type="button">
-        <span class="ara-btn-text">2. Topic: Ancient Megalithic Engineering and Acoustics</span>
-        <span class="ara-arrow" aria-hidden="true">▾</span>
-      </button>
-      <div class="ara-panel" role="region">
-        <div class="ara-panel-inner"><p class="mb-2"><strong>Corpus Analysis Status:</strong> Credibility Score 1.95 &middot; Risk Level: MEDIUM &middot; Updated 2026-09-27</p><p><a href="content/articles/megalithic_engineering_acoustics.html" class="text-amber-400 hover:underline font-semibold">Read Full Statistical Breakdown &rarr;</a></p></div>
-      </div>
-    </div>
-
-    <!-- Item 3 -->
-    <div class="ara-item">
-      <button class="ara-btn" type="button">
-        <span class="ara-btn-text">3. Topic: Cyclical Cataclysms &amp; Precession Forcing</span>
-        <span class="ara-arrow" aria-hidden="true">▾</span>
-      </button>
-      <div class="ara-panel" role="region">
-        <div class="ara-panel-inner"><p class="mb-2"><strong>Corpus Analysis Status:</strong> Credibility Score 1.95 &middot; Risk Level: MEDIUM &middot; Updated 2026-09-22</p><p><a href="content/articles/cyclical_cataclysms_precession.html" class="text-amber-400 hover:underline font-semibold">Read Full Statistical Breakdown &rarr;</a></p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<script data-marker='ARA_TOGGLE_MARKER'>
-document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.ara-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var item = btn.closest('.ara-item');
-      var panel = item.querySelector('.ara-panel');
-      panel.style.transition = 'max-height 0.35s ease';
-      var isOpen = item.classList.contains('open');
-      if (isOpen) {
-        item.classList.remove('open');
-        panel.style.maxHeight = '0px';
-      } else {
-        item.classList.add('open');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
-    });
-  });
-});
 </script>
-
 </body>
 </html>
