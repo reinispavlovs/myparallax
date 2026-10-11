@@ -377,7 +377,8 @@
 
     <!-- Script for Language Toggle, Globe & Animated Waves -->
     <script>
-    let currentLang = 'EN';
+    let currentLang = (function(){ try { const v = localStorage.getItem('pp-lang'); return v === 'LV' ? 'LV' : 'EN'; } catch (e) { return 'EN'; } })();
+    const saveLang = () => { try { localStorage.setItem('pp-lang', currentLang); } catch (e) {} document.documentElement.lang = currentLang.toLowerCase(); };
     let currentSelectedSite = null;
 
     const megalithsData = [
@@ -633,7 +634,7 @@
             'era-2-sub': 'Mathematical Peak & Acoustics',
             'giza-desc': "The most precise geodetic structure on Earth. Its base proportions encode universal constants <span class=\"font-serif\">π</span> and <span class=\"font-serif\">Φ</span> (golden ratio), perfectly aligned to magnetic and geographic north. The King's Chamber exhibits stable 110–121 Hz standing wave resonance, acting as an energy and consciousness resonator.",
             'giza-tags': 'Pi & Phi Proportions • 110 Hz Resonance • Geodetic Meridian',
-            'barabar-desc': 'Chambers hollowed out of solid granite mass with so-called "Mauryan polish" – micron-level smoothness unreplicable with iron age tools. These chambers exhibit strong acoustic resonance; some researchers have speculatively proposed a link between the granite's piezoelectric quartz content and psychoacoustic effects, though this remains unverified and outside mainstream acoustic engineering consensus.',
+            'barabar-desc': 'Chambers hollowed out of solid granite mass with so-called "Mauryan polish" – micron-level smoothness unreplicable with iron age tools. These chambers exhibit strong acoustic resonance; some researchers have speculatively proposed a link between the granite\'s piezoelectric quartz content and psychoacoustic effects, though this remains unverified and outside mainstream acoustic engineering consensus.',
             'barabar-tags': 'Mauryan Polish • Micron Precision • Acoustic Matrix',
             'tiwanaku-desc': 'Gigantic andesite and diorite blocks distributed across the Andean high plateau, fitted with complex H-shaped locks, precise internal boreholes, and micron-level channels. These blocks are interlocked using metal clamps, pointing to industrial-scale megalithic technology predating the Inca civilization.',
             'tiwanaku-tags': 'H-Blocks • Andesite • Micron Channels',
@@ -685,6 +686,7 @@
 
     document.getElementById('lang-toggle-btn').addEventListener('click', () => {
         currentLang = currentLang === 'LV' ? 'EN' : 'LV';
+        saveLang();
         document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');

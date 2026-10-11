@@ -36,6 +36,7 @@ Usage:
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import sys
 import time
@@ -224,6 +225,27 @@ def verify_hash_integrity(meta, html_path):
     return live_hash == stored_hash, live_hash, stored_hash
 
 
+DRAFT_BANNER_RE = re.compile(
+    r"<div\b[^>]*>\s*AI-GENERATED DRAFT - PENDING HUMAN FACT-CHECK\.[^<]*</div>", re.I)
+
+
+def stamp_review_banner(html_path, reviewed_on):
+    """Replace the draft disclaimer with a 'human-reviewed' notice in a published article.
+
+    Idempotent: returns False when no draft banner is present. The AI role stays disclosed.
+    """
+    text = Path(html_path).read_text(encoding="utf-8")
+    notice = (
+        f'<div role="note">AI-assisted research summary, human-reviewed on {reviewed_on}. '
+        "Claims are attributed to their sources; percentages describe corpus classification "
+        "or checklist coverage, not the probability that a claim is true.</div>"
+    )
+    new_text, n = DRAFT_BANNER_RE.subn(notice, text, count=1)
+    if n:
+        Path(html_path).write_text(new_text, encoding="utf-8")
+    return bool(n)
+
+
 def promote_one(meta_path, meta, html_path, index_data, weights_data,
                  force=False, dry_run=False):
     topic_id = meta.get("topic_id")
@@ -274,6 +296,9 @@ def promote_one(meta_path, meta, html_path, index_data, weights_data,
 
     # 2. Copy (not move) the draft HTML into content/articles/
     shutil.copy2(html_path, dest_path)
+    reviewed_on = str(meta.get("reviewed_at") or datetime.now(timezone.utc).isoformat())[:10]
+    if stamp_review_banner(dest_path, reviewed_on):
+        print(f"  replaced draft banner with review notice ({reviewed_on})")
 
     # 3. Update index.json
     topics[topic_id] = {

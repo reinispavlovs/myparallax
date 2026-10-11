@@ -682,7 +682,8 @@
   </div>
 
   <script>
-    let currentLang = 'EN';
+    let currentLang = (function(){ try { const v = localStorage.getItem('pp-lang'); return v === 'LV' ? 'LV' : 'EN'; } catch (e) { return 'EN'; } })();
+    const saveLang = () => { try { localStorage.setItem('pp-lang', currentLang); } catch (e) {} document.documentElement.lang = currentLang.toLowerCase(); };
     let currentSelectedSite = null;
     let netMode = 'both';
     let netAnimId = null;
@@ -1012,6 +1013,7 @@
 
     document.getElementById('lang-toggle-btn').addEventListener('click', () => {
       currentLang = currentLang === 'EN' ? 'LV' : 'EN';
+      saveLang();
       updateLanguageUI();
     });
 
@@ -1748,6 +1750,7 @@
       document.getElementById('gemini-input').placeholder = translations.EN['ai-placeholder'];
 
       loadCoverage();
+      if (currentLang !== 'EN') { saveLang(); updateLanguageUI(); }
     });
 
     let coverageData = null;

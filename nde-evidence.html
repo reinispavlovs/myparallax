@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="lv" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -425,7 +425,8 @@
 
     <!-- Script for Language Toggle, Secret Modal & Canvas Separation Animation -->
     <script>
-    let currentLang = 'EN';
+    let currentLang = (function(){ try { const v = localStorage.getItem('pp-lang'); return v === 'LV' ? 'LV' : 'EN'; } catch (e) { return 'EN'; } })();
+    const saveLang = () => { try { localStorage.setItem('pp-lang', currentLang); } catch (e) {} document.documentElement.lang = currentLang.toLowerCase(); };
 // Automātiska lapas sagatavošana EN valodā ielādes brīdī
     document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('lang-indicator').innerText = currentLang === 'EN' ? 'LV' : 'EN';
@@ -711,6 +712,7 @@
 
     document.getElementById('lang-toggle-btn').addEventListener('click', () => {
         currentLang = currentLang === 'LV' ? 'EN' : 'LV';
+        saveLang();
         document.getElementById('lang-indicator').innerText = currentLang === 'LV' ? 'EN' : 'LV';
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');

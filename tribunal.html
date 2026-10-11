@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="lv" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,32 +48,35 @@
     <p class="text-slate-400 text-sm sm:text-base font-light leading-relaxed" data-i18n="main-desc"></p>
   </div>
 
-<!-- Interactive Cosmology Simulator Widget (From HTML provided) -->
-        <section class="bg-slate-900/40 border border-amber-500/30 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
-            <div class="grid md:grid-cols-3 gap-6 items-center">
-                <div class="md:col-span-1 space-y-4 z-10">
-                    <span class="inline-block bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded text-xs border border-amber-500/30" data-i18n="sim-tag">Neatkarīgā analīze</span>
-                    <h2 class="text-xl font-bold text-white brand-font" data-i18n="sim-title">Kosmiskā Kustība & Lauka Spiediens</h2>
-                    <p class="text-xs text-slate-300 font-light leading-relaxed" data-i18n="sim-desc">
-                        Atsakoties no haotiska Lielā sprādziena dogmas: Visums ir strukturēts enerģijas lauks un matrica, kur lokālā kustība un Saules sistēmas virzība notiek caur spirālveida virpuļu (vortex) dinamiku un frekvencēm.
-                    </p>
-                    <div class="flex flex-wrap gap-2 pt-2">
-                        <button id="toggleMode" class="bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/50 px-3.5 py-2 rounded-xl text-xs transition font-semibold" data-i18n="btn-vortex">Pārslēgt skatu (Vortex / Orbīta)</button>
-                        <button id="clearTrails" class="bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 px-3 py-2 rounded-xl text-xs transition" data-i18n="btn-trails">Notīrīt pēdas</button>
-                    </div>
-                </div>
-                <div class="md:col-span-2 h-72 sm:h-80 bg-slate-950 rounded-xl border border-slate-800 relative overflow-hidden shadow-inner">
-                    <canvas id="spaceCanvas" class="w-full h-full"></canvas>
-                </div>
-            </div>
-        </section>
+<!-- Parallax demonstration -->
+  <section class="bg-slate-900/40 border border-amber-500/30 rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl" aria-labelledby="par-h">
+    <div class="grid md:grid-cols-3 gap-6 items-center">
+      <div class="md:col-span-1 space-y-4 z-10">
+        <span class="inline-block bg-amber-500/10 text-amber-400 px-2.5 py-1 rounded text-xs border border-amber-500/30" data-i18n="sim-tag"></span>
+        <h2 id="par-h" class="text-xl font-bold text-white brand-font" data-i18n="sim-title"></h2>
+        <p class="text-xs text-slate-300 font-light leading-relaxed" data-i18n="sim-desc"></p>
+        <p class="text-xs text-slate-200 leading-relaxed" data-i18n="par-desc"></p>
+        <div class="space-y-3 pt-1">
+          <label class="block text-[11px] text-slate-400"><span data-i18n="par-slider"></span>
+            <input id="par-range" type="range" min="-100" max="100" value="0" class="w-full accent-amber-400 mt-1">
+          </label>
+          <button id="par-auto" type="button" aria-pressed="true" class="bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/50 px-3.5 py-2 rounded-xl text-xs transition font-semibold" data-i18n="par-auto"></button>
+          <p class="text-[11px] text-slate-400 font-mono"><span data-i18n="par-near"></span>: <b id="par-near-v" class="text-amber-300">0</b> px · <span data-i18n="par-far"></span>: <b id="par-far-v" class="text-slate-300">0</b> px</p>
+          <p class="text-[10px] text-slate-500" data-i18n="par-note"></p>
+        </div>
+      </div>
+      <div class="md:col-span-2 h-72 sm:h-80 bg-slate-950 rounded-xl border border-slate-800 relative overflow-hidden shadow-inner">
+        <canvas id="spaceCanvas" class="w-full h-full" role="img" aria-label="Parallax demonstration"></canvas>
+      </div>
+    </div>
+  </section>
 
         
   <section class="space-y-6" aria-labelledby="tribunal-h">
-    <div class="space-y-2">
+    <div class="space-y-2 text-center">
       <h2 id="tribunal-h" class="text-2xl font-bold text-white brand-font" data-i18n="tribunal-h"></h2>
-      <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed max-w-3xl" data-i18n="how-to-read"></p>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-slate-400 pt-1" aria-label="Legend">
+      <p class="text-xs sm:text-sm text-slate-400 font-light leading-relaxed max-w-3xl mx-auto" data-i18n="how-to-read"></p>
+      <div class="flex flex-wrap justify-center gap-x-4 gap-y-1 text-[11px] text-slate-400 pt-1" aria-label="Legend">
         <span><i class="dot c-sv"></i> <span data-i18n="cat-sv"></span></span>
         <span><i class="dot c-ob"></i> <span data-i18n="cat-ob"></span></span>
         <span><i class="dot c-nm"></i> <span data-i18n="cat-nm"></span></span>
@@ -105,9 +108,11 @@ const T = {
     'sub-title':'Konstruktīvā analīze & pierādījumu profils',
     'main-title':'Skepticisms kā instruments, nevis dogma',
     'main-desc':'Atvērts prāts un rūpīga argumentu svēršana. Mēs neakceptējam aklas dogmas ne tradicionālajā zinātnē, ne alternatīvajās teorijās – mēs balstāmies uz empīriskiem datiem un strukturētu pārbaudi.',
-    'sim-tag':'Neatkarīgā analīze','sim-title':'Kosmiskā deja & plūsma',
+    'sim-tag':'Paralakses metode','sim-title':'Viens skatupunkts ir minējums; divi ir mērījums',
     'sim-desc':'Kā norādīja Alans Vatss, visums nav haotisku sakritību virkne; tā ir skanoša mūzika un rotaļīga enerģijas deja. Dzīve un kosmiskā kustība nenotiek ar mums – mēs esam pats visums, kas caur kustību pieredz un apzinās sevi.',
-    'btn-vortex':'Pārslēgt skatu (Vortex / Orbīta)','btn-trails':'Notīrīt pēdas',
+    'par-desc':'Pārbīdi skatupunktu: tuvie objekti nobīdās vairāk, tālie gandrīz paliek vietā. Dziļumu mēs neredzam, to secinām no starpības starp diviem skatiem. Tā ir šīs vietnes metode.',
+    'par-slider':'Skatupunkta nobīde','par-auto':'Automātiska šūpošanās','par-near':'Tuvās zvaigznes nobīdās','par-far':'Tālās zvaigznes nobīdās',
+    'par-note':'Ilustratīvs modelis: tikai relatīvās nobīdes, nav mērogā.',
     'tribunal-h':'Pierādījumu profils pa tēmām',
     'how-to-read':'Šie skaitļi NAV varbūtība, ka apgalvojums ir patiess. Tie parāda (1) cik pārbaudes kritēriju tēmai šobrīd ir izpildīti un (2) ja pieejams, kā LLM klasificēti recenzētu publikāciju kopsavilkumi sadalās kategorijās. Dati tiek ielādēti automātiski no pēdējās apstiprinātās publikācijas.',
     'cat-sv':'Atbalsta verificējamu novērojumu','cat-ob':'Novērojumu signāls','cat-nm':'Neirālais mehānisms','cat-nr':'Nulles rezultāts','cat-in':'Neskaidrs',
@@ -125,6 +130,7 @@ const T = {
     'caveat':'Piezīme: klasifikāciju veic valodas modelis pēc abstraktiem; tā nav sistemātiska pārskata vai efekta lieluma aizstājēja. Skaitļi ir publikācijas, nevis neatkarīgi gadījumi: atbildes, komentāri un pārskati par vienu un to pašu gadījumu tiek skaitīti atsevišķi.',
     'ara-title':'Autonomā pētījumu arhīvs','ara-sub':'Automātiski ģenerēti un cilvēka pārskatīti pētījumu kopsavilkumi.',
     'risk':'Riska līmenis','promoted':'Publicēts','open':'Atvērt rakstu','err':'Neizdevās ielādēt datus. Tiek rādīts tikai teksts bez rādītājiem.',
+    'err-file':'Lapa atvērta kā fails (file://), tāpēc pārlūks bloķē datu ielādi. Palaid lokālu serveri (py -m http.server 8000) un atver http://localhost:8000/tribunal.html.',
     'topic-consciousness_independence_nde':'Apziņas neatkarība no smadzenēm (NDE)',
     'topic-megalithic_engineering_acoustics':'Megalītiskā inženierija un akustika',
     'topic-cyclical_cataclysms_precession':'Cikliskās kataklizmas un precesija',
@@ -160,9 +166,11 @@ const T = {
     'sub-title':'Constructive Analysis & Evidence Profile',
     'main-title':'Skepticism as a Tool, Not a Dogma',
     'main-desc':'An open mind and careful weighing of arguments. We accept no blind dogmas in mainstream science or alternative theories – we rely on empirical data and structured testing.',
-    'sim-tag':'Independent Analysis','sim-title':'The Cosmic Dance & Flow',
+    'sim-tag':'The Parallax Method','sim-title':'One viewpoint is a guess; two are a measurement',
     'sim-desc':'As Alan Watts observed, the universe is not a chaotic accident; it is an unfolding music, a playful energy dance. Life and cosmic motion do not happen to us—we are the universe experiencing itself in motion.',
-    'btn-vortex':'Toggle View (Vortex / Orbit)','btn-trails':'Clear Trails',
+    'par-desc':'Shift your viewpoint: near objects move a lot, distant ones barely move. Depth is not seen, it is inferred from the difference between two views. That is the method of this site.',
+    'par-slider':'Viewpoint shift','par-auto':'Auto sway','par-near':'Near stars shift','par-far':'Far stars shift',
+    'par-note':'Illustrative model: relative shifts only, not to scale.',
     'tribunal-h':'Evidence profile by topic',
     'how-to-read':'These numbers are NOT the probability that a claim is true. They show (1) how many testing criteria a topic currently meets and (2) where available, how LLM-classified abstracts of peer-reviewed publications fall into categories. Data loads automatically from the latest approved publication.',
     'cat-sv':'Supports verifiable observation','cat-ob':'Observational signal','cat-nm':'Neural mechanism','cat-nr':'Null result','cat-in':'Inconclusive',
@@ -180,6 +188,7 @@ const T = {
     'caveat':'Note: classification is done by a language model from abstracts; it is not a substitute for a systematic review or an effect size. Counts are publications, not independent cases: replies, commentaries and reviews of the same case are counted separately.',
     'ara-title':'Autonomous Research Archive','ara-sub':'Automatically generated, human-reviewed research summaries.',
     'risk':'Risk level','promoted':'Published','open':'Open article','err':'Could not load data. Showing text without indicators.',
+    'err-file':'The page was opened as a file (file://), so the browser blocks data loading. Run a local server (py -m http.server 8000) and open http://localhost:8000/tribunal.html.',
     'topic-consciousness_independence_nde':'Independence of Consciousness from the Brain (NDE)',
     'topic-megalithic_engineering_acoustics':'Ancient Megalithic Engineering and Acoustics',
     'topic-cyclical_cataclysms_precession':'Cyclical Cataclysms & Precession Forcing',
@@ -216,7 +225,7 @@ const CATS = [['supports_veridical','c-sv','cat-sv'],['observational_signal','c-
 const ITEM_ORDER = ['in_situ_measurement','causal_mechanism','statistical_significance','independent_replication','peer_reviewed_publication','raw_data_availability'];
 const STALE_DAYS = 21;
 
-let lang = 'LV';
+let lang = 'EN';
 try { const s = localStorage.getItem('pp-lang'); if (s === 'EN' || s === 'LV') lang = s; } catch (e) {}
 const D = { index:null, weights:null, checklists:null, ok:false };
 const t = k => (T[lang][k] !== undefined ? T[lang][k] : (T.LV[k] !== undefined ? T.LV[k] : k));
@@ -356,130 +365,45 @@ Promise.all([
   render();
 }).catch(err => {
   console.warn(err);
-  document.getElementById('data-status').textContent = t('err');
+  document.getElementById('data-status').textContent = location.protocol === 'file:' ? t('err-file') : t('err');
   render();
 });
 
-// Space Vortex / Orbit Canvas Simulation Script
-    const canvas = document.getElementById('spaceCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let width, height;
-    function resize() {
-        const container = canvas.parentElement;
-        width = canvas.width = container.clientWidth;
-        height = canvas.height = container.clientHeight;
+// Parallax demonstration
+(function () {
+  const canvas = document.getElementById('spaceCanvas'); const ctx = canvas.getContext('2d');
+  const range = document.getElementById('par-range'), autoBtn = document.getElementById('par-auto');
+  const nearV = document.getElementById('par-near-v'), farV = document.getElementById('par-far-v');
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, auto = !reduce, ph = 0;
+  const K = 70; // px shift for dist 1 at full baseline
+  const N = 110;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const stars = Array.from({ length: N }, () => ({ x: rnd(), y: rnd(), d: 1 + rnd() * rnd() * 9 }));
+  function size() { const p = canvas.parentElement; const r = window.devicePixelRatio || 1; W = p.clientWidth; H = p.clientHeight; canvas.width = W * r; canvas.height = H * r; ctx.setTransform(r, 0, 0, r, 0, 0); }
+  window.addEventListener('resize', size); size();
+  function setAuto(v) { auto = v; autoBtn.setAttribute('aria-pressed', v ? 'true' : 'false'); }
+  autoBtn.addEventListener('click', () => setAuto(!auto));
+  range.addEventListener('input', () => setAuto(false));
+  if (reduce) autoBtn.setAttribute('aria-pressed', 'false');
+  function frame() {
+    if (auto) { ph += 0.012; range.value = Math.round(Math.sin(ph) * 100); }
+    const B = range.value / 100;
+    ctx.fillStyle = '#02030a'; ctx.fillRect(0, 0, W, H);
+    for (const s of stars) {
+      const sh = B * K / s.d; const x = s.x * W + sh, y = s.y * H;
+      const near = s.d < 2.2; const r = Math.max(0.8, 3.2 / Math.sqrt(s.d));
+      if (near) { ctx.strokeStyle = 'rgba(251,191,36,.25)'; ctx.beginPath(); ctx.moveTo(s.x * W - K / s.d, y); ctx.lineTo(s.x * W + K / s.d, y); ctx.stroke(); }
+      ctx.fillStyle = near ? '#fbbf24' : (s.d > 6 ? '#64748b' : '#cbd5e1');
+      ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
     }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let isVortex = true;
-    document.getElementById('toggleMode').addEventListener('click', () => {
-        isVortex = !isVortex;
-    });
-
-    let trails = [];
-    document.getElementById('clearTrails').addEventListener('click', () => {
-        trails = [];
-    });
-
-    let sunX = 100;
-    let sunY = height / 2;
-    let time = 0;
-
-    const planets = [
-        { dist: 45,  speed: 0.08, color: '#4cc9f0', size: 3.5 },
-        { dist: 75,  speed: 0.05, color: '#f72585', size: 4.5 },
-        { dist: 120, speed: 0.02, color: '#ffb703', size: 7.0 }
-    ];
-
-    const stars = Array.from({ length: 120 }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 1.5,
-        alpha: Math.random()
-    }));
-
-    function draw() {
-        ctx.fillStyle = 'rgba(2, 3, 10, 0.2)';
-        ctx.fillRect(0, 0, width, height);
-
-        ctx.fillStyle = '#ffffff';
-        stars.forEach(st => {
-            ctx.globalAlpha = st.alpha;
-            ctx.beginPath();
-            ctx.arc(st.x, st.y, st.size, 0, Math.PI * 2);
-            ctx.fill();
-            if (isVortex) {
-                st.x -= 0.15;
-                if (st.x < 0) st.x = width;
-            }
-        });
-        ctx.globalAlpha = 1.0;
-
-        if (isVortex) {
-            sunX += 1.8;
-            sunY = height / 2 + Math.sin(time * 0.01) * 25;
-            if (sunX > width + 100) {
-                sunX = -50;
-                trails = [];
-            }
-        } else {
-            sunX = width / 2;
-            sunY = height / 2;
-        }
-
-        // Sun
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = '#f59e0b';
-        ctx.fillStyle = '#fbbf24';
-        ctx.beginPath();
-        ctx.arc(sunX, sunY, 10, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-
-        // Planets & Trajectories
-        planets.forEach((p) => {
-            const angle = time * p.speed;
-            let px, py;
-
-            if (isVortex) {
-                px = sunX + Math.cos(angle) * (p.dist * 0.38);
-                py = sunY + Math.sin(angle) * p.dist;
-            } else {
-                px = sunX + Math.cos(angle) * p.dist;
-                py = sunY + Math.sin(angle) * p.dist;
-            }
-
-            trails.push({ x: px, y: py, color: p.color, alpha: 0.8 });
-
-            ctx.fillStyle = p.color;
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = p.color;
-            ctx.beginPath();
-            ctx.arc(px, py, p.size, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-        });
-
-        // Trails
-        for (let i = 0; i < trails.length; i++) {
-            const t = trails[i];
-            ctx.fillStyle = t.color;
-            ctx.globalAlpha = t.alpha;
-            ctx.beginPath();
-            ctx.arc(t.x, t.y, 1.1, 0, Math.PI * 2);
-            ctx.fill();
-            t.alpha -= 0.004;
-        }
-        trails = trails.filter(t => t.alpha > 0);
-        ctx.globalAlpha = 1.0;
-
-        time += 1;
-        requestAnimationFrame(draw);
-    }
-
-    draw();
+    ctx.strokeStyle = '#334155'; ctx.beginPath(); ctx.moveTo(W * .1, H - 14); ctx.lineTo(W * .9, H - 14); ctx.stroke();
+    ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(W * .5 + B * W * .4, H - 14, 5, 0, 6.2832); ctx.fill();
+    nearV.textContent = Math.abs(B * K / 1).toFixed(0); farV.textContent = Math.abs(B * K / 10).toFixed(0);
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
 </script>
 </body>
 </html>
