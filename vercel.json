@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    { "source": "/tt",   "destination": "/?utm_source=tiktok&utm_medium=social&utm_campaign=bio",     "permanent": false },
+    { "source": "/ig",   "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=bio",  "permanent": false },
+    { "source": "/fb",   "destination": "/?utm_source=facebook&utm_medium=social&utm_campaign=post",  "permanent": false },
+    { "source": "/x",    "destination": "/?utm_source=x&utm_medium=social&utm_campaign=bio",          "permanent": false },
+    { "source": "/tg",   "destination": "/?utm_source=telegram&utm_medium=social&utm_campaign=channel","permanent": false },
+    { "source": "/mail", "destination": "/?utm_source=email&utm_medium=outreach&utm_campaign=researchers","permanent": false }
+  ]
+}

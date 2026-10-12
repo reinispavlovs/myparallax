@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Parallax Narrative Corpus record v0.1",
+  "type": "object",
+  "required": ["id", "source", "account_type", "coding"],
+  "properties": {
+    "id": {"type": "string"},
+    "source": {
+      "type": "object",
+      "required": ["name", "url", "retrieved_at", "access_status"],
+      "properties": {
+        "name": {"enum": ["NDERF", "IANDS", "JeffMara", "ComingHome", "AntonyProductions", "other"]},
+        "url": {"type": "string"},
+        "retrieved_at": {"type": "string", "format": "date"},
+        "published_at": {"type": ["string", "null"]},
+        "access_status": {"enum": ["tdm_open", "restricted", "permission_granted", "unknown"]}
+      }
+    },
+    "account_type": {"enum": ["first_hand", "second_hand", "retelling", "interview_transcript"]},
+    "event_date": {"type": ["string", "null"]},
+    "narrator": {
+      "type": "object",
+      "properties": {
+        "pseudonym_hash": {"type": "string"},
+        "medical_context": {"enum": ["cardiac_arrest", "surgery", "accident", "illness", "other", "unknown"]}
+      }
+    },
+    "collection": {
+      "type": "object",
+      "properties": {
+        "solicited": {"type": ["boolean", "null"]},
+        "delay_to_report": {"type": ["string", "null"]}
+      }
+    },
+    "text_hash": {"type": "string"},
+    "excerpt": {"type": ["string", "null"], "maxLength": 300},
+    "duplicates": {
+      "type": "object",
+      "properties": {
+        "cluster_id": {"type": ["string", "null"]},
+        "duplicate_of": {"type": ["string", "null"]},
+        "method": {"enum": ["exact_text", "near_duplicate", "same_narrator", "retelling", "none"]}
+      }
+    },
+    "motifs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "coder"],
+        "properties": {
+          "code": {"type": "string"},
+          "coder": {"enum": ["llm", "human"]},
+          "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim_id", "description", "checkable", "verification"],
+        "properties": {
+          "claim_id": {"type": "string"},
+          "type": {"enum": ["veridical_perception", "verifiable_fact", "prediction", "other"]},
+          "description": {"type": "string"},
+          "checkable": {"type": "boolean"},
+          "verification": {
+            "type": "object",
+            "required": ["status", "evidence_type"],
+            "properties": {
+              "status": {"enum": ["confirmed", "refuted", "unverifiable", "not_attempted"]},
+              "evidence_type": {"enum": ["independent_document", "independent_witness", "same_narrator_only", "none"]},
+              "evidence_ref": {"type": ["string", "null"]},
+              "checked_by": {"type": ["string", "null"]},
+              "checked_at": {"type": ["string", "null"]},
+              "note": {"type": ["string", "null"]}
+            }
+          }
+        }
+      }
+    },
+    "coding": {
+      "type": "object",
+      "required": ["codebook_version", "coder_id", "coded_at"],
+      "properties": {
+        "codebook_version": {"type": "string"},
+        "coder_id": {"type": "string"},
+        "coded_at": {"type": "string"}
+      }
+    }
+  }
+}
