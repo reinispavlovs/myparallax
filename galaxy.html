@@ -147,10 +147,19 @@
     #topbar{left:20px;right:20px;}
     #coords{display:none;}
     #quote{left:20px;right:20px;max-width:none;bottom:158px;}
-    #dataPanel{right:20px;left:20px;top:auto;bottom:206px;min-width:0;}
-    #eraLabel{left:20px;top:20px;}
-    #returnBtn{left:20px;top:88px;}
-    #focusBtn{left:20px;top:124px;}
+    /* data readout: compact, see-through, and never blocks dragging the globe */
+    #earthHud #dataPanel{right:20px;left:auto;top:auto;bottom:206px;min-width:0;width:auto;max-width:62vw;
+      padding:7px 11px;background:rgba(9,13,17,.34);border-color:rgba(212,175,55,.16);
+      backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none;}
+    #earthHud #dataPanel .row{font-size:9px;padding:2px 0;gap:10px;border-bottom-color:rgba(255,255,255,.04);}
+    /* telluric-grid toggle no longer sits on top of the timeline panel */
+    #earthHud #gridToggle{top:72px;bottom:auto;right:20px;left:auto;max-width:150px;padding:8px 10px;font-size:9px;}
+    #earthHud #gridToggle small{font-size:7.5px;line-height:1.3;}
+    /* the flavour quote would sit under the readout on a phone: hide it in the Earth view */
+    body:has(#earthHud:not(.hidden)) #quote{display:none;}
+    #eraLabel{left:20px;top:72px;}
+    #returnBtn{left:20px;top:140px;}
+    #focusBtn{left:20px;top:176px;}
     #timelinePanel{bottom:34px;width:92vw;padding:14px 18px 12px;}
     #timelinePanel .chapters{display:none;}
     .bracket{width:24px;height:24px;}
@@ -275,13 +284,16 @@ canvas.style.cursor='grab';
 
 function pdist(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
 
+let tapCand = null;   // possible tap: {id,x,y,t,touch}
 function onPointerDown(e){
   if(canvas.setPointerCapture){ try{ canvas.setPointerCapture(e.pointerId); }catch(_){} }
   pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
   document.getElementById('hint').classList.remove('show');
   if(pointers.size===1){
     dragging=true; pinching=false; lastX=e.clientX; lastY=e.clientY; canvas.style.cursor='grabbing';
+    tapCand = {id:e.pointerId, x:e.clientX, y:e.clientY, t:performance.now(), touch:e.pointerType!=='mouse'};
   } else if(pointers.size===2){
+    tapCand = null;
     dragging=false; pinching=true;
     const pts=[...pointers.values()];
     pinchStartDist = pdist(pts[0],pts[1]);
@@ -289,8 +301,13 @@ function onPointerDown(e){
   }
 }
 function onPointerMove(e){
-  checkMilestoneHover(e.clientX, e.clientY);
+  // Touch has no hover: tooltips for touch come from taps (see onPointerUp).
+  if(e.pointerType==='mouse' || e.pointerType==='pen') checkMilestoneHover(e.clientX, e.clientY);
   if(!pointers.has(e.pointerId)) return;
+  if(tapCand && tapCand.id===e.pointerId && Math.hypot(e.clientX-tapCand.x, e.clientY-tapCand.y) > 10){
+    tapCand = null;                       // moved too far: it is a drag, not a tap
+    if(e.pointerType!=='mouse') tooltip.classList.add('hidden');
+  }
   pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
   if(pinching && pointers.size>=2){
     const pts=[...pointers.values()];
@@ -305,6 +322,11 @@ function onPointerMove(e){
   }
 }
 function onPointerUp(e){
+  if(e.type==='pointerup' && tapCand && tapCand.id===e.pointerId && pointers.has(e.pointerId)
+     && performance.now()-tapCand.t < 600 && tapCand.touch){
+    showMilestoneAt(e.clientX, e.clientY, true);   // tap on a point (touch devices)
+  }
+  if(tapCand && tapCand.id===e.pointerId) tapCand = null;
   pointers.delete(e.pointerId);
   if(pointers.size===0){ dragging=false; pinching=false; canvas.style.cursor='grab'; }
   else if(pointers.size===1){
@@ -421,25 +443,43 @@ MILESTONES.forEach(m=>{
   milestoneMeshes.push(mesh);
 });
 
-const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
 const tooltip = document.getElementById('tooltip');
-function checkMilestoneHover(x,y){
-  if(stage!=='galaxy'){ tooltip.classList.add('hidden'); return; }
-  ndc.x=(x/innerWidth)*2-1; ndc.y=-(y/innerHeight)*2+1;
-  ray.setFromCamera(ndc, camera);
-  const hit = ray.intersectObjects(milestoneMeshes)[0];
-  if(hit){
-    const d = hit.object.userData;
-    tooltip.innerHTML = '<b>'+d.name+'</b>'+d.desc;
-    tooltip.style.left = Math.min(x+16, innerWidth-250)+'px';
-    tooltip.style.top  = Math.min(y+16, innerHeight-90)+'px';
-    tooltip.classList.remove('hidden');
-    canvas.style.cursor='pointer';
-  } else {
-    tooltip.classList.add('hidden');
-    canvas.style.cursor = dragging ? 'grabbing' : 'grab';
+const _wp = new THREE.Vector3();
+// Nearest milestone to a screen position (screen-space distance, so small dots are
+// still easy to hit with a finger). Returns null if nothing is within `tol` pixels.
+function pickMilestone(x, y, tol){
+  let best = null, bestD = tol;
+  for(const m of milestoneMeshes){
+    m.getWorldPosition(_wp);
+    _wp.project(camera);
+    if(_wp.z > 1 || _wp.z < -1) continue;            // behind the camera
+    const sx = (_wp.x*0.5+0.5)*innerWidth, sy = (-_wp.y*0.5+0.5)*innerHeight;
+    const d = Math.hypot(sx-x, sy-y);
+    if(d < bestD){ bestD = d; best = m; }
   }
+  return best;
 }
+function showMilestoneAt(x, y, touch){
+  if(stage!=='galaxy'){ tooltip.classList.add('hidden'); return false; }
+  const hit = pickMilestone(x, y, touch ? 34 : 14);
+  if(hit){
+    const d = hit.userData;
+    tooltip.innerHTML = '<b>'+d.name+'</b>'+d.desc;
+    tooltip.classList.remove('hidden');
+    const w = tooltip.offsetWidth || 230, h = tooltip.offsetHeight || 90;
+    let left = touch ? x - w/2 : x + 16;
+    let top  = touch ? y - h - 22 : y + 16;
+    if(touch && top < 8) top = y + 26;                 // not enough room above the finger
+    tooltip.style.left = clamp(left, 8, innerWidth - w - 8)+'px';
+    tooltip.style.top  = clamp(top,  8, innerHeight - h - 8)+'px';
+    canvas.style.cursor='pointer';
+    return true;
+  }
+  tooltip.classList.add('hidden');
+  canvas.style.cursor = dragging ? 'grabbing' : 'grab';
+  return false;
+}
+function checkMilestoneHover(x,y){ showMilestoneAt(x, y, false); }
 
 /* =====================================================================
    EARTH LAYER — anchored exactly at the sun/orbit point, so the zoom
@@ -1100,6 +1140,7 @@ function fadeGroup(group, toFactor, duration, onDone){
 zoomBtn.addEventListener('click', ()=>{
   if(stage!=='galaxy') return;
   stage = 'transitioning';
+  tooltip.classList.add('hidden');
   zoomBtn.style.pointerEvents = 'none';
   quoteEl.classList.remove('in');
 

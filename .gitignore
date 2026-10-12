@@ -36,3 +36,10 @@ test_*_functional.py
 dry_run_*.py
 .vercel
 .env*
+
+# --- added 2026-10-12: one-off patches and local scratch ---
+*.patch
+myparallax_repo/
+main_backup_*.py
+relevance_tiers_run.txt
+relevance_report_nde.txt
