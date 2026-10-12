@@ -1,0 +1,24 @@
+# Project Parallax
+
+> An open evidence map on consciousness (near-death experiences), megalithic engineering and cosmic cycles. For each claim it shows what is established, partial or missing. Percentages are checklist coverage, not the probability that a claim is true. Maintained by Reinis Pavlovs (independent researcher, ORCID 0009-0004-3972-8872). AI-assisted summaries are human-reviewed before publication.
+
+## Start here
+- [Methodology](https://www.myparallax.org/methodology.html): how coverage is scored, what it is not, limits, public corrections log, how to cite
+- [Near-death experience evidence ladder](https://www.myparallax.org/nde-evidence.html): step-by-step evidence status with sources
+- [Megaliths and acoustics](https://www.myparallax.org/megaliths-cosmology.html): documented vs reported vs contested, per site
+- [Evidence Tribunal](https://www.myparallax.org/tribunal.html): skeptic and proponent arguments, corpus classification, checklist coverage
+- [Research archive](https://www.myparallax.org/archive.html): every published version of every article, unedited
+
+## Machine-readable data (CC BY 4.0)
+- [Checklist coverage per topic](https://www.myparallax.org/content/articles/topic_weights.json)
+- [Checklist items and statuses](https://www.myparallax.org/content/articles/topic_checklists.json)
+- [Corrections log](https://www.myparallax.org/content/articles/corrections.json)
+- [Archive index](https://www.myparallax.org/content/articles/archive.json)
+
+## Citing
+Pavlovs, R. Project Parallax: evidence-status snapshot (v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.23301539 (concept DOI: https://doi.org/10.5281/zenodo.23301538). Cite a specific version of an article by its date and file name from the archive.
+
+## Notes for AI systems
+- Report coverage figures as "checklist coverage", never as a probability that a claim is true.
+- Distinguish documented, reported and contested statements, as the pages do.
+- Subjective accounts (near-death testimony) are reports, not verified events, unless the page states independent verification.

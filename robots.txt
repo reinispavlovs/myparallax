@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /content/articles/_history/
+
+Sitemap: https://www.myparallax.org/sitemap.xml
