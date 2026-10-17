@@ -2,5 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /content/articles/_history/
+Disallow: /drafts/
+Disallow: /digests/
+Disallow: /narrative_corpus/data/
 
 Sitemap: https://www.myparallax.org/sitemap.xml
