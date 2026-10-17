@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""Turn the private NDERF page copies into derived, text-free records.
+
+Reads   narrative_corpus_private/nderf/raw/*.txt   (private, never published)
+        narrative_corpus_private/nderf/index.jsonl (for the text hash)
+        narrative_corpus/codebook.json             (questionnaire items and answer rules)
+Writes  narrative_corpus/data/NDERF.jsonl          (one record per account: codes only, no text, no names)
+
+Usage:  py scripts\\parse_nderf.py
+Rules:  no free text, no excerpt, no name is copied. Only the closed-ended questionnaire answers,
+        read by rule. 'Uncertain' and unmatched answers are not counted as positive.
+        NDERF's own classification is kept; the headline group is the classification "NDE" only.
+Standard library only.
+"""
+import argparse, datetime, json, os, re
+
+QMARK = re.compile(r"^(.*?\?)\s*(.*)$")
+
+
+def norm(s):
+    return re.sub(r"\s+", " ", s.replace("’", "'").strip().lower()).rstrip(".")
+
+
+def classify(raw):
+    n = re.sub(r"[^A-Z]", "", raw.upper())
+    return "nde" if n in ("NDE", "NDES") else "other"
+
+
+def parse_one(text, items):
+    m = re.search(r"Classification\s+(.+)", text)
+    cls_raw = m.group(1).strip() if m else ""
+    i = text.find("NDE Elements")
+    j = text.find("©1998")
+    body = text[i:j] if i >= 0 else ""
+    answers = {}
+    for line in body.split("\n"):
+        mm = QMARK.match(line.strip())
+        if not mm:
+            continue
+        q, a = norm(mm.group(1)), norm(mm.group(2))
+        for it in items:
+            if q.startswith(it["stem"]) and it["code"] not in answers:
+                answers[it["code"]] = a
+    pos, neg, unc, answered = [], [], [], []
+    for it in items:
+        a = answers.get(it["code"])
+        if a is None or a == "":
+            continue
+        if a.startswith("uncertain"):
+            unc.append(it["code"]); answered.append(it["code"]); continue
+        if any(a.startswith(p) for p in it["positive"]):
+            pos.append(it["code"]); answered.append(it["code"])
+        elif any(a.startswith(n) for n in it["negative"]):
+            neg.append(it["code"]); answered.append(it["code"])
+    claims = []
+    a = answers.get("aware_elsewhere", "")
+    if a.startswith("yes"):
+        checked = "have been checked" in a
+        claims.append({
+            "claim_id": "aware_elsewhere", "type": "veridical_perception",
+            "description": "Narrator reports awareness of events elsewhere (questionnaire answer).",
+            "checkable": True,
+            "verification": {
+                "status": "unverifiable" if checked else "not_attempted",
+                "evidence_type": "same_narrator_only" if checked else "none",
+                "note": "Narrator states the facts were checked; not independently verified by this project." if checked else None}})
+    return cls_raw, pos, answered, unc, claims, bool(body)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=".")
+    a = ap.parse_args()
+    root = a.root
+    raw_dir = os.path.join(root, "narrative_corpus_private", "nderf", "raw")
+    idx_path = os.path.join(root, "narrative_corpus_private", "nderf", "index.jsonl")
+    cb = json.load(open(os.path.join(root, "narrative_corpus", "codebook.json"), encoding="utf-8"))
+    items = cb["items"]
+    hashes = {}
+    if os.path.exists(idx_path):
+        for line in open(idx_path, encoding="utf-8"):
+            try:
+                r = json.loads(line); hashes[r["id"]] = r["text_hash"]
+            except Exception:
+                pass
+    out_dir = os.path.join(root, "narrative_corpus", "data")
+    os.makedirs(out_dir, exist_ok=True)
+    today = datetime.date.today().isoformat()
+    n = skipped = 0
+    groups = {}
+    with open(os.path.join(out_dir, "NDERF.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
+        for fn in sorted(os.listdir(raw_dir)):
+            if not fn.endswith(".txt"):
+                continue
+            rid = fn[:-4]
+            text = open(os.path.join(raw_dir, fn), encoding="utf-8").read()
+            cls_raw, pos, answered, unc, claims, has_q = parse_one(text, items)
+            if not has_q or not answered:
+                skipped += 1
+                continue
+            grp = classify(cls_raw)
+            groups[grp] = groups.get(grp, 0) + 1
+            rec = {
+                "id": rid,
+                "source": {"name": "NDERF", "url": "https://www.nderf.org/", "retrieved_at": today, "published_at": None, "access_status": "tdm_open"},
+                "account_type": "first_hand",
+                "collection": {"solicited": True, "delay_to_report": None},
+                "text_hash": hashes.get(rid),
+                "excerpt": None,
+                "classification": {"raw": cls_raw, "group": grp},
+                "duplicates": {"cluster_id": None, "duplicate_of": None, "method": "none"},
+                "motifs": [{"code": c, "coder": "rule", "confidence": None} for c in pos],
+                "items_answered": answered,
+                "items_uncertain": unc,
+                "claims": claims,
+                "coding": {"codebook_version": cb["version"], "coder_id": "rule-parser", "coded_at": today},
+            }
+            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            n += 1
+    print("records written: %d, skipped (no questionnaire): %d, groups: %s" % (n, skipped, groups))
+
+
+if __name__ == "__main__":
+    main()

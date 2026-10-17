@@ -1,0 +1,96 @@
+{
+  "note": "Registry of candidate sources for the narrative corpus. 'public' controls whether a source is named on the website; keep it false until the source has replied. Only access_status tdm_open or permission_granted can contribute numbers.",
+  "sources": [
+    {
+      "key": "NDERF",
+      "display_name": "NDERF",
+      "url": "https://www.nderf.org/",
+      "kind": "written_accounts",
+      "kind_note": "Structured questionnaires (16,000+ experiences according to the site)",
+      "access_status": "tdm_open",
+      "permission": {
+        "state": "requested",
+        "requested_on": null,
+        "answered_on": null,
+        "note": "Dr Long was contacted earlier; no reply yet."
+      },
+      "public": false,
+      "plan": "Checked 2026-10-17: no robots.txt (404 on nderf.org and www.nderf.org); disclaimer has only a suicide-NDE notice and a submitter copyright warranty for the site; privacy page silent on reuse. No machine-readable reservation and no terms against automated reading found. Derived statistics only, no excerpts, slow polite collection. Dr Long was contacted earlier; collection stops and derived data are removed if NDERF objects."
+    },
+    {
+      "key": "IANDS",
+      "display_name": "IANDS registry",
+      "url": "https://iands.org/nde-accounts/",
+      "kind": "written_accounts",
+      "kind_note": "Registry of written accounts, published anonymously",
+      "access_status": "restricted",
+      "permission": {
+        "state": "requested",
+        "requested_on": "2026-10-17",
+        "answered_on": null
+      },
+      "public": false,
+      "plan": "Statistics only, no excerpts stored (IANDS says it cannot grant quotation rights)."
+    },
+    {
+      "key": "JeffMara",
+      "display_name": "Jeff Mara (YouTube)",
+      "url": "https://www.youtube.com/channel/UC_c8KysI2G9rAbNyD1dVd6g",
+      "kind": "video_audio",
+      "kind_note": "Video interviews",
+      "access_status": "restricted",
+      "permission": {
+        "state": "requested",
+        "requested_on": "2026-10-17",
+        "answered_on": null
+      },
+      "public": false,
+      "plan": "No download or transcripts before the owner replies."
+    },
+    {
+      "key": "AnthonyChene",
+      "display_name": "Anthony Chene Production (YouTube)",
+      "url": "https://www.youtube.com/@AnthonyCheneProduction",
+      "kind": "video_audio",
+      "kind_note": "Video interviews",
+      "access_status": "restricted",
+      "permission": {
+        "state": "requested",
+        "requested_on": "2026-10-17",
+        "answered_on": null
+      },
+      "public": false,
+      "plan": "No download or transcripts before the owner replies."
+    },
+    {
+      "key": "ComingHome",
+      "display_name": "Coming Home (YouTube)",
+      "url": "https://www.youtube.com/@cominghomechannel",
+      "kind": "video_audio",
+      "kind_note": "Video interviews",
+      "access_status": "restricted",
+      "permission": {
+        "state": "requested",
+        "requested_on": "2026-10-17",
+        "answered_on": null
+      },
+      "public": false,
+      "plan": "No download or transcripts before the owner replies."
+    },
+    {
+      "key": "ThanatosTV",
+      "display_name": "ThanatosTV EN (YouTube)",
+      "url": "https://www.youtube.com/@ThanatosTVEN",
+      "kind": "video_audio",
+      "kind_note": "Video interviews",
+      "access_status": "restricted",
+      "permission": {
+        "state": "requested",
+        "requested_on": "2026-10-17",
+        "answered_on": null
+      },
+      "public": false,
+      "plan": "No download or transcripts before the owner replies."
+    }
+  ]
+}

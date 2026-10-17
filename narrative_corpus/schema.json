@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Parallax Narrative Corpus record v0.1",
+  "title": "Parallax Narrative Corpus record v0.1 + medical_case extension",
   "type": "object",
   "required": ["id", "source", "account_type", "coding"],
   "properties": {
@@ -49,11 +49,18 @@
         "required": ["code", "coder"],
         "properties": {
           "code": {"type": "string"},
-          "coder": {"enum": ["llm", "human"]},
+          "coder": {"enum": ["llm", "human", "rule"]},
           "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
         }
       }
     },
+    "classification": {
+      "description": "The source's own classification label and the analysis group derived from it (nde = label NDE only).",
+      "type": "object",
+      "properties": {"raw": {"type": "string"}, "group": {"enum": ["nde", "other"]}}
+    },
+    "items_answered": {"description": "Questionnaire item codes with a clear answer (denominator for that item).", "type": "array", "items": {"type": "string"}},
+    "items_uncertain": {"description": "Questionnaire item codes answered Uncertain (not counted as positive).", "type": "array", "items": {"type": "string"}},
     "claims": {
       "type": "array",
       "items": {
@@ -77,6 +84,39 @@
             }
           }
         }
+      }
+    },
+    "medical_case": {
+      "description": "Optional. Only for accounts that report a health outcome. Evidence status only, never advice.",
+      "type": "object",
+      "required": ["condition", "claimed_outcome", "documentation_level"],
+      "properties": {
+        "condition": {"type": "string"},
+        "condition_category": {"enum": ["cancer", "cardiovascular", "neurological", "musculoskeletal", "infectious", "mental_health", "other"]},
+        "stage_or_severity": {"type": ["string", "null"]},
+        "diagnosis_basis": {"enum": ["histology", "imaging", "clinical", "unconfirmed", "unknown"]},
+        "claimed_outcome": {"enum": ["remission", "recovery", "improvement", "no_change", "deterioration", "death", "unknown"]},
+        "interventions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": {"enum": ["conventional", "alternative", "mind_body", "spiritual_experience", "none", "unknown"]},
+              "description": {"type": ["string", "null"]}
+            }
+          }
+        },
+        "conventional_treatment_concurrent": {"enum": ["yes", "no", "unknown"]},
+        "documentation_level": {
+          "description": "Ladder, lowest to highest. Counts are reported per level and never pooled across levels.",
+          "enum": ["self_report", "interview", "clinician_statement", "records_seen_by_reviewer", "records_published", "independent_specialist_review", "published_case_report", "controlled_study"]
+        },
+        "follow_up_months": {"type": ["number", "null"]},
+        "relapse": {"enum": ["yes", "no", "unknown"]},
+        "how_case_came_to_attention": {"enum": ["self_selected", "media", "registry", "researcher_sampled", "unknown"]},
+        "denominator_known": {"type": "boolean"},
+        "reviewed_by_human": {"type": "boolean"}
       }
     },
     "coding": {

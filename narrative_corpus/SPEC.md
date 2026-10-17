@@ -109,3 +109,28 @@ Frozen before coding begins (v0.1 will be written together with the author, usin
 ## 10. Later (not now)
 
 Integration with the calculator is decided only after the pilot. If it happens, the narrative corpus enters as its own status with its own inputs (n_eff, consistency, verified-claim rate), not as a weight on the study corpus.
+
+## 11. Health-outcome cases (evidence ladder)
+
+Some accounts report a medical outcome (recovery, remission, no change, death). These are stored in the optional `medical_case` block and never mixed into the motif statistics. The goal is to show **how well each case is documented**, not to say what works.
+
+**Documentation ladder** (lowest to highest). Counts are always reported per level and never pooled across levels:
+1. `self_report`: the person says so.
+2. `interview`: said in a recorded interview, nothing else checked.
+3. `clinician_statement`: a named clinician states it.
+4. `records_seen_by_reviewer`: diagnosis and outcome records were seen by a qualified reviewer.
+5. `records_published`: records are published or deposited.
+6. `independent_specialist_review`: an independent specialist reviewed the records.
+7. `published_case_report`: peer-reviewed case report.
+8. `controlled_study`: controlled or registry-based study.
+
+**Rules**
+- **Diagnosis basis is stored separately.** For cancer, histology or imaging counts; "I was told" is `unconfirmed`.
+- **Confounders are recorded**: concurrent conventional treatment (`conventional_treatment_concurrent`), follow-up length, relapse. A recovery during conventional treatment is not attributed to anything else.
+- **Failures are counted too.** `no_change`, `deterioration` and `death` are valid outcomes. Where a denominator exists (a registry, a clinic series), it is recorded (`denominator_known`). Without it, the page says plainly that favourable cases are over-represented in what is public (survivorship and media selection) and no rate is computed.
+- **Spontaneous remission** is a documented but rare phenomenon in the literature. It is the null explanation to be addressed for every remission case, not an afterthought.
+- **No recommendations.** Output is evidence status per intervention type ("what the documentation shows"), with the strongest evidence on both conventional and alternative approaches shown side by side. No dosing, protocols or "this works for you".
+- **Human review is mandatory** (`reviewed_by_human: true`) before any health case is published. Automated coding can propose, not publish.
+- Every health card carries the line: "Evidence status only. Not medical advice. Do not change treatment because of this page; talk to your clinician."
+- Named public figures (authors, speakers) are described only by what they have publicly said and what has been independently documented, with the documentation level shown. Unverified statements are labelled as such.
+- A person's own claim of verification does not raise the level above `self_report` or `interview`.

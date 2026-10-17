@@ -1,0 +1,546 @@
+{
+  "version": "0.1",
+  "status": "draft",
+  "note": "Codes are the closed-ended NDERF questionnaire items, read by rule (no model judgement). Positive and negative answer prefixes are listed per item; 'uncertain' and unmatched answers are not counted as positive. Answers are self-reports given in response to prompts, not spontaneous recall.",
+  "items": [
+    {
+      "code": "life_threat",
+      "stem": "at the time of your experience, was there an associated life-threatening",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Associated life-threatening event",
+      "label_lv": "Saistīts dzīvībai bīstams notikums"
+    },
+    {
+      "code": "obe_clear",
+      "stem": "did you feel separated from your body",
+      "positive": [
+        "i clearly left",
+        "clearly left"
+      ],
+      "negative": [
+        "no",
+        "i lost awareness",
+        "i didn't have",
+        "i didn’t have"
+      ],
+      "label_en": "Clearly left the body",
+      "label_lv": "Skaidri atstāja ķermeni"
+    },
+    {
+      "code": "body_separation_any",
+      "stem": "did you feel separated from your body",
+      "positive": [
+        "i clearly left",
+        "clearly left",
+        "i lost awareness",
+        "i didn't have",
+        "i didn’t have"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Any sense of separation from the body",
+      "label_lv": "Jebkāda atdalīšanās sajūta no ķermeņa"
+    },
+    {
+      "code": "enhanced_consciousness",
+      "stem": "at what time during the experience were you at your highest",
+      "positive": [
+        "more consciousness"
+      ],
+      "negative": [
+        "normal consciousness",
+        "less consciousness"
+      ],
+      "label_en": "More alert than normal",
+      "label_lv": "Skaidrāka apziņa nekā parasti"
+    },
+    {
+      "code": "thoughts_faster",
+      "stem": "were your thoughts speeded up",
+      "positive": [
+        "incredibly fast",
+        "faster than usual"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Thoughts sped up",
+      "label_lv": "Domas paātrinājās"
+    },
+    {
+      "code": "time_distorted",
+      "stem": "did time seem to speed up or slow down",
+      "positive": [
+        "everything seemed",
+        "time seemed"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Altered sense of time",
+      "label_lv": "Izmainīta laika izjūta"
+    },
+    {
+      "code": "senses_vivid",
+      "stem": "were your senses more vivid than usual",
+      "positive": [
+        "incredibly more vivid",
+        "more vivid"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Senses more vivid",
+      "label_lv": "Skaidrākas maņas"
+    },
+    {
+      "code": "aware_elsewhere",
+      "stem": "did you seem to be aware of things going on elsewhere",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Aware of events elsewhere (self-reported)",
+      "label_lv": "Apzinājās notikumus citur (paša ziņots)"
+    },
+    {
+      "code": "tunnel",
+      "stem": "did you pass into or through a tunnel",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Tunnel",
+      "label_lv": "Tunelis"
+    },
+    {
+      "code": "beings_any",
+      "stem": "did you see any beings",
+      "positive": [
+        "i actually saw",
+        "i sensed",
+        "sensed their"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Saw or sensed beings",
+      "label_lv": "Redzēja vai sajuta būtnes"
+    },
+    {
+      "code": "deceased_beings",
+      "stem": "did you encounter or become aware of any deceased beings",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Deceased beings",
+      "label_lv": "Mirušas būtnes"
+    },
+    {
+      "code": "light_brilliant",
+      "stem": "did you see or feel surrounded by a brilliant light",
+      "positive": [
+        "a light clearly",
+        "an unusually bright",
+        "unusually bright"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Brilliant light",
+      "label_lv": "Spilgta gaisma"
+    },
+    {
+      "code": "light_unearthly",
+      "stem": "did you see an unearthly light",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Unearthly light",
+      "label_lv": "Neparasta, ne-zemes gaisma"
+    },
+    {
+      "code": "other_world",
+      "stem": "did you seem to enter another world",
+      "positive": [
+        "a clearly mystical",
+        "clearly mystical",
+        "some unfamiliar"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Entered another world",
+      "label_lv": "Nokļuva citā pasaulē"
+    },
+    {
+      "code": "peace",
+      "stem": "did you have a feeling of peace",
+      "positive": [
+        "incredible peace",
+        "relief or calmness"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Peace or calm",
+      "label_lv": "Miers vai nomierinājums"
+    },
+    {
+      "code": "joy",
+      "stem": "did you have a feeling of joy",
+      "positive": [
+        "incredible joy",
+        "happiness"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Joy",
+      "label_lv": "Prieks"
+    },
+    {
+      "code": "unity",
+      "stem": "did you feel a sense of harmony or unity",
+      "positive": [
+        "i felt united",
+        "united,",
+        "i felt no longer"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Unity with the universe",
+      "label_lv": "Vienotība ar visumu"
+    },
+    {
+      "code": "understood_all",
+      "stem": "did you suddenly understand everything",
+      "positive": [
+        "everything about",
+        "about the universe"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Sudden understanding",
+      "label_lv": "Pēkšņa visa izpratne"
+    },
+    {
+      "code": "life_review",
+      "stem": "did scenes from your past come back",
+      "positive": [
+        "my past flashed",
+        "i remembered many"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Life review",
+      "label_lv": "Dzīves pārskats"
+    },
+    {
+      "code": "boundary_structure",
+      "stem": "did you reach a boundary or limiting physical structure",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Reached a boundary",
+      "label_lv": "Sasniedza robežu"
+    },
+    {
+      "code": "border_return",
+      "stem": "did you come to a border or point of no return",
+      "positive": [
+        "i came to a definite",
+        "i came to a barrier"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Border or point of no return",
+      "label_lv": "Robeža, no kuras nav atpakaļceļa"
+    },
+    {
+      "code": "mystical_presence",
+      "stem": "did you seem to encounter a mystical being",
+      "positive": [
+        "i encountered a definite",
+        "definite being",
+        "i heard a voice"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Mystical presence or voice",
+      "label_lv": "Mistiska būtne vai balss"
+    },
+    {
+      "code": "religious_figure",
+      "stem": "did you encounter or become aware of any beings who previously lived on earth who are described by name",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Religious figure",
+      "label_lv": "Reliģiska figūra"
+    },
+    {
+      "code": "info_premortal",
+      "stem": "during your experience, did you gain information about premortal",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: before birth",
+      "label_lv": "Zināšanas: pirms dzimšanas"
+    },
+    {
+      "code": "info_oneness",
+      "stem": "during your experience, did you gain information about universal connection",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: oneness",
+      "label_lv": "Zināšanas: vienotība"
+    },
+    {
+      "code": "info_god",
+      "stem": "during your experience, did you gain information about the existence of god",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: existence of God",
+      "label_lv": "Zināšanas: Dieva esamība"
+    },
+    {
+      "code": "info_purpose",
+      "stem": "during your experience, did you gain special knowledge or information about your purpose",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: personal purpose",
+      "label_lv": "Zināšanas: personīgais mērķis"
+    },
+    {
+      "code": "info_meaning",
+      "stem": "during your experience, did you gain information about the meaning of life",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: meaning of life",
+      "label_lv": "Zināšanas: dzīves jēga"
+    },
+    {
+      "code": "info_afterlife",
+      "stem": "during your experience, did you gain information about an afterlife",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: afterlife",
+      "label_lv": "Zināšanas: pēcnāves dzīve"
+    },
+    {
+      "code": "info_how_to_live",
+      "stem": "did you gain information about how to live",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: how to live",
+      "label_lv": "Zināšanas: kā dzīvot"
+    },
+    {
+      "code": "info_difficulties",
+      "stem": "during your experience, did you gain information about life's difficulties",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: life's difficulties",
+      "label_lv": "Zināšanas: dzīves grūtības"
+    },
+    {
+      "code": "info_love",
+      "stem": "during your experience, did you gain information about love",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Information: love",
+      "label_lv": "Zināšanas: mīlestība"
+    },
+    {
+      "code": "distressing_any",
+      "stem": "how do you consider the content of your experience",
+      "positive": [
+        "entirely distressing",
+        "both pleasant and distressing"
+      ],
+      "negative": [
+        "entirely pleasant",
+        "neither pleasant"
+      ],
+      "label_en": "Distressing content (fully or partly)",
+      "label_lv": "Nomācošs saturs (pilnīgi vai daļēji)"
+    },
+    {
+      "code": "values_changed",
+      "stem": "did you have a change in your values",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Values and beliefs changed",
+      "label_lv": "Mainījās vērtības un uzskati"
+    },
+    {
+      "code": "hard_to_express",
+      "stem": "was the experience difficult to express",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Hard to put into words",
+      "label_lv": "Grūti izteikt vārdos"
+    },
+    {
+      "code": "psychic_gifts",
+      "stem": "do you have any psychic",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Reports new psychic or special gifts",
+      "label_lv": "Ziņo par jaunām īpašām spējām"
+    },
+    {
+      "code": "prior_nde_knowledge",
+      "stem": "did you have any knowledge of near death experience",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Knew about NDEs beforehand",
+      "label_lv": "Pirms tam zināja par NDE"
+    },
+    {
+      "code": "memory_more_accurate",
+      "stem": "how accurately do you remember the experience",
+      "positive": [
+        "i remember the experience more accurately"
+      ],
+      "negative": [
+        "i remember the experience as accurately",
+        "i remember the experience less",
+        "i do not know"
+      ],
+      "label_en": "Remembers it more accurately than other events",
+      "label_lv": "Atceras precīzāk nekā citus notikumus"
+    },
+    {
+      "code": "real_now",
+      "stem": "what do you believe about the reality of your experience now",
+      "positive": [
+        "experience was definitely real"
+      ],
+      "negative": [
+        "experience was probably",
+        "experience was definitely not"
+      ],
+      "label_en": "Now believes it was definitely real",
+      "label_lv": "Tagad uzskata, ka tas noteikti bija reāls"
+    },
+    {
+      "code": "life_changes_large",
+      "stem": "what life changes occurred",
+      "positive": [
+        "large changes"
+      ],
+      "negative": [
+        "moderate",
+        "slight",
+        "no changes",
+        "unknown"
+      ],
+      "label_en": "Large life changes afterwards",
+      "label_lv": "Lielas dzīves izmaiņas pēc tam"
+    },
+    {
+      "code": "religious_practice_changed",
+      "stem": "have your religious practices changed",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Religious practice changed",
+      "label_lv": "Mainījās reliģiskā prakse"
+    },
+    {
+      "code": "relationships_changed",
+      "stem": "have your relationships changed",
+      "positive": [
+        "yes"
+      ],
+      "negative": [
+        "no"
+      ],
+      "label_en": "Relationships changed",
+      "label_lv": "Mainījās attiecības"
+    }
+  ]
+}

@@ -43,3 +43,5 @@ myparallax_repo/
 main_backup_*.py
 relevance_tiers_run.txt
 relevance_report_nde.txt
+# --- added 2026-10-17: private working copies of narrative sources ---
+narrative_corpus_private/
