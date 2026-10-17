@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "date": "2026-10-17",
+      "topic": "consciousness_independence_nde",
+      "en": "New 'Testimony corpus' section on the Evidence Tribunal: percentages from 297 first-person near-death accounts (questionnaire answers from one source, read by rule, no quotes or names stored). These are self-reports, not proof, and none has been independently confirmed. The checklist coverage and the literature-corpus panel are not affected by this layer.",
+      "lv": "Tribunal lapā pievienota jauna sadaļa „Liecību korpuss”: procenti no 297 pirmās personas NDE stāstiem (viena avota anketu atbildes, nolasītas pēc noteikumiem, bez citātiem un vārdiem). Tie ir pašziņojumi, nevis pierādījumi, un neviens nav neatkarīgi apstiprināts. Šis slānis neietekmē kontrolsaraksta segumu un literatūras korpusa paneli."
+    },
+    {
+      "date": "2026-10-17",
+      "topic": "consciousness_independence_nde",
+      "en": "Testimony figures first shown from a pilot of 198 recent accounts were replaced by figures from 297 accounts across 1998–2026, after the parser failed to recognise older questionnaire wording. Items answered by fewer than half of the accounts are listed separately, and items whose answers differ between eras are marked 'differs across years'.",
+      "lv": "Liecību skaitļi, kas sākotnēji rādīti no 198 nesenu stāstu piloga, aizstāti ar skaitļiem no 297 stāstiem 1998.–2026. gadā, jo parsētājs neatpazina vecākās anketas formulējumus. Rādītāji, uz kuriem atbildējuši mazāk par pusi stāstu, ir uzskaitīti atsevišķi, bet rādītāji ar atšķirīgām atbildēm pa laikmetiem atzīmēti „mainās pa gadiem”."
+    },
+    {
+      "date": "2026-10-17",
+      "topic": "all",
+      "en": "Home page: a floating audio briefing was added. Each Monday the site builds a short English summary of what changed from the published data and reads it aloud on request. It is automatic and is not reviewed by a person. Changes to a figure are also logged here as 'data update'.",
+      "lv": "Sākumlapā pievienots peldošs audio pārskats. Katru pirmdienu lapa no publicētajiem datiem sastāda īsu pārskatu angļu valodā par izmaiņām un nolasa to pēc pieprasījuma. Tas ir automātisks un nav cilvēka pārskatīts. Skaitļu izmaiņas šeit tiek reģistrētas arī kā „datu atjauninājums”."
+    },
+    {
       "date": "2026-10-11",
       "topic": "megalithic_engineering_acoustics",
       "en": "Megaliths page audited and rewritten. Each site now separates Documented / Reported / Contested layers. Corrected: the Barabar 'unreplicable with Iron Age tools' claim (the caves are Iron Age work); Gunung Padang '>14,000 BP / empirical proof' (the 2023 paper was retracted in 2024 because the radiocarbon dates came from soil not associated with artifacts); Ollantaytambo 'pink granite' (red rhyolite) and 'razor blade' / 'perfect earthquake resistance'; Giza star shafts 'at 10,500 BCE' (conflicts with the c. 2560 BCE construction date) and 'perfectly aligned to magnetic north'; Easter Island 'stabilizing the geomagnetic field' and the post-hoc great circle; Malta 'synchronized with Giza' and telepathy claims; Derinkuyu 'cataclysm shelter'; Tiwanaku 'micron-level' and 'industrial-scale'. The 'E = hf' framing was removed (it describes photon energy, not sound in a chamber) and replaced with a room-acoustics estimate: a chamber the size of the King's Chamber has roughly one mode per Hz near 110 Hz, so a peak there is expected. Globe lines are labelled as orientation only. Checklist statuses were not changed.",

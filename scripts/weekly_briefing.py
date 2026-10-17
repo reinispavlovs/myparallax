@@ -3,24 +3,35 @@
 
 Reads   content/articles/{topic_weights,index,corrections,archive,testimony_status}.json
         content/weekly/state.json   (numbers from the previous run, for the week-on-week diff)
-Writes  content/weekly/latest.json  (text + items + numbers; the home page player reads this)
-        content/weekly/latest.txt   (plain text for the speech step)
+Writes  content/weekly/latest.json  (spoken text + items; the home page orb reads this)
+        content/weekly/latest.txt   (the same spoken text, for the speech step)
         content/weekly/state.json   (new snapshot)
         content/weekly/history.json (last 12 briefings, text only)
+        content/articles/corrections.json  (appends one automatic "data update" entry per changed figure)
 
-Every sentence is a template filled with a number or a log entry that is already public.
-Nothing is invented, and nothing is called proven. Standard library only.
+The spoken text is written for the ear: short sentences, plain words, what each change means for
+a reader. Every sentence is a template filled with a number or log entry that is already public.
+Nothing is invented and nothing is called proven. Standard library only.
 
 Usage: python scripts/weekly_briefing.py [--root .] [--today YYYY-MM-DD]
 """
 import argparse, datetime, json, os
 
-SHORT = {
-    "consciousness_independence_nde": "consciousness and near-death experiences",
-    "megalithic_engineering_acoustics": "megalithic engineering and acoustics",
-    "cyclical_cataclysms_precession": "cyclical cataclysms and precession",
-    "neural_cosmic_isomorphism": "the neural and cosmic network comparison",
+TOPICS = {
+    "consciousness_independence_nde": {
+        "en": "near-death experiences, and whether the mind can work without the brain",
+        "short": "near-death experiences", "lv": "Apziņas neatkarība no smadzenēm (NDE)"},
+    "megalithic_engineering_acoustics": {
+        "en": "ancient stone building and its acoustics",
+        "short": "ancient stone building", "lv": "Megalītiskā inženierija un akustika"},
+    "cyclical_cataclysms_precession": {
+        "en": "cycles of catastrophe and the wobble of the Earth's axis",
+        "short": "cycles of catastrophe", "lv": "Cikliskās kataklizmas un precesija"},
+    "neural_cosmic_isomorphism": {
+        "en": "the comparison between brain networks and the cosmic web",
+        "short": "the brain and cosmic web comparison", "lv": "Neironu tīklu un kosmiskā tīmekļa izomorfisms"},
 }
+NUM = {0: "none", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
 
 
 def load(path, default=None):
@@ -33,6 +44,16 @@ def load(path, default=None):
 
 def fmt(x):
     return ("%.1f" % x).rstrip("0").rstrip(".") if isinstance(x, (int, float)) else str(x)
+
+
+def words(n):
+    return NUM.get(n, str(n))
+
+
+def about(n):
+    if n >= 100:
+        return "about %d" % (round(n / 10.0) * 10)
+    return str(n)
 
 
 def main():
@@ -49,7 +70,8 @@ def main():
 
     weights = (load(os.path.join(art, "topic_weights.json"), {}) or {}).get("topics", {})
     index = (load(os.path.join(art, "index.json"), {}) or {}).get("topics", {})
-    corr = (load(os.path.join(art, "corrections.json"), {}) or {}).get("entries", [])
+    corr_doc = load(os.path.join(art, "corrections.json"), {"entries": []}) or {"entries": []}
+    corr = corr_doc.get("entries", [])
     arch = (load(os.path.join(art, "archive.json"), {}) or {}).get("versions", [])
     tm = load(os.path.join(art, "testimony_status.json"), {}) or {}
     prev = load(os.path.join(wk, "state.json"), {}) or {}
@@ -59,103 +81,129 @@ def main():
     corpus = {t: (ix.get("evidence_summary") or {}).get("analysed") for t, ix in index.items()}
     pooled = tm.get("pooled") or {}
     ver = pooled.get("verification") or {}
-    state = {
-        "date": today.isoformat(),
-        "coverage": cov, "class": cls, "corpus_analysed": corpus,
-        "testimony_n": pooled.get("n_headline"),
-        "confirmed": ver.get("confirmed", 0),
-    }
-
-    items, sents = [], []
+    n_new, n_old = pooled.get("n_headline"), prev.get("testimony_n")
+    confirmed = ver.get("confirmed", 0)
+    state = {"date": today.isoformat(), "coverage": cov, "class": cls, "corpus_analysed": corpus,
+             "testimony_n": n_new, "confirmed": confirmed}
     first_run = not prev
-    # 1. coverage / class changes
-    for t in SHORT:
-        if t not in cov:
-            continue
-        old, new = (prev.get("coverage") or {}).get(t), cov[t]
+
+    items, log, changes, meaning = [], [], [], []   # items: for json, log: public log entries
+
+    def add_log(topic, en, lv):
+        log.append({"date": today.isoformat(), "topic": topic, "en": en, "lv": lv, "kind": "data", "auto": True})
+
+    for t, info in TOPICS.items():
+        old, new = (prev.get("coverage") or {}).get(t), cov.get(t)
         if not first_run and old is not None and new is not None and abs(new - old) > 1e-9:
-            s = "Checklist coverage for %s moved from %s to %s percent." % (SHORT[t], fmt(old), fmt(new))
-            items.append({"kind": "coverage", "topic": t, "text": s}); sents.append(s)
+            changes.append("The share of tests met for %s moved from %s to %s percent." % (info["short"], fmt(old), fmt(new)))
+            items.append({"kind": "coverage", "topic": t})
+            add_log(t, "Checklist coverage for this topic changed from %s%% to %s%% (automatic data update)." % (fmt(old), fmt(new)),
+                    "Kontrolsaraksta segums šai tēmai mainījies no %s%% uz %s%% (automātisks datu atjauninājums)." % (fmt(old), fmt(new)))
         oc, nc = (prev.get("class") or {}).get(t), cls.get(t)
         if not first_run and oc and nc and oc != nc:
-            s = "The epistemic class of %s changed from %s to %s." % (SHORT[t], oc, nc)
-            items.append({"kind": "class", "topic": t, "text": s}); sents.append(s)
-    # 2. literature corpus growth
-    for t in SHORT:
+            changes.append("The evidence class for %s changed from %s to %s." % (info["short"], oc, nc))
+            items.append({"kind": "class", "topic": t})
+            add_log(t, "Epistemic class changed from %s to %s (automatic data update)." % (oc, nc),
+                    "Epistēmiskā klase mainīta no %s uz %s (automātisks datu atjauninājums)." % (oc, nc))
         old, new = (prev.get("corpus_analysed") or {}).get(t), corpus.get(t)
         if not first_run and old and new and new != old:
-            s = "The literature corpus on %s now covers %d analysed abstracts, up from %d." % (SHORT[t], new, old)
-            items.append({"kind": "corpus", "topic": t, "text": s}); sents.append(s)
-    # 3. testimony
-    n_old, n_new = prev.get("testimony_n"), state["testimony_n"]
-    if n_new and (first_run or n_old != n_new):
-        s = ("The testimony layer now holds %d near-death accounts classified as such by the source." % n_new
-             if first_run or not n_old else
-             "The testimony layer grew from %d to %d accounts." % (n_old, n_new))
-        items.append({"kind": "testimony", "text": s}); sents.append(s)
-    if ver:
-        s = "Independently confirmed testimony claims: %d." % ver.get("confirmed", 0)
-        items.append({"kind": "verification", "text": s}); sents.append(s)
-    # 4. log entries from the last 7 days (corrections and new article versions)
-    new_corr = [e for e in corr if e.get("date") and since <= datetime.date.fromisoformat(e["date"]) <= today]
+            changes.append("We read more research papers on %s. The count is now %d, up from %d." % (info["short"], new, old))
+            items.append({"kind": "corpus", "topic": t})
+            add_log(t, "Literature corpus size changed from %d to %d analysed abstracts (automatic data update)." % (old, new),
+                    "Literatūras korpusa apjoms mainīts no %d uz %d analizētiem abstraktiem (automātisks datu atjauninājums)." % (old, new))
+    if not first_run and n_old and n_new and n_new != n_old:
+        added = n_new - n_old
+        changes.append("We added %s more personal accounts of near-death experiences." % (about(added) if added >= 100 else str(added)) if added > 0
+                       else "The number of personal accounts changed after a data fix.")
+        items.append({"kind": "testimony"})
+        add_log("consciousness_independence_nde", "Testimony layer changed from %d to %d accounts (automatic data update)." % (n_old, n_new),
+                "Liecību slānis mainīts no %d uz %d stāstiem (automātisks datu atjauninājums)." % (n_old, n_new))
+    new_corr = [e for e in corr if e.get("date") and since <= datetime.date.fromisoformat(e["date"]) <= today and not e.get("auto")]
     if new_corr:
-        topics = sorted({SHORT.get(e.get("topic"), "the whole site") for e in new_corr})
-        s = "%d correction%s logged this week, affecting %s. The full log is on the page." % (
-            len(new_corr), "" if len(new_corr) == 1 else "s", ", ".join(topics))
-        items.append({"kind": "corrections", "text": s}); sents.append(s)
-    new_ver = [v for v in arch if v.get("kind") != "current" and (v.get("published_at") or "")[:10] >= since.isoformat()]
-    cur_new = [v for v in arch if v.get("kind") == "current" and (v.get("published_at") or "")[:10] >= since.isoformat()]
-    nv = len(new_ver) + len(cur_new)
+        k = len(new_corr)
+        changes.append("We fixed %s thing%s in public. The list of fixes is on the home page." % (words(k), "" if k == 1 else "s"))
+        items.append({"kind": "corrections"})
+    nv = len([v for v in arch if (v.get("published_at") or "")[:10] >= since.isoformat() and v.get("review") == "human_reviewed"])
     if nv:
-        s = "%d human-reviewed article version%s published." % (nv, "" if nv == 1 else "s")
-        items.append({"kind": "versions", "text": s}); sents.append(s)
+        changes.append("%s article%s got a new version checked by a person." % (words(nv).capitalize(), "" if nv == 1 else "s"))
+        items.append({"kind": "versions"})
 
-    changed = bool([i for i in items if i["kind"] in ("coverage", "class", "corpus", "corrections", "versions")]) or (
-        n_old != n_new and not first_run)
-    if first_run:
-        sents.insert(0, "This is the first automatic briefing. Changes will be listed from next week.")
-    elif not changed:
-        sents.insert(0, "No status changed this week.")
-    standing = [("%s, %s percent" % (SHORT[t], fmt(cov[t]))) for t in SHORT if cov.get(t) is not None]
-    if standing:
-        sents.append("Current checklist coverage: " + "; ".join(standing) + ".")
-    # plain-language meaning, only for what actually changed; never claims proof
     kinds = {i["kind"] for i in items}
-    meaning = []
     if "coverage" in kinds or "class" in kinds:
-        meaning.append("A higher coverage number means more testing criteria are met. It does not mean the claim is more likely to be true.")
-    if "testimony" in kinds and not first_run and n_old != n_new:
-        meaning.append("More accounts make the percentages more precise, but they do not turn reports into proof.")
+        meaning.append("A higher score means more of the checks are done. It does not mean the claim is more likely to be true.")
+    if "testimony" in kinds:
+        meaning.append("More stories make the picture clearer, but stories alone cannot prove anything.")
     if "corrections" in kinds:
-        meaning.append("Corrections mean earlier wording was fixed in public, so readers can see what changed and why.")
+        meaning.append("You can see exactly what we got wrong and what we fixed.")
+    if "corpus" in kinds:
+        meaning.append("A bigger reading list makes the summary harder to cherry-pick.")
+    if first_run:
+        meaning.append("You get a map of where the evidence is solid, where it is thin, and what would settle each question, so you do not have to dig through the site.")
     if not meaning:
-        meaning.append("A quiet week is normal: the evidence moves slowly, and nothing is changed without a reason.")
-    sents.append("What this means for readers: " + " ".join(meaning))
-    head = "Project Parallax weekly briefing, %s." % today.strftime("%d %B %Y")
-    tail = ("Coverage percentages measure how many testing criteria are met. They are not the probability that a claim is true. "
-            "Testimony figures are self-reported accounts, not proof. This briefing was generated automatically from published data.")
-    text = " ".join([head] + sents + [tail])
+        meaning.append("A quiet week is normal. Good evidence moves slowly, and nothing here changes without a reason.")
 
-    out = {
-        "generated_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "period": {"from": since.isoformat(), "to": today.isoformat()},
-        "language": "en", "automatic": True, "changed": changed,
-        "items": items, "text": text,
-        "numbers": {"coverage": cov, "testimony_n": n_new, "confirmed": state["confirmed"]},
-        "audio": "content/weekly/latest.mp3",
-    }
-    with open(os.path.join(wk, "latest.json"), "w", encoding="utf-8", newline="\n") as fh:
-        json.dump(out, fh, ensure_ascii=False, indent=2); fh.write("\n")
+    standing = []
+    ordinals = ["First", "Next", "Then", "Last"]
+    for t, info in TOPICS.items():
+        w = weights.get(t)
+        if not w:
+            continue
+        total, sat, par = w.get("total_checklist_items"), w.get("satisfied_count"), w.get("partial_count")
+        if total is None or sat is None:
+            continue
+        lead = ordinals[min(len(standing), 3)]
+        s = "%s, %s. %s of the %s checks %s fully met" % (
+            lead, info["en"], words(sat).capitalize(), words(total), "is" if sat == 1 else "are")
+        if par:
+            s += ", and %s more %s partly met" % (words(par), "is" if par == 1 else "are")
+        standing.append(s + ".")
+    testimony_line = ""
+    if n_new:
+        testimony_line = ("We also collect personal stories of near-death experiences. There are %s so far. They are people's own reports, not proof, "
+                          "and %s have been independently confirmed." % (about(n_new), "none" if not confirmed else words(confirmed)))
+
+    sp = ["Hello, and welcome to this week's update from Project Parallax."]
+    if first_run:
+        sp.append("This is the first automatic update, so here is where things stand.")
+    elif changes:
+        sp.append("Here is what changed this week.")
+        sp.extend(changes)
+    else:
+        sp.append("Nothing changed this week, so here is where things stand.")
+    if first_run or not changes:
+        sp.extend(standing)
+        if testimony_line:
+            sp.append(testimony_line)
+    elif testimony_line and "testimony" not in kinds:
+        pass
+    sp.append("What this gives you: " + " ".join(meaning))
+    sp.append("One thing to remember. These numbers show how much has been checked, not whether something is true. "
+              "Open the Tribunal page on the website to see the details for yourself. Thanks for listening.")
+    text = " ".join(sp)
+
+    out = {"generated_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+           "period": {"from": since.isoformat(), "to": today.isoformat()},
+           "language": "en", "automatic": True, "changed": bool(changes), "items": items, "text": text,
+           "audio": "content/weekly/latest.mp3"}
+    for name, obj in (("latest.json", out), ("state.json", state)):
+        with open(os.path.join(wk, name), "w", encoding="utf-8", newline="\n") as fh:
+            json.dump(obj, fh, ensure_ascii=False, indent=2); fh.write("\n")
     with open(os.path.join(wk, "latest.txt"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(text + "\n")
-    with open(os.path.join(wk, "state.json"), "w", encoding="utf-8", newline="\n") as fh:
-        json.dump(state, fh, ensure_ascii=False, indent=2); fh.write("\n")
     hist = load(os.path.join(wk, "history.json"), []) or []
     hist = [h for h in hist if h.get("date") != today.isoformat()]
     hist.insert(0, {"date": today.isoformat(), "text": text})
     with open(os.path.join(wk, "history.json"), "w", encoding="utf-8", newline="\n") as fh:
         json.dump(hist[:12], fh, ensure_ascii=False, indent=2); fh.write("\n")
-    print("weekly briefing: %d item(s), changed=%s, %d words" % (len(items), changed, len(text.split())))
+
+    if log:
+        have = {(e.get("date"), e.get("topic"), e.get("en")) for e in corr}
+        fresh = [e for e in log if (e["date"], e["topic"], e["en"]) not in have]
+        if fresh:
+            corr_doc["entries"] = fresh + corr
+            with open(os.path.join(art, "corrections.json"), "w", encoding="utf-8", newline="\n") as fh:
+                json.dump(corr_doc, fh, ensure_ascii=False, indent=2); fh.write("\n")
+    print("weekly briefing: %d change(s), %d log entr%s, %d words" % (len(changes), len(log), "y" if len(log) == 1 else "ies", len(text.split())))
 
 
 if __name__ == "__main__":

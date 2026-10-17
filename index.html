@@ -1962,7 +1962,7 @@
         const tp = document.createElement('span'); tp.className = 'text-slate-500';
         tp.textContent = (WC_TOPICS[lv ? 'LV' : 'EN'][it.topic]) || it.topic;
         const kind = document.createElement('span'); kind.className = 'text-slate-600';
-        kind.textContent = it.kind === 'version' ? (lv ? 'jauna versija' : 'new version') : (lv ? 'labojums' : 'correction');
+        kind.textContent = it.kind === 'version' ? (lv ? 'jauna versija' : 'new version') : it.auto ? (lv ? 'datu atjauninājums' : 'data update') : (lv ? 'labojums' : 'correction');
         head.append(d, tp, kind);
         const p = document.createElement('p');
         p.className = 'text-xs text-slate-300 leading-relaxed';
@@ -1979,7 +1979,7 @@
       const [corr, arch] = await Promise.allSettled([get('content/articles/corrections.json'), get('content/articles/archive.json')]);
       if (corr.status === 'rejected' && arch.status === 'rejected') { wcItems = null; renderWhatChanged(); return; }
       const items = [];
-      if (corr.status === 'fulfilled') (corr.value.entries || []).forEach(e => items.push({ kind: 'correction', date: String(e.date || ''), topic: e.topic || 'all', en: e.en, lv: e.lv }));
+      if (corr.status === 'fulfilled') (corr.value.entries || []).forEach(e => items.push({ kind: 'correction', auto: !!e.auto, date: String(e.date || ''), topic: e.topic || 'all', en: e.en, lv: e.lv }));
       if (arch.status === 'fulfilled') (arch.value.versions || []).forEach(x => {
         if (x.kind === 'current' && x.review === 'human_reviewed' && (x.published_at || x.reviewed_on)) {
           items.push({ kind: 'version', date: String(x.published_at || x.reviewed_on).slice(0, 10), topic: x.topic_id });
