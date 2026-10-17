@@ -1,17 +1,21 @@
 {
-  "generated_at": "2026-10-17T15:22:26Z",
+  "generated_at": "2026-10-17T15:40:11Z",
   "period": {
     "from": "2026-10-10",
     "to": "2026-10-17"
   },
   "language": "en",
   "automatic": true,
+  "reflection": {
+    "topic": "consciousness_independence_nde",
+    "text": "Who are you, really? A small biological machine that happens to be aware of itself for a few years? Or the universe, for a short moment pretending to be you, so that it can look at itself in a mirror? Science has not settled this, which is why it is worth asking."
+  },
   "changed": true,
   "items": [
     {
       "kind": "corrections"
     }
   ],
-  "text": "Hello, and welcome to this week's update from Project Parallax. Here is what changed this week. We fixed 9 things in public. The list of fixes is on the home page. What this gives you: You can see exactly what we got wrong and what we fixed. One thing to remember. These numbers show how much has been checked, not whether something is true. Open the Tribunal page on the website to see the details for yourself. Thanks for listening.",
+  "text": "Hello, and welcome to this week's update from Project Parallax. Before the news, a question to carry with you. Who are you, really? A small biological machine that happens to be aware of itself for a few years? Or the universe, for a short moment pretending to be you, so that it can look at itself in a mirror? Science has not settled this, which is why it is worth asking. That is a thought, not a finding. Now, what is actually known. Here is what changed this week. We fixed 9 things in public. The list of fixes is on the home page. What this gives you: You can see exactly what we got wrong and what we fixed. One thing to remember. These numbers show how much has been checked, not whether something is true. Open the Tribunal page on the website to see the details for yourself. Thanks for listening.",
   "audio": "content/weekly/latest.mp3"
 }
