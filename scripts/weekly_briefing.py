@@ -33,6 +33,35 @@ TOPICS = {
 }
 NUM = {0: "none", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
 
+# One question per week to make the page personal. These are questions for reflection, never findings:
+# each states a view as a view, or asks, and points to what would test it. Written in the site's own words.
+REFLECTIONS = [
+    ("cyclical_cataclysms_precession",
+     "Why do we so eagerly picture history as a straight line going up, when the seasons, the breath, the stars, and perhaps even civilizations seem to move in rhythms and return to where they began? Is that a pattern in nature, or a pattern we like to see?"),
+    ("cyclical_cataclysms_precession",
+     "What if the great catastrophes were not punishments or mistakes, but part of a slow rhythm, like winter clearing the ground for spring? Some people think so. It is still untested, so how would you test it?"),
+    ("consciousness_independence_nde",
+     "Who are you, really? A small biological machine that happens to be aware of itself for a few years? Or the universe, for a short moment pretending to be you, so that it can look at itself in a mirror? Science has not settled this, which is why it is worth asking."),
+    ("consciousness_independence_nde",
+     "Imagine the body is a radio and consciousness is the music. If the radio breaks, does the music stop, or only the receiver? That is one picture people use for near-death experiences. The other picture is that the brain makes the music. Which one would you test first?"),
+    ("megalithic_engineering_acoustics",
+     "Standing next to a wall of stones that almost nobody could build today, what do you feel first: wonder, or the urge to ask who and how? Both are useful. Which one leads you?"),
+    ("megalithic_engineering_acoustics",
+     "If ancient builders did tune their chambers to sound, how would we ever tell design from accident?"),
+    ("neural_cosmic_isomorphism",
+     "The cosmic web and the brain look alike in pictures. When two things look alike, what separates a deep connection from a coincidence?"),
+    ("neural_cosmic_isomorphism",
+     "What if the universe is a kind of network that, in some sense, thinks? What would we measure to find out, and what result would count as a no?"),
+]
+
+
+def pick_reflection(today, items):
+    """Prefer a question on a topic that changed this week; otherwise rotate by ISO week."""
+    changed = [i.get("topic") for i in items if i.get("topic")]
+    week = today.isocalendar()[1]
+    pool = [r for r in REFLECTIONS if r[0] in changed] or REFLECTIONS
+    return pool[week % len(pool)]
+
 
 def load(path, default=None):
     try:
@@ -162,7 +191,10 @@ def main():
         testimony_line = ("We also collect personal stories of near-death experiences. There are %s so far. They are people's own reports, not proof, "
                           "and %s have been independently confirmed." % (about(n_new), "none" if not confirmed else words(confirmed)))
 
-    sp = ["Hello, and welcome to this week's update from Project Parallax."]
+    r_topic, r_text = pick_reflection(today, items)
+    sp = ["Hello, and welcome to this week's update from Project Parallax.",
+          "Before the news, a question to carry with you. " + r_text,
+          "That is a thought, not a finding. Now, what is actually known."]
     if first_run:
         sp.append("This is the first automatic update, so here is where things stand.")
     elif changes:
@@ -183,7 +215,7 @@ def main():
 
     out = {"generated_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
            "period": {"from": since.isoformat(), "to": today.isoformat()},
-           "language": "en", "automatic": True, "changed": bool(changes), "items": items, "text": text,
+           "language": "en", "automatic": True, "reflection": {"topic": r_topic, "text": r_text}, "changed": bool(changes), "items": items, "text": text,
            "audio": "content/weekly/latest.mp3"}
     for name, obj in (("latest.json", out), ("state.json", state)):
         with open(os.path.join(wk, name), "w", encoding="utf-8", newline="\n") as fh:
