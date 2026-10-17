@@ -1,0 +1,55 @@
+name: Weekly Briefing
+
+on:
+  schedule:
+    - cron: '17 7 * * 1'   # Mondays 07:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-briefing
+  cancel-in-progress: false
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build briefing text from published data
+        run: python scripts/weekly_briefing.py --root .
+
+      # Speech is best-effort. If this step fails the text still publishes
+      # and the page reads it with the visitor's browser voice instead.
+      - name: Generate English audio (Piper, open source, no API key)
+        continue-on-error: true
+        run: |
+          set -e
+          pip install piper-tts
+          V=https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium
+          curl -fsSL --retry 3 -o voice.onnx "$V/en_US-lessac-medium.onnx"
+          curl -fsSL --retry 3 -o voice.onnx.json "$V/en_US-lessac-medium.onnx.json"
+          python -m piper -m voice.onnx -f content/weekly/latest.wav < content/weekly/latest.txt
+          ffmpeg -y -loglevel error -i content/weekly/latest.wav -ac 1 -b:a 64k content/weekly/latest.mp3
+          rm -f content/weekly/latest.wav voice.onnx voice.onnx.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "Project Parallax Bot"
+          git config user.email "bot@myparallax.org"
+          git add content/weekly/
+          if git diff --staged --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "Weekly briefing $(date -u +%Y-%m-%d) [automatic]"
+            git pull --rebase
+            git push
+          fi
