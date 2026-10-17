@@ -3,6 +3,8 @@
 
 Run on YOUR computer (the cloud sandbox cannot reach the site):
     py scripts\\ingest_nderf.py --contact "https://www.myparallax.org" --archive-pages 2 --limit 200
+Spread over all years (about 10 random accounts per archive page, reproducible):
+    py scripts\\ingest_nderf.py --contact "https://www.myparallax.org" --archive-pages 0 --per-page 10 --limit 0
 
 What it does
   1. Reads the archive list, picks the newest N archive pages, collects links to experience pages.
@@ -18,7 +20,7 @@ Rules (narrative_corpus/SOURCES.md):
   * nothing here is published; only derived codes and statistics are
 Standard library only. Resumable: already downloaded ids are skipped.
 """
-import argparse, hashlib, html, json, os, re, sys, time, datetime
+import argparse, hashlib, html, json, os, random, re, sys, time, datetime
 import urllib.request, urllib.error, urllib.parse
 from html.parser import HTMLParser
 
@@ -107,7 +109,10 @@ def main():
     ap.add_argument("--base", default="https://www.nderf.org")
     ap.add_argument("--out", default=os.path.join("narrative_corpus_private", "nderf"))
     ap.add_argument("--contact", required=True, help="URL or address that identifies you in the user agent")
-    ap.add_argument("--archive-pages", type=int, default=2, help="how many of the newest archive pages to read")
+    ap.add_argument("--archive-pages", type=int, default=2, help="how many archive pages to read (newest first); 0 = all pages")
+    ap.add_argument("--per-page", type=int, default=0, help="take at most this many random accounts per archive page (0 = all); spreads the sample across years")
+    ap.add_argument("--seed", type=int, default=2026, help="random seed for --per-page (keeps the sample reproducible)")
+    ap.add_argument("--batches", action="store_true", help="also write text batches for manual reading (not needed for parse_nderf.py)")
     ap.add_argument("--limit", type=int, default=200)
     ap.add_argument("--delay", type=float, default=2.0, help="seconds between requests (min 1.0)")
     ap.add_argument("--batch-size", type=int, default=10)
@@ -127,22 +132,34 @@ def main():
         for h in ARCH_RE.findall(listing):
             u = absolute(base + "/Archives/archivelist.htm", h)
             if u not in pages: pages.append(u)
-        print("archive pages found: %d (reading the first %d, newest first as listed)" % (len(pages), a.archive_pages))
+        take = pages if a.archive_pages == 0 else pages[:a.archive_pages]
+        print("archive pages found: %d (reading %d, newest first as listed)" % (len(pages), len(take)))
         if not pages: sys.exit("no archive links found: the page layout may have changed")
 
-        links = []
-        for pg in pages[:a.archive_pages]:
+        rng = random.Random(a.seed)
+        links, period_of = [], {}
+        for pg in take:
             time.sleep(delay)
             body = fetch(pg, ua)
             if not body: print("  missing:", pg); continue
-            found = 0
+            page_links = []
             for h in EXP_RE.findall(body):
                 u = absolute(pg, h)
-                if u not in links: links.append(u); found += 1
-            print("  %s -> %d experience links" % (pg, found))
+                if u not in page_links and u not in links: page_links.append(u)
+            tot = len(page_links)
+            if a.per_page and tot > a.per_page:
+                page_links = rng.sample(page_links, a.per_page)
+            pm = re.search(r"2_(?:\d+_)?(\d{4})\.html", pg)
+            for u in page_links:
+                links.append(u); period_of[u] = pm.group(1) if pm else None
+            print("  %s -> %d links (using %d)" % (pg, tot, len(page_links)))
         print("experience links collected: %d" % len(links))
         if not links: sys.exit("no experience links found on the archive pages: layout differs; nothing was downloaded")
-        links = links[:a.limit]
+        if a.limit and len(links) > a.limit:
+            if a.per_page:
+                links = rng.sample(links, a.limit)
+            else:
+                links = links[:a.limit]
         if a.dry_run:
             for u in links[:10]: print("  would fetch:", u)
             print("dry run: stopping here"); return
@@ -176,14 +193,15 @@ def main():
                 rec = {"id": rid, "type": (tm.group(1).lower() if tm else "unknown"),
                        "retrieved_at": datetime.date.today().isoformat(),
                        "text_hash": hashlib.sha256(text.encode("utf-8")).hexdigest(),
-                       "chars": len(text), "flag_suicide": bool(SUICIDE_RE.search(text))}
+                       "chars": len(text), "flag_suicide": bool(SUICIDE_RE.search(text)),
+                       "archive_year": period_of.get(u)}
                 idx.write(json.dumps(rec) + "\n"); idx.flush(); have.add(rid); new += 1
                 if new % 20 == 0: print("  downloaded %d" % new)
         print("new pages downloaded: %d" % new)
     except Stop as e:
         print("STOPPED:", e); print("Partial results are kept. Contact the site before continuing.")
 
-    # batches (excluding flagged records)
+    # batches (optional; excluding flagged records)
     recs = []
     if os.path.exists(index_path):
         with open(index_path, encoding="utf-8") as fh:
@@ -192,6 +210,9 @@ def main():
                 except Exception: pass
     ok = [r for r in recs if not r["flag_suicide"]]
     flagged = len(recs) - len(ok)
+    if not a.batches:
+        print("records: %d (held back from batches if --batches is used: %d)" % (len(recs), flagged))
+        return
     for f in os.listdir(batch_dir):
         if f.startswith("batch_"): os.remove(os.path.join(batch_dir, f))
     for i in range(0, len(ok), a.batch_size):

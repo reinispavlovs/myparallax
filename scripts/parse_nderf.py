@@ -76,11 +76,11 @@ def main():
     idx_path = os.path.join(root, "narrative_corpus_private", "nderf", "index.jsonl")
     cb = json.load(open(os.path.join(root, "narrative_corpus", "codebook.json"), encoding="utf-8"))
     items = cb["items"]
-    hashes = {}
+    meta = {}
     if os.path.exists(idx_path):
         for line in open(idx_path, encoding="utf-8"):
             try:
-                r = json.loads(line); hashes[r["id"]] = r["text_hash"]
+                r = json.loads(line); meta[r["id"]] = r
             except Exception:
                 pass
     out_dir = os.path.join(root, "narrative_corpus", "data")
@@ -102,10 +102,10 @@ def main():
             groups[grp] = groups.get(grp, 0) + 1
             rec = {
                 "id": rid,
-                "source": {"name": "NDERF", "url": "https://www.nderf.org/", "retrieved_at": today, "published_at": None, "access_status": "tdm_open"},
+                "source": {"name": "NDERF", "url": "https://www.nderf.org/", "retrieved_at": today, "published_at": (meta.get(rid) or {}).get("archive_year"), "access_status": "tdm_open"},
                 "account_type": "first_hand",
                 "collection": {"solicited": True, "delay_to_report": None},
-                "text_hash": hashes.get(rid),
+                "text_hash": (meta.get(rid) or {}).get("text_hash"),
                 "excerpt": None,
                 "classification": {"raw": cls_raw, "group": grp},
                 "duplicates": {"cluster_id": None, "duplicate_of": None, "method": "none"},
