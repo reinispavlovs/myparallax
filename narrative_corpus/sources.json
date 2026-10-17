@@ -1,12 +1,12 @@
 {
-  "note": "Registry of candidate sources for the narrative corpus. 'public' controls whether a source is named on the website; keep it false until the source has replied. Only access_status tdm_open or permission_granted can contribute numbers.",
+  "note": "Registry of candidate sources. Only sources that are open or have replied are named; the others appear as 'Source N' until they reply. Only access_status tdm_open or permission_granted can contribute numbers. The full registry is kept privately.",
   "sources": [
     {
       "key": "NDERF",
       "display_name": "NDERF",
       "url": "https://www.nderf.org/",
       "kind": "written_accounts",
-      "kind_note": "Structured questionnaires (16,000+ experiences according to the site)",
+      "kind_note": "Structured questionnaires (closed items plus free text)",
       "access_status": "tdm_open",
       "permission": {
         "state": "requested",
@@ -14,83 +14,77 @@
         "answered_on": null,
         "note": "Dr Long was contacted earlier; no reply yet."
       },
-      "public": false,
-      "plan": "Checked 2026-10-17: no robots.txt (404 on nderf.org and www.nderf.org); disclaimer has only a suicide-NDE notice and a submitter copyright warranty for the site; privacy page silent on reuse. No machine-readable reservation and no terms against automated reading found. Derived statistics only, no excerpts, slow polite collection. Dr Long was contacted earlier; collection stops and derived data are removed if NDERF objects."
+      "public": true
     },
     {
-      "key": "IANDS",
-      "display_name": "IANDS registry",
-      "url": "https://iands.org/nde-accounts/",
+      "key": "SRC2",
+      "display_name": "Source 2",
+      "url": null,
       "kind": "written_accounts",
-      "kind_note": "Registry of written accounts, published anonymously",
+      "kind_note": null,
       "access_status": "restricted",
       "permission": {
         "state": "requested",
         "requested_on": "2026-10-17",
         "answered_on": null
       },
-      "public": false,
-      "plan": "Statistics only, no excerpts stored (IANDS says it cannot grant quotation rights)."
+      "public": false
     },
     {
-      "key": "JeffMara",
-      "display_name": "Jeff Mara (YouTube)",
-      "url": "https://www.youtube.com/channel/UC_c8KysI2G9rAbNyD1dVd6g",
+      "key": "SRC3",
+      "display_name": "Source 3",
+      "url": null,
       "kind": "video_audio",
-      "kind_note": "Video interviews",
+      "kind_note": null,
       "access_status": "restricted",
       "permission": {
         "state": "requested",
         "requested_on": "2026-10-17",
         "answered_on": null
       },
-      "public": false,
-      "plan": "No download or transcripts before the owner replies."
+      "public": false
     },
     {
-      "key": "AnthonyChene",
-      "display_name": "Anthony Chene Production (YouTube)",
-      "url": "https://www.youtube.com/@AnthonyCheneProduction",
+      "key": "SRC4",
+      "display_name": "Source 4",
+      "url": null,
       "kind": "video_audio",
-      "kind_note": "Video interviews",
+      "kind_note": null,
       "access_status": "restricted",
       "permission": {
         "state": "requested",
         "requested_on": "2026-10-17",
         "answered_on": null
       },
-      "public": false,
-      "plan": "No download or transcripts before the owner replies."
+      "public": false
     },
     {
-      "key": "ComingHome",
-      "display_name": "Coming Home (YouTube)",
-      "url": "https://www.youtube.com/@cominghomechannel",
+      "key": "SRC5",
+      "display_name": "Source 5",
+      "url": null,
       "kind": "video_audio",
-      "kind_note": "Video interviews",
+      "kind_note": null,
       "access_status": "restricted",
       "permission": {
         "state": "requested",
         "requested_on": "2026-10-17",
         "answered_on": null
       },
-      "public": false,
-      "plan": "No download or transcripts before the owner replies."
+      "public": false
     },
     {
-      "key": "ThanatosTV",
-      "display_name": "ThanatosTV EN (YouTube)",
-      "url": "https://www.youtube.com/@ThanatosTVEN",
+      "key": "SRC6",
+      "display_name": "Source 6",
+      "url": null,
       "kind": "video_audio",
-      "kind_note": "Video interviews",
+      "kind_note": null,
       "access_status": "restricted",
       "permission": {
         "state": "requested",
         "requested_on": "2026-10-17",
         "answered_on": null
       },
-      "public": false,
-      "plan": "No download or transcripts before the owner replies."
+      "public": false
     }
   ]
 }

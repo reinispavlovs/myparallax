@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T11:27:36Z",
+  "generated_at": "2026-10-17T11:47:23Z",
   "status": "measured",
   "summary": {
     "candidate_sources": 6,
@@ -10,9 +10,9 @@
   },
   "sources": [
     {
-      "name": "Source 1",
-      "url": null,
-      "public": false,
+      "name": "NDERF",
+      "url": "https://www.nderf.org/",
+      "public": true,
       "kind": "written_accounts",
       "access_status": "tdm_open",
       "permission": {
@@ -23,7 +23,8 @@
       },
       "included_in_numbers": true,
       "n_raw": 197,
-      "n_eff": 197
+      "n_eff": 197,
+      "kind_note": "Structured questionnaires (closed items plus free text)"
     },
     {
       "name": "Source 2",

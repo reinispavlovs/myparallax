@@ -19,7 +19,7 @@ Out of scope for v0.1: any weight in the calculator, any change to checklist per
 
 ## 2. Sources and access rules
 
-Pilot sources, in this order: 1. NDERF  2. IANDS  3. Jeff Mara podcast  4. ComingHome  5. Antony productions
+Pilot source: NDERF first. Other written and video or audio sources are added only after their access status is settled; they are not named publicly until they reply.
 
 **Method.** Project Parallax reads publicly accessible accounts and computes **derived statistics** from them (motif frequencies, n_raw, n_eff, checkable claims, verification outcomes). It does not republish source texts. The same logic as for the Study corpus: sources are named and linked, only short excerpts are shown, the analysis is ours.
 
