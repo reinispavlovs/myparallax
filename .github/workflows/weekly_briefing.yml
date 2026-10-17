@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   briefing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,7 +32,8 @@ jobs:
       - name: Generate English audio (Piper, open source, no API key)
         continue-on-error: true
         run: |
-          set -e
+          set -ex
+          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           pip install piper-tts
           V=https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium
           curl -fsSL --retry 3 -o voice.onnx "$V/en_US-lessac-medium.onnx"
