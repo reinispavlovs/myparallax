@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "version": "0.3",
   "status": "draft",
   "note": "Codes are the closed-ended NDERF questionnaire items, read by rule (no model judgement). Positive and negative answer prefixes are listed per item; 'uncertain' and unmatched answers are not counted as positive. Answers are self-reports given in response to prompts, not spontaneous recall.",
   "items": [
@@ -39,7 +39,8 @@
         "clearly left",
         "i lost awareness",
         "i didn't have",
-        "i didn’t have"
+        "i didn’t have",
+        "yes"
       ],
       "negative": [
         "no"
@@ -49,7 +50,7 @@
     },
     {
       "code": "enhanced_consciousness",
-      "stem": "at what time during the experience were you at your highest",
+      "stem": "how did your highest level of consciousness and alertness during the experience compare",
       "positive": [
         "more consciousness"
       ],
@@ -91,7 +92,9 @@
       "stem": "were your senses more vivid than usual",
       "positive": [
         "incredibly more vivid",
-        "more vivid"
+        "more vivid",
+        "incredibly more so",
+        "more so than"
       ],
       "negative": [
         "no"
@@ -129,7 +132,8 @@
       "positive": [
         "i actually saw",
         "i sensed",
-        "sensed their"
+        "sensed their",
+        "saw them"
       ],
       "negative": [
         "no"
@@ -139,7 +143,7 @@
     },
     {
       "code": "deceased_beings",
-      "stem": "did you encounter or become aware of any deceased beings",
+      "stem": "did you encounter or become aware of any deceased or alive beings",
       "positive": [
         "yes"
       ],
@@ -177,11 +181,12 @@
     },
     {
       "code": "other_world",
-      "stem": "did you seem to enter another world",
+      "stem": "did you seem to enter some other unearthly world",
       "positive": [
         "a clearly mystical",
         "clearly mystical",
-        "some unfamiliar"
+        "some unfamiliar",
+        "unfamiliar"
       ],
       "negative": [
         "no"
@@ -247,7 +252,9 @@
       "stem": "did scenes from your past come back",
       "positive": [
         "my past flashed",
-        "i remembered many"
+        "i remembered many",
+        "past flashed",
+        "remembered many"
       ],
       "negative": [
         "no"
@@ -272,7 +279,9 @@
       "stem": "did you come to a border or point of no return",
       "positive": [
         "i came to a definite",
-        "i came to a barrier"
+        "i came to a barrier",
+        "a barrier",
+        "a conscious decision"
       ],
       "negative": [
         "no"
@@ -282,11 +291,12 @@
     },
     {
       "code": "mystical_presence",
-      "stem": "did you seem to encounter a mystical being",
+      "stem": "did you seem to encounter a mystical being or presence or hear an unidentifiable voice",
       "positive": [
         "i encountered a definite",
         "definite being",
-        "i heard a voice"
+        "i heard a voice",
+        "unidentifiable voice"
       ],
       "negative": [
         "no"
@@ -370,10 +380,13 @@
       "code": "info_afterlife",
       "stem": "during your experience, did you gain information about an afterlife",
       "positive": [
+        "an afterlife definitely",
         "yes"
       ],
       "negative": [
-        "no"
+        "no",
+        "an afterlife probably",
+        "an afterlife does"
       ],
       "label_en": "Information: afterlife",
       "label_lv": "Zināšanas: pēcnāves dzīve"
@@ -419,11 +432,15 @@
       "stem": "how do you consider the content of your experience",
       "positive": [
         "entirely distressing",
-        "both pleasant and distressing"
+        "both pleasant and distressing",
+        "mixed",
+        "disturbing"
       ],
       "negative": [
         "entirely pleasant",
-        "neither pleasant"
+        "neither pleasant",
+        "wonderful",
+        "positive"
       ],
       "label_en": "Distressing content (fully or partly)",
       "label_lv": "Nomācošs saturs (pilnīgi vai daļēji)"

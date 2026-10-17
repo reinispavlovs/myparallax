@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T11:47:23Z",
+  "generated_at": "2026-10-17T13:18:14Z",
   "status": "measured",
   "summary": {
     "candidate_sources": 6,
@@ -22,8 +22,8 @@
         "note": "Dr Long was contacted earlier; no reply yet."
       },
       "included_in_numbers": true,
-      "n_raw": 197,
-      "n_eff": 197,
+      "n_raw": 431,
+      "n_eff": 431,
       "kind_note": "Structured questionnaires (closed items plus free text)"
     },
     {
@@ -103,27 +103,59 @@
     }
   ],
   "pooled": {
-    "n_raw": 197,
-    "n_eff": 197,
-    "n_headline": 96,
+    "n_raw": 431,
+    "n_eff": 431,
+    "n_headline": 297,
     "headline_group": "nde",
     "groups": {
-      "other": 101,
-      "nde": 96
+      "nde": 297,
+      "other": 134
     },
     "motifs": [
       {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 105,
+            "n": 112,
+            "percent": 93.8,
+            "ci95": [
+              87.7,
+              96.9
+            ]
+          },
+          "2008": {
+            "count": 51,
+            "n": 52,
+            "percent": 98.1,
+            "ci95": [
+              89.9,
+              99.7
+            ]
+          },
+          "2016": {
+            "count": 73,
+            "n": 77,
+            "percent": 94.8,
+            "ci95": [
+              87.4,
+              98.0
+            ]
+          }
+        },
+        "era_unstable": false,
         "code": "real_now",
         "label": {
           "en": "Now believes it was definitely real",
           "lv": "Tagad uzskata, ka tas noteikti bija reāls"
         },
-        "count": 89,
-        "n": 95,
+        "count": 229,
+        "n": 241,
         "uncertain": 0,
-        "percent": 93.7,
+        "percent": 95.0,
         "ci95": [
-          86.9,
+          91.5,
           97.1
         ],
         "coding": "rule",
@@ -132,37 +164,50 @@
         "reliability_checked": true
       },
       {
-        "code": "body_separation_any",
-        "label": {
-          "en": "Any sense of separation from the body",
-          "lv": "Jebkāda atdalīšanās sajūta no ķermeņa"
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 102,
+            "n": 112,
+            "percent": 91.1,
+            "ci95": [
+              84.3,
+              95.1
+            ]
+          },
+          "2008": {
+            "count": 51,
+            "n": 52,
+            "percent": 98.1,
+            "ci95": [
+              89.9,
+              99.7
+            ]
+          },
+          "2016": {
+            "count": 75,
+            "n": 78,
+            "percent": 96.2,
+            "ci95": [
+              89.3,
+              98.7
+            ]
+          }
         },
-        "count": 89,
-        "n": 96,
-        "uncertain": 0,
-        "percent": 92.7,
-        "ci95": [
-          85.7,
-          96.4
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
+        "era_unstable": false,
         "code": "peace",
         "label": {
           "en": "Peace or calm",
           "lv": "Miers vai nomierinājums"
         },
-        "count": 87,
-        "n": 96,
+        "count": 228,
+        "n": 242,
         "uncertain": 0,
-        "percent": 90.6,
+        "percent": 94.2,
         "ci95": [
-          83.1,
-          95.0
+          90.5,
+          96.5
         ],
         "coding": "rule",
         "kappa": null,
@@ -170,56 +215,50 @@
         "reliability_checked": true
       },
       {
-        "code": "memory_more_accurate",
-        "label": {
-          "en": "Remembers it more accurately than other events",
-          "lv": "Atceras precīzāk nekā citus notikumus"
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 84,
+            "n": 112,
+            "percent": 75.0,
+            "ci95": [
+              66.2,
+              82.1
+            ]
+          },
+          "2008": {
+            "count": 45,
+            "n": 52,
+            "percent": 86.5,
+            "ci95": [
+              74.7,
+              93.3
+            ]
+          },
+          "2016": {
+            "count": 64,
+            "n": 78,
+            "percent": 82.1,
+            "ci95": [
+              72.1,
+              89.0
+            ]
+          }
         },
-        "count": 77,
-        "n": 95,
-        "uncertain": 0,
-        "percent": 81.1,
-        "ci95": [
-          72.0,
-          87.7
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "enhanced_consciousness",
-        "label": {
-          "en": "More alert than normal",
-          "lv": "Skaidrāka apziņa nekā parasti"
-        },
-        "count": 74,
-        "n": 96,
-        "uncertain": 0,
-        "percent": 77.1,
-        "ci95": [
-          67.7,
-          84.4
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
+        "era_unstable": false,
         "code": "senses_vivid",
         "label": {
           "en": "Senses more vivid",
           "lv": "Skaidrākas maņas"
         },
-        "count": 73,
-        "n": 95,
+        "count": 193,
+        "n": 242,
         "uncertain": 0,
-        "percent": 76.8,
+        "percent": 79.8,
         "ci95": [
-          67.4,
-          84.2
+          74.2,
+          84.3
         ],
         "coding": "rule",
         "kappa": null,
@@ -227,113 +266,50 @@
         "reliability_checked": true
       },
       {
-        "code": "time_distorted",
-        "label": {
-          "en": "Altered sense of time",
-          "lv": "Izmainīta laika izjūta"
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 80,
+            "n": 111,
+            "percent": 72.1,
+            "ci95": [
+              63.1,
+              79.6
+            ]
+          },
+          "2008": {
+            "count": 40,
+            "n": 52,
+            "percent": 76.9,
+            "ci95": [
+              63.9,
+              86.3
+            ]
+          },
+          "2016": {
+            "count": 70,
+            "n": 78,
+            "percent": 89.7,
+            "ci95": [
+              81.0,
+              94.7
+            ]
+          }
         },
-        "count": 73,
-        "n": 95,
-        "uncertain": 0,
-        "percent": 76.8,
-        "ci95": [
-          67.4,
-          84.2
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "unity",
-        "label": {
-          "en": "Unity with the universe",
-          "lv": "Vienotība ar visumu"
-        },
-        "count": 73,
-        "n": 95,
-        "uncertain": 0,
-        "percent": 76.8,
-        "ci95": [
-          67.4,
-          84.2
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "life_threat",
-        "label": {
-          "en": "Associated life-threatening event",
-          "lv": "Saistīts dzīvībai bīstams notikums"
-        },
-        "count": 70,
-        "n": 95,
-        "uncertain": 13,
-        "percent": 73.7,
-        "ci95": [
-          64.0,
-          81.5
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "other_world",
-        "label": {
-          "en": "Entered another world",
-          "lv": "Nokļuva citā pasaulē"
-        },
-        "count": 70,
-        "n": 96,
-        "uncertain": 0,
-        "percent": 72.9,
-        "ci95": [
-          63.3,
-          80.8
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "values_changed",
-        "label": {
-          "en": "Values and beliefs changed",
-          "lv": "Mainījās vērtības un uzskati"
-        },
-        "count": 66,
-        "n": 96,
-        "uncertain": 9,
-        "percent": 68.8,
-        "ci95": [
-          58.9,
-          77.1
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
+        "era_unstable": true,
         "code": "joy",
         "label": {
           "en": "Joy",
           "lv": "Prieks"
         },
-        "count": 64,
-        "n": 95,
+        "count": 190,
+        "n": 241,
         "uncertain": 0,
-        "percent": 67.4,
+        "percent": 78.8,
         "ci95": [
-          57.4,
-          76.0
+          73.2,
+          83.5
         ],
         "coding": "rule",
         "kappa": null,
@@ -341,37 +317,50 @@
         "reliability_checked": true
       },
       {
-        "code": "info_afterlife",
-        "label": {
-          "en": "Information: afterlife",
-          "lv": "Zināšanas: pēcnāves dzīve"
+        "coverage": 0.56,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 89,
+            "n": 112,
+            "percent": 79.5,
+            "ci95": [
+              71.1,
+              85.9
+            ]
+          },
+          "2016": {
+            "count": 39,
+            "n": 52,
+            "percent": 75.0,
+            "ci95": [
+              61.8,
+              84.8
+            ]
+          },
+          "2008": {
+            "count": 1,
+            "n": 1,
+            "percent": 100.0,
+            "ci95": [
+              20.7,
+              100.0
+            ]
+          }
         },
-        "count": 62,
-        "n": 95,
-        "uncertain": 8,
-        "percent": 65.3,
-        "ci95": [
-          55.3,
-          74.1
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "obe_clear",
+        "era_unstable": false,
+        "code": "memory_more_accurate",
         "label": {
-          "en": "Clearly left the body",
-          "lv": "Skaidri atstāja ķermeni"
+          "en": "Remembers it more accurately than other events",
+          "lv": "Atceras precīzāk nekā citus notikumus"
         },
-        "count": 59,
-        "n": 96,
+        "count": 129,
+        "n": 165,
         "uncertain": 0,
-        "percent": 61.5,
+        "percent": 78.2,
         "ci95": [
-          51.5,
-          70.6
+          71.3,
+          83.8
         ],
         "coding": "rule",
         "kappa": null,
@@ -379,18 +368,254 @@
         "reliability_checked": true
       },
       {
+        "coverage": 0.97,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 69,
+            "n": 95,
+            "percent": 72.6,
+            "ci95": [
+              62.9,
+              80.6
+            ]
+          },
+          "2017": {
+            "count": 80,
+            "n": 111,
+            "percent": 72.1,
+            "ci95": [
+              63.1,
+              79.6
+            ]
+          },
+          "2016": {
+            "count": 65,
+            "n": 82,
+            "percent": 79.3,
+            "ci95": [
+              69.3,
+              86.6
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "life_threat",
+        "label": {
+          "en": "Associated life-threatening event",
+          "lv": "Saistīts dzīvībai bīstams notikums"
+        },
+        "count": 214,
+        "n": 288,
+        "uncertain": 42,
+        "percent": 74.3,
+        "ci95": [
+          69.0,
+          79.0
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.97,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 65,
+            "n": 92,
+            "percent": 70.7,
+            "ci95": [
+              60.7,
+              79.0
+            ]
+          },
+          "2017": {
+            "count": 78,
+            "n": 113,
+            "percent": 69.0,
+            "ci95": [
+              60.0,
+              76.8
+            ]
+          },
+          "2016": {
+            "count": 69,
+            "n": 82,
+            "percent": 84.1,
+            "ci95": [
+              74.7,
+              90.5
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "time_distorted",
+        "label": {
+          "en": "Altered sense of time",
+          "lv": "Izmainīta laika izjūta"
+        },
+        "count": 212,
+        "n": 287,
+        "uncertain": 0,
+        "percent": 73.9,
+        "ci95": [
+          68.5,
+          78.6
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 85,
+            "n": 111,
+            "percent": 76.6,
+            "ci95": [
+              67.9,
+              83.5
+            ]
+          },
+          "2008": {
+            "count": 30,
+            "n": 52,
+            "percent": 57.7,
+            "ci95": [
+              44.2,
+              70.1
+            ]
+          },
+          "2016": {
+            "count": 63,
+            "n": 78,
+            "percent": 80.8,
+            "ci95": [
+              70.7,
+              88.0
+            ]
+          }
+        },
+        "era_unstable": true,
+        "code": "unity",
+        "label": {
+          "en": "Unity with the universe",
+          "lv": "Vienotība ar visumu"
+        },
+        "count": 178,
+        "n": 241,
+        "uncertain": 0,
+        "percent": 73.9,
+        "ci95": [
+          68.0,
+          79.0
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.78,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 69,
+            "n": 102,
+            "percent": 67.6,
+            "ci95": [
+              58.1,
+              75.9
+            ]
+          },
+          "2008": {
+            "count": 42,
+            "n": 52,
+            "percent": 80.8,
+            "ci95": [
+              68.1,
+              89.2
+            ]
+          },
+          "2016": {
+            "count": 54,
+            "n": 78,
+            "percent": 69.2,
+            "ci95": [
+              58.3,
+              78.4
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "enhanced_consciousness",
+        "label": {
+          "en": "More alert than normal",
+          "lv": "Skaidrāka apziņa nekā parasti"
+        },
+        "count": 165,
+        "n": 232,
+        "uncertain": 0,
+        "percent": 71.1,
+        "ci95": [
+          65.0,
+          76.6
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 69,
+            "n": 112,
+            "percent": 61.6,
+            "ci95": [
+              52.4,
+              70.1
+            ]
+          },
+          "2008": {
+            "count": 38,
+            "n": 52,
+            "percent": 73.1,
+            "ci95": [
+              59.7,
+              83.2
+            ]
+          },
+          "2016": {
+            "count": 65,
+            "n": 78,
+            "percent": 83.3,
+            "ci95": [
+              73.5,
+              90.0
+            ]
+          }
+        },
+        "era_unstable": true,
         "code": "light_brilliant",
         "label": {
           "en": "Brilliant light",
           "lv": "Spilgta gaisma"
         },
-        "count": 58,
-        "n": 96,
+        "count": 172,
+        "n": 242,
         "uncertain": 0,
-        "percent": 60.4,
+        "percent": 71.1,
         "ci95": [
-          50.4,
-          69.6
+          65.1,
+          76.4
         ],
         "coding": "rule",
         "kappa": null,
@@ -398,208 +623,50 @@
         "reliability_checked": true
       },
       {
-        "code": "hard_to_express",
-        "label": {
-          "en": "Hard to put into words",
-          "lv": "Grūti izteikt vārdos"
+        "coverage": 0.97,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 76,
+            "n": 92,
+            "percent": 82.6,
+            "ci95": [
+              73.6,
+              89.0
+            ]
+          },
+          "2017": {
+            "count": 64,
+            "n": 113,
+            "percent": 56.6,
+            "ci95": [
+              47.4,
+              65.4
+            ]
+          },
+          "2016": {
+            "count": 55,
+            "n": 82,
+            "percent": 67.1,
+            "ci95": [
+              56.3,
+              76.3
+            ]
+          }
         },
-        "count": 53,
-        "n": 96,
-        "uncertain": 12,
-        "percent": 55.2,
-        "ci95": [
-          45.3,
-          64.8
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "light_unearthly",
-        "label": {
-          "en": "Unearthly light",
-          "lv": "Neparasta, ne-zemes gaisma"
-        },
-        "count": 53,
-        "n": 96,
-        "uncertain": 11,
-        "percent": 55.2,
-        "ci95": [
-          45.3,
-          64.8
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "mystical_presence",
-        "label": {
-          "en": "Mystical presence or voice",
-          "lv": "Mistiska būtne vai balss"
-        },
-        "count": 52,
-        "n": 96,
-        "uncertain": 0,
-        "percent": 54.2,
-        "ci95": [
-          44.2,
-          63.8
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "border_return",
-        "label": {
-          "en": "Border or point of no return",
-          "lv": "Robeža, no kuras nav atpakaļceļa"
-        },
-        "count": 51,
-        "n": 96,
-        "uncertain": 0,
-        "percent": 53.1,
-        "ci95": [
-          43.2,
-          62.8
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "religious_practice_changed",
-        "label": {
-          "en": "Religious practice changed",
-          "lv": "Mainījās reliģiskā prakse"
-        },
-        "count": 46,
-        "n": 94,
-        "uncertain": 15,
-        "percent": 48.9,
-        "ci95": [
-          39.1,
-          58.9
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "info_oneness",
-        "label": {
-          "en": "Information: oneness",
-          "lv": "Zināšanas: vienotība"
-        },
-        "count": 46,
-        "n": 95,
-        "uncertain": 7,
-        "percent": 48.4,
-        "ci95": [
-          38.6,
-          58.3
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "life_changes_large",
-        "label": {
-          "en": "Large life changes afterwards",
-          "lv": "Lielas dzīves izmaiņas pēc tam"
-        },
-        "count": 46,
-        "n": 95,
-        "uncertain": 0,
-        "percent": 48.4,
-        "ci95": [
-          38.6,
-          58.3
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "thoughts_faster",
-        "label": {
-          "en": "Thoughts sped up",
-          "lv": "Domas paātrinājās"
-        },
-        "count": 46,
-        "n": 95,
-        "uncertain": 0,
-        "percent": 48.4,
-        "ci95": [
-          38.6,
-          58.3
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "relationships_changed",
-        "label": {
-          "en": "Relationships changed",
-          "lv": "Mainījās attiecības"
-        },
-        "count": 45,
-        "n": 94,
-        "uncertain": 10,
-        "percent": 47.9,
-        "ci95": [
-          38.1,
-          57.9
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "info_love",
-        "label": {
-          "en": "Information: love",
-          "lv": "Zināšanas: mīlestība"
-        },
-        "count": 45,
-        "n": 95,
-        "uncertain": 5,
-        "percent": 47.4,
-        "ci95": [
-          37.6,
-          57.3
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
+        "era_unstable": true,
         "code": "understood_all",
         "label": {
           "en": "Sudden understanding",
           "lv": "Pēkšņa visa izpratne"
         },
-        "count": 45,
-        "n": 95,
+        "count": 195,
+        "n": 287,
         "uncertain": 0,
-        "percent": 47.4,
+        "percent": 67.9,
         "ci95": [
-          37.6,
-          57.3
+          62.3,
+          73.1
         ],
         "coding": "rule",
         "kappa": null,
@@ -607,18 +674,50 @@
         "reliability_checked": true
       },
       {
-        "code": "info_god",
-        "label": {
-          "en": "Information: existence of God",
-          "lv": "Zināšanas: Dieva esamība"
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 68,
+            "n": 112,
+            "percent": 60.7,
+            "ci95": [
+              51.5,
+              69.3
+            ]
+          },
+          "2008": {
+            "count": 33,
+            "n": 52,
+            "percent": 63.5,
+            "ci95": [
+              49.9,
+              75.2
+            ]
+          },
+          "2016": {
+            "count": 58,
+            "n": 78,
+            "percent": 74.4,
+            "ci95": [
+              63.7,
+              82.7
+            ]
+          }
         },
-        "count": 36,
-        "n": 95,
-        "uncertain": 9,
-        "percent": 37.9,
+        "era_unstable": false,
+        "code": "mystical_presence",
+        "label": {
+          "en": "Mystical presence or voice",
+          "lv": "Mistiska būtne vai balss"
+        },
+        "count": 159,
+        "n": 242,
+        "uncertain": 0,
+        "percent": 65.7,
         "ci95": [
-          28.8,
-          47.9
+          59.5,
+          71.4
         ],
         "coding": "rule",
         "kappa": null,
@@ -626,18 +725,458 @@
         "reliability_checked": true
       },
       {
+        "coverage": 0.98,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 58,
+            "n": 97,
+            "percent": 59.8,
+            "ci95": [
+              49.8,
+              69.0
+            ]
+          },
+          "2017": {
+            "count": 74,
+            "n": 111,
+            "percent": 66.7,
+            "ci95": [
+              57.5,
+              74.7
+            ]
+          },
+          "2016": {
+            "count": 53,
+            "n": 83,
+            "percent": 63.9,
+            "ci95": [
+              53.1,
+              73.4
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "light_unearthly",
+        "label": {
+          "en": "Unearthly light",
+          "lv": "Neparasta, ne-zemes gaisma"
+        },
+        "count": 185,
+        "n": 291,
+        "uncertain": 23,
+        "percent": 63.6,
+        "ci95": [
+          57.9,
+          68.9
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.96,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 70,
+            "n": 93,
+            "percent": 75.3,
+            "ci95": [
+              65.6,
+              82.9
+            ]
+          },
+          "2017": {
+            "count": 57,
+            "n": 111,
+            "percent": 51.4,
+            "ci95": [
+              42.2,
+              60.4
+            ]
+          },
+          "2016": {
+            "count": 53,
+            "n": 81,
+            "percent": 65.4,
+            "ci95": [
+              54.6,
+              74.9
+            ]
+          }
+        },
+        "era_unstable": true,
+        "code": "border_return",
+        "label": {
+          "en": "Border or point of no return",
+          "lv": "Robeža, no kuras nav atpakaļceļa"
+        },
+        "count": 180,
+        "n": 285,
+        "uncertain": 0,
+        "percent": 63.2,
+        "ci95": [
+          57.4,
+          68.5
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.99,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 74,
+            "n": 99,
+            "percent": 74.7,
+            "ci95": [
+              65.4,
+              82.3
+            ]
+          },
+          "2017": {
+            "count": 67,
+            "n": 113,
+            "percent": 59.3,
+            "ci95": [
+              50.1,
+              67.9
+            ]
+          },
+          "2016": {
+            "count": 45,
+            "n": 83,
+            "percent": 54.2,
+            "ci95": [
+              43.5,
+              64.5
+            ]
+          }
+        },
+        "era_unstable": true,
+        "code": "body_separation_any",
+        "label": {
+          "en": "Any sense of separation from the body",
+          "lv": "Jebkāda atdalīšanās sajūta no ķermeņa"
+        },
+        "count": 186,
+        "n": 295,
+        "uncertain": 23,
+        "percent": 63.1,
+        "ci95": [
+          57.4,
+          68.4
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.95,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 55,
+            "n": 94,
+            "percent": 58.5,
+            "ci95": [
+              48.4,
+              67.9
+            ]
+          },
+          "2017": {
+            "count": 72,
+            "n": 105,
+            "percent": 68.6,
+            "ci95": [
+              59.2,
+              76.7
+            ]
+          },
+          "2016": {
+            "count": 46,
+            "n": 82,
+            "percent": 56.1,
+            "ci95": [
+              45.3,
+              66.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "other_world",
+        "label": {
+          "en": "Entered another world",
+          "lv": "Nokļuva citā pasaulē"
+        },
+        "count": 173,
+        "n": 281,
+        "uncertain": 0,
+        "percent": 61.6,
+        "ci95": [
+          55.8,
+          67.1
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.51,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 64,
+            "n": 109,
+            "percent": 58.7,
+            "ci95": [
+              49.3,
+              67.5
+            ]
+          },
+          "2016": {
+            "count": 27,
+            "n": 42,
+            "percent": 64.3,
+            "ci95": [
+              49.2,
+              77.0
+            ]
+          },
+          "2008": {
+            "count": 1,
+            "n": 1,
+            "percent": 100.0,
+            "ci95": [
+              20.7,
+              100.0
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "life_changes_large",
+        "label": {
+          "en": "Large life changes afterwards",
+          "lv": "Lielas dzīves izmaiņas pēc tam"
+        },
+        "count": 92,
+        "n": 152,
+        "uncertain": 0,
+        "percent": 60.5,
+        "ci95": [
+          52.6,
+          67.9
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.77,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 59,
+            "n": 100,
+            "percent": 59.0,
+            "ci95": [
+              49.2,
+              68.1
+            ]
+          },
+          "2008": {
+            "count": 34,
+            "n": 52,
+            "percent": 65.4,
+            "ci95": [
+              51.8,
+              76.8
+            ]
+          },
+          "2016": {
+            "count": 45,
+            "n": 77,
+            "percent": 58.4,
+            "ci95": [
+              47.3,
+              68.8
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "relationships_changed",
+        "label": {
+          "en": "Relationships changed",
+          "lv": "Mainījās attiecības"
+        },
+        "count": 138,
+        "n": 229,
+        "uncertain": 12,
+        "percent": 60.3,
+        "ci95": [
+          53.8,
+          66.4
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.99,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 55,
+            "n": 99,
+            "percent": 55.6,
+            "ci95": [
+              45.7,
+              65.0
+            ]
+          },
+          "2017": {
+            "count": 71,
+            "n": 113,
+            "percent": 62.8,
+            "ci95": [
+              53.6,
+              71.2
+            ]
+          },
+          "2016": {
+            "count": 47,
+            "n": 82,
+            "percent": 57.3,
+            "ci95": [
+              46.5,
+              67.5
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "values_changed",
+        "label": {
+          "en": "Values and beliefs changed",
+          "lv": "Mainījās vērtības un uzskati"
+        },
+        "count": 173,
+        "n": 294,
+        "uncertain": 29,
+        "percent": 58.8,
+        "ci95": [
+          53.1,
+          64.3
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 51,
+            "n": 112,
+            "percent": 45.5,
+            "ci95": [
+              36.6,
+              54.8
+            ]
+          },
+          "2008": {
+            "count": 34,
+            "n": 52,
+            "percent": 65.4,
+            "ci95": [
+              51.8,
+              76.8
+            ]
+          },
+          "2016": {
+            "count": 55,
+            "n": 78,
+            "percent": 70.5,
+            "ci95": [
+              59.6,
+              79.5
+            ]
+          }
+        },
+        "era_unstable": true,
+        "code": "thoughts_faster",
+        "label": {
+          "en": "Thoughts sped up",
+          "lv": "Domas paātrinājās"
+        },
+        "count": 140,
+        "n": 242,
+        "uncertain": 0,
+        "percent": 57.9,
+        "ci95": [
+          51.6,
+          63.9
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 53,
+            "n": 112,
+            "percent": 47.3,
+            "ci95": [
+              38.3,
+              56.5
+            ]
+          },
+          "2008": {
+            "count": 32,
+            "n": 52,
+            "percent": 61.5,
+            "ci95": [
+              48.0,
+              73.5
+            ]
+          },
+          "2016": {
+            "count": 41,
+            "n": 78,
+            "percent": 52.6,
+            "ci95": [
+              41.6,
+              63.3
+            ]
+          }
+        },
+        "era_unstable": false,
         "code": "beings_any",
         "label": {
           "en": "Saw or sensed beings",
           "lv": "Redzēja vai sajuta būtnes"
         },
-        "count": 36,
-        "n": 96,
+        "count": 126,
+        "n": 242,
         "uncertain": 0,
-        "percent": 37.5,
+        "percent": 52.1,
         "ci95": [
-          28.5,
-          47.5
+          45.8,
+          58.3
         ],
         "coding": "rule",
         "kappa": null,
@@ -645,18 +1184,254 @@
         "reliability_checked": true
       },
       {
+        "coverage": 0.55,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 60,
+            "n": 110,
+            "percent": 54.5,
+            "ci95": [
+              45.2,
+              63.5
+            ]
+          },
+          "2016": {
+            "count": 23,
+            "n": 52,
+            "percent": 44.2,
+            "ci95": [
+              31.6,
+              57.7
+            ]
+          },
+          "2008": {
+            "count": 1,
+            "n": 1,
+            "percent": 100.0,
+            "ci95": [
+              20.7,
+              100.0
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "info_oneness",
+        "label": {
+          "en": "Information: oneness",
+          "lv": "Zināšanas: vienotība"
+        },
+        "count": 84,
+        "n": 163,
+        "uncertain": 15,
+        "percent": 51.5,
+        "ci95": [
+          43.9,
+          59.1
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.56,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 53,
+            "n": 112,
+            "percent": 47.3,
+            "ci95": [
+              38.3,
+              56.5
+            ]
+          },
+          "2016": {
+            "count": 31,
+            "n": 52,
+            "percent": 59.6,
+            "ci95": [
+              46.1,
+              71.8
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 1,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              79.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "info_love",
+        "label": {
+          "en": "Information: love",
+          "lv": "Zināšanas: mīlestība"
+        },
+        "count": 84,
+        "n": 165,
+        "uncertain": 6,
+        "percent": 50.9,
+        "ci95": [
+          43.3,
+          58.4
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.98,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 40,
+            "n": 96,
+            "percent": 41.7,
+            "ci95": [
+              32.3,
+              51.7
+            ]
+          },
+          "2017": {
+            "count": 61,
+            "n": 113,
+            "percent": 54.0,
+            "ci95": [
+              44.8,
+              62.9
+            ]
+          },
+          "2016": {
+            "count": 46,
+            "n": 83,
+            "percent": 55.4,
+            "ci95": [
+              44.7,
+              65.6
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "hard_to_express",
+        "label": {
+          "en": "Hard to put into words",
+          "lv": "Grūti izteikt vārdos"
+        },
+        "count": 147,
+        "n": 292,
+        "uncertain": 21,
+        "percent": 50.3,
+        "ci95": [
+          44.6,
+          56.0
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.56,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 56,
+            "n": 112,
+            "percent": 50.0,
+            "ci95": [
+              40.9,
+              59.1
+            ]
+          },
+          "2016": {
+            "count": 27,
+            "n": 52,
+            "percent": 51.9,
+            "ci95": [
+              38.7,
+              64.9
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 1,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              79.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "info_god",
+        "label": {
+          "en": "Information: existence of God",
+          "lv": "Zināšanas: Dieva esamība"
+        },
+        "count": 83,
+        "n": 165,
+        "uncertain": 17,
+        "percent": 50.3,
+        "ci95": [
+          42.8,
+          57.8
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 53,
+            "n": 111,
+            "percent": 47.7,
+            "ci95": [
+              38.7,
+              57.0
+            ]
+          },
+          "2008": {
+            "count": 33,
+            "n": 52,
+            "percent": 63.5,
+            "ci95": [
+              49.9,
+              75.2
+            ]
+          },
+          "2016": {
+            "count": 33,
+            "n": 78,
+            "percent": 42.3,
+            "ci95": [
+              32.0,
+              53.4
+            ]
+          }
+        },
+        "era_unstable": false,
         "code": "info_purpose",
         "label": {
           "en": "Information: personal purpose",
           "lv": "Zināšanas: personīgais mērķis"
         },
-        "count": 33,
-        "n": 95,
-        "uncertain": 10,
-        "percent": 34.7,
+        "count": 119,
+        "n": 241,
+        "uncertain": 17,
+        "percent": 49.4,
         "ci95": [
-          25.9,
-          44.7
+          43.1,
+          55.6
         ],
         "coding": "rule",
         "kappa": null,
@@ -664,18 +1439,50 @@
         "reliability_checked": true
       },
       {
-        "code": "deceased_beings",
-        "label": {
-          "en": "Deceased beings",
-          "lv": "Mirušas būtnes"
+        "coverage": 0.77,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 51,
+            "n": 102,
+            "percent": 50.0,
+            "ci95": [
+              40.5,
+              59.5
+            ]
+          },
+          "2008": {
+            "count": 22,
+            "n": 51,
+            "percent": 43.1,
+            "ci95": [
+              30.5,
+              56.7
+            ]
+          },
+          "2016": {
+            "count": 35,
+            "n": 77,
+            "percent": 45.5,
+            "ci95": [
+              34.8,
+              56.5
+            ]
+          }
         },
-        "count": 33,
-        "n": 96,
-        "uncertain": 5,
-        "percent": 34.4,
+        "era_unstable": false,
+        "code": "religious_practice_changed",
+        "label": {
+          "en": "Religious practice changed",
+          "lv": "Mainījās reliģiskā prakse"
+        },
+        "count": 108,
+        "n": 230,
+        "uncertain": 22,
+        "percent": 47.0,
         "ci95": [
-          25.6,
-          44.3
+          40.6,
+          53.4
         ],
         "coding": "rule",
         "kappa": null,
@@ -683,18 +1490,50 @@
         "reliability_checked": true
       },
       {
+        "coverage": 0.99,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 50,
+            "n": 98,
+            "percent": 51.0,
+            "ci95": [
+              41.3,
+              60.7
+            ]
+          },
+          "2017": {
+            "count": 49,
+            "n": 113,
+            "percent": 43.4,
+            "ci95": [
+              34.6,
+              52.6
+            ]
+          },
+          "2016": {
+            "count": 32,
+            "n": 82,
+            "percent": 39.0,
+            "ci95": [
+              29.2,
+              49.8
+            ]
+          }
+        },
+        "era_unstable": false,
         "code": "psychic_gifts",
         "label": {
           "en": "Reports new psychic or special gifts",
           "lv": "Ziņo par jaunām īpašām spējām"
         },
-        "count": 32,
-        "n": 96,
-        "uncertain": 25,
-        "percent": 33.3,
+        "count": 131,
+        "n": 293,
+        "uncertain": 40,
+        "percent": 44.7,
         "ci95": [
-          24.7,
-          43.2
+          39.1,
+          50.4
         ],
         "coding": "rule",
         "kappa": null,
@@ -702,113 +1541,50 @@
         "reliability_checked": true
       },
       {
-        "code": "info_premortal",
-        "label": {
-          "en": "Information: before birth",
-          "lv": "Zināšanas: pirms dzimšanas"
+        "coverage": 0.97,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 63,
+            "n": 95,
+            "percent": 66.3,
+            "ci95": [
+              56.3,
+              75.0
+            ]
+          },
+          "2017": {
+            "count": 29,
+            "n": 112,
+            "percent": 25.9,
+            "ci95": [
+              18.7,
+              34.7
+            ]
+          },
+          "2016": {
+            "count": 36,
+            "n": 80,
+            "percent": 45.0,
+            "ci95": [
+              34.6,
+              55.9
+            ]
+          }
         },
-        "count": 29,
-        "n": 95,
-        "uncertain": 9,
-        "percent": 30.5,
-        "ci95": [
-          22.2,
-          40.4
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "info_meaning",
-        "label": {
-          "en": "Information: meaning of life",
-          "lv": "Zināšanas: dzīves jēga"
-        },
-        "count": 28,
-        "n": 95,
-        "uncertain": 11,
-        "percent": 29.5,
-        "ci95": [
-          21.2,
-          39.3
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "boundary_structure",
-        "label": {
-          "en": "Reached a boundary",
-          "lv": "Sasniedza robežu"
-        },
-        "count": 26,
-        "n": 95,
-        "uncertain": 17,
-        "percent": 27.4,
-        "ci95": [
-          19.4,
-          37.1
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "prior_nde_knowledge",
-        "label": {
-          "en": "Knew about NDEs beforehand",
-          "lv": "Pirms tam zināja par NDE"
-        },
-        "count": 26,
-        "n": 95,
-        "uncertain": 12,
-        "percent": 27.4,
-        "ci95": [
-          19.4,
-          37.1
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
-        "code": "distressing_any",
-        "label": {
-          "en": "Distressing content (fully or partly)",
-          "lv": "Nomācošs saturs (pilnīgi vai daļēji)"
-        },
-        "count": 26,
-        "n": 96,
-        "uncertain": 0,
-        "percent": 27.1,
-        "ci95": [
-          19.2,
-          36.7
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
+        "era_unstable": true,
         "code": "life_review",
         "label": {
           "en": "Life review",
           "lv": "Dzīves pārskats"
         },
-        "count": 23,
-        "n": 96,
+        "count": 128,
+        "n": 287,
         "uncertain": 0,
-        "percent": 24.0,
+        "percent": 44.6,
         "ci95": [
-          16.5,
-          33.4
+          39.0,
+          50.4
         ],
         "coding": "rule",
         "kappa": null,
@@ -816,18 +1592,50 @@
         "reliability_checked": true
       },
       {
-        "code": "tunnel",
-        "label": {
-          "en": "Tunnel",
-          "lv": "Tunelis"
+        "coverage": 0.95,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 56,
+            "n": 98,
+            "percent": 57.1,
+            "ci95": [
+              47.3,
+              66.5
+            ]
+          },
+          "2017": {
+            "count": 40,
+            "n": 102,
+            "percent": 39.2,
+            "ci95": [
+              30.3,
+              48.9
+            ]
+          },
+          "2016": {
+            "count": 28,
+            "n": 81,
+            "percent": 34.6,
+            "ci95": [
+              25.1,
+              45.4
+            ]
+          }
         },
-        "count": 21,
-        "n": 95,
-        "uncertain": 14,
-        "percent": 22.1,
+        "era_unstable": true,
+        "code": "deceased_beings",
+        "label": {
+          "en": "Deceased beings",
+          "lv": "Mirušas būtnes"
+        },
+        "count": 124,
+        "n": 281,
+        "uncertain": 21,
+        "percent": 44.1,
         "ci95": [
-          14.9,
-          31.4
+          38.4,
+          50.0
         ],
         "coding": "rule",
         "kappa": null,
@@ -835,18 +1643,50 @@
         "reliability_checked": true
       },
       {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 31,
+            "n": 112,
+            "percent": 27.7,
+            "ci95": [
+              20.2,
+              36.6
+            ]
+          },
+          "2008": {
+            "count": 29,
+            "n": 52,
+            "percent": 55.8,
+            "ci95": [
+              42.3,
+              68.4
+            ]
+          },
+          "2016": {
+            "count": 35,
+            "n": 78,
+            "percent": 44.9,
+            "ci95": [
+              34.3,
+              55.9
+            ]
+          }
+        },
+        "era_unstable": true,
         "code": "aware_elsewhere",
         "label": {
           "en": "Aware of events elsewhere (self-reported)",
           "lv": "Apzinājās notikumus citur (paša ziņots)"
         },
-        "count": 20,
-        "n": 95,
+        "count": 95,
+        "n": 242,
         "uncertain": 0,
-        "percent": 21.1,
+        "percent": 39.3,
         "ci95": [
-          14.1,
-          30.3
+          33.3,
+          45.5
         ],
         "coding": "rule",
         "kappa": null,
@@ -854,18 +1694,254 @@
         "reliability_checked": true
       },
       {
+        "coverage": 0.55,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 40,
+            "n": 111,
+            "percent": 36.0,
+            "ci95": [
+              27.7,
+              45.3
+            ]
+          },
+          "2016": {
+            "count": 24,
+            "n": 52,
+            "percent": 46.2,
+            "ci95": [
+              33.3,
+              59.5
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 1,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              79.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "info_meaning",
+        "label": {
+          "en": "Information: meaning of life",
+          "lv": "Zināšanas: dzīves jēga"
+        },
+        "count": 64,
+        "n": 164,
+        "uncertain": 16,
+        "percent": 39.0,
+        "ci95": [
+          31.9,
+          46.7
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.97,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 31,
+            "n": 94,
+            "percent": 33.0,
+            "ci95": [
+              24.3,
+              43.0
+            ]
+          },
+          "2017": {
+            "count": 34,
+            "n": 113,
+            "percent": 30.1,
+            "ci95": [
+              22.4,
+              39.1
+            ]
+          },
+          "2016": {
+            "count": 27,
+            "n": 82,
+            "percent": 32.9,
+            "ci95": [
+              23.7,
+              43.7
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "tunnel",
+        "label": {
+          "en": "Tunnel",
+          "lv": "Tunelis"
+        },
+        "count": 92,
+        "n": 289,
+        "uncertain": 40,
+        "percent": 31.8,
+        "ci95": [
+          26.7,
+          37.4
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.99,
+        "reportable": true,
+        "by_era": {
+          "2008": {
+            "count": 44,
+            "n": 98,
+            "percent": 44.9,
+            "ci95": [
+              35.4,
+              54.8
+            ]
+          },
+          "2017": {
+            "count": 27,
+            "n": 113,
+            "percent": 23.9,
+            "ci95": [
+              17.0,
+              32.5
+            ]
+          },
+          "2016": {
+            "count": 21,
+            "n": 82,
+            "percent": 25.6,
+            "ci95": [
+              17.4,
+              36.0
+            ]
+          }
+        },
+        "era_unstable": true,
+        "code": "distressing_any",
+        "label": {
+          "en": "Distressing content (fully or partly)",
+          "lv": "Nomācošs saturs (pilnīgi vai daļēji)"
+        },
+        "count": 92,
+        "n": 293,
+        "uncertain": 0,
+        "percent": 31.4,
+        "ci95": [
+          26.4,
+          36.9
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.55,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 32,
+            "n": 110,
+            "percent": 29.1,
+            "ci95": [
+              21.4,
+              38.2
+            ]
+          },
+          "2016": {
+            "count": 15,
+            "n": 52,
+            "percent": 28.8,
+            "ci95": [
+              18.3,
+              42.3
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 1,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              79.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "info_premortal",
+        "label": {
+          "en": "Information: before birth",
+          "lv": "Zināšanas: pirms dzimšanas"
+        },
+        "count": 47,
+        "n": 163,
+        "uncertain": 9,
+        "percent": 28.8,
+        "ci95": [
+          22.4,
+          36.2
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.56,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 27,
+            "n": 112,
+            "percent": 24.1,
+            "ci95": [
+              17.1,
+              32.8
+            ]
+          },
+          "2016": {
+            "count": 18,
+            "n": 52,
+            "percent": 34.6,
+            "ci95": [
+              23.2,
+              48.2
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 1,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              79.3
+            ]
+          }
+        },
+        "era_unstable": false,
         "code": "info_difficulties",
         "label": {
           "en": "Information: life's difficulties",
           "lv": "Zināšanas: dzīves grūtības"
         },
-        "count": 18,
-        "n": 95,
-        "uncertain": 2,
-        "percent": 18.9,
+        "count": 45,
+        "n": 165,
+        "uncertain": 7,
+        "percent": 27.3,
         "ci95": [
-          12.3,
-          28.0
+          21.1,
+          34.5
         ],
         "coding": "rule",
         "kappa": null,
@@ -873,37 +1949,287 @@
         "reliability_checked": true
       },
       {
-        "code": "religious_figure",
-        "label": {
-          "en": "Religious figure",
-          "lv": "Reliģiska figūra"
+        "coverage": 0.55,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 24,
+            "n": 111,
+            "percent": 21.6,
+            "ci95": [
+              15.0,
+              30.2
+            ]
+          },
+          "2016": {
+            "count": 19,
+            "n": 52,
+            "percent": 36.5,
+            "ci95": [
+              24.8,
+              50.1
+            ]
+          },
+          "2008": {
+            "count": 1,
+            "n": 1,
+            "percent": 100.0,
+            "ci95": [
+              20.7,
+              100.0
+            ]
+          }
         },
-        "count": 11,
-        "n": 96,
-        "uncertain": 6,
-        "percent": 11.5,
-        "ci95": [
-          6.5,
-          19.4
-        ],
-        "coding": "rule",
-        "kappa": null,
-        "low_reliability": false,
-        "reliability_checked": true
-      },
-      {
+        "era_unstable": false,
         "code": "info_how_to_live",
         "label": {
           "en": "Information: how to live",
           "lv": "Zināšanas: kā dzīvot"
         },
-        "count": 8,
-        "n": 95,
-        "uncertain": 7,
-        "percent": 8.4,
+        "count": 44,
+        "n": 164,
+        "uncertain": 8,
+        "percent": 26.8,
         "ci95": [
-          4.3,
-          15.7
+          20.6,
+          34.1
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.81,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 30,
+            "n": 112,
+            "percent": 26.8,
+            "ci95": [
+              19.5,
+              35.7
+            ]
+          },
+          "2008": {
+            "count": 13,
+            "n": 52,
+            "percent": 25.0,
+            "ci95": [
+              15.2,
+              38.2
+            ]
+          },
+          "2016": {
+            "count": 20,
+            "n": 78,
+            "percent": 25.6,
+            "ci95": [
+              17.3,
+              36.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "prior_nde_knowledge",
+        "label": {
+          "en": "Knew about NDEs beforehand",
+          "lv": "Pirms tam zināja par NDE"
+        },
+        "count": 63,
+        "n": 242,
+        "uncertain": 20,
+        "percent": 26.0,
+        "ci95": [
+          20.9,
+          31.9
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.52,
+        "reportable": true,
+        "by_era": {
+          "2017": {
+            "count": 9,
+            "n": 102,
+            "percent": 8.8,
+            "ci95": [
+              4.7,
+              15.9
+            ]
+          },
+          "2016": {
+            "count": 9,
+            "n": 52,
+            "percent": 17.3,
+            "ci95": [
+              9.4,
+              29.7
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 1,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              79.3
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "religious_figure",
+        "label": {
+          "en": "Religious figure",
+          "lv": "Reliģiska figūra"
+        },
+        "count": 18,
+        "n": 155,
+        "uncertain": 15,
+        "percent": 11.6,
+        "ci95": [
+          7.5,
+          17.6
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.31,
+        "reportable": false,
+        "by_era": {
+          "2017": {
+            "count": 72,
+            "n": 93,
+            "percent": 77.4,
+            "ci95": [
+              67.9,
+              84.7
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "info_afterlife",
+        "label": {
+          "en": "Information: afterlife",
+          "lv": "Zināšanas: pēcnāves dzīve"
+        },
+        "count": 72,
+        "n": 93,
+        "uncertain": 6,
+        "percent": 77.4,
+        "ci95": [
+          67.9,
+          84.7
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.11,
+        "reportable": false,
+        "by_era": {
+          "2017": {
+            "count": 8,
+            "n": 15,
+            "percent": 53.3,
+            "ci95": [
+              30.1,
+              75.2
+            ]
+          },
+          "2008": {
+            "count": 8,
+            "n": 10,
+            "percent": 80.0,
+            "ci95": [
+              49.0,
+              94.3
+            ]
+          },
+          "2016": {
+            "count": 8,
+            "n": 9,
+            "percent": 88.9,
+            "ci95": [
+              56.5,
+              98.0
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "boundary_structure",
+        "label": {
+          "en": "Reached a boundary",
+          "lv": "Sasniedza robežu"
+        },
+        "count": 24,
+        "n": 34,
+        "uncertain": 3,
+        "percent": 70.6,
+        "ci95": [
+          53.8,
+          83.2
+        ],
+        "coding": "rule",
+        "kappa": null,
+        "low_reliability": false,
+        "reliability_checked": true
+      },
+      {
+        "coverage": 0.4,
+        "reportable": false,
+        "by_era": {
+          "2017": {
+            "count": 7,
+            "n": 55,
+            "percent": 12.7,
+            "ci95": [
+              6.3,
+              24.0
+            ]
+          },
+          "2008": {
+            "count": 0,
+            "n": 25,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              13.3
+            ]
+          },
+          "2016": {
+            "count": 0,
+            "n": 38,
+            "percent": 0.0,
+            "ci95": [
+              0.0,
+              9.2
+            ]
+          }
+        },
+        "era_unstable": false,
+        "code": "obe_clear",
+        "label": {
+          "en": "Clearly left the body",
+          "lv": "Skaidri atstāja ķermeni"
+        },
+        "count": 7,
+        "n": 118,
+        "uncertain": 23,
+        "percent": 5.9,
+        "ci95": [
+          2.9,
+          11.7
         ],
         "coding": "rule",
         "kappa": null,
@@ -912,18 +2238,18 @@
       }
     ],
     "checkable": {
-      "accounts_with_checkable_claim": 20,
-      "percent": 20.8,
+      "accounts_with_checkable_claim": 95,
+      "percent": 32.0,
       "ci95": [
-        13.9,
-        30.0
+        26.9,
+        37.5
       ]
     },
     "verification": {
       "confirmed": 0,
       "refuted": 0,
-      "unverifiable": 10,
-      "not_attempted": 10
+      "unverifiable": 77,
+      "not_attempted": 18
     },
     "verification_downgraded": 0,
     "health_cases_by_documentation_level": {},

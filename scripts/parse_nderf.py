@@ -21,6 +21,25 @@ def norm(s):
     return re.sub(r"\s+", " ", s.replace("’", "'").strip().lower()).rstrip(".")
 
 
+def words(s):
+    return re.sub(r"[^a-z0-9 ]+", " ", norm(s)).split()
+
+
+def stem_match(question, stem):
+    """Stem words must appear in order, starting at the first word, with at most 25 extra words.
+    Tolerates commas, brackets and small wording additions between questionnaire versions."""
+    q, st = words(question), words(stem)
+    if not st or len(q) < len(st) or len(q) > len(st) + 25 or q[0] != st[0]:
+        return False
+    k = 0
+    for w in q:
+        if w == st[k]:
+            k += 1
+            if k == len(st):
+                return True
+    return False
+
+
 def classify(raw):
     n = re.sub(r"[^A-Z]", "", raw.upper())
     return "nde" if n in ("NDE", "NDES") else "other"
@@ -37,9 +56,9 @@ def parse_one(text, items):
         mm = QMARK.match(line.strip())
         if not mm:
             continue
-        q, a = norm(mm.group(1)), norm(mm.group(2))
+        q, a = mm.group(1), norm(mm.group(2))
         for it in items:
-            if q.startswith(it["stem"]) and it["code"] not in answers:
+            if stem_match(q, it["stem"]) and it["code"] not in answers:
                 answers[it["code"]] = a
     pos, neg, unc, answered = [], [], [], []
     for it in items:
@@ -50,7 +69,7 @@ def parse_one(text, items):
             unc.append(it["code"]); answered.append(it["code"]); continue
         if any(a.startswith(p) for p in it["positive"]):
             pos.append(it["code"]); answered.append(it["code"])
-        elif any(a.startswith(n) for n in it["negative"]):
+        elif any(a.startswith(n) for n in it["negative"]) or a.startswith("neither"):
             neg.append(it["code"]); answered.append(it["code"])
     claims = []
     a = answers.get("aware_elsewhere", "")
@@ -64,12 +83,13 @@ def parse_one(text, items):
                 "status": "unverifiable" if checked else "not_attempted",
                 "evidence_type": "same_narrator_only" if checked else "none",
                 "note": "Narrator states the facts were checked; not independently verified by this project." if checked else None}})
-    return cls_raw, pos, answered, unc, claims, bool(body)
+    return cls_raw, pos, answered, unc, claims, bool(body), answers, body
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=".")
+    ap.add_argument("--diag", action="store_true", help="write private per-era coverage diagnostics")
     a = ap.parse_args()
     root = a.root
     raw_dir = os.path.join(root, "narrative_corpus_private", "nderf", "raw")
@@ -88,16 +108,39 @@ def main():
     today = datetime.date.today().isoformat()
     n = skipped = 0
     groups = {}
+    diag_q = {}      # normalised question -> {era: count}
+    diag_cov = {}    # code -> {era: [stories_with_item_answered, stories]}
+    diag_unm = {}    # code -> {first three words of unmatched answers: count}
+    def era(y):
+        try:
+            y = int(y)
+        except Exception:
+            return "?"
+        return "<=2008" if y <= 2008 else ("2009-2016" if y <= 2016 else "2017+")
     with open(os.path.join(out_dir, "NDERF.jsonl"), "w", encoding="utf-8", newline="\n") as fh:
         for fn in sorted(os.listdir(raw_dir)):
             if not fn.endswith(".txt"):
                 continue
             rid = fn[:-4]
             text = open(os.path.join(raw_dir, fn), encoding="utf-8").read()
-            cls_raw, pos, answered, unc, claims, has_q = parse_one(text, items)
+            cls_raw, pos, answered, unc, claims, has_q, ans, body = parse_one(text, items)
             if not has_q or not answered:
                 skipped += 1
                 continue
+            e = era((meta.get(rid) or {}).get("archive_year"))
+            for line in body.split("\n"):
+                mm = QMARK.match(line.strip())
+                if mm and len(mm.group(1)) < 200:
+                    k = " ".join(words(mm.group(1)))
+                    diag_q.setdefault(k, {}); diag_q[k][e] = diag_q[k].get(e, 0) + 1
+            for it in items:
+                c = diag_cov.setdefault(it["code"], {}).setdefault(e, [0, 0])
+                c[1] += 1
+                if it["code"] in answered:
+                    c[0] += 1
+                elif ans.get(it["code"]):
+                    k = " ".join(norm(ans[it["code"]]).split()[:3])
+                    diag_unm.setdefault(it["code"], {}); diag_unm[it["code"]][k] = diag_unm[it["code"]].get(k, 0) + 1
             grp = classify(cls_raw)
             groups[grp] = groups.get(grp, 0) + 1
             rec = {
@@ -117,6 +160,14 @@ def main():
             }
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
             n += 1
+    if a.diag:
+        qs = sorted(diag_q.items(), key=lambda kv: -sum(kv[1].values()))
+        out = {"questions": [{"q": k, "by_era": v} for k, v in qs if sum(v.values()) >= 3],
+               "coverage": diag_cov,
+               "unmatched_answers": {c: {k: v for k, v in d.items() if v >= 3} for c, d in diag_unm.items()}}
+        p = os.path.join(root, "narrative_corpus_private", "nderf", "diag.json")
+        json.dump(out, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("diagnostics ->", p)
     print("records written: %d, skipped (no questionnaire): %d, groups: %s" % (n, skipped, groups))
 
 

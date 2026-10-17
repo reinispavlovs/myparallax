@@ -99,6 +99,18 @@ def group_of(rec):
     return (rec.get("classification") or {}).get("group")
 
 
+COVERAGE_MIN = 0.5   # an item is reportable only if at least half of the headline accounts answered it
+N_MIN = 30
+
+
+def era_of(rec):
+    try:
+        y = int((rec.get("source") or {}).get("published_at"))
+    except (TypeError, ValueError):
+        return None
+    return "2008" if y <= 2008 else ("2016" if y <= 2016 else "2017")
+
+
 def analyse(records, reliability, warnings, labels=None):
     labels = labels or {}
     reps_all = representatives(records)
@@ -130,6 +142,16 @@ def analyse(records, reliability, warnings, labels=None):
             unc[c] = unc.get(c, 0) + 1
     for c in denom:
         counts.setdefault(c, 0)
+    era_k, era_n = {}, {}
+    for r in reps:
+        e = era_of(r)
+        if not e:
+            continue
+        mc = motif_codes(r)
+        for c in (r.get("items_answered") or []):
+            era_n.setdefault(c, {}); era_n[c][e] = era_n[c].get(e, 0) + 1
+            if c in mc:
+                era_k.setdefault(c, {}); era_k[c][e] = era_k[c].get(e, 0) + 1
     motifs = []
     for code, k in counts.items():
         den = denom.get(code, 0) if structured else n_eff
@@ -138,7 +160,18 @@ def analyse(records, reliability, warnings, labels=None):
         by_rule = coders.get(code, {"rule"}) == {"rule"} if code in coders else bool(structured)
         kappa = reliability.get(code)
         lab = labels.get(code) or {}
+        eras = {}
+        for e, n_e in (era_n.get(code) or {}).items():
+            k_e = (era_k.get(code) or {}).get(e, 0)
+            eras[e] = {"count": k_e, "n": n_e, "percent": round(k_e / n_e * 100, 1), "ci95": wilson(k_e, n_e)}
+        big = [v for v in eras.values() if v["n"] >= 20]
+        # unstable across years: two eras whose 95% intervals do not overlap
+        unstable = any(a["ci95"][1] < b["ci95"][0] for a in big for b in big)
+        coverage = den / n_eff if n_eff else 0
         motifs.append({
+            "coverage": round(coverage, 2),
+            "reportable": bool(coverage >= COVERAGE_MIN and den >= N_MIN),
+            "by_era": eras, "era_unstable": bool(unstable),
             "code": code, "label": {"en": lab.get("en", code), "lv": lab.get("lv", code)},
             "count": k, "n": den, "uncertain": unc.get(code, 0),
             "percent": round(k / den * 100, 1), "ci95": wilson(k, den),
@@ -147,7 +180,7 @@ def analyse(records, reliability, warnings, labels=None):
             "low_reliability": (not by_rule and kappa is not None and kappa < KAPPA_LOW),
             "reliability_checked": by_rule or kappa is not None,
         })
-    motifs.sort(key=lambda m: (-m["percent"], m["code"]))
+    motifs.sort(key=lambda m: (not m["reportable"], -m["percent"], m["code"]))
     res["motifs"] = motifs
 
     with_checkable, verif = 0, {"confirmed": 0, "refuted": 0, "unverifiable": 0, "not_attempted": 0}
