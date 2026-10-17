@@ -492,26 +492,6 @@
       </div>
     </section>
 
-    <section id="weekly" class="max-w-3xl mx-auto px-6 py-14 border-t border-slate-800/80 hidden" aria-labelledby="wb-h">
-      <div class="text-center mb-6">
-        <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="wb-sub">Weekly briefing</span>
-        <h2 id="wb-h" class="text-2xl sm:text-3xl font-bold text-white brand-font mt-2 mb-2" data-i18n="wb-title">What is new this week</h2>
-        <p class="text-slate-400 text-sm" data-i18n="wb-desc">Generated automatically from the published data. Audio and text are in English.</p>
-      </div>
-      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-6 flex flex-col sm:flex-row items-center gap-5">
-        <canvas id="wb-orb" width="320" height="320" class="w-40 h-40 shrink-0" role="img" aria-label="Audio visualiser"></canvas>
-        <div class="flex-1 min-w-0 w-full">
-          <button id="wb-play" type="button" aria-pressed="false" class="bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-amber-400 border border-amber-500/50 px-4 py-2 rounded-xl text-sm transition font-semibold" data-i18n="wb-play">Listen</button>
-          <p id="wb-date" class="text-[11px] text-slate-500 font-mono mt-3"></p>
-          <details class="mt-2">
-            <summary class="cursor-pointer text-xs text-amber-400" data-i18n="wb-text">Read the text</summary>
-            <p id="wb-text" class="text-xs text-slate-300 leading-relaxed mt-2"></p>
-          </details>
-          <p class="text-[10px] text-slate-500 mt-3" data-i18n="wb-auto">Automatically generated and not reviewed by a person. Figures come from the pages above.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="what-changed" class="max-w-3xl mx-auto px-6 py-14 border-t border-slate-800/80">
       <div class="text-center mb-8">
         <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="wc-sub">Public log</span>
@@ -903,12 +883,8 @@
         'wc-desc': 'Every change to a status, figure or wording is logged in public, including our own corrections.',
         'wc-full': 'Full corrections log &rarr;',
         'wc-arch': 'All article versions &rarr;',
-        'wb-sub': 'Weekly briefing',
-        'wb-title': 'What is new this week',
-        'wb-desc': 'Generated automatically from the published data. Audio and text are in English.',
-        'wb-play': 'Listen',
-        'wb-text': 'Read the text',
-        'wb-auto': 'Automatically generated and not reviewed by a person. Figures come from the pages above.',
+        'wb-aria': 'What is new this week: play the audio briefing',
+        'wb-new': 'What is new',
         'gap-open-dossier': 'Open Data Dossier for AI Analysis &rarr;',
         'gap-m-title': 'Megalithic Acoustic Matrix',
         'gap-m-desc': '<strong>Missing data:</strong> Acoustic resonance measurements from additional megalithic sites and subterranean chambers.',
@@ -1093,12 +1069,8 @@
         'wc-desc': 'Katra statusa, skaitļa vai formulējuma izmaiņa tiek publiski reģistrēta, arī mūsu pašu labojumi.',
         'wc-full': 'Pilns labojumu žurnāls &rarr;',
         'wc-arch': 'Visas rakstu versijas &rarr;',
-        'wb-sub': 'Nedēļas pārskats',
-        'wb-title': 'Kas jauns šonedēļ',
-        'wb-desc': 'Ģenerēts automātiski no publicētajiem datiem. Audio un teksts ir angļu valodā.',
-        'wb-play': 'Klausīties',
-        'wb-text': 'Lasīt tekstu',
-        'wb-auto': 'Ģenerēts automātiski un nav cilvēka pārskatīts. Skaitļi ņemti no lapām augstāk.',
+        'wb-aria': 'Kas jauns šonedēļ: atskaņot audio pārskatu',
+        'wb-new': 'Kas jauns',
         'gap-open-dossier': 'Atvērt Datu Dosjē MI Analīzei &rarr;',
         'gap-m-title': 'Megalītu Akustiskā Matrica',
         'gap-m-desc': '<strong>Trūkstošie dati:</strong> Akustisko rezonanses mērījumi papildu megalītiskajās vietās un pazemes kamerās.',
@@ -2788,28 +2760,37 @@
 
   </script>
 
+  <button id="wb-orb-btn" type="button" aria-pressed="false" aria-label="What is new this week: play the audio briefing"
+    class="hidden fixed bottom-6 left-6 z-40 group flex items-center gap-2 bg-transparent border-0 p-0 cursor-pointer">
+    <span class="relative block w-16 h-16">
+      <canvas id="wb-orb" width="192" height="192" class="w-16 h-16 block transition-transform duration-300 group-hover:scale-110" aria-hidden="true"></canvas>
+      <span id="wb-dot" class="hidden absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-amber-400 ring-2 ring-slate-950"></span>
+    </span>
+    <span id="wb-label" class="text-[11px] font-semibold text-amber-300 bg-slate-950/80 border border-slate-800 rounded-full px-2.5 py-1 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 transition duration-200">What is new</span>
+  </button>
   <script>
-  /* Weekly briefing player: no autoplay, no external libraries. Falls back to the browser voice if the mp3 is missing. */
+  /* Weekly briefing orb: bottom-left, no autoplay, no external libraries. Falls back to the browser voice if the mp3 is missing. */
   (function () {
-    const sec = document.getElementById('weekly'); if (!sec) return;
-    const canvas = document.getElementById('wb-orb'), btn = document.getElementById('wb-play');
-    const ctx = canvas.getContext('2d');
+    const btn = document.getElementById('wb-orb-btn'), canvas = document.getElementById('wb-orb');
+    if (!btn || !canvas) return;
+    const ctx = canvas.getContext('2d'), dot = document.getElementById('wb-dot'), label = document.getElementById('wb-label');
     const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const L = () => (typeof currentLang !== 'undefined' && currentLang === 'LV') ? { play: 'Klausīties', pause: 'Pauze' } : { play: 'Listen', pause: 'Pause' };
-    let data = null, audio = null, analyser = null, buf = null, playing = false, usingVoice = false, level = 0, t0 = 0;
+    const lv = () => (typeof currentLang !== 'undefined' && currentLang === 'LV');
+    const names = () => lv() ? { aria: 'Kas jauns šonedēļ: atskaņot audio pārskatu', new: 'Kas jauns', pause: 'Pauze' } : { aria: 'What is new this week: play the audio briefing', new: 'What is new', pause: 'Pause' };
+    let data = null, audio = null, analyser = null, buf = null, playing = false, usingVoice = false, level = 0;
 
     function drawOrb(ts) {
       const W = canvas.width, H = canvas.height, cx = W / 2, cy = H / 2;
-      const target = playing ? (analyser ? levelFromAnalyser() : 0.35 + 0.25 * Math.sin(ts / 220)) : 0.08;
+      const target = playing ? (analyser ? levelFromAnalyser() : 0.35 + 0.25 * Math.sin(ts / 220)) : 0.1;
       level += (target - level) * 0.15;
-      const r = W * (0.27 + 0.05 * level), ph = reduce ? 0 : ts / 1800;
+      const r = W * (0.27 + 0.06 * level), ph = reduce ? 0 : ts / 1800;
       ctx.clearRect(0, 0, W, H);
-      const glow = ctx.createRadialGradient(cx, cy, r * 0.6, cx, cy, r * 1.9);
-      glow.addColorStop(0, 'rgba(167,139,250,' + (0.28 + 0.3 * level) + ')'); glow.addColorStop(1, 'rgba(2,3,10,0)');
+      const glow = ctx.createRadialGradient(cx, cy, r * 0.5, cx, cy, r * 1.8);
+      glow.addColorStop(0, 'rgba(167,139,250,' + (0.30 + 0.30 * level) + ')'); glow.addColorStop(1, 'rgba(2,3,10,0)');
       ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
       ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, 6.2832); ctx.clip();
       const base = ctx.createRadialGradient(cx - r * 0.3, cy - r * 0.3, r * 0.1, cx, cy, r);
-      base.addColorStop(0, '#e9d5ff'); base.addColorStop(0.5, '#8b5cf6'); base.addColorStop(1, '#1e1b4b');
+      base.addColorStop(0, '#f3e8ff'); base.addColorStop(0.5, '#8b5cf6'); base.addColorStop(1, '#2e1065');
       ctx.fillStyle = base; ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
       for (let i = 0; i < 3; i++) {
         const a = ph * (1 + i * 0.4) + i * 2.1, x = cx + Math.cos(a) * r * 0.45, y = cy + Math.sin(a * 1.3) * r * 0.45;
@@ -2817,32 +2798,43 @@
         g.addColorStop(0, i === 1 ? 'rgba(56,189,248,.55)' : 'rgba(255,255,255,.45)'); g.addColorStop(1, 'rgba(255,255,255,0)');
         ctx.fillStyle = g; ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
       }
+      // soft edge instead of an outline
+      const edge = ctx.createRadialGradient(cx, cy, r * 0.82, cx, cy, r);
+      edge.addColorStop(0, 'rgba(46,16,101,0)'); edge.addColorStop(1, 'rgba(2,3,10,.55)');
+      ctx.fillStyle = edge; ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
       ctx.restore();
-      ctx.strokeStyle = 'rgba(196,181,253,.5)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, r, 0, 6.2832); ctx.stroke();
       requestAnimationFrame(drawOrb);
     }
     function levelFromAnalyser() {
       analyser.getByteFrequencyData(buf); let s = 0; for (let i = 0; i < buf.length; i++) s += buf[i];
       return Math.min(1, s / buf.length / 110);
     }
-    function setBtn() { btn.textContent = playing ? L().pause : L().play; btn.setAttribute('aria-pressed', playing ? 'true' : 'false'); }
+    function ui() {
+      const n = names();
+      btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      btn.setAttribute('aria-label', playing ? n.pause : n.aria);
+      label.textContent = playing ? n.pause : n.new;
+      if (playing) { label.classList.remove('opacity-0'); label.classList.add('opacity-100'); }
+      else { label.classList.remove('opacity-100'); label.classList.add('opacity-0'); }
+    }
+    function markHeard() { try { if (data && data.period) localStorage.setItem('pp-wb-heard', data.period.to); } catch (e) {} dot.classList.add('hidden'); }
     function stop() {
-      playing = false; setBtn();
+      playing = false; ui();
       if (audio) audio.pause();
       if (usingVoice && window.speechSynthesis) speechSynthesis.cancel();
     }
     function speak() {
       if (!window.speechSynthesis || !data) { stop(); return; }
       usingVoice = true; const u = new SpeechSynthesisUtterance(data.text); u.lang = 'en-GB';
-      u.onend = () => { playing = false; setBtn(); }; u.onerror = u.onend;
+      u.onend = () => { playing = false; ui(); }; u.onerror = u.onend;
       speechSynthesis.cancel(); speechSynthesis.speak(u);
     }
     function start() {
-      playing = true; setBtn();
+      playing = true; ui(); markHeard();
       if (usingVoice) { speak(); return; }
       if (!audio) {
         audio = new Audio('content/weekly/latest.mp3?v=' + encodeURIComponent(data.generated_at || ''));
-        audio.addEventListener('ended', () => { playing = false; setBtn(); });
+        audio.addEventListener('ended', () => { playing = false; ui(); });
         audio.addEventListener('error', () => { audio = null; if (playing) speak(); });
         try {
           const AC = window.AudioContext || window.webkitAudioContext;
@@ -2856,12 +2848,12 @@
     fetch('content/weekly/latest.json?v=' + Math.floor(Date.now() / 60000), { cache: 'no-cache' })
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(d => {
-        data = d; sec.classList.remove('hidden');
-        document.getElementById('wb-text').textContent = d.text;
-        document.getElementById('wb-date').textContent = (d.period && d.period.to) ? d.period.to : '';
-        setBtn(); requestAnimationFrame(drawOrb);
+        data = d; btn.classList.remove('hidden'); ui();
+        let heard = null; try { heard = localStorage.getItem('pp-wb-heard'); } catch (e) {}
+        if (!d.period || heard !== d.period.to) dot.classList.remove('hidden');
+        requestAnimationFrame(drawOrb);
       }).catch(() => {});
-    document.addEventListener('click', e => { if (e.target && e.target.closest && e.target.closest('#lang-toggle-btn')) setTimeout(setBtn, 50); });
+    document.addEventListener('click', e => { if (e.target && e.target.closest && e.target.closest('#lang-toggle-btn')) setTimeout(ui, 50); });
   })();
   </script>
 </body>

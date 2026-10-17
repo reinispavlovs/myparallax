@@ -119,6 +119,18 @@ def main():
     standing = [("%s, %s percent" % (SHORT[t], fmt(cov[t]))) for t in SHORT if cov.get(t) is not None]
     if standing:
         sents.append("Current checklist coverage: " + "; ".join(standing) + ".")
+    # plain-language meaning, only for what actually changed; never claims proof
+    kinds = {i["kind"] for i in items}
+    meaning = []
+    if "coverage" in kinds or "class" in kinds:
+        meaning.append("A higher coverage number means more testing criteria are met. It does not mean the claim is more likely to be true.")
+    if "testimony" in kinds and not first_run and n_old != n_new:
+        meaning.append("More accounts make the percentages more precise, but they do not turn reports into proof.")
+    if "corrections" in kinds:
+        meaning.append("Corrections mean earlier wording was fixed in public, so readers can see what changed and why.")
+    if not meaning:
+        meaning.append("A quiet week is normal: the evidence moves slowly, and nothing is changed without a reason.")
+    sents.append("What this means for readers: " + " ".join(meaning))
     head = "Project Parallax weekly briefing, %s." % today.strftime("%d %B %Y")
     tail = ("Coverage percentages measure how many testing criteria are met. They are not the probability that a claim is true. "
             "Testimony figures are self-reported accounts, not proof. This briefing was generated automatically from published data.")

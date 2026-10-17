@@ -4,6 +4,16 @@ on:
   schedule:
     - cron: '17 7 * * 1'   # Mondays 07:17 UTC
   workflow_dispatch:
+    inputs:
+      voice:
+        description: 'Piper voice id (used for the briefing audio)'
+        required: false
+        default: 'en_US-amy-medium'
+      samples:
+        description: 'Also write short samples of several voices to content/weekly/samples/'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -15,6 +25,9 @@ concurrency:
 jobs:
   briefing:
     runs-on: ubuntu-24.04
+    env:
+      VOICE: ${{ github.event.inputs.voice || 'en_US-amy-medium' }}
+      SAMPLES: ${{ github.event.inputs.samples || 'false' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,12 +48,24 @@ jobs:
           set -ex
           command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           pip install piper-tts
-          V=https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium
-          curl -fsSL --retry 3 -o voice.onnx "$V/en_US-lessac-medium.onnx"
-          curl -fsSL --retry 3 -o voice.onnx.json "$V/en_US-lessac-medium.onnx.json"
-          python -m piper -m voice.onnx -f content/weekly/latest.wav < content/weekly/latest.txt
-          ffmpeg -y -loglevel error -i content/weekly/latest.wav -ac 1 -b:a 64k content/weekly/latest.mp3
-          rm -f content/weekly/latest.wav voice.onnx voice.onnx.json
+          synth() {  # synth VOICE_ID TEXT_FILE OUT_MP3
+            v="$1"; lang="${v%%-*}"; rest="${v#*-}"; name="${rest%-*}"; q="${rest##*-}"
+            base="https://huggingface.co/rhasspy/piper-voices/resolve/main/${lang%%_*}/${lang}/${name}/${q}"
+            curl -fsSL --retry 3 -o "$v.onnx" "$base/$v.onnx"
+            curl -fsSL --retry 3 -o "$v.onnx.json" "$base/$v.onnx.json"
+            python -m piper -m "$v.onnx" -f "$v.wav" < "$2"
+            ffmpeg -y -loglevel error -i "$v.wav" -ac 1 -b:a 64k -filter:a "atempo=0.96" "$3"
+            rm -f "$v.wav" "$v.onnx" "$v.onnx.json"
+          }
+          synth "$VOICE" content/weekly/latest.txt content/weekly/latest.mp3
+          rm -f content/weekly/latest.wav
+          if [ "$SAMPLES" = "true" ]; then
+            mkdir -p content/weekly/samples
+            head -c 420 content/weekly/latest.txt > sample.txt
+            for v in en_US-amy-medium en_US-lessac-high en_GB-jenny_dioco-medium en_US-ryan-high en_GB-alba-medium; do
+              synth "$v" sample.txt "content/weekly/samples/$v.mp3" || echo "voice $v failed"
+            done
+          fi
 
       - name: Commit and push
         run: |
