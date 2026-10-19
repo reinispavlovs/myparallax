@@ -13,7 +13,7 @@ import numpy as np
 
 from scripts.shared.claim_layers_utils import validate_content_flags
 from scripts.fetch_topic_corpus import build_corpus
-from scripts.analyze_corpus_consensus import aggregate_corpus, ClassificationError
+from scripts.analyze_corpus_consensus import aggregate_corpus, ClassificationError, RELEVANCE_RULES
 
 # Iel??d?? vides main??gos no .env faila
 load_dotenv(override=True)
@@ -466,8 +466,13 @@ def agent_1_multi_source_simulation(topic):
 
     # NEW: corpus-based topics take a completely different data path ???
     # multi-source statistical aggregate instead of a single arXiv hit.
-    if topic.get("corpus_based"):
+    # The LLM classifier prompt and the relevance gate are written for the NDE topic only.
+    # A corpus topic WITHOUT a RELEVANCE_RULES entry would be classified with NDE categories
+    # (e.g. 220/221 'inconclusive' for neural_cosmic_isomorphism), so it falls back to the arXiv path below.
+    if topic.get("corpus_based") and topic["name"] in RELEVANCE_RULES:
         return agent_1_corpus_analysis(topic)
+    if topic.get("corpus_based"):
+        print("  [warn] corpus analysis skipped for '" + topic["name"] + "': no relevance rule / topic-specific classifier yet -> arXiv fallback.")
 
     print(f"[*] [Aģents 1] Iegūst datus no arXiv priekš: {topic['name']}...")
     arxiv_result = fetch_real_arxiv_summary(topic["arxiv_query"])

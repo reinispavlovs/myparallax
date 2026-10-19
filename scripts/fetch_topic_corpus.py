@@ -21,6 +21,7 @@ S2_MIN_INTERVAL = 1.1      # seconds between Semantic Scholar calls (documented 
 S2_MAX_ATTEMPTS = 4
 S2_CIRCUIT_AFTER = 2       # consecutive fully-failed queries before S2 is skipped for the rest of the run
 _S2_FAIL_STREAK = [0]
+_S2_NOKEY_NOTICE = [False]
 
 
 _TITLE_PREFIX = re.compile(r'^(brief report|review article|review paper|original article|original research)\b\s*')
@@ -55,6 +56,13 @@ def _find_duplicate(entry_key, seen_keys):
 
 def _search_ss(query, max_results=15, stats=None):
     out = []
+    if not os.getenv('SEMANTIC_SCHOLAR_API_KEY') and os.getenv('S2_ALLOW_ANON', '') != '1':
+        if stats is not None:
+            stats['s2_skipped'] += 1
+        if not _S2_NOKEY_NOTICE[0]:
+            _S2_NOKEY_NOTICE[0] = True
+            print('  [info] Semantic Scholar skipped: no SEMANTIC_SCHOLAR_API_KEY (the anonymous pool returns 429). Add the key to .env, or set S2_ALLOW_ANON=1 to try anyway.')
+        return out
     if _S2_FAIL_STREAK[0] >= S2_CIRCUIT_AFTER and not (stats and stats['s2_ok']):
         print('  [warn] SemanticScholar skipped (circuit open after', _S2_FAIL_STREAK[0], 'consecutive failures):', query)
         if stats is not None:
