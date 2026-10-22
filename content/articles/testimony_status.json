@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T13:18:14Z",
+  "generated_at": "2026-10-22T11:37:44Z",
   "status": "measured",
   "summary": {
     "candidate_sources": 6,
@@ -19,7 +19,7 @@
         "state": "requested",
         "requested_on": null,
         "answered_on": null,
-        "note": "Dr Long was contacted earlier; no reply yet."
+        "note": "Dr Long replied in October 2026 and suggested peer-reviewed publications; on 2026-10-22 he agreed that we may say publicly that he replied and suggested them. His messages did not state a position on reuse of NDERF data, so this state stays requested. Access status is unchanged (tdm_open under our policy)."
       },
       "included_in_numbers": true,
       "n_raw": 431,
