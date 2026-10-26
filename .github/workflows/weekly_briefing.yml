@@ -2,7 +2,9 @@ name: Weekly Briefing
 
 on:
   schedule:
-    - cron: '17 7 * * 1'   # Mondays 07:17 UTC
+    - cron: '17 7 * * 1'    # Mondays 07:17 UTC
+    - cron: '47 8 * * 1'    # Mondays 08:47 UTC (fallback if the first start is dropped)
+    - cron: '17 7 * * 2'    # Tuesdays 07:17 UTC (second fallback)
   workflow_dispatch:
     inputs:
       voice:
@@ -31,18 +33,40 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # GitHub's scheduled starts are best-effort and sometimes dropped, so the
+      # workflow is scheduled more than once. Scheduled runs skip if a briefing
+      # was already published in the last 3 days; manual runs always go ahead.
+      - name: Skip if a recent briefing exists
+        id: guard
+        run: |
+          skip=false
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            last=$(git log -1 --format=%ct -- content/weekly/latest.json || echo 0)
+            now=$(date +%s)
+            if [ -n "$last" ] && [ $((now - last)) -lt 259200 ]; then
+              skip=true
+              echo "Recent briefing found; skipping this scheduled run."
+            fi
+          fi
+          echo "skip=$skip" >> "$GITHUB_OUTPUT"
 
       - name: Set up Python
+        if: steps.guard.outputs.skip != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Build briefing text from published data
+        if: steps.guard.outputs.skip != 'true'
         run: python scripts/weekly_briefing.py --root .
 
       # Speech is best-effort. If this step fails the text still publishes
       # and the page reads it with the visitor's browser voice instead.
       - name: Generate English audio (Piper, open source, no API key)
+        if: steps.guard.outputs.skip != 'true'
         continue-on-error: true
         run: |
           set -ex
@@ -68,6 +92,7 @@ jobs:
           fi
 
       - name: Commit and push
+        if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.name "Project Parallax Bot"
           git config user.email "bot@myparallax.org"
