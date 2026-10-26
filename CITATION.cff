@@ -21,3 +21,13 @@ abstract: >-
   Open, correctable evidence-status maps for topics at the border of ancient knowledge,
   cosmology and consciousness, scored by checklist coverage (not probability), with a
   public corrections log and human review of AI-assisted summaries.
+references:
+  - type: report
+    title: "Project Parallax Whitepaper v2.0: evidence status of four contested topics"
+    authors:
+      - family-names: Pavlovs
+        given-names: Reinis
+    year: 2026
+    doi: 10.5281/zenodo.23663717
+    url: "https://zenodo.org/records/23663717"
+    notes: "Supersedes whitepaper v1.0 (August 2026). English and Latvian editions."
