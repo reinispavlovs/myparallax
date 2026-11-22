@@ -157,6 +157,12 @@ def main():
         changes.append("%s article%s got a new version checked by a person." % (words(nv).capitalize(), "" if nv == 1 else "s"))
         items.append({"kind": "versions"})
 
+    ann = (load(os.path.join(wk, "announcements.json"), {}) or {}).get("entries", [])
+    news = [e["text"] for e in ann if e.get("text") and e.get("date")
+            and since <= datetime.date.fromisoformat(e["date"]) <= today]
+    if news:
+        items.append({"kind": "news"})
+
     kinds = {i["kind"] for i in items}
     if "coverage" in kinds or "class" in kinds:
         meaning.append("A higher score means more of the checks are done. It does not mean the claim is more likely to be true.")
@@ -202,6 +208,9 @@ def main():
         sp.extend(changes)
     else:
         sp.append("Nothing changed this week, so here is where things stand.")
+    if news:
+        sp.append("New on the website this week.")
+        sp.extend(news)
     if first_run or not changes:
         sp.extend(standing)
         if testimony_line:
