@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Near-Death Experience, Step by Step | Project Parallax</title>
+<meta name="description" content="An interactive walk through the typical stages people report in near-death experiences, with how often each is reported (297 accounts), what skeptics propose, and what none of it shows.">
+<meta name="author" content="Reinis Pavlovs">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#02030a">
+<link rel="canonical" href="https://www.myparallax.org/nde-journey.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Project Parallax">
+<meta property="og:title" content="A Near-Death Experience, Step by Step | Project Parallax">
+<meta property="og:description" content="Nine reported stages, how often each is reported, what skeptics propose, and what none of it shows.">
+<meta property="og:url" content="https://www.myparallax.org/nde-journey.html">
+<meta property="og:image" content="https://www.myparallax.org/og-image.png">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#02030a;--panel:#0b1020;--line:#1e293b;--tx:#e0e6ed;--mut:#94a3b8;--gold:#fbbf24;--gold2:#f59e0b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:Cinzel,serif;margin:0}
+a{color:var(--gold)}
+header{border-bottom:1px solid var(--line);background:rgba(2,3,10,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(10px)}
+.bar{max-width:960px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.bar a{font-size:14px;text-decoration:none}
+#lang{background:#0f172a;border:1px solid #334155;color:var(--gold);border-radius:8px;padding:6px 12px;font-weight:700;font-size:12px;cursor:pointer}
+main{max-width:960px;margin:0 auto;padding:24px 20px 64px}
+.lead h1{font-size:clamp(26px,5vw,40px);color:#fff}
+.lead p{color:var(--mut);max-width:70ch;font-weight:300}
+.stage-wrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);margin-top:20px}
+canvas{display:block;width:100%;height:320px;background:#000}
+.cap{padding:10px 18px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);font-style:italic}
+.dots{display:flex;gap:6px;justify-content:center;padding:14px;flex-wrap:wrap}
+.dots button{width:30px;height:30px;border-radius:50%;border:1px solid #334155;background:#0f172a;color:var(--mut);font-size:12px;cursor:pointer}
+.dots button.on{background:var(--gold2);color:#02030a;border-color:var(--gold2);font-weight:700}
+.dots button.done{border-color:var(--gold2);color:var(--gold)}
+.body{padding:6px 22px 24px}
+.body h2{font-size:24px;color:var(--gold);margin-bottom:6px}
+.step{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.pov{font-size:17px;font-weight:300;color:#fff;margin:6px 0 18px}
+.cols{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:800px){.cols{grid-template-columns:1.2fr 1fr}}
+.card{background:#070b17;border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h3{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-family:Inter}
+.row{margin-bottom:14px}
+.row .l{display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.row .l b{color:#fff;white-space:nowrap}
+.track{position:relative;height:10px;background:#111a2e;border-radius:5px;margin-top:5px}
+.fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#d97706,#fbbf24);border-radius:5px}
+.ci{position:absolute;top:-3px;bottom:-3px;border-left:2px solid #fff8;border-right:2px solid #fff8;background:#ffffff1a}
+.row .n{font-size:11px;color:var(--mut)}
+.card p{font-size:13.5px;color:#cbd5e1;margin:0;font-weight:300}
+.no{border-color:#7f1d1d55}
+.no h3{color:#fca5a5}
+.nav{display:flex;justify-content:space-between;margin-top:18px;gap:10px}
+.nav button{background:var(--gold2);color:#02030a;border:0;border-radius:10px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:14px}
+.nav button.sec{background:#0f172a;color:var(--gold);border:1px solid #334155}
+.nav button:disabled{opacity:.3;cursor:default}
+.note{font-size:12px;color:var(--mut);margin-top:30px;line-height:1.7}
+.note b{color:#cbd5e1}
+.intro ul{padding-left:18px;color:#cbd5e1;font-size:14px;font-weight:300}
+.intro li{margin-bottom:6px}
+.warn{border:1px solid #92400e;background:#451a0322;border-radius:10px;padding:12px 14px;font-size:13px;color:#fde68a;margin-top:14px}
+</style>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+<header><div class="bar"><a href="index.html" id="back">&larr; Back</a><button id="lang">LV</button></div></header>
+<main>
+ <div class="lead"><h1 id="h1"></h1><p id="sub"></p></div>
+ <div class="stage-wrap">
+  <canvas id="cv" width="960" height="320" role="img" aria-label="Illustration"></canvas>
+  <div class="cap" id="cap"></div>
+  <div class="dots" id="dots"></div>
+  <div class="body" id="body"></div>
+ </div>
+ <div class="note" id="foot"></div>
+</main>
+<script>
+const D={"n": 297, "n_other": 134, "stages": [{"id": "event", "codes": ["life_threat"], "scene": "event", "t": {"en": "The event", "lv": "Notikums"}, "pov": {"en": "The edges of the world narrow. Sound goes distant.", "lv": "Pasaules malas sašaurinās. Skaņas attālinās."}, "exp": {"en": "Self-selection. People who submit an account are, by definition, people who had an experience. This dataset has no count of survivors who experienced nothing, so it cannot say how common these experiences are. Prospective hospital studies of cardiac-arrest survivors find that only a minority report one.", "lv": "Pašatlase. Konta iesūtītāji pēc definīcijas ir cilvēki, kuriem pieredze bijusi. Datu kopā nav to izdzīvojušo, kuri neko nepiedzīvoja, tāpēc tā neļauj noteikt, cik bieži šādas pieredzes ir. Prospektīvos slimnīcu pētījumos ar sirds apstāšanās pārdzīvojušajiem tikai mazākums ziņo par tādu pieredzi."}, "no": {"en": "How often NDEs happen, or what causes them.", "lv": "Cik bieži NDE notiek un kas tās izraisa."}, "stats": [{"code": "life_threat", "en": "Associated life-threatening event", "lv": "Saistīts dzīvībai bīstams notikums", "k": 214, "n": 288, "p": 74.3, "lo": 69, "hi": 79}]}, {"id": "sharp", "codes": ["enhanced_consciousness", "senses_vivid", "thoughts_faster", "time_distorted"], "scene": "sharp", "t": {"en": "Everything sharpens", "lv": "Viss kļūst skaidrāks"}, "pov": {"en": "Colours, sounds and thoughts feel clearer than usual. Time stretches.", "lv": "Krāsas, skaņas un domas šķiet skaidrākas nekā parasti. Laiks stiepjas."}, "exp": {"en": "Stress and low oxygen are known to alter perception and time estimation. Speed of thought and passage of time are judged afterwards, from memory; nothing was measured at the time. Animal studies recorded a burst of high-frequency brain activity around cardiac arrest (Borjigin et al., PNAS 2013), which some researchers propose as a physical correlate.", "lv": "Stress un skābekļa trūkums, kā zināms, izmaina uztveri un laika novērtējumu. Domu ātrumu un laika gaitu vērtē pēc tam, no atmiņas; tajā brīdī nekas netika mērīts. Dzīvnieku pētījumos pie sirds apstāšanās reģistrēts augstfrekvences smadzeņu aktivitātes pieaugums (Borjigin u.c., PNAS 2013), ko daži pētnieki min kā iespējamu fizisku korelātu."}, "no": {"en": "That thinking was actually faster. No measurement exists.", "lv": "Ka domāšana patiešām bija ātrāka. Mērījumu nav."}, "stats": [{"code": "enhanced_consciousness", "en": "More alert than normal", "lv": "Skaidrāka apziņa nekā parasti", "k": 165, "n": 232, "p": 71.1, "lo": 65, "hi": 77}, {"code": "senses_vivid", "en": "Senses more vivid", "lv": "Skaidrākas maņas", "k": 193, "n": 242, "p": 79.8, "lo": 74, "hi": 84}, {"code": "thoughts_faster", "en": "Thoughts sped up", "lv": "Domas paātrinājās", "k": 140, "n": 242, "p": 57.9, "lo": 52, "hi": 64}, {"code": "time_distorted", "en": "Altered sense of time", "lv": "Izmainīta laika izjūta", "k": 212, "n": 287, "p": 73.9, "lo": 68, "hi": 79}]}, {"id": "leave", "codes": ["body_separation_any", "aware_elsewhere"], "scene": "leave", "t": {"en": "Leaving the body", "lv": "Atstāt ķermeni"}, "pov": {"en": "The point of view rises. The body is seen from above.", "lv": "Skatpunkts paceļas. Ķermenis redzams no augšas."}, "exp": {"en": "Out-of-body sensations can be produced by electrical stimulation near the right temporoparietal junction (Blanke et al., Nature 2002) and occur in some sleep and anaesthetic states. A vivid scene can also be assembled afterwards from sounds heard and from expectation.", "lv": "Ārpusķermeņa sajūtas var izraisīt ar elektrisku stimulāciju pie labās temporoparietālās krustpunktas (Blanke u.c., Nature 2002), un tās rodas arī dažos miega un anestēzijas stāvokļos. Spilgtu ainu var arī pēc tam salikt no dzirdētām skaņām un cerībām."}, "no": {"en": "That anything was seen from outside the body. Of the accounts claiming awareness of events elsewhere, none is independently confirmed and none refuted: 77 rest only on the narrator saying it was checked, 18 have not been attempted.", "lv": "Ka kaut kas tika redzēts no ķermeņa ārpuses. No ziņojumiem par apzināšanos notikumos citur neviens nav neatkarīgi apstiprināts un neviens atspēkots: 77 balstās tikai uz stāstītāja teikto, ka tas pārbaudīts, 18 vēl nav mēģināts pārbaudīt."}, "stats": [{"code": "body_separation_any", "en": "Any sense of separation from the body", "lv": "Jebkāda atdalīšanās sajūta no ķermeņa", "k": 186, "n": 295, "p": 63.1, "lo": 57, "hi": 68}, {"code": "aware_elsewhere", "en": "Aware of events elsewhere (self-reported)", "lv": "Apzinājās notikumus citur (paša ziņots)", "k": 95, "n": 242, "p": 39.3, "lo": 33, "hi": 46}]}, {"id": "light", "codes": ["tunnel", "light_brilliant", "light_unearthly"], "scene": "light", "t": {"en": "Tunnel and light", "lv": "Tunelis un gaisma"}, "pov": {"en": "A bright centre, ringed by dark, draws closer.", "lv": "Spilgts centrs tumsas gredzenā tuvojas."}, "exp": {"en": "Reduced blood flow to the retina and visual cortex can narrow vision into a tunnel, and disinhibition of the visual cortex has been proposed for the light. Note that the tunnel is less common than its popular image.", "lv": "Samazināta asinsplūsma tīklenē un redzes garozā var sašaurināt redzi tuneļa veidā, bet gaismai ir ierosināta redzes garozas disinhibīcija. Ievērojiet, ka tunelis sastopams retāk, nekā liecina tā populārais tēls."}, "no": {"en": "That the light is anything beyond a visual experience.", "lv": "Ka gaisma ir kas vairāk par redzes pieredzi."}, "stats": [{"code": "tunnel", "en": "Tunnel", "lv": "Tunelis", "k": 92, "n": 289, "p": 31.8, "lo": 27, "hi": 37}, {"code": "light_brilliant", "en": "Brilliant light", "lv": "Spilgta gaisma", "k": 172, "n": 242, "p": 71.1, "lo": 65, "hi": 76}, {"code": "light_unearthly", "en": "Unearthly light", "lv": "Neparasta, ne-zemes gaisma", "k": 185, "n": 291, "p": 63.6, "lo": 58, "hi": 69}]}, {"id": "beings", "codes": ["other_world", "mystical_presence", "beings_any", "deceased_beings", "religious_figure"], "scene": "beings", "t": {"en": "Other places, other beings", "lv": "Citas vietas, citas būtnes"}, "pov": {"en": "Figures and a luminous landscape take shape.", "lv": "Veidojas siluetes un gaiša ainava."}, "exp": {"en": "Content tends to match what a person’s culture and expectations supply, and visions of deceased people are also common in bereavement and under some medications. Among those asked, about a quarter knew about NDEs beforehand.", "lv": "Saturs mēdz atbilst tam, ko sniedz cilvēka kultūra un cerības, un mirušu cilvēku parādības ir bieži arī sēru laikā un dažu zāļu ietekmē. No jautātajiem apmēram ceturtā daļa jau iepriekš zināja par NDE."}, "no": {"en": "That these beings exist. A checkable test would be learning something about a deceased person that the narrator could not have known; no such case is verified here.", "lv": "Ka šīs būtnes pastāv. Pārbaudāms tests būtu uzzināt ko par mirušu cilvēku, ko stāstītājs nevarēja zināt; šeit neviens tāds gadījums nav pārbaudīts."}, "stats": [{"code": "other_world", "en": "Entered another world", "lv": "Nokļuva citā pasaulē", "k": 173, "n": 281, "p": 61.6, "lo": 56, "hi": 67}, {"code": "mystical_presence", "en": "Mystical presence or voice", "lv": "Mistiska būtne vai balss", "k": 159, "n": 242, "p": 65.7, "lo": 60, "hi": 71}, {"code": "beings_any", "en": "Saw or sensed beings", "lv": "Redzēja vai sajuta būtnes", "k": 126, "n": 242, "p": 52.1, "lo": 46, "hi": 58}, {"code": "deceased_beings", "en": "Deceased beings", "lv": "Mirušas būtnes", "k": 124, "n": 281, "p": 44.1, "lo": 38, "hi": 50}, {"code": "religious_figure", "en": "Religious figure", "lv": "Reliģiska figūra", "k": 18, "n": 155, "p": 11.6, "lo": 7, "hi": 18}]}, {"id": "feel", "codes": ["peace", "joy", "unity", "distressing_any"], "scene": "feel", "t": {"en": "How it felt", "lv": "Kā tas jutās"}, "pov": {"en": "Warmth, stillness, belonging. For some, fear.", "lv": "Siltums, miers, piederība. Dažiem arī bailes."}, "exp": {"en": "Strong calm and euphoria also accompany several drug and brain states (dissociative anaesthetics such as ketamine produce similar reports), so the feeling alone does not discriminate between explanations. About three in ten report content that was fully or partly distressing, which popular accounts tend to underplay.", "lv": "Spēcīgs miers un eiforija pavada arī vairākus zāļu un smadzeņu stāvokļus (disociatīvie anestētiķi, piemēram, ketamīns, rada līdzīgus ziņojumus), tāpēc pats jūtu raksturs neļauj atšķirt skaidrojumus. Apmēram trīs no desmit ziņo par pilnīgi vai daļēji nomācošu saturu, ko populāri stāsti mēdz noklusēt."}, "no": {"en": "That the feelings tell us what death is like.", "lv": "Ka šīs jūtas stāsta, kāda ir nāve."}, "stats": [{"code": "peace", "en": "Peace or calm", "lv": "Miers vai nomierinājums", "k": 228, "n": 242, "p": 94.2, "lo": 91, "hi": 97}, {"code": "joy", "en": "Joy", "lv": "Prieks", "k": 190, "n": 241, "p": 78.8, "lo": 73, "hi": 84}, {"code": "unity", "en": "Unity with the universe", "lv": "Vienotība ar visumu", "k": 178, "n": 241, "p": 73.9, "lo": 68, "hi": 79}, {"code": "distressing_any", "en": "Distressing content (fully or partly)", "lv": "Nomācošs saturs (pilnīgi vai daļēji)", "k": 92, "n": 293, "p": 31.4, "lo": 26, "hi": 37}]}, {"id": "know", "codes": ["understood_all", "life_review", "info_love", "info_meaning"], "scene": "know", "t": {"en": "Understanding and life review", "lv": "Izpratne un dzīves pārskats"}, "pov": {"en": "Scenes flicker past. Everything seems to make sense.", "lv": "Ainas pazib garām. Šķiet, ka viss ir skaidrs."}, "exp": {"en": "Rapid recall of life events is also reported in non-fatal danger and in some seizures. A feeling of sudden understanding can occur without any content that can be checked; the “knowledge” reported is typically general, not specific facts.", "lv": "Strauja dzīves notikumu atsaukšana atmiņā tiek ziņota arī nenāvējošās briesmās un dažās lēkmēs. Pēkšņas izpratnes sajūta var rasties bez jebkāda pārbaudāma satura; ziņotās “zināšanas” parasti ir vispārīgas, nevis konkrēti fakti."}, "no": {"en": "That any of the information was true.", "lv": "Ka kāda no informācijas bija patiesa."}, "stats": [{"code": "understood_all", "en": "Sudden understanding", "lv": "Pēkšņa visa izpratne", "k": 195, "n": 287, "p": 67.9, "lo": 62, "hi": 73}, {"code": "life_review", "en": "Life review", "lv": "Dzīves pārskats", "k": 128, "n": 287, "p": 44.6, "lo": 39, "hi": 50}, {"code": "info_love", "en": "Information: love", "lv": "Zināšanas: mīlestība", "k": 84, "n": 165, "p": 50.9, "lo": 43, "hi": 58}, {"code": "info_meaning", "en": "Information: meaning of life", "lv": "Zināšanas: dzīves jēga", "k": 64, "n": 164, "p": 39.0, "lo": 32, "hi": 47}]}, {"id": "border", "codes": ["border_return"], "scene": "border", "t": {"en": "A border", "lv": "Robeža"}, "pov": {"en": "A threshold. A sense that going on means not coming back.", "lv": "Slieksnis. Sajūta, ka iet tālāk nozīmē neatgriezties."}, "exp": {"en": "Survivorship. Everyone who tells such an account returned, so a point of return is built into every account. We hear nothing from those who did not.", "lv": "Izdzīvošanas aizspriedums. Ikviens, kas stāsta šādu stāstu, ir atgriezies, tāpēc atgriešanās punkts ir ierakstīts katrā stāstā. No tiem, kas neatgriezās, mēs neko nedzirdam."}, "no": {"en": "Anything about what lies beyond the border.", "lv": "Neko par to, kas ir aiz robežas."}, "stats": [{"code": "border_return", "en": "Border or point of no return", "lv": "Robeža, no kuras nav atpakaļceļa", "k": 180, "n": 285, "p": 63.2, "lo": 57, "hi": 69}]}, {"id": "after", "codes": ["values_changed", "life_changes_large", "relationships_changed", "hard_to_express", "memory_more_accurate", "real_now"], "scene": "after", "t": {"en": "Afterwards", "lv": "Pēc tam"}, "pov": {"en": "The room returns. Something feels different.", "lv": "Telpa atgriežas. Kaut kas šķiet citādi."}, "exp": {"en": "Serious life-threatening events change many people whether or not they report an NDE (post-traumatic growth). “Remembered more accurately” and “definitely real” are feelings reported later, with the delay not recorded; vivid memory is not necessarily accurate memory.", "lv": "Nopietni dzīvībai bīstami notikumi maina daudzus cilvēkus neatkarīgi no tā, vai viņi ziņo par NDE (pēctraumatiskā izaugsme). “Atceras precīzāk” un “noteikti bija reāls” ir vēlāk ziņotas sajūtas, kavējums nav reģistrēts; spilgta atmiņa nav obligāti precīza atmiņa."}, "no": {"en": "That the experience caused the changes.", "lv": "Ka pieredze izraisīja pārmaiņas."}, "stats": [{"code": "values_changed", "en": "Values and beliefs changed", "lv": "Mainījās vērtības un uzskati", "k": 173, "n": 294, "p": 58.8, "lo": 53, "hi": 64}, {"code": "life_changes_large", "en": "Large life changes afterwards", "lv": "Lielas dzīves izmaiņas pēc tam", "k": 92, "n": 152, "p": 60.5, "lo": 53, "hi": 68}, {"code": "relationships_changed", "en": "Relationships changed", "lv": "Mainījās attiecības", "k": 138, "n": 229, "p": 60.3, "lo": 54, "hi": 66}, {"code": "hard_to_express", "en": "Hard to put into words", "lv": "Grūti izteikt vārdos", "k": 147, "n": 292, "p": 50.3, "lo": 45, "hi": 56}, {"code": "memory_more_accurate", "en": "Remembers it more accurately than other events", "lv": "Atceras precīzāk nekā citus notikumus", "k": 129, "n": 165, "p": 78.2, "lo": 71, "hi": 84}, {"code": "real_now", "en": "Now believes it was definitely real", "lv": "Tagad uzskata, ka tas noteikti bija reāls", "k": 229, "n": 241, "p": 95.0, "lo": 91, "hi": 97}]}], "claims": {"total": 95, "unverifiable": 77, "not_attempted": 18, "confirmed": 0, "refuted": 0}, "prior": {"code": "prior_nde_knowledge", "en": "Knew about NDEs beforehand", "lv": "Pirms tam zināja par NDE", "k": 63, "n": 242, "p": 26.0, "lo": 21, "hi": 32}};
+const UI={
+ en:{back:'← Back to home',h1:'A near-death experience, step by step',
+  sub:'Nine stages that people commonly describe, in the order they usually describe them. For each: how often it is reported, how skeptics explain it, and what the numbers do not show. This is a guide to reports, not a claim about what happens when we die.',
+  cap:'Illustration of the reported experience. Not a recording and not evidence.',
+  start:'Start',next:'Next',prev:'Back',restart:'Start over',
+  intro_t:'Before you begin',
+  intro:['Source: '+D.n+' accounts that the Near-Death Experience Research Foundation (NDERF) labelled “NDE”, answering a fixed questionnaire. Only derived statistics are used; no account is quoted or republished.',
+   'Each bar shows the share of people who answered that question and gave a positive answer, with a 95% range (white marks) and the number who answered. The number answering differs between questions because the questionnaire changed over time.',
+   'These are self-reports, given in response to prompts, by people who chose to submit. About a quarter (26%, 63 of 242 asked) already knew about NDEs beforehand. Duplicate and related accounts have not yet been removed, so the independent sample size is not yet computed.',
+   'Not medical advice, and not a claim about death. Where a stage has an explanation from neuroscience or psychology, it is shown beside it.'],
+  rep:'Reported',skep:'How skeptics explain it',no:'What this does not show',of:' of ',asked:' answered',
+  out_t:'What this gives us',
+  out:['A map of the shared pattern, and where it differs from the stereotype: the tunnel is reported by about a third, and about three in ten describe distressing content.',
+   'A list of checkable claims waiting to be checked: '+D.claims.total+' accounts say they were aware of events elsewhere. Confirmed independently: '+D.claims.confirmed+'. Refuted: '+D.claims.refuted+'. Narrator says it was checked, not verified: '+D.claims.unverifiable+'. Not attempted: '+D.claims.not_attempted+'.',
+   'For those who know someone with such an experience: about half find it hard to put into words, and six in ten report changed relationships afterwards. That is a reason to listen, not a medical conclusion.'],
+  foot:'<b>Method and limits.</b> Data: '+D.n+' NDERF accounts labelled “NDE” (collected 2026-10-17; '+D.n_other+' accounts with other labels excluded). Codes are read from closed questionnaire answers by rule (codebook v0.3), not by model judgement. Intervals: Wilson 95%. Verification rule: only an independent document or witness counts as confirmation; a narrator’s own statement does not. See <a href="methodology.html">methodology</a> and the <a href="tribunal.html">Tribunal</a>.<br><b>Sources.</b> NDERF, <a href="https://www.nderf.org/">nderf.org</a>. Borjigin et al., PNAS 2013 (rat brain activity around cardiac arrest). Blanke et al., Nature 2002 (out-of-body sensations after stimulation). Greyson, 1983, The Near-Death Experience Scale. Mentions of researchers do not imply endorsement.<br><b>Evidence status only. Not medical advice.</b>'},
+ lv:{back:'← Atpakaļ uz sākumu',h1:'Gandrīz-nāves pieredze soli pa solim',
+  sub:'Deviņi posmi, ko cilvēki bieži apraksta, tādā secībā, kādā tos parasti apraksta. Katram: cik bieži tas tiek ziņots, kā to skaidro skeptiķi un ko skaitļi neparāda. Tas ir ziņojumu ceļvedis, nevis apgalvojums par to, kas notiek nāvē.',
+  cap:'Ziņotās pieredzes ilustrācija. Nav ieraksts un nav pierādījums.',
+  start:'Sākt',next:'Tālāk',prev:'Atpakaļ',restart:'No sākuma',
+  intro_t:'Pirms sākat',
+  intro:['Avots: '+D.n+' ziņojumi, ko Near-Death Experience Research Foundation (NDERF) iezīmējis kā “NDE” un kuros atbildēts uz fiksētu anketu. Izmantota tikai atvasināta statistika; neviens ziņojums netiek citēts vai pārpublicēts.',
+   'Katra josla rāda to, kas atbildēja uz jautājumu, daļu ar apstiprinošu atbildi, ar 95% diapazonu (baltās atzīmes) un atbildējušo skaitu. Atbildējušo skaits starp jautājumiem atšķiras, jo anketa laika gaitā mainījusies.',
+   'Tie ir paša ziņojumi, sniegti atbildot uz jautājumiem, no cilvēkiem, kas izvēlējās tos iesniegt. Apmēram ceturtā daļa (26%, 63 no 242 jautātajiem) jau iepriekš zināja par NDE. Dublikāti un saistīti ziņojumi vēl nav noņemti, tāpēc neatkarīgais izlases lielums vēl nav aprēķināts.',
+   'Nav medicīnisks padoms un nav apgalvojums par nāvi. Ja posmam ir neirozinātnes vai psiholoģijas skaidrojums, tas parādīts blakus.'],
+  rep:'Ziņots',skep:'Kā to skaidro skeptiķi',no:'Ko tas neparāda',of:' no ',asked:' atbildēja',
+  out_t:'Ko tas mums dod',
+  out:['Kopīgā raksta karte un tas, kur tā atšķiras no stereotipa: tunelis tiek ziņots apmēram trešdaļā, un apmēram trīs no desmit apraksta nomācošu saturu.',
+   'Saraksts ar pārbaudāmiem apgalvojumiem, kas gaida pārbaudi: '+D.claims.total+' ziņojumos teikts, ka bija apzināšanās par notikumiem citur. Neatkarīgi apstiprināti: '+D.claims.confirmed+'. Atspēkoti: '+D.claims.refuted+'. Stāstītājs saka, ka pārbaudīts, bet nav verificēts: '+D.claims.unverifiable+'. Nav mēģināts: '+D.claims.not_attempted+'.',
+   'Tiem, kas pazīst cilvēku ar šādu pieredzi: apmēram pusei to ir grūti izteikt vārdos, un seši no desmit ziņo, ka pēc tam mainījās attiecības. Tas ir iemesls uzklausīt, nevis medicīnisks secinājums.'],
+  foot:'<b>Metode un ierobežojumi.</b> Dati: '+D.n+' NDERF ziņojumi ar iezīmi “NDE” (iegūti 2026-10-17; '+D.n_other+' ziņojumi ar citām iezīmēm izslēgti). Kodi nolasīti no slēgtajām anketas atbildēm pēc noteikumiem (kodu grāmata v0.3), nevis ar modeļa spriedumu. Intervāli: Vilsona 95%. Verifikācijas noteikums: apstiprinājumu dod tikai neatkarīgs dokuments vai liecinieks; paša stāstītāja apgalvojums neskaitās. Skat. <a href="methodology.html">metodoloģiju</a> un <a href="tribunal.html">Tribunālu</a>.<br><b>Avoti.</b> NDERF, <a href="https://www.nderf.org/">nderf.org</a>. Borjigin u.c., PNAS 2013 (žurku smadzeņu aktivitāte pie sirds apstāšanās). Blanke u.c., Nature 2002 (ārpusķermeņa sajūtas pēc stimulācijas). Greyson, 1983, The Near-Death Experience Scale. Pētnieku pieminēšana nenozīmē atbalstu.<br><b>Tikai pierādījumu statuss. Nav medicīnisks padoms.</b>'}
+};
+let lang=(navigator.language||'en').toLowerCase().startsWith('lv')?'lv':'en';
+let idx=-1; // -1 intro, 0..8 stages, 9 outro
+const N=D.stages.length;
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function bars(stats){return stats.map(s=>`<div class="row"><div class="l"><span>${s[lang]}</span><b>${s.p.toFixed(0)}%</b></div><div class="track"><div class="fill" style="width:${s.p}%"></div><div class="ci" style="left:${s.lo}%;width:${Math.max(1,s.hi-s.lo)}%"></div></div><div class="n">${s.k}${UI[lang].of}${s.n}${UI[lang].asked} · 95%: ${s.lo}–${s.hi}%</div></div>`).join('')}
+
+function render(){
+ const u=UI[lang];
+ $('back').textContent=u.back;$('h1').textContent=u.h1;$('sub').textContent=u.sub;$('cap').textContent=u.cap;$('foot').innerHTML=u.foot;$('lang').textContent=lang==='en'?'LV':'EN';
+ document.documentElement.lang=lang;
+ let d='';
+ d+=`<button class="${idx===-1?'on':''}" onclick="go(-1)" aria-label="${u.start}">i</button>`;
+ for(let i=0;i<N;i++)d+=`<button class="${idx===i?'on':(i<idx?'done':'')}" onclick="go(${i})">${i+1}</button>`;
+ d+=`<button class="${idx===N?'on':''}" onclick="go(${N})" aria-label="${u.out_t}">★</button>`;
+ $('dots').innerHTML=d;
+ let h='';
+ if(idx===-1){
+  h=`<div class="intro"><div class="step">&nbsp;</div><h2>${u.intro_t}</h2><ul>${u.intro.map(x=>`<li>${x}</li>`).join('')}</ul><div class="nav"><span></span><button onclick="go(0)">${u.start} →</button></div></div>`;
+ }else if(idx===N){
+  h=`<div class="intro"><h2>${u.out_t}</h2><ul>${u.out.map(x=>`<li>${x}</li>`).join('')}</ul><div class="warn">${lang==='en'?'Evidence status only. Not medical advice.':'Tikai pierādījumu statuss. Nav medicīnisks padoms.'}</div><div class="nav"><button class="sec" onclick="go(${N-1})">← ${u.prev}</button><button onclick="go(-1)">${u.restart}</button></div></div>`;
+ }else{
+  const s=D.stages[idx];
+  h=`<div class="step">${idx+1} / ${N}</div><h2>${s.t[lang]}</h2><div class="pov">${s.pov[lang]}</div><div class="cols"><div class="card"><h3>${u.rep}</h3>${bars(s.stats)}</div><div><div class="card" style="margin-bottom:16px"><h3>${u.skep}</h3><p>${s.exp[lang]}</p></div><div class="card no"><h3>${u.no}</h3><p>${s.no[lang]}</p></div></div></div><div class="nav"><button class="sec" onclick="go(${idx-1})">← ${u.prev}</button><button onclick="go(${idx+1})">${u.next} →</button></div>`;
+ }
+ $('body').innerHTML=h;
+}
+function go(i){idx=Math.max(-1,Math.min(N,i));render();scene=idx>=0&&idx<N?D.stages[idx].scene:'intro';t0=performance.now();}
+$('lang').onclick=()=>{lang=lang==='en'?'lv':'en';render()};
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(idx+1);if(e.key==='ArrowLeft')go(idx-1)});
+
+// ---- scenes ----
+const cv=$('cv'),c=cv.getContext('2d');let W=960,H=320,scene='intro',t0=performance.now();
+function fit(){const r=cv.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);W=cv.width=Math.round(r.width*dpr);H=cv.height=Math.round(r.height*dpr);}
+addEventListener('resize',fit);
+function rg(x,y,r0,r1,stops){const g=c.createRadialGradient(x,y,r0,x,y,r1);stops.forEach(s=>g.addColorStop(s[0],s[1]));return g}
+const S={
+ intro(t){c.fillStyle='#02030a';c.fillRect(0,0,W,H);for(let i=0;i<60;i++){const x=(i*733%W),y=(i*389%H);c.fillStyle=`rgba(251,191,36,${.15+.15*Math.sin(t*.001+i)})`;c.fillRect(x,y,2,2)}},
+ event(t){c.fillStyle='#0a0a12';c.fillRect(0,0,W,H);const k=.35+.1*Math.sin(t*.0008);c.fillStyle=rg(W/2,H/2,H*.12,H*(1.1-k),[[0,'rgba(60,60,80,.0)'],[1,'#000']]);c.fillRect(0,0,W,H);
+  c.strokeStyle='#ef4444';c.lineWidth=2;c.beginPath();const fade=Math.max(0,1-(t%12000)/9000);for(let x=0;x<W;x+=3){const p=((x/W)*4+t*.0006)%1;let y=H*.8;if(p>.4&&p<.45)y-=60*fade*Math.sin((p-.4)/.05*Math.PI);x?c.lineTo(x,y):c.moveTo(x,y)}c.globalAlpha=.8;c.stroke();c.globalAlpha=1},
+ sharp(t){c.fillStyle='#050816';c.fillRect(0,0,W,H);for(let i=0;i<7;i++){const r=((t*.05*(1+i*.25)+i*90)%(H*.9));c.strokeStyle=`hsla(${40+i*30},90%,65%,${.5-r/(H*1.8)})`;c.lineWidth=2;c.beginPath();c.arc(W/2,H/2,r,0,7);c.stroke()}
+  c.fillStyle='#fff';for(let i=0;i<40;i++){const sp=i%2?0.02:0.2;const x=(i*97+t*sp)%W,y=(i*53)%H;c.globalAlpha=.7;c.fillRect(x,y,2,2)}c.globalAlpha=1},
+ leave(t){c.fillStyle='#0b1020';c.fillRect(0,0,W,H);const k=Math.min(1,(t%9000)/6000);const sc=1-.55*k;c.save();c.translate(W/2,H*.62);c.scale(sc,sc);
+  c.fillStyle='#1e293b';c.fillRect(-170,-20,340,60);c.fillStyle='#334155';c.fillRect(-160,-45,320,35);c.fillStyle='#e2b98f';c.beginPath();c.arc(-120,-30,18,0,7);c.fill();c.fillStyle='#475569';c.fillRect(-100,-42,250,28);c.restore();
+  c.strokeStyle='rgba(148,163,184,.2)';for(let i=0;i<8;i++){c.beginPath();c.moveTo(0,i*H/8*(1-k*.3));c.lineTo(W,i*H/8*(1-k*.3));c.stroke()}
+  c.fillStyle=rg(W/2,0,10,H*.9,[[0,'rgba(251,191,36,.18)'],[1,'rgba(0,0,0,0)']]);c.fillRect(0,0,W,H)},
+ light(t){c.fillStyle='#000';c.fillRect(0,0,W,H);for(let i=14;i>=0;i--){const z=((i*.07+t*.00018)%1);const r=Math.pow(z,2.2)*H*1.3+4;c.strokeStyle=`rgba(255,${200+z*55|0},${120+z*100|0},${z})`;c.lineWidth=2+z*10;c.beginPath();c.arc(W/2,H/2,r,0,7);c.stroke()}
+  c.fillStyle=rg(W/2,H/2,0,H*.35,[[0,'rgba(255,255,255,1)'],[.3,'rgba(255,240,200,.7)'],[1,'rgba(0,0,0,0)']]);c.fillRect(0,0,W,H)},
+ beings(t){c.fillStyle=rg(W/2,H*.7,10,H,[[0,'#fde68a'],[.4,'#b45309'],[1,'#0a0a1a']]);c.fillRect(0,0,W,H);
+  for(let i=0;i<5;i++){const x=W*(.2+i*.15),y=H*.72,h=70+(i%3)*18,b=Math.sin(t*.001+i)*3;c.fillStyle=`rgba(255,248,220,${.25+.1*Math.sin(t*.0012+i)})`;c.beginPath();c.ellipse(x,y-h+b,12,14,0,0,7);c.fill();c.beginPath();c.moveTo(x-18,y+b);c.quadraticCurveTo(x,y-h,x+18,y+b);c.fill()}},
+ feel(t){c.fillStyle='#14091f';c.fillRect(0,0,W,H);for(let i=0;i<4;i++){c.fillStyle=rg(W*(.2+i*.2)+Math.sin(t*.0004+i)*40,H*.5+Math.cos(t*.0005+i)*30,0,H*.7,[[0,`hsla(${25+i*18},95%,62%,.45)`],[1,'rgba(0,0,0,0)']]);c.fillRect(0,0,W,H)}},
+ know(t){c.fillStyle='#050816';c.fillRect(0,0,W,H);const cols=6,rows=3;for(let r=0;r<rows;r++)for(let q=0;q<cols;q++){const ph=(t*.0012+r*1.3+q*.7);const a=.1+.5*Math.max(0,Math.sin(ph));c.fillStyle=`rgba(251,191,36,${a})`;const w=W/cols-14,h=H/rows-14;c.fillRect(q*(w+14)+7,r*(h+14)+7,w,h);c.strokeStyle=`rgba(255,255,255,${a*.6})`;c.strokeRect(q*(w+14)+7,r*(h+14)+7,w,h)}},
+ border(t){c.fillStyle='#04040c';c.fillRect(0,0,W,H);const pulse=.5+.5*Math.sin(t*.0012);c.fillStyle=rg(W*.5,H*.5,0,H,[[0,`rgba(255,240,200,${.5+pulse*.3})`],[1,'rgba(0,0,0,0)']]);c.fillRect(W*.45,0,W*.1,H);
+  c.fillStyle='#111827';c.fillRect(0,H*.55,W*.46,H*.45);c.fillRect(W*.54,H*.55,W*.46,H*.45);c.fillStyle='#e2b98f';const x=W*.3+Math.sin(t*.0007)*W*.05;c.beginPath();c.arc(x,H*.5,10,0,7);c.fill();c.fillRect(x-7,H*.5+10,14,34)},
+ after(t){c.fillStyle='#0f172a';c.fillRect(0,0,W,H);c.fillStyle=rg(W*.8,H*.25,0,H,[[0,'rgba(253,230,138,.55)'],[1,'rgba(0,0,0,0)']]);c.fillRect(0,0,W,H);c.fillStyle='#1e293b';c.fillRect(W*.62,H*.1,W*.28,H*.5);c.fillStyle='rgba(253,230,138,.35)';c.fillRect(W*.64,H*.13,W*.24,H*.44);
+  c.fillStyle='#334155';c.fillRect(0,H*.72,W,H*.28);for(let i=0;i<3;i++){const r=((t*.03+i*60)%180);c.strokeStyle=`rgba(251,191,36,${.4-r/450})`;c.beginPath();c.arc(W*.3,H*.55,r,0,7);c.stroke()}}
+};
+function frame(now){const t=reduce?4000:now-t0;(S[scene]||S.intro)(t);requestAnimationFrame(frame)}
+fit();render();requestAnimationFrame(frame);
+</script>
+</body>
+</html>
